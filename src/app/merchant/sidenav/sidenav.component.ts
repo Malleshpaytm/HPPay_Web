@@ -16,13 +16,15 @@ export class SidenavComponent implements OnInit, AfterViewInit {
     this.items = [
       {
         label: 'My Profile',
-        routerLink: ['./Profile']
+        routerLink: ['./profile']
       },
       {
         label: 'Dashboard',
+        routerLink: ['./dashboard']
       },
       {
         label: 'Change Password',
+        routerLink: ['./change-password']
       },
       {
         label: 'QR Agents Onboarding',
