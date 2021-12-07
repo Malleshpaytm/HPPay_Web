@@ -1,0 +1,128 @@
+/*.main_header {
+    border-bottom: 1px solid #00baf2;
+}*/
+.header_wrapper {
+    background: #212121;
+    display: flex;
+    align-items: flex-start;
+    padding: 20px 25px;
+    justify-content: space-between;
+}
+.logo {
+    display: block;
+}
+.logo a {
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+}
+.logo img {
+    max-width: 59px;
+    margin-right: 12px;
+}
+.header_top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.header_top p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+    color: #bdbdbd;
+}
+.downloadApp_img img {
+    max-width: 125px;
+}
+.downloadApp_img {
+    padding: 0 7px;
+}
+.header_nav {
+    padding: 0;
+}
+.header_nav ul {
+    margin: 0;
+    padding: 10px 0;
+	list-style: none
+}
+.header_nav ul li {
+    display: inline-block;
+    margin: 0 5px;
+}
+.header_nav ul li a {
+    display: block;
+    padding: 8px 5px;
+    color: #fff;
+    font-weight: 400;
+    position: relative;
+}
+.header_nav ul li.active a {
+    position: relative;
+}
+.header_nav ul li a:hover {
+    text-decoration: none;
+}
+.header_nav ul li a:before, .header_nav ul li a:after {
+    transition: all .2s;
+    width: 0;
+    position: relative;
+}
+.header_nav ul li a:before {
+    position: absolute;
+    content: '';
+    background: #fff;
+    height: 1px;
+    width: 0;
+    top: 0;
+    left: 0;
+}
+.header_nav ul li a:after {
+    position: absolute;
+    content: '';
+    background: #fff;
+    height: 1px;
+    width: 0;
+    bottom: 0;
+    right: 0;
+}
+.header_nav ul li a:hover:before, .header_nav ul li a:hover:after, .header_nav ul li.active a:before, .header_nav ul li.active a:after {
+    width: 100%;
+}
+.footer_text {
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 0;
+    color: #bdbdbd;
+}
+.footer_logos a {
+   display: block;
+   padding:0 20px 0 0;
+}
+.footer_logos img {
+    max-height: 75px;
+}
+
+@media screen and (max-width:767px) {
+    .header_wrapper {
+        padding: 20px 0;
+    }
+    .header_nav {
+        text-align: center;
+    }
+    .footer_download {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+    .bottom_logo {
+        justify-content: center !important;
+        width: 100%;
+    }
+    .footer_logos img {
+        max-height: 55px;
+    }
+    .header_nav ul li a {
+        font-size: 12px;
+    }
+}

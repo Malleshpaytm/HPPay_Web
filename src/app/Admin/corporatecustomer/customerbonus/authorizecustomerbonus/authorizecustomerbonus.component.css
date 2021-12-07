@@ -1,0 +1,8 @@
+.blue-bg {
+  background-color: #084594;
+}
+
+.required::after {
+  content: "*";
+  color: red;
+}

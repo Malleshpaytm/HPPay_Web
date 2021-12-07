@@ -1,0 +1,103 @@
+<div class="container-fluid">
+    <div class="container">
+        <div class="row mb-5 pb-5">
+            <div class="col-12">
+                <div class="card mt-5 p-0">
+                    <div class="card-header text-white" style="background-color:  #084594;">
+                         <strong class="down-stat">Merchant Account Statement Download</strong>
+                    </div>
+                    <div class="card-body">
+                        <table class="w-50">
+                            <tr>
+                                <td width="40%">
+                                    <span class="required">Merchant ID</span>:
+                                </td>
+                                   <td align="left">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td width="40%">
+                                    <span class="required">Report Type</span>:
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <select class="form-control" (change)="reportTypeChange($event)">
+                                            <option value="select">select</option>
+                                            <option value="Monthly">Monthly</option>
+                                            <option value="Quaterly">Quaterly</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tbody *ngIf="showBody">
+                                <tr>
+                                    <td>
+                                        <span *ngIf="entityTypeValue === 'Monthly'"><span class="required">Month
+                                                </span>:</span>
+                                        <span *ngIf="entityTypeValue === 'Quaterly'"><span class="required">Financial
+                                                Quarter</span>:</span>
+                                    </td>
+                                    <td align="left">
+                                     <div class="form-group" *ngIf="entityTypeValue === 'Monthly'">
+                                        <select class="form-control"  >
+                                            <option selected="selected" value="-1">-- Select --</option>
+                                            <option value="01/06/2021-30/06/2021">June-2021</option>
+                                            <option value="01/05/2021-31/05/2021">May-2021</option>
+                                            <option value="01/04/2021-30/04/2021">April-2021</option>
+                                            <option value="01/03/2021-31/03/2021">March-2021</option>
+                                            <option value="01/02/2021-28/02/2021">February-2021</option>
+                                            <option value="01/01/2021-31/01/2021">January-2021</option>
+                                            <option value="01/12/2020-31/12/2020">December-2020</option>
+                                            <option value="01/11/2020-30/11/2020">November-2020</option>
+                                            <option value="01/10/2020-31/10/2020">October-2020</option>
+                                            <option value="01/09/2020-30/09/2020">September-2020</option>
+                                            <option value="01/08/2020-31/08/2020">August-2020</option>
+                                            <option value="01/07/2020-31/07/2020">July-2020</option>
+                                            <option value="01/06/2020-30/06/2020">June-2020</option>
+                                            <option value="01/05/2020-31/05/2020">May-2020</option>
+                                            <option value="01/04/2020-30/04/2020">April-2020</option>
+                                            <option value="01/03/2020-31/03/2020">March-2020</option>
+                                            <option value="01/02/2020-29/02/2020">February-2020</option>
+                                            <option value="01/01/2020-31/01/2020">January-2020</option>
+                                            <option value="01/12/2019-31/12/2019">December-2019</option>
+                                            <option value="01/11/2019-30/11/2019">November-2019</option>
+                                            <option value="01/10/2019-31/10/2019">October-2019</option>
+                                            <option value="01/09/2019-30/09/2019">September-2019</option>
+                                            <option value="01/08/2019-31/08/2019">August-2019</option>
+                                            <option value="01/07/2019-31/07/2019">July-2019</option>
+                                        </select>
+                                        </div>
+                                        <div class="form-group" *ngIf="entityTypeValue === 'Quaterly'">
+                                            <select class="form-control" >
+                                                <option selected="selected" value="-1">Select</option>
+                                                <option value="04/01/2021-03/04/2021">04/01/2021-03/04/2021</option>
+                                                <option value="04/10/2020-03/01/2021">04/10/2020-03/01/2021</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    </tr>
+                            
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td align="left">
+                                        <div class=" d-flex flex-row justify-content-end">
+                                            <div class="mr-3">
+                                                <button class="btn btn-primary">Download</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 

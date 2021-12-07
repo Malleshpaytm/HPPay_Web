@@ -1,0 +1,120 @@
+<header class="main_header">
+	<nav class="navbar navbar-expand-lg p-0">
+	<div class="header_wrapper w-100">
+		<div class="logo">
+			<a routerLink='' >
+				<img src="assets/images/logo.png" class="header_logo img-responsive" alt="">
+				<img src="assets/images/HP-logo.png" class="header_logo img-responsive" alt="">
+			</a>
+		</div>
+		<div class="header_nav">
+			<div class="header_top d-none d-md-flex">
+				<p>Download HP PAY App</p>
+				<div class="downloadApp_img">
+					<img src="assets/images/android-app-link.png" alt="Google Play">
+				</div>					
+				<div class="downloadApp_img">
+					<img src="assets/images/ios-app-link.png" alt="Play Store">
+				</div>	
+			</div>
+			
+			<div class="collapse navbar-collapse" id="navbarNav" [ngbCollapse]="isMenuCollapsed" >
+				<ul>
+					<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" (click)="isMenuCollapsed = true"><a routerLink="">Home</a></li>
+					<li [routerLinkActive]="['active']"><a routerLink="programDetails" (click)="isMenuCollapsed = true" >Program Details</a></li>
+					<li [routerLinkActive]="['active']"><a routerLink="/customer/faqs" (click)="isMenuCollapsed = true" >FAQ's</a></li>
+					<li [routerLinkActive]="['active']"><a routerLink="/customer/applyNow" (click)="isMenuCollapsed = true">Apply Now</a></li>
+					<li [routerLinkActive]="['active']"><a routerLink="/customer/rechanrgeAccount" (click)="isMenuCollapsed = true" >Recharge Account</a></li>
+					<li><a routerLink="/login" >Log Out</a></li>
+				</ul>
+			</div>
+		</div>
+		<button class="navbar-toggler nav_btn" type="button" data-toggle="collapse" (click)="isMenuCollapsed = !isMenuCollapsed" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<img src="assets/images/menu_icon.png" class="img-fluid" alt="">
+		</button>
+	</div>
+</nav>
+</header>
+<ng-template #login let-modal >
+	<div class="login_wrapper">
+		<div class="modal-header border-0 p-0">      
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<span aria-hidden="true">×</span>
+		</button>
+		</div>
+		<div class="modal-body">
+			<div class="login_block">	
+				<div class="login_logo">
+					<img src="assets/images/hp-refuel-logo.png" class="img-fluid" alt="">	
+				</div>		
+				<div class="enrollment_block d-flex align-items-center justify-content-between mb-3">
+					<div class="col-sm-12">
+						<label class="form_label">Username</label>
+						<input type="text"  class="form-control">
+					</div>
+				</div>
+				<div class="enrollment_block d-flex align-items-center justify-content-between mb-2">
+					<div class="col-sm-12">
+						<label class="form_label">Password </label>
+						<input type="password" class="form-control">
+					</div>    
+				</div>
+				
+				<div class="enrollment_block d-flex align-items-center justify-content-between mb-2">
+					<div class="col-sm-6">
+						<mat-checkbox class="example-margin mb-0">Remember Me</mat-checkbox>
+					</div>
+					<div class="col-sm-6 text-right">
+						<a [routerLink]="" (click)="open(forgotpass)" class="mb-2 d-block">Forgot Password?</a>
+					</div>    
+				</div>
+				<div class="col-sm-12">
+					<div class="py-0">					
+						<p>Not a member? New user <a routerLink="applyNow" (click)="modal.dismiss('Cross click')" >click here</a></p>
+					</div>
+					<div class="py-0">
+						<button class="btn_login">Login</button>
+					</div>
+					<div class="mt-1">
+						<h4 class="font-600 bb-1 mb-2">Register with</h4>
+						<button class="btn g-login"><img src="assets/images/google-plus.png" class="img-fluid pr-1" alt=""> Google</button>
+					</div>
+				</div>
+			</div>
+		</div>   
+	</div> 
+  </ng-template>
+
+  <ng-template #forgotpass let-modal >
+	<div class="login_wrapper">
+		<div class="modal-header border-0 p-0">      
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<span aria-hidden="true">×</span>
+		</button>
+		</div>
+		<div class="modal-body">
+			<div class="login_block">	
+				<div class="login_logo">
+					<img src="assets/images/hp-refuel-logo.png" class="img-fluid" alt="">	
+				</div>	
+				<p class="text-center mb-3">Forgot Password</p>	
+				<div class="enrollment_block d-flex align-items-center justify-content-between mb-3">
+					<div class="col-sm-12">
+						<label class="form_label">Mobile Number</label>
+						<input type="tel"  class="form-control">
+					</div>
+				</div>
+				
+				
+				<div class="col-sm-12">					
+					<div class="py-0">
+						<button class="btn_login">Submit</button>
+					</div>
+					<div class="py-0">					
+						<p><a [routerLink]="" (click)="open(login)"> <i class="fa fa-back"></i> Back to Login</a></p>
+					</div>					
+				</div>
+			</div>
+		</div>   
+	</div> 
+  </ng-template>

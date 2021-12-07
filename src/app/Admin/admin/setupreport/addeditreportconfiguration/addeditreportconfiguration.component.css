@@ -1,0 +1,7 @@
+.required::after {
+  content: "*";
+  color: red;
+}
+.maxwidth300{
+    max-width: 300px
+  }

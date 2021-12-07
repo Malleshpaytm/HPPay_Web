@@ -1,0 +1,12 @@
+.required::after {
+  content: "*";
+  color: red;
+}
+.maxwidth300 {
+  max-width: 300px;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}

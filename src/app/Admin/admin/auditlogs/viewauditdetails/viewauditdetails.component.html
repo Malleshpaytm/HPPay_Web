@@ -1,0 +1,205 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row form-group">
+      <div class="col-12">
+        <div class="card mt-3 mb-5 p-0">
+          <div class="card-header text-white" style="background-color:  #084594;">
+            View Audit Details
+          </div>
+          <div class="card-body">
+
+
+            <table class="w-100 table table-borderless table-sm" style="font-size: small;">
+              <!-- <thead>
+                                <tr>
+                                    <th colspan="4">
+                                        <span style="font-size: 15px;">Officer Detail</span>
+                                    </th>
+                                </tr>
+                            </thead> -->
+                            <tbody>
+                                <tr>
+                                    <td align="left">
+                                        <span><span class="required">Entity Type
+                                            </span>:</span>
+
+                                    </td>
+                                    <td align="left">
+                                        <div class="form-group">
+                                            <select class="form-control" [(ngModel)]="selectedLevel" (change)="selectedEntity();">
+                                                <option value='select' selected="selected">Select Entity</option>
+                                                <option value="Customer">Customer</option>
+                                                <option value="Merchant">Merchant</option>
+                                                <option value="Hotlist">Hotlist</option>
+                                            </select>                                        </div>
+                                    </td>
+                                    <td align="left">
+                                        <span><span>Modifed By
+                                            </span>:</span>
+
+                                    </td>
+                                    <td>
+
+                                        <div class="form-group">
+                                          <input type="text" class="form-control">                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <span><span class="required">From Date
+                                            </span>:</span>
+
+
+                  </td>
+                  <td>
+
+                    <div class="form-group">
+                      <input type="text" class="form-control">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left">
+                    <span><span class="required">From Date
+                      </span>:</span>
+
+                  </td>
+                  <td align="left">
+
+                    <div class="form-group">
+                      <input type="date" class="form-control">
+                    </div>
+                  </td>
+
+
+
+                  <td align="left">
+                    <span><span class="required">To Date
+                      </span>:</span>
+
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input type="date" class="form-control">
+                    </div>
+                  </td>
+                </tr>
+
+
+
+
+                <tr>
+                  <td colspan="4">
+                    <div class=" d-flex flex-row justify-content-end">
+                      <div class="mr-3">
+                        <button class="btn btn-primary pl-3 pr-3"
+                          (click)="ViewAuditDetails(selectedLevel);">Search</button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!--<div class="card-body" *ngIf="isshow==1">-->
+
+          <table class="table table-striped" *ngIf="selectedLevel=='Customer' && GetCustomerData.length>0">
+
+
+
+
+            <thead>
+              <tr>
+                <th scope="col">CustomerID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Location</th>
+                <th scope="col">Status</th>
+                <th scope="col">Modified By</th>
+                <th scope="col">Modified On</th>
+                <th scope="col">Action</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of GetCustomerData; index as i">
+
+                <td>
+                  {{ data.CustomerID }}
+                </td>
+                <td>{{ data.name}}</td>
+                <td>{{ data.location}}</td>
+                <td>
+                  {{ data.status }}
+                </td>
+                <td>{{ data.modifiedby}}</td>
+                <td>{{ data.modifyon}}</td>
+                <td>{{ data.action}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-striped" *ngIf="selectedLevel=='Hotlist' && GetHotlistData.length>0">
+
+
+
+
+            <thead>
+              <tr>
+                <th scope="col">AccountID</th>
+                <th scope="col">Account Type</th>
+                <th scope="col">Action Taken</th>
+                <th scope="col">Reason</th>
+                <th scope="col">Remarks</th>
+                <th scope="col">Modified By</th>
+                <th scope="col">Modified On</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of GetHotlistData; index as i">
+
+                <td>
+                  {{ data.AccountID }}
+                </td>
+                <td>{{ data.AccountType}}</td>
+                <td>{{ data.ActionTaken}}</td>
+                <td>
+                  {{ data.Reason }}
+                </td>
+                <td>{{ data.Remark}}</td>
+                <td>{{ data.modifiedby}}</td>
+                <td>{{ data.modifyon}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-between p-2" *ngIf="selectedLevel== 'Hotlist' && GetHotlistData.length>0">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+            </ngb-pagination>
+
+            <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+              <option [ngValue]="2">2 items per page</option>
+              <option [ngValue]="4">4 items per page</option>
+              <option [ngValue]="6">6 items per page</option>
+            </select>
+          </div>
+          <div class="d-flex justify-content-between p-2"
+            *ngIf="selectedLevel== 'Customer' && GetCustomerData.length>0">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+            </ngb-pagination>
+
+            <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+              <option [ngValue]="2">2 items per page</option>
+              <option [ngValue]="4">4 items per page</option>
+              <option [ngValue]="6">6 items per page</option>
+            </select>
+          </div>
+          <!--</div>-->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+.header-main {
+  border: 1px solid #084594;
+}
+
+.cutom-fb {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.header-inner-div {
+  border-top: 3px solid #ed141b;
+  overflow: hidden;
+}
+
+.logo-padding {
+  padding-left: 30px;
+  padding-top: 12px;
+}
+.custom-txt-color {
+  color: #084594;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.username-padding {
+  padding-right: 40px;
+}
+
+.custom-bg {
+  background-color: #ed141b;
+}
+.custom-font-white {
+  color: white;
+}
+.custom-bt {
+  border-top: 3px solid #084594;
+}
+
+.custom-btn {
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.custom-navbar-item {
+  padding: 3px 3px;
+}
+.custom-navbar-item > a {
+  list-style: none;
+  color: white;
+  text-decoration: none;
+}
+
+.custom-navbar-item > a:hover {
+  color: black;
+}

@@ -1,0 +1,580 @@
+.middle-container {
+    width: 90%;
+    margin: 15px auto 0;
+  }
+  .subsection {
+    margin-top: 10px;
+    font-size: 13px;
+    padding-left: 25px;
+    font-weight: bold;
+  }
+  .link_container {
+    margin-top: 0px;
+    padding: 0px 20px;
+  }
+  .cM {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+  }
+  #DashboadQuickMenuBox {
+    background-repeat: repeat-x;
+    /* background-color: #F6F6F6; */
+  }
+  .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h4,
+  h5,
+  h6,
+  blockquote,
+  pre,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  font,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  legend,
+  caption {
+    border: 0;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+  }
+  div {
+    display: block;
+  }
+  html,
+  body {
+    background-image: url(/includes/bg.gif);
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    background-color: #f6f6f6;
+    font-family: Arial;
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+    background-color: #e4edf7;
+  }
+  .btn-group-vertical > .btn-group:after,
+  .btn-group-vertical > .btn-group:before,
+  .btn-toolbar:after,
+  .btn-toolbar:before,
+  .clearfix:after,
+  .clearfix:before,
+  .container-fluid:after,
+  .container-fluid:before,
+  .container:after,
+  .container:before,
+  .dl-horizontal dd:after,
+  .dl-horizontal dd:before,
+  .form-horizontal .form-group:after,
+  .form-horizontal .form-group:before,
+  .modal-footer:after,
+  .modal-footer:before,
+  .modal-header:after,
+  .modal-header:before,
+  .nav:after,
+  .nav:before,
+  .navbar-collapse:after,
+  .navbar-collapse:before,
+  .navbar-header:after,
+  .navbar-header:before,
+  .navbar:after,
+  .navbar:before,
+  .pager:after,
+  .pager:before,
+  .panel-body:after,
+  .panel-body:before,
+  .row:after,
+  .row:before {
+    display: table;
+    content: " ";
+  }
+  .btn-group-vertical > .btn-group:after,
+  .btn-toolbar:after,
+  .clearfix:after,
+  .container-fluid:after,
+  .container:after,
+  .dl-horizontal dd:after,
+  .form-horizontal .form-group:after,
+  .modal-footer:after,
+  .modal-header:after,
+  .nav:after,
+  .navbar-collapse:after,
+  .navbar-header:after,
+  .navbar:after,
+  .pager:after,
+  .panel-body:after,
+  .row:after {
+    clear: both;
+  }
+  
+  .btn-group-vertical > .btn-group:after,
+  .btn-group-vertical > .btn-group:before,
+  .btn-toolbar:after,
+  .btn-toolbar:before,
+  .clearfix:after,
+  .clearfix:before,
+  .container-fluid:after,
+  .container-fluid:before,
+  .container:after,
+  .container:before,
+  .dl-horizontal dd:after,
+  .dl-horizontal dd:before,
+  .form-horizontal .form-group:after,
+  .form-horizontal .form-group:before,
+  .modal-footer:after,
+  .modal-footer:before,
+  .modal-header:after,
+  .modal-header:before,
+  .nav:after,
+  .nav:before,
+  .navbar-collapse:after,
+  .navbar-collapse:before,
+  .navbar-header:after,
+  .navbar-header:before,
+  .navbar:after,
+  .navbar:before,
+  .pager:after,
+  .pager:before,
+  .panel-body:after,
+  .panel-body:before,
+  .row:after,
+  .row:before {
+    display: table;
+    content: " ";
+  }
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h4,
+  h5,
+  h6,
+  blockquote,
+  pre,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  font,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  legend,
+  caption {
+    border: 0;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+  }
+  #DashboadQuickMenuBox .LinkBox {
+    background: rgba(255, 255, 255, 1);
+    background: -moz-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    background: -webkit-gradient(
+      left top,
+      right bottom,
+      color-stop(0%, rgba(255, 255, 255, 1)),
+      color-stop(45%, rgba(255, 255, 255, 1)),
+      color-stop(95%, rgba(210, 210, 210, 1)),
+      color-stop(100%, rgba(210, 210, 210, 1))
+    );
+    background: -webkit-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    background: -o-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    background: -ms-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=1 );
+    border: #cacaca 1px solid;
+    width: 220px;
+    max-height: 160px;
+    min-height: 160px;
+    float: left;
+    cursor: pointer;
+    padding: 15px 5px 5px 5px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%) !important;
+    margin: 5px 30px 15px 0px;
+    transition: all 0.5s ease;
+    border-radius: 5px;
+  }
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h4,
+  h5,
+  h6,
+  blockquote,
+  pre,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  font,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  legend,
+  caption {
+    border: 0;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+  }
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  div {
+    display: block;
+  }
+  :after,
+  :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  :after,
+  :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  #DashboadQuickMenuBox img {
+    position: relative;
+    left: 50% !important;
+    top: 50% !important;
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-top: 10px;
+  }
+  img {
+    vertical-align: middle;
+  }
+  img {
+    border: 0;
+  }
+  * {
+    margin: 0;
+  }
+  #DashboadQuickMenuBox .LinkBox {
+    background: rgba(255, 255, 255, 1);
+    background: -moz-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    background: -webkit-gradient(
+      left top,
+      right bottom,
+      color-stop(0%, rgba(255, 255, 255, 1)),
+      color-stop(45%, rgba(255, 255, 255, 1)),
+      color-stop(95%, rgba(210, 210, 210, 1)),
+      color-stop(100%, rgba(210, 210, 210, 1))
+    );
+    background: -webkit-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    background: -o-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    background: -ms-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=1 );
+    border: #cacaca 1px solid;
+    width: 220px;
+    max-height: 160px;
+    min-height: 160px;
+    float: left;
+    cursor: pointer;
+    padding: 15px 5px 5px 5px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%) !important;
+    margin: 5px 30px 15px 0px;
+    transition: all 0.5s ease;
+    border-radius: 5px;
+  }
+  #DashboadQuickMenuBox .LinkBox span {
+    font-size: 16px;
+    padding-top: 6px;
+    padding-left: 3px;
+    line-height: 18px;
+    height: 18px;
+    color: #ed8414;
+    text-align: center;
+    width: 100% !important;
+  }
+  #DashboadQuickMenuBox span {
+    color: #000;
+    margin-top: 0;
+    padding-left: 4px;
+    font-size: 11px;
+    float: left;
+  }
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h4,
+  h5,
+  h6,
+  blockquote,
+  pre,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  font,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  legend,
+  caption {
+    border: 0;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+  }
+  #DashboadQuickMenuBox p {
+    color: #666;
+    margin-top: 5px;
+    font-size: 12px !important;
+    font-family: tahoma;
+    padding: 10px 0px;
+    text-align: center;
+    clear: both;
+  }
+  p {
+    margin: 0 0 10px;
+  }
+  * {
+    margin: 0;
+  }
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+  #DashboadQuickMenuBox .LinkBox {
+    background: rgba(255, 255, 255, 1);
+    background: -moz-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    background: -webkit-gradient(
+      left top,
+      right bottom,
+      color-stop(0%, rgba(255, 255, 255, 1)),
+      color-stop(45%, rgba(255, 255, 255, 1)),
+      color-stop(95%, rgba(210, 210, 210, 1)),
+      color-stop(100%, rgba(210, 210, 210, 1))
+    );
+    background: -webkit-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    background: -o-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    background: -ms-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 45%,
+      rgba(210, 210, 210, 1) 95%,
+      rgba(210, 210, 210, 1) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=1 );
+    border: #cacaca 1px solid;
+    width: 220px;
+    max-height: 160px;
+    min-height: 160px;
+    float: left;
+    cursor: pointer;
+    padding: 15px 5px 5px 5px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%) !important;
+    margin: 5px 30px 15px 0px;
+    transition: all 0.5s ease;
+    border-radius: 5px;
+  }
+  
+  #DashboadQuickMenuBox .LinkBox:hover {
+    border: 1px solid #084594;
+    background-color: #f2fcff;
+  }
+  

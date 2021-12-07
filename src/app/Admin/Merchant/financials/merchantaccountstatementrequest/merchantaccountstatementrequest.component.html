@@ -1,0 +1,130 @@
+<div class="container-fluid">
+    <div class="container">
+        <div class="row mb-5 pb-5">
+            <div class="col-12">
+                <div class="card mt-5 p-0">
+                    <div class="card-header text-white" style="background-color:  #084594;">
+                         <strong class="down-stat">Merchant Account Statement Request</strong>
+                    </div>
+                    <div class="card-body">
+                        <table class="w-50">
+                            <tr>
+                                <td width="40%">
+                                    <span class="required">Merchant ID</span>:
+                                </td>
+                                   <td align="left">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td width="40%">
+                                    <span class="required">Statement Type</span>:
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <select class="form-control" (change)="reportTypeChange($event)">
+                                            <option value="select">select</option>
+                                            <option value="Monthly">Monthly</option>
+                                            <option value="Quaterly">Quaterly</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tbody *ngIf="showBody">
+                                <tr>
+                                    <td>
+                                        <span *ngIf="entityTypeValue === 'Monthly'"><span class="required">Month
+                                                </span>:</span>
+                                        <span *ngIf="entityTypeValue === 'Quaterly'"><span class="required">Financial
+                                                Quarter</span>:</span>
+                                    </td>
+                                    <td align="left">
+                                     <div class="form-group" *ngIf="entityTypeValue === 'Monthly'">
+                                        <select class="form-control"  >
+                                            <option selected="selected" value="-1">-- Select --</option>
+                                            <option value="1">January</option>
+                                            <option value="2">February</option>
+                                            <option value="3">March</option>
+                                            <option value="4">April</option>
+                                            <option value="5">May</option>
+                                            <option value="6">June</option>
+                                            <option value="7">July</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </select>
+                                        </div>
+                                        <div class="form-group" *ngIf="entityTypeValue === 'Quaterly'">
+                                            <select class="form-control" >
+                                                <option selected="selected" value="-1">Select</option>
+                                                <option value="3">January-March</option>
+                                                <option value="6">April-June</option>
+                                                <option value="9">July-September</option>
+                                                <option value="12">October-December</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    </tr>
+                                  <tr>
+                                    <td>
+                                        <span><span class="required">Year
+                                        </span>:</span>
+                                    </td>
+                                  <td align="left">
+                                          <div class="form-group">
+                                            <select class="form-control" >
+                                                <option selected="selected" value="-1">Select</option>
+                                                <option value="2021">2021</option>
+                                                <option value="2020">2020</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2017">2017</option>
+                                            </select>
+                                          </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span><span>Alternate Email Address
+                                        </span>:</span>
+                                    </td>
+                                  <td align="left">
+                                          <div class="form-group">
+                                            <input type="email" class="form-control">
+                                          </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span><span>Registered Email Address
+                                        </span>:</span>
+                                    </td>
+                                  <td align="left">
+                                    dtplus_support@verifone.com
+                                  </td>
+                                </tr> 
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td align="left">
+                                        <div class=" d-flex flex-row justify-content-end">
+                                            <div class="mr-3">
+                                                <button class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 

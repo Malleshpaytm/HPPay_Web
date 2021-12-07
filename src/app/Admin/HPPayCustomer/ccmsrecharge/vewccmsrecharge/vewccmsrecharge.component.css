@@ -1,0 +1,15 @@
+.blue-bg {
+    background-color: #084594;
+  }
+  
+  .required::after {
+    content: "*";
+    color: red;
+  }
+  
+.title .view-ccms { 
+    float:left 
+}
+.title .help { 
+    float:right 
+}

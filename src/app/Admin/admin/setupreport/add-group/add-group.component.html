@@ -1,0 +1,96 @@
+<div class="container pt-3 pb-5">
+    <div class="card shadow">
+        <div class=" card-header p-2 blue-bg text-white">
+            <strong>Profile Group Details</strong>
+        </div>
+        <div class="card-body">
+            <table class="table table-borderless table-sm">
+                <tr>
+                    <td>
+                        <span class="required contact__name">Profile Group Name</span>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control w-75">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="contact__name" style="vertical-align: middle;">
+                        <span>Profiles</span>
+                    </td>
+                    <td>
+                        <div class="dual-select mb-5">
+                            <div class="dual-select__left">
+                                <div><small><strong>unselected:</strong></small></div>
+                                <ul class="dual-select__items">
+                                    <li *ngFor="let contact of unselectedContacts"
+                                        (click)="togglePendingSelection( contact )"
+                                        (dblclick)="addToSelectedContacts( contact )" class="dual-select__item"
+                                        [class.dual-select__item--selected]="pendingSelection[ contact.id ]">
+
+                                        <div class="contact">
+                                            <div class="contact__name">
+                                                {{ contact.name }}
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="dual-select__controls">
+                                <button (click)="addToSelectedContacts()" class="dual-select__control btn-info">
+                                    &#10503;
+                                </button>
+                                <button (click)="removeFromSelectedContacts()" class="dual-select__control btn-info">
+                                    &#10502;
+                                </button>
+                            </div>
+
+                            <div class="dual-select__right">
+                                <div><small><strong>Selected:</strong></small></div>
+
+                                <ul class="dual-select__items">
+                                    <li *ngFor="let contact of selectedContacts"
+                                        (click)="togglePendingSelection( contact )"
+                                        (dblclick)="removeFromSelectedContacts( contact )"
+                                        class="dual-select__item dual-select__item--new"
+                                        [class.dual-select__item--selected]="pendingSelection[ contact.id ]">
+
+                                        <div class="contact">
+                                            <div class="contact__name">
+                                                {{ contact.name }}
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="required contact__name">Profile Group Name</span>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control w-75">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+                        <button class="btn btn-info">SAVE</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-info" routerLink="/admin/manageprofilegroup">CANCEL</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

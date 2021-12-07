@@ -1,0 +1,59 @@
+<div style="background-color: navy; color: white;">
+    <app-customer-header></app-customer-header>
+</div>
+<mat-drawer-container class="full-height border-right" autosize>
+    <mat-drawer #drawer class="example-sidenav border-right" style="background-color: #10128a;" mode="side"
+        disableClose="true" opened="true" [@onSideNavChange]="isExpanded ? 'open' : 'close'">
+        <button mat-mini-fab (click)="onSinenavToggle()" color="warn" style="margin: 10px;">
+            <mat-icon aria-label="Menu">sync_alt</mat-icon>
+        </button>
+        <mat-nav-list>
+            <mat-list-item style="color: white;">
+                <mat-icon mat-list-icon>person</mat-icon>
+                <h4 mat-line>
+                    <span [@animateText]="linkText ? 'show' : 'hide'" style="color: white;">
+                        Dashboard
+                    </span>
+                </h4>
+            </mat-list-item>
+            <mat-list-item style="color: white;" routerLink="./statement/viewstatement">
+                <mat-icon mat-list-icon>assignment</mat-icon>
+                <h4 mat-line>
+                    <span [@animateText]="linkText ? 'show' : 'hide'" style="color: white;">
+                        View Statement
+                    </span>
+                </h4>
+            </mat-list-item>
+            <mat-list-item style="color: white;" routerLink="./money/addmoney">
+                <mat-icon mat-list-icon>domain</mat-icon>
+                <h4 mat-line>
+                    <span [@animateText]="linkText ? 'show' : 'hide'" style="color: white;">
+                        Add Money
+                    </span>
+                </h4>
+            </mat-list-item>
+            <mat-list-item style="color: white;" routerLink="./redemption/redemption">
+                <mat-icon mat-list-icon>folder_shared</mat-icon>
+                <h4 mat-line>
+                    <span [@animateText]="linkText ? 'show' : 'hide'" style="color: white;">
+                        Redemption
+                    </span>
+                </h4>
+            </mat-list-item>
+
+            <mat-list-item style="color: white;" routerLink="./refer/referandearn">
+                <mat-icon mat-list-icon>folder_shared</mat-icon>
+                <h4 mat-line>
+                    <span [@animateText]="linkText ? 'show' : 'hide'" style="color: white;">
+                        Refer And Earn
+                    </span>
+                </h4>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-drawer-container>

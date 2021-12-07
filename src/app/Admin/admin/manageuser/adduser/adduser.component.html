@@ -1,0 +1,180 @@
+<div class="container-fluid">
+    <div class="container">
+        <div class="row pb-5 p-2">
+            <div class="col-12">
+                <div class="card mt-3 p-0">
+                    <div class="card-header text-white" style="background-color:  #084594;">
+                        Add User
+                    </div>
+                   
+                            <div class="card-body">
+                                <table class="w-100" [formGroup]="addUserFormGroup">
+        
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="4" style="padding-right: 20px; padding-bottom: 5px;" align="right">
+                                                <!-- <table width="200px" border="0" cellspacing="0" cellpadding="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td width="8%">
+                                                                <div id="dvUserInfo" class="ActiveTabs">
+                                                                    User&nbsp;Info
+                                                                </div>
+                                                            </td>
+                                                            <td width="8%">
+                                                                <div id="dvCreateRole" class="TabsDisabled">
+                                                                    User&nbsp;Role
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table> -->
+                                            </td>
+        
+        
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 15%">
+                                                <span><span class="required">Username</span>:</span>
+                                            </td>
+        
+                                            <td style="width: 39%">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control maxwidth300" maxlength="256" formControlName="userName">
+                                                </div>
+                                            </td>
+                                            <td style="width: 16%">
+                                                <span><span class="required">Email</span>:</span>
+                                            </td>
+        
+                                            <td style="width: 30%">
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control maxwidth300" maxlength="256" formControlName="email">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 15%">
+                                                <span><span class="required">Password</span>:</span>
+                                            </td>
+        
+                                            <td style="width: 39%">
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control maxwidth300" maxlength="128" formControlName="password">
+                                                </div>
+                                            </td>
+                                            <td style="width: 16%">
+                                                <span><span class="required">Confirm Password</span>:</span>
+                                            </td>
+        
+                                            <td style="width: 30%">
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control maxwidth300" maxlength="128" formControlName="confirmPassword">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 15%">
+                                                <span><span class="required">Secret Question</span>:</span>
+                                            </td>
+                                            <td style="width: 39%">
+                                                <div class="form-group">
+                                                    <select class="form-control maxwidth300" formControlName="secretQuestion">
+                                                        <option value="select">select</option>
+                                                        <option value="Father's maiden name">Father's maiden name</option>
+                                                        <option value="City of Birth">City of Birth</option>
+                                                        <option value="Name of first school">Name of first school</option>
+                                                        <option value="Date of marriage">Date of marriage</option>
+                                                        <option value="Name of the childhood hero">Name of the childhood hero</option>
+                                                        <option value="Favorite pastime">Favorite pastime</option>
+                                                        <option value="Favorite sport">Favorite sport</option>
+                                                        <option value="Favorite actor">Favorite actor</option>
+                                                        <option value="Favorite actress">Favorite actress</option>
+                                                        <option value="Pet's name">Pet's name</option>
+                                                        <option value="Other">Other</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td style="width: 16%">
+                                                <span><span class="required">Secret Question Answer</span>:</span>
+                                            </td>
+        
+                                            <td style="width: 30%">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control maxwidth300" maxlength="128" formControlName="secretAnswer">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 15%">
+                                                <span><span class="required">Head Office Name</span>:</span>
+                                            </td>
+        
+                                            <td style="width: 15%">
+                                                <div class="form-group">
+                                                    <select class="form-control maxwidth300" formControlName="hq_id">
+                                                        <option [value]="headOffice.hO_Code" *ngFor="let headOffice of headOfficesDropdownValues">{{headOffice.hO_Name}}</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td style="width: 16%">
+                                                <span><span class="required">Country Region Name</span>:</span>
+                                            </td>
+        
+                                            <td style="width: 30%">
+                                                <div class="form-group">
+                                                    <select class="form-control maxwidth300" formControlName="zone_id">
+                                                        <option [value]="countryRegion.zone_Id" *ngFor="let countryRegion of countryRegionsDropdownValues">{{countryRegion.zone_Name}}</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="width: 15%">
+                                                <span><span class="required">Regional Office Name</span>:</span>
+                                            </td>
+        
+                                            <td style="width: 15%">
+                                                <div class="form-group">
+                                                    <select class="form-control maxwidth300" formControlName="region_id">
+                                                        <option [value]="regionalOffice.rO_Code" *ngFor="let regionalOffice of regionalOfficesDropdownValues">{{regionalOffice.rO_Name}}</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td style="width: 15%">
+                                                <span><span class="required">Role Name</span>:</span>
+                                            </td>
+        
+                                            <td style="width: 15%">
+                                                <div class="form-group">
+                                                    <select class="form-control maxwidth300" formControlName="role_id">
+                                                        <option [value]="role.role_Id" *ngFor="let role of adminRolesDropdownValues">{{role.role_Name}}</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                           
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td colspan="4" align="right">
+                                                <div class=" d-flex flex-row justify-content-end">
+                                                    <div class="mr-3">
+                                                        <button class="btn btn-primary" (click)="createUser()">Create User</button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                       
+                      
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="container-fluid">
+    <div class="container">
+        <div class="row mb-5 pb-5">
+            <div class="col-12">
+                <div class="card mt-5 p-0">
+                    <div class="card-header text-white title" style="background-color:  #084594;">
+                         <strong class="down-stat">Download Account Statement</strong>
+                         <strong class = "help" style="cursor: pointer;" (click)="open(help)">Help</strong>
+                    </div>
+                    <div class="card-body">
+                        <table class="w-50">
+                            <tr>
+                                <td width="40%">
+                                    <span class="required">Mobile Number</span>:
+                                </td>
+                                   <td align="left">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td width="40%">
+                                    <span class="required">Report Type</span>:
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <select class="form-control" (change)="reportTypeChange($event)">
+                                            <option value="select">select</option>
+                                            <option value="Monthly">Monthly</option>
+                                            <option value="Quaterly">Quaterly</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tbody *ngIf="showBody">
+                                <tr>
+                                    <td>
+                                        <span *ngIf="entityTypeValue === 'Monthly'"><span class="required">Month
+                                                </span>:</span>
+                                        <span *ngIf="entityTypeValue === 'Quaterly'"><span class="required">Financial
+                                                Quarter</span>:</span>
+                                    </td>
+                                    <td align="left">
+                                     <div class="form-group">
+                                        <select class="form-control"  *ngIf="entityTypeValue === 'Monthly'">
+                                            <option selected="selected" value="-1">Select</option>
+                                            <option value="01/06/2021-30/06/2021">June-2021</option>
+                                            <option value="01/05/2021-31/05/2021">May-2021</option>
+                                            <option value="01/04/2021-30/04/2021">April-2021</option>
+                                            <option value="01/03/2021-31/03/2021">March-2021</option>
+                                            <option value="01/02/2021-28/02/2021">February-2021</option>
+                                            <option value="01/01/2021-31/01/2021">January-2021</option>
+                                            <option value="01/12/2020-31/12/2020">December-2020</option>
+                                            <option value="01/11/2020-30/11/2020">November-2020</option>
+                                            <option value="01/10/2020-31/10/2020">October-2020</option>
+                                            <option value="01/09/2020-30/09/2020">September-2020</option>
+                                            <option value="01/08/2020-31/08/2020">August-2020</option>
+                                            <option value="01/07/2020-31/07/2020">July-2020</option>
+                                            <option value="01/06/2020-30/06/2020">June-2020</option>
+                                            <option value="01/05/2020-31/05/2020">May-2020</option>
+                                            <option value="01/04/2020-30/04/2020">April-2020</option>
+                                            <option value="01/03/2020-31/03/2020">March-2020</option>
+                                            <option value="01/02/2020-29/02/2020">February-2020</option>
+                                            <option value="01/01/2020-31/01/2020">January-2020</option>
+                                            <option value="01/12/2019-31/12/2019">December-2019</option>
+                                            <option value="01/11/2019-30/11/2019">November-2019</option>
+                                            <option value="01/10/2019-31/10/2019">October-2019</option>
+                                            <option value="01/09/2019-30/09/2019">September-2019</option>
+                                            <option value="01/08/2019-31/08/2019">August-2019</option>
+                                            <option value="01/07/2019-31/07/2019">July-2019</option>
+                                        </select>
+                                        <select class="form-control" *ngIf="entityTypeValue === 'Quaterly'">
+                                            <option selected="selected" value="-1">Select</option>
+                                            <option value="04/01/2021-03/04/2021">04/01/2021-03/04/2021</option>
+                                            <option value="04/10/2020-03/01/2021">04/10/2020-03/01/2021</option>
+                                        </select>
+                                        </div>
+                                    </tr>
+                               
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td align="left">
+                                        <div class=" d-flex flex-row justify-content-end">
+                                            <div class="mr-3">
+                                                <button class="btn btn-primary">DOWNLOAD</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <ng-template #help let-modal>
+  <div class="modal-header blue-bg">
+    <h4 class="modal-title text-white" id="modal-basic-title">Download Account Statement</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true" class="text-white">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+           <p>To download the Monthly statement, select <b>Report Type</b> Monthly, select <b>Month</b> and click <b>Download</b>.</p>
+                            <br>
+                            <p>To download the Quarterly statement, select <b>Report Type</b> Quarterly, select <b>Financial Quarter</b> and click <b>Download</b>.</p>
+                            <br>
+
+        
+      </div>
+    </form>
+  </div>
+ 
+</ng-template>

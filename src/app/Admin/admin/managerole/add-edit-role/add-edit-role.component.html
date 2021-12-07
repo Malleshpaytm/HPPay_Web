@@ -1,0 +1,183 @@
+<div class="container pt-5 mb-5 pb-5">
+    <div class="card">
+        <div class="card-header text-white" style="background-color:  #084594;">
+            Manage Roles
+        </div>
+        <div class="card-body">
+            <table>
+                <tr>
+                    <td style="width: 150px;">
+                        <span class="required">Role Name</span>:
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 100px;">
+                        <span class="required">Role Description</span>:
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <textarea name="" class="form-control" id="" cols="30" rows="3"></textarea>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="pt-3">
+        <mat-accordion [togglePosition]="'before'">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Admin
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                    <mat-accordion [togglePosition]="'before'">
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Security
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+
+                    </mat-accordion>
+                </div>
+                <div class="pt-3">
+                    <mat-accordion [togglePosition]="'before'">
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Hotlisting
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+
+                    </mat-accordion>
+                </div>
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </div>
+    <div class="pt-3">
+        <mat-accordion [togglePosition]="'before'">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Corporate Customer
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                    <mat-accordion [togglePosition]="'before'">
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Profile
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+
+                    </mat-accordion>
+                </div>
+                <div class="pt-3">
+                    <mat-accordion [togglePosition]="'before'">
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Customer Bonus
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+
+                    </mat-accordion>
+                </div>
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </div>
+    <div class="pt-3">
+        <mat-accordion [togglePosition]="'before'">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Downloads
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                    <mat-accordion [togglePosition]="'before'">
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Advance Downloads
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+
+                    </mat-accordion>
+                </div>
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </div>
+    <div class="pt-3">
+        <mat-accordion [togglePosition]="'before'">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Fastag
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                    <mat-accordion [togglePosition]="'before'">
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Profile
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+
+                    </mat-accordion>
+                </div>
+                <div class="pt-3">
+                    <mat-accordion [togglePosition]="'before'">
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    requests
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+
+                    </mat-accordion>
+                </div>
+                <div class="pt-3">
+                    <mat-accordion [togglePosition]="'before'">
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    requests
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+
+                    </mat-accordion>
+                </div>
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-3 mb-5 p-0">
+                <div class="card-header text-white" style="background-color:  #084594;">
+                     Fill The Details
+
+
+                     <button type="button" class="btn btn-info btn-primary" style="float: right;" routerLink="/admin/citydetails">View City Detail</button>
+
+                </div>
+
+
+
+
+                
+                <div class="card-body">
+                    <table class="w-50" [formGroup]="addEditCityFormGroup">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span><span class="required">City Code
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" formControlName="city_Code">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">City Id
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" formControlName="city_Id">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">City Name
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="city_Name" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">City Short Name
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="city_Short_Name">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">District</span>:</span>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="district_Code">
+                                            <option [value]="item.district_Code" *ngFor="let item of districtDropdownValues">{{item.district_Name}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">State</span>:</span>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="state_Code">
+                                            <option [value]="item.stateCode" *ngFor="let item of statesDropdownValues">{{item.state_Name}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                           
+
+                           
+                            <tr>
+                                <td>
+                                </td>
+                                <td align="left">
+                                    <div class=" d-flex flex-row justify-content-end">
+                                        <div class="mr-3">
+                                            <button class="btn btn-primary" (click)="onSaveButtonCLick()">Save</button>
+                                        </div>
+                                        <div class="mr-3">
+                                            <button class="btn btn-primary">Reset</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-primary">Cancel</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+.btn-clr{
+    background-color: #0078f8;
+}
+
+.icon__page {
+    width: 2rem;
+    height: 2rem;
+    margin-right: -0.2rem;   
+    color: red;
+}
+.icon__export {
+    width: 2rem;
+    height: 2rem;
+    fill: #0078f8;
+    fill: var(--add-money-color);
+}
+
+.icon__hero-banner {
+    width: 7rem;
+    height: 7rem;
+    fill: #10128a;
+    fill: var(--primary-color);
+    margin-bottom: 1rem;
+}
+.hero-banner__content {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+}
+.pill-button{
+    background-color: #00b2d1;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+}

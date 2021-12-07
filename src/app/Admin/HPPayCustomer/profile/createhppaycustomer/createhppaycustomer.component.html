@@ -1,0 +1,245 @@
+<div class="container-fluid">
+    <div class="container">
+        <div class="row form-group">
+            <div class="col-12">
+                <div class="card mt-3 mb-5 p-0">
+                    <div class="card-header text-white" style="background-color:  #084594;">
+                        <strong>Create HP Pay Customer</strong>
+                    </div>
+                    <div class="card-body pt-0" [formGroup]="customerCreationFormGroup">
+
+
+                        <!-- <fieldset class="form-group border px-3 pt-0">
+                            <legend class="w-auto px-2" style="font-size: 12px;">Application Details</legend>
+                            <div class="d-flex d-flex-row justify-content-between">
+                                <form class="form-inline">
+                                    <div class="form-group mb-2">
+                                        <label for="officerType" class="pr-2">Application Date</label>
+                                        <input type="date" class="form-control">
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </fieldset> -->
+
+
+                        <table class="w-100 table table-borderless table-sm">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">
+                                        <span style="font-size: 15px;">Customer Detail</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td align="left">
+                                        <span><span class="required">Title
+                                            </span>:</span>
+
+                                    </td>
+                                    <td align="left">
+                                        <div class="form-group">
+                                            <select class="form-control" formControlName="title">
+                                                <option value="Ms.">Ms. </option>
+                                                <option value="Mr.">Mr. </option>
+                                                <option value="Mrs.">Mrs. </option>
+                                            </select>
+                                        </div>
+                                    </td>
+
+
+
+
+                                </tr>
+
+                                <tr>
+                                    <td align="left">
+                                        <span><span class="required">First Name
+                                            </span>:</span>
+
+                                    </td>
+                                    <td align="left">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" formControlName="first_name">
+                                        </div>
+                                    </td>
+                                    <td align="left">
+                                        <span><span class="required">Last Name
+                                            </span>:</span>
+
+                                    </td>
+                                    <td align="left">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" formControlName="last_name">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <span><span class="required">Address
+                                            </span>:</span>
+
+                                    </td>
+                                    <td align="left">
+                                        <div class="form-group">
+                                            <textarea type="text" class="form-control"
+                                                formControlName="address"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td align="left">
+                                        <span><span class="required">City
+                                            </span>:</span>
+
+                                    </td>
+                                    <td align="left">
+                                        <div class="form-group">
+                                            <select class="form-control" formControlName="city">
+                                                <option [value]="city.cityCode"
+                                                    *ngFor="let city of cityDropdownValues">{{city.city_Name}}</option>
+                                            </select>
+                                        </div>
+                                    </td>
+
+                                    <td align="left">
+                                        <span><span class="required">District
+                                            </span></span>
+
+                                    </td>
+                                    <td align="left">
+
+                                        <div class="form-group">
+                                            <select class="form-control" formControlName="district">
+                                                <option [value]="district.district_Code"
+                                                    *ngFor="let district of districtDropdownValues">
+                                                    {{district.district_Name}}</option>
+
+                                            </select>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+
+
+                                <tr>
+                                    <td align="left">
+                                        <span><span class="required">State
+                                            </span>:</span>
+
+                                    </td>
+                                    <td align="left">
+
+                                        <div class="form-group">
+                                            <select class="form-control" formControlName="state">
+                                                <option [value]="state.stateCode" *ngFor="let state of statesDropdownValues">{{state.state_Name}}</option>
+
+                                            </select>
+                                        </div>
+                                    </td>
+
+
+
+                                    <td align="left">
+                                        <span><span class="required">Pin Code
+                                            </span>:</span>
+
+                                    </td>
+                                    <td>
+
+                                        <div class="form-group">
+                                            <input type="text" maxlength="6" minlength="6" class="form-control" formControlName="pincode">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <span><span class="required">Gender
+                                            </span>:</span>
+
+                                    </td>
+                                    <td align="left">
+
+                                        <div class="form-group">
+                                            <select class="form-control" formControlName="gender">
+                                                <option value="select">select</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+
+                                            </select>
+                                        </div>
+                                    </td>
+
+
+
+                                    <td align="left">
+                                        <span><span class="required">Mobile
+                                            </span>:</span>
+
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" maxlength="10" minlength="10" formControlName="mobile_number">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align=" left">
+                                        <span><span class="required">Email
+                                            </span>:</span>
+
+                                    </td>
+                                    <td align="left">
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" formControlName="email">
+
+                                        </div>
+                                    </td>
+
+
+
+                                    <td align="left">
+                                        <span><span class="required">Date Of Birth
+                                            </span>:</span>
+
+                                    </td>
+                                    <td>
+
+                                        <div class="form-group">
+                                            <!-- <input class=" input" placeholder="dd/mm/yyyy" name="d1"
+                         [(ngModel)]="model1" ngbDatepicker #d1="ngbDatepicker" class="form-control" formControlName="dob" (click)="d1.toggle()"> -->
+                    <input type="date" class="form-control" formControlName="dob">
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+
+                                <tr>
+                                    <td align="right" colspan="4">
+                                        <div class=" d-flex flex-row justify-content-end">
+                                            <div class="mr-3">
+                                                <button class="btn btn-primary pl-3 pr-3"
+                                                    (click)="onSubmitButtonClick()">Submit</button>
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-primary pl-3 pr-3">Reset</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

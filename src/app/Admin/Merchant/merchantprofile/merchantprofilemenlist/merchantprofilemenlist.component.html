@@ -1,0 +1,44 @@
+<!-- <app-adminheader></app-adminheader> -->
+<div class="container-fluid middle-container">
+
+    <div class="subsection">
+    </div>
+    <div class="link_container">
+
+        <div class="cM">
+            <span>Merchant Profile</span>
+            <hr>
+            <div id="DashboadQuickMenuBox">
+                
+                <app-card [title]="'Manage Profile'"
+                    [bodyText]="'Add,Edit And View Merchant Details'"
+                    [imageIcon]="'assets/images/custmer-detail.png'" [routingLinkUrl]="'/admin/merchant/manageprofile'">
+                </app-card>
+
+                <app-card [title]="'Verify Merchant Profile'"
+                    [bodyText]="'Verify Merchant Account Details'"
+                    [imageIcon]="'assets/images/Request.png'"
+                    [routingLinkUrl]="'/admin/merchant/verifymerchant'">
+                </app-card>
+
+                <app-card [title]="'Rejected Merchants'"
+                [bodyText]="'Resubmit The Rejected Merchants'"
+                [imageIcon]="'assets/images/rejected.png'"
+                [routingLinkUrl]="'/admin/merchant/rejectedmerchant'">
+            </app-card>
+
+            </div>
+            <br clear="all">
+            <br clear="all">
+            <br clear="all">
+
+
+
+
+            <br clear="all">
+        </div>
+
+
+    </div>
+</div>
+<!-- <app-adminfooter></app-adminfooter> -->

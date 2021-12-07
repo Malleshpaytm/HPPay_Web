@@ -1,0 +1,6 @@
+.required::after {
+  content: "*";
+  color: red;
+}
+.title .down-stat { float:left }
+.title .help { float:right }

@@ -1,0 +1,121 @@
+<div class="container pt-5">
+    <div class="card shadow">
+      <div class="card-header p-2 blue-bg text-white">
+        <strong class="balanceinfo">Merchant Approval</strong>
+      </div>
+      
+      <div class="card-body">
+                    <table class="w-50" [formGroup]="approveMerchantListFormGroup">
+                        <tr>
+                            <td>
+                                <span class="required">Select Cateogory</span>:
+                            </td>
+                            <td align="left">
+                                <div class="form-group">
+                                    <select class="form-control" formControlName="merchantcategory">
+                  
+                                        <option [value]="merchantType.merchant_Type_Name"
+                                        *ngFor="let merchantType of merchantTypes">{{merchantType.merchant_Type_Name}}
+                                    </option>
+                                        
+                                      </select>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="required">From Date</span>:
+                            </td>
+                            <td align="left">
+                                <div class="form-group">
+                                   <input type="date" class="form-control" formControlName="fromDate">   
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="required">To Date</span>:
+                            </td>
+                            <td align="left">
+                                <div class="form-group">
+                                   <input type="date" class="form-control" formControlName="toDate">   
+                                </div>
+                            </td>
+                        </tr>
+
+
+
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                </td>
+                                <td align="left">
+                                    <div class=" d-flex flex-row justify-content-end">
+                                        <div class="mr-3">
+                                            <button class="btn btn-primary" (click)="onSearchButtonClick()">Search</button>
+                                        </div>
+                                        <div class="mr-3">
+                                            <button class="btn btn-primary">Reset</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <mat-table [dataSource]="dataSource" matSort style="width: 100%;" class="mat-elevation-z8">
+                        <ng-container matColumnDef="erpCode">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header>ERP Code </mat-header-cell>
+                          <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{row.erpCode}} </mat-cell>
+                        </ng-container>
+            
+                        <ng-container matColumnDef="RO">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> RO </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="text-center"> {{row.ro}} </mat-cell>
+                        </ng-container>
+            
+                        <ng-container matColumnDef="retailOutletName">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Retail Outlet Name </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="text-center"> {{row.outlet_name}} </mat-cell>
+                        </ng-container>
+                       
+                        <ng-container matColumnDef="type">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="text-center"> {{row.merchant_Type}} </mat-cell>
+                        </ng-container>
+            
+                        <ng-container matColumnDef="creationDate">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Creation Date </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="text-center"> {{row.createdOn}} </mat-cell>
+                        </ng-container>
+                        
+                        
+                        
+                        
+            
+                        <ng-container matColumnDef="comments">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Comments </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="text-center"> <input class="form-control"> </mat-cell>
+                        </ng-container>
+            
+                        <ng-container matColumnDef="actions">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Actions</mat-header-cell>
+            
+                          <mat-cell *matCellDef="let element; let i=index" class="text-center">
+                            <button class="btn btn-primary btn-sm" style="margin:8px">Approve</button>
+                            <button class="btn btn-danger btn-sm">Reject</button>
+                          </mat-cell>
+                        </ng-container>
+            
+            
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                      </mat-table>
+                      <mat-paginator [pageSizeOptions]="[2,5,10]"></mat-paginator>
+                </div>
+    </div>
+  </div>
+
+  

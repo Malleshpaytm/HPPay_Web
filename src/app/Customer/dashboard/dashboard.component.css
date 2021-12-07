@@ -1,0 +1,6 @@
+.icon__export {
+    width: 2rem;
+    height: 2rem;
+    fill: #0078f8;
+    fill: var(--add-money-color);
+}

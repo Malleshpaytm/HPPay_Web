@@ -1,0 +1,19 @@
+<mat-sidenav-container class="example-container" autosize>
+  <mat-sidenav
+    #sidenav
+    class="example-sidenav"
+    mode="side"
+    opened="true"
+    disableClose="true"
+  >
+    <p-panelMenu [model]="items" [style]="{'width':'300px'}"></p-panelMenu>
+    <mat-menu #requests>
+      <button mat-menu-item>SMS Alerts</button>
+    </mat-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

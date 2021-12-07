@@ -1,0 +1,92 @@
+.LinkBox {
+  background: rgba(255, 255, 255, 1);
+  background: -moz-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 45%,
+    rgba(210, 210, 210, 1) 95%,
+    rgba(210, 210, 210, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    right bottom,
+    color-stop(0%, rgba(255, 255, 255, 1)),
+    color-stop(45%, rgba(255, 255, 255, 1)),
+    color-stop(95%, rgba(210, 210, 210, 1)),
+    color-stop(100%, rgba(210, 210, 210, 1))
+  );
+  background: -webkit-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 45%,
+    rgba(210, 210, 210, 1) 95%,
+    rgba(210, 210, 210, 1) 100%
+  );
+  background: -o-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 45%,
+    rgba(210, 210, 210, 1) 95%,
+    rgba(210, 210, 210, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 45%,
+    rgba(210, 210, 210, 1) 95%,
+    rgba(210, 210, 210, 1) 100%
+  );
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 45%,
+    rgba(210, 210, 210, 1) 95%,
+    rgba(210, 210, 210, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=1 );
+  border: #cacaca 1px solid;
+  width: 220px;
+  max-height: 160px;
+  min-height: 160px;
+  float: left;
+  cursor: pointer;
+  padding: 15px 5px 5px 5px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%) !important;
+  margin: 5px 30px 15px 0px;
+  transition: all 0.5s ease;
+  border-radius: 5px;
+}
+
+.image {
+  position: relative;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
+  margin-top: 10px;
+  vertical-align: middle;
+}
+
+.title {
+  font-size: 16px;
+  padding-top: 6px;
+  padding-left: 3px;
+  line-height: 18px;
+  height: 18px;
+  color: #ed8414;
+  text-align: center;
+  width: 100% !important;
+}
+.body-text {
+  color: #666;
+  margin-top: 5px;
+  font-size: 12px !important;
+  font-family: tahoma;
+  margin-top: -15px;
+  padding: 10px 0px;
+  text-align: center;
+  clear: both;
+}
+
+.on-hover:hover {
+  background: white;
+  border: 1px solid #084594;
+}

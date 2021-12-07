@@ -1,0 +1,122 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-3 mb-5 p-0">
+                <div class="card-header text-white" style="background-color:  #084594;">
+                     Fill The Details
+
+
+                     <button type="button" class="btn btn-info btn-primary" style="float: right;" routerLink="/admin/statedetail">View State Detail</button>
+
+                </div>
+
+
+
+
+                
+                <div class="card-body">
+                    <table class="w-50" [formGroup]="addEditStateFormGroup">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span><span class="required">State Code
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" formControlName="state_Code">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">State Name
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="state_Name"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">State Short Name
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="state_Short_Name">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">Country Region Name
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                       <select class="form-control" formControlName="country_Reg_Code">
+                                           <option [value]="item.zone_Code" *ngFor="let item of countryRegions">{{item.zone_Name}}</option>
+                                       </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">Zonal Office Name
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                       <select class="form-control" formControlName="zO_Code">
+                                           <option [value]="item.zO_Code" *ngFor="let item of zonalOffices">{{item.zO_Name}}</option>
+                                       </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">Country Name
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="India">
+                                    </div>
+                                </td>
+                            </tr>
+                           
+
+                           
+                            <tr>
+                                <td>
+                                </td>
+                                <td align="left">
+                                    <div class=" d-flex flex-row justify-content-end">
+                                        <div class="mr-3">
+                                            <button class="btn btn-primary" (click)="onSaveButtonClick()">Save</button>
+                                        </div>
+                                        <div class="mr-3">
+                                            <button class="btn btn-primary">Reset</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-primary">Cancel</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

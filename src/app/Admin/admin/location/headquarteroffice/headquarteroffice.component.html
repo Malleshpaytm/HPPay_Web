@@ -1,0 +1,98 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-5 p-0">
+                <div class="card-header text-white" style="background-color:  #084594;">
+                  Head Office Details
+                </div>
+                <div class="card-body">
+                    <table class="form w-50" [formGroup]="headOfficeDetailsForm">
+                        <!-- <tr>
+                            <td>
+                                <span class="required">Entity Type</span>:
+                            </td>
+                            <td align="left">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="select">select</option>
+                                        <option value="Customer">Customer</option>
+                                        <option value="Merchant">Merchant</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr> -->
+
+                        <!-- <tr>
+                            <td>
+                                <span class="required">Action</span>:
+                            </td>
+                            <td align="left">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="select">select</option>
+                                        <option value="Temperory">Temperory</option>
+                                        <option value="Permanent">Permanent</option>
+                                        <option value="Reactivate">Reactivate</option>
+
+                                    </select>
+                                </div>
+                            </td>
+                        </tr> -->
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span><span class="required">Head Office Code
+                                        </span> *:</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="headOfficeCode">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">Head Office Name
+                                        </span> *:</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="headOfficeName">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">Head Office Short Name
+                                        </span> *:</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="headOfficeShortName">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td align="left">
+                                    <div class=" d-flex flex-row justify-content-end">
+                                        <div class="mr-3">
+                                            <button class="btn btn-primary" (click)="onSaveButtonClick()">Save</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-primary">Cancel</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,146 @@
+<app-header></app-header>
+<div class="content_area">
+    <div class="instant_enrollment_wrapper">
+        <h4 class="main_heading text-center">Instant Enrollment</h4>
+        <form action="">
+            <div class="enrollment_block d-flex align-items-center justify-content-between mb-3">
+                <div class="col-sm-4">
+                    <label class="form_label">Salutation <sup>*</sup></label>
+                    <select name="" id="" class="form-control">
+                        <option value="Mr.">Mr.</option>
+                        <option value="Ms.">Ms.</option>
+                        <option value="Mrs.">Mrs.</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label class="form_label">First Name <sup>*</sup></label>
+                    <input type="text" class="form-control">
+                </div>        
+                <div class="col-sm-4">
+                    <label class="form_label">Last Name <sup>*</sup></label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="enrollment_block d-flex align-items-center justify-content-between mb-3">
+                <div class="col-sm-6">
+                    <label class="form_label">Date of Birth   <sup>*</sup></label>
+                    <!-- <input type="date" class="form-control"> -->
+                   <label class="p-relative d-flex align-items-center m-0">
+                        <input matInput [matDatepicker]="picker" placeholder="Choose a date" class="form-control">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </label>         
+                </div>
+                <div class="col-sm-6">
+                    <label class="form_label">Mobile Number <sup>*</sup></label>
+                    <input type="tel" class="form-control">
+                </div>    
+            </div>
+            <div class="enrollment_block d-flex align-items-center justify-content-between mb-3">
+                <div class="col-sm-6">
+                    <label class="form_label">Address 1 <sup>*</sup></label>
+                    <input type="text"  class="form-control">
+                </div>
+                <div class="col-sm-6">
+                    <label class="form_label">Address 2 <span>(Optional)</span></label>
+                    <input type="text" class="form-control">
+                </div>    
+            </div>
+            <div class="enrollment_block d-flex align-items-center justify-content-between mb-3">
+                <div class="col-sm-4">
+                    <label class="form_label">State <sup>*</sup></label>
+                    <select name="" id="" class="form-control">
+                            <option value="">--Select--</option>
+                            <option> ANDAMAN AND NICO.IN.</option>
+                            <option> ANDHRA PRADESH</option>
+                            <option> ARUNACHAL PRADESH</option>
+                            <option> ASSAM</option>
+                            <option> BIHAR</option>
+                            <option> CHANDIGARH</option>
+                            <option> CHATTISGARH</option>
+                            <option> DADRA AND NAGAR HAV.</option>
+                            <option> DAMAN AND DIU</option>
+                            <option> DELHI</option>
+                            <option> GOA</option>
+                            <option> GUJARAT</option>
+                            <option> HARYANA</option>
+                            <option> HIMACHAL PRADESH</option>
+                            <option> JAMMU AND KASHMIR</option>
+                            <option> JHARKHAND</option>
+                            <option> KARNATAKA</option>
+                            <option> KERALA</option>
+                            <option> LAKSHADWEEP</option>
+                            <option> MADHYA PRADESH</option>
+                            <option> MAHARASHTRA</option>
+                            <option> MANIPUR</option>
+                            <option> MEGALAYA</option>
+                            <option> MIZORAM</option>
+                            <option> NAGALAND</option>
+                            <option> ODISHA</option>
+                            <option> PONDICHERRY</option>
+                            <option> PUNJAB</option>
+                            <option> RAJASTHAN</option>
+                            <option> SIKKIM</option>
+                            <option> TAMIL NADU</option>
+                            <option> TELANGANA</option>
+                            <option> TRIPURA</option>
+                            <option> UTTAR PRADESH</option>
+                            <option> UTTARAKHAND</option>
+                            <option> WEST BENGAL</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label class="form_label">District <sup>*</sup></label>
+                    <select name="" id="" class="form-control">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label class="form_label">Pin code <sup>*</sup></label>
+                    <input type="number" class="form-control">
+                </div>
+            </div>
+            <div class="enrollment_block d-flex align-items-center justify-content-between mb-3">
+                <div class="col-sm-6">
+                    <label class="form_label">Referral Code <span>(optional)</span></label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-sm-6">
+                    <label class="form_label">Vehicle Number <span>(Optional)</span></label>
+                    <input type="text" class="form-control">
+                </div>    
+            </div>
+            <div class="enrollment_block d-flex align-items-center justify-content-between mb-3">
+                <div class="col-sm-6">
+                    <label class="form_label">Password <sup>*</sup></label>
+                    <input type="password" class="form-control">
+                </div>
+                <div class="col-sm-6">
+                    <label class="form_label">Confirm Password <sup>*</sup></label>
+                    <input type="password" class="form-control">
+                </div>    
+            </div>
+            <div class="enrollment_block d-flex align-items-center justify-content-between mb-3">
+                <div class="col-sm-6">
+                    <label class="form_label">Referred By Merchant ID <span>(Optional)</span></label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-sm-6">
+                    <label class="form_label">Referred By FSM Mobile Number <span>(Optional)</span></label>
+                    <input type="text" class="form-control">
+                </div>    
+            </div>
+            <div class="enrollment_block d-flex align-items-center justify-content-between mb-3">
+                <div class="col-sm-6">
+                    <mat-checkbox class="example-margin">I agree to <a href="#"> Terms & Conditions</a> and <a href="#"> Applicable Charges</a></mat-checkbox>
+                </div>
+            </div>
+            <div class="enrollment_block d-flex align-items-center justify-content-between mb-3">
+                <div class="col-sm-6">
+                    <button class="submit_btn"><i class="fas fa-paper-plane"></i> <span class="ml-2">Submit</span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<app-footer></app-footer>

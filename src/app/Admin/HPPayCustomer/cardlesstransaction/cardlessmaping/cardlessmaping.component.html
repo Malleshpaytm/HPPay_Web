@@ -1,0 +1,71 @@
+<div class="container pt-5">
+    <div class="card shadow">
+      <div class="card-header p-2 blue-bg text-white title">
+        <strong class="mapno">Map Mobile No. and Reset M-PIN</strong>
+        <strong class = "help" style="cursor: pointer;" (click)="open(help)">Help</strong>
+      </div>
+      
+      <div class="card-body">
+                    <table class="w-50">
+                        <tr>
+                            <td>
+                                <span class="required">Mobile No</span>:
+                            </td>
+                            <td align="left">
+                                <div class="form-group">
+                                   <input type="text" class="form-control">   
+                                </div>
+                            </td>
+                        </tr>
+              
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                </td>
+                                <td align="left">
+                                    <div class=" d-flex flex-row justify-content-end">
+                                        <div class="mr-3">
+                                            <button class="btn btn-primary">Search</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-primary">Reset</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    </div>
+  </div>
+
+  <ng-template #help let-modal>
+  <div class="modal-header blue-bg">
+    <h4 class="modal-title text-white" id="modal-basic-title">Map Mobile No. and Reset M-PIN</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true" class="text-white">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+       <p>Click <b>Add</b> to get the card list to map the mobile no.</p>
+                            <br>
+                            <p>Select <b>Check Box</b>, enter <b>Mobile Number</b> and <b>Fastag Number</b> then click <b>Save</b>.</p>
+                            <br>
+                            <p>To update, select <b>Check Box</b>, change mobile no. and click <b>Save</b>.</p>
+                            <br>
+                            <p>To Reset MPIN, click on <b>Reset MPIN</b>.</p>
+                            <br>
+                            <p>To view the mapping details click on <b>Mapping Details</b>.</p>
+                            <br>
+
+        
+      </div>
+    </form>
+  </div>
+ 
+</ng-template>
+
+

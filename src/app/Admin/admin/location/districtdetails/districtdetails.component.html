@@ -1,0 +1,119 @@
+<div class="pt-5">
+  <div class="container card shadow">
+    <div class="row">
+      <div class="col-12 pl-0 pr-0">
+        <div class="card shadow-sm p-1 text-white" style="background-color: #084594;">
+          <div class="d-flex justify-content-between">
+            <div class="align-self-center">
+              <span style="font-size: 20px; font-family: Arial, Helvetica, sans-serif;"><strong>District
+                  Details</strong></span>
+            </div>
+            <div>
+              <button type="button" class="btn btn-info" routerLink="/admin/addeditdistrict">Add District</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="mt-3">
+          <mat-table [dataSource]="dataSource" matSort style="width: 100%;" class="mat-elevation-z8">
+            <ng-container matColumnDef="sno">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>S.No </mat-header-cell>
+              <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{i+1}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="districtCode">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> District Code </mat-header-cell>
+              <mat-cell *matCellDef="let row" class="text-center"> {{row.district_Code}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="districtName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> District Name </mat-header-cell>
+              <mat-cell *matCellDef="let row" class="text-center"> {{row.district_Name}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="stateName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> State Name </mat-header-cell>
+              <mat-cell *matCellDef="let row" class="text-center"> {{row.state_Name}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Actions</mat-header-cell>
+
+              <mat-cell *matCellDef="let element;let i=index" class="text-center">
+                <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn">edit</mat-icon>
+                <mat-icon mat-icon-button style="font-size: 20px;" aria-hidden="false" color="warn" (click)="onDeleteDistrict(i)">delete</mat-icon>
+              </mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[2,5,10]"></mat-paginator>
+          <!-- <table id="data-table" class="table table-borderless table-sm table-striped"
+            style="width: 97%; margin-left: 15px;">
+            <thead>
+              <tr>
+                <th style="display: none;">
+                  <input type="checkbox" [(ngModel)]="allChecked" (change)="toggleCheckAll()"
+                    [checked]="setAllChecked()" />
+                </th>
+                <th>Sl No</th>
+
+                <th>District Code</th>
+                <th>District Name</th>
+                <th>State Name</th>
+
+
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of GetSaveData; let i = index">
+                <td style="display: none;">
+                  <input type="checkbox" />
+                </td>
+                <td>{{data.slno}}</td>
+
+                <td>{{data.username}}</td>
+                <td>{{data.email}}</td>
+                <td>{{data.state}}</td>
+
+
+                <td align="right">
+                  <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn">edit</mat-icon>
+                  <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn">delete</mat-icon>
+                </td>
+              </tr>
+            </tbody>
+          </table> -->
+          &nbsp;
+          &nbsp;
+          <div class="form-group col-md-12">
+            <!-- <div class="col-auto">
+                    <div class="pagination-info">
+                      <span>{{ filter.page }}</span> -
+                      <span>{{ filter.limit }}</span>
+                      of <span>{{ totalRow }}</span>
+                    </div>
+                  </div> -->
+
+            <!-- <ngb-pagination class="float-left" [collectionSize]="totalRow" [(page)]="page" [boundaryLinks]="true"
+              [pageSize]="1"></ngb-pagination>
+            <select class="custom-select float-right" style="width: auto;" (ngModelChange)="limitChange($event)"
+              [(ngModel)]="pageSize">
+              <option [ngValue]="2">2</option>
+              <option [ngValue]="10">10</option>
+              <option [ngValue]="50">50</option>
+              <option [ngValue]="100">100</option>
+            </select> -->
+          </div>
+        </div>
+        <!-- <app-gird [gridDataModel]="gridData" (bindGridData)="bindData($event)"></app-gird> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-3 mb-5 p-0">
+                <div class="card-header text-white" style="background-color:  #084594;">
+                     Fill The Details
+
+
+                     <button type="button" class="btn btn-info btn-primary" style="float: right;" routerLink="/admin/districtdetail">View District Detail</button>
+
+                </div>
+
+
+
+
+                
+                <div class="card-body">
+                    <table class="w-50" [formGroup]="addEditDistrictFormGroup">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span><span class="required">District Code
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" formControlName="district_Code">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">District Name
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="district_Name"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">District Short Name
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="district_Short_Name">
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span><span class="required">State</span>:</span>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="state_Code">
+                                            <option *ngFor="let item of statesDropdownValues,let i=index" [value]="item.stateCode">{{item.state_Name}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">City</span>:</span>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="city_Code">
+                                            <option *ngFor="let item of cityDropdownValues,let i=index" [value]="item.cityCode">{{item.city_Name}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">Regional Office</span>:</span>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="rO_Code">
+                                            <option *ngFor="let item of regionalOfficeDropdownValues,let i=index" [value]="item.rO_Code">{{item.rO_Name}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                           
+
+                           
+                            <tr>
+                                <td>
+                                </td>
+                                <td align="left">
+                                    <div class=" d-flex flex-row justify-content-end">
+                                        <div class="mr-3">
+                                            <button class="btn btn-primary" (click)="onSaveButtonCLick()">Save</button>
+                                        </div>
+                                        <div class="mr-3">
+                                            <button class="btn btn-primary">Reset</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-primary">Cancel</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="container-fluid">
+    <div class="container">
+        <div class="row mb-5 pb-5">
+            <div class="col-12">
+                <div class="card mt-5 p-0">
+                    <div class="card-header text-white" style="background-color:  #084594;">
+                        Hotlisted/Reactivated Details
+                    </div>
+                    <div class="card-body">
+                        <table class="w-50">
+                            <tr>
+                                <td width="40%">
+                                    <span class="required">Entity Type</span>:
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <select class="form-control" (change)="entityChange($event)">
+                                            <option value="select">select</option>
+                                            <option value="Customer">Customer</option>
+                                            <option value="Merchant">Merchant</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tbody *ngIf="showBody">
+                                <tr>
+                                    <td>
+                                        <span *ngIf="entityTypeValue === 'Merchant'"><span class="required">Merchant
+                                                ID</span>:</span>
+                                        <span *ngIf="entityTypeValue === 'Customer'"><span class="required">Mobile
+                                                Number</span>:</span>
+                                    </td>
+                                    <td align="left">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span><span class="required">Action</span>:</span>
+                                    </td>
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <option value="select">select</option>
+                                            <option value="Customer">Customer</option>
+                                            <option value="Merchant">Merchant</option>
+                                        </select>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span><span class="required">Reason</span>:</span>
+                                    </td>
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <option value="select">select</option>
+                                            <option value="Customer">Customer</option>
+                                            <option value="Merchant">Merchant</option>
+                                        </select>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span><span class="required">Remarks</span>:</span>
+                                    </td>
+                                    <td align="left">
+                                        <div class="form-group">
+                                            <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td align="left">
+                                        <div class=" d-flex flex-row justify-content-end">
+                                            <div class="mr-3">
+                                                <button class="btn btn-primary">APPLY</button>
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-primary" (click)="resetValue()">RESET</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

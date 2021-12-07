@@ -1,0 +1,126 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-3 mb-5 p-0">
+                <div class="card-header text-white" style="background-color:  #084594;">
+                    Zonal Office
+                    <button type="button" class="btn btn-info btn-primary" style="float: right;" routerLink="/admin/Zonalofficedetails">View Zonal Official Detail</button>
+
+                </div>
+                <div class="card-body">
+                    <table class="w-50" [formGroup]="updateZonalOfficeFormGroup">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span><span class="required">Zonal Office Code
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="zO_Code">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">Zonal Office Name
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="zO_Name" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">Zonal Office Short Name
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="zO_Short_Name">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">Zonal Office ERP Code
+                                        </span> :</span>
+
+                                </td>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="zO_ERP_Code">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><span class="required">State</span>:</span>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="state_Id">
+                                            <option *ngFor="let item of statesDropdownValues,let i=index" [value]="item.state_Id">{{item.state_Name}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- <tr>
+                                <td>
+                                    <span><span class="required">State</span>:</span>
+                                </td>
+                                <td>
+                                    <div class="form-group d-flex flex-row justify-content-between">
+                                        <div>
+                                            <input id="ctl00_phM_chkState_1" type="checkbox"
+                                                name="ctl00$phM$chkState$1"><label for="ctl00_phM_chkState_1">ANDHRA
+                                                PRADESH</label>
+                                        </div>
+                                        <div>
+                                            <input id="ctl00_phM_chkState_1" type="checkbox"
+                                                name="ctl00$phM$chkState$1"><label
+                                                for="ctl00_phM_chkState_1">Odisha</label>
+                                        </div>
+                                        <div>
+                                            <input id="ctl00_phM_chkState_1" type="checkbox"
+                                                name="ctl00$phM$chkState$1"><label
+                                                for="ctl00_phM_chkState_1">Maharashtra</label>
+                                        </div>
+                                        <div>
+                                            <input id="ctl00_phM_chkState_1" type="checkbox"
+                                                name="ctl00$phM$chkState$1"><label
+                                                for="ctl00_phM_chkState_1">Gujurat</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr> -->
+                            <tr>
+                                <td>
+                                </td>
+                                <td align="left">
+                                    <div class=" d-flex flex-row justify-content-end">
+                                        <div class="mr-3">
+                                            <button class="btn btn-primary">Save</button>
+                                        </div>
+                                        <div class="mr-3">
+                                            <button class="btn btn-primary">Reset</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-primary">Cancel</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

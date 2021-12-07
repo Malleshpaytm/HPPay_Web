@@ -1,0 +1,484 @@
+<div class="header-main" style="overflow: hidden;">
+</div>
+<div class="header-inner-div">
+    <div class="row logo-padding">
+        <div class="col">
+            <img height="50" src="assets/images/hpcl-logo.jpg" alt="logo">
+        </div>
+        <div class="col text-right username-padding">
+            <div class="custom-txt-color">
+                Welcome <strong>{{this.UserInfoLocalStorageDataConverted.username}}</strong>
+            </div>
+            <div class="pt-3">
+                <a href="">
+                    <img src="assets/images/change_password.jpg" alt="Change Password">
+                </a>
+                <a href="" class="pl-1">
+                    <img src="assets/images/sign_out.jpg" (click)="refreshPage()" alt="Change Password">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="custom-bg custom-bb mt-3">
+        <div class="row">
+            <div class="col">
+                <span class="custom-fz custom-btn">
+                    <img src="assets/images/home.png" alt="">
+                </span>
+                <div class="dropdown">
+                    <span class="custom-font-white custom-fz custom-btn" routerLink="./security"
+                        style="cursor: pointer;">Admin</span>
+
+                    <!-- <span class="custom-font-white custom-fz custom-btn" routerLink="/admin/security">Admin</span> -->
+                    <div class="dropdown-content">
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/security')">Security
+                            <div class="sub-menu">
+                                <!-- [routerLink]="['/admin/manageuser']" -->
+                                <a (click)="changeRoute($event, '/admin/manageuser')">Manage Users</a>
+                                <a (click)="changeRoute($event, '/admin/managerole')">Manage Roles</a>
+                            </div>
+                        </a>
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/hotlistingmenu')">
+                            Hotlisting
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/hotlistreactive')">Hotlist/Reactive</a>
+                                <a (click)="changeRoute($event, '/admin/Viewhotlistedreactivateddata')">Hotlisted/Reactivated
+                                    Details</a>
+                                <a (click)="changeRoute($event, '/admin/hotlistapproval')">Hotlist Approval</a>
+                                <a (click)="changeRoute($event, '/admin/bulkhotlist')">Bulk Hotlist</a>
+                            </div>
+                        </a>
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/locationlist')">
+                            Location
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/headquarteroffice')">Head Office Details</a>
+                                <a (click)="changeRoute($event, '/admin/Zonalofficedetails')">Zonal Office Details</a>
+                                <a (click)="changeRoute($event, '/admin/regionalofficedetail')">Regional Office
+                                    Details</a>
+                                <a (click)="changeRoute($event, '/admin/countryregiondetail')">Country Region
+                                    Details</a>
+                                <a (click)="changeRoute($event, '/admin/statedetail')">State Details</a>
+                                <a (click)="changeRoute($event, '/admin/districtdetail')">District Details</a>
+                                <a (click)="changeRoute($event, '/admin/citydetails')">City Details</a>
+                            </div>
+                        </a>
+
+
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/officerlist')">
+                            Officers
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/manageofficers')">Manage Officers</a>
+                                <a (click)="changeRoute($event, '/admin/officerdetail')">Officer Details</a>
+
+                            </div>
+                        </a>
+
+
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/configurationmenu')">
+                            Configurations
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/servicedetail')">Service Details</a>
+                                <a (click)="changeRoute($event, '/admin/notificationdetail')">Configure Notification</a>
+
+                            </div>
+                        </a>
+
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/auditlist')">
+                            Audit Logs
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/viewauditdetails')">View Audits Details</a>
+                                <a (click)="changeRoute($event, '/admin/userloginlog')">User Login Log</a>
+
+                            </div>
+                        </a>
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/setupreportlist')">
+                            Setup Reports
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/manageprofile')">Manage Profiles</a>
+                                <a (click)="changeRoute($event, '/admin/managemail')">Manage Mails</a>
+                                <a (click)="changeRoute($event, '/admin/manageprofilegroup')">Manage Profile Group</a>
+                                <a (click)="changeRoute($event, '/admin/reportconfiguration')">Report Configuration</a>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+                <div class="dropdown">
+                    <span class="custom-font-white custom-fz custom-btn" routerLink="./security"
+                        style="cursor: pointer;">HP PAY Customer</span>
+
+                    <!-- <span class="custom-font-white custom-fz custom-btn" routerLink="/admin/security">Admin</span> -->
+                    <div class="dropdown-content">
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/HPPayCustomer/profilemenu')">Profile
+                            <div class="sub-menu">
+                                <!-- [routerLink]="['/admin/manageuser']" -->
+                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/createcustomer')">Create HP Pay
+                                    Customer</a>
+                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/managecustomer')">Manage HP Pay
+                                    Customer</a>
+
+                            </div>
+                        </a>
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/HPPayCustomer/financialemenu')">Financials
+                            <div class="sub-menu">
+                                <!-- [routerLink]="['/admin/manageuser']" -->
+                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/balanceinfo')">Balace Info</a>
+                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/transactiondetail')">Transaction
+                                    Details</a>
+                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/viewaccountstatement')">View
+                                    Account Statement</a>
+                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/downloadaccountstatement')">Download
+                                    Account Statement</a>
+                            </div>
+                        </a>
+
+                        <a class="dropdown has-sub" style="cursor: pointer;">Approval
+                            <div class="sub-menu">
+                                <!-- [routerLink]="['/admin/manageuser']" -->
+                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/customerkyc')">Customer KYC</a>
+
+                            </div>
+
+                        </a>
+
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/HPPayCustomer/ManageCardlessDashboad')">Cardless
+                            Transactions
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/cardlessmaping')">Map Mobile No.
+                                    and Reset M-PIN</a>
+
+                            </div>
+                        </a>
+
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/HPPayCustomer/feedbackmenu')">Feedback
+                            <div class="sub-menu">
+                                <!-- [routerLink]="['/admin/manageuser']" -->
+                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/viewcustomerfeedback')">View And
+                                    Close Customer Feedback</a>
+
+                            </div>
+                        </a>
+
+
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/HPPayCustomer/offermenu')">Offers And Promotions
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/offers')">Manage Offers</a>
+                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/createoffers')">Create Offers</a>
+
+                            </div>
+
+                        </a>
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/HPPayCustomer/ccmsmenu')">CCMS Recharge Payment Gateway
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/vewccmsrecharge')">View Online
+                                    CCMS Recharge</a>
+                            </div>
+                        </a>
+
+
+
+                    </div>
+                </div>
+
+
+                <div class="dropdown">
+                    <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;"
+                        routerLink="./merchant/merchantprofilemenu">Merchant</span>
+
+                    <!-- <span class="custom-font-white custom-fz custom-btn" routerLink="/admin/security">Admin</span> -->
+                    <div class="dropdown-content">
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/merchant/merchantprofilemenu')">Profile
+                            <div class="sub-menu">
+                                <!-- [routerLink]="['/admin/manageuser']" -->
+                                <a (click)="changeRoute($event, '/admin/merchant/manageprofile')">Manage Profile</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/verifymerchant')">Verify Merchant
+                                    Profile</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/rejectedmerchant')">Rejected
+                                    Merchant</a>
+
+                            </div>
+                        </a>
+
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/merchant/merchantfinancialmenu')">Financials
+                            <div class="sub-menu">
+                                <!-- [routerLink]="['/admin/manageuser']" -->
+                                <a (click)="changeRoute($event, '/admin/merchant/settlementdetail')">
+                                    Settlement Details</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/transactiondetail')">
+                                    Transaction Details</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/receivablepayabledetail')">Receivable -
+                                    Paybale Details</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/erpreloadsaleearningdetail')">ERP
+                                    Reload/Sale/Earning Details</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/merchantaccountstatementrequest')">Merchant
+                                    Account Statement Request</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/merchantaccountstatementdownload')">Merchant
+                                    Account Statement Download</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/merchanttransactionview')">View Earning
+                                    Break-up</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/merchantdaywiseearningview')">Day-Wise
+                                    Merchant Earning Date</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/qrcodetransactiondetail')">QR Code Wise
+                                    Transaction Details</a>
+                            </div>
+                        </a>
+
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/merchant/approvalmenu')">Approval
+                            <div class="sub-menu">
+                                <!-- [routerLink]="['/admin/manageuser']" -->
+                                <a (click)="changeRoute($event, '/admin/merchant/merchantapproval')">Merchant Approval
+                                    Details</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/merchantcredentailrequest')">Rest
+                                    Dealer Password
+                                    Details</a>
+                            </div>
+                        </a>
+
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/merchant/merchantmenu')">Request
+                            <div class="sub-menu">
+                                <!-- [routerLink]="['/admin/manageuser']" -->
+                                <a (click)="changeRoute($event, '/admin/merchant/smsalert')">SMS Alert For Dealers</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/customerreferal')">Customer Referal
+                                    Request</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/generateqrcode')">Generate QR Code</a>
+                                <a (click)="changeRoute($event, '/admin/merchant/productmapping')">Product Mapping</a>
+
+
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="dropdown">
+                    <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;"
+                        routerLink="./interface/interfacemenu">Interfaces</span>
+                    <div class="dropdown-content">
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/interface/interfacemenu')">EFT Recharge
+                            <div class="sub-menu">
+                                <!-- [routerLink]="['/admin/manageuser']" -->
+                                <a (click)="changeRoute($event, '/admin/interface/requestccmdrechargethrougheft')">Request
+                                    CCMS Recharge through EFT</a>
+                                <a (click)="changeRoute($event, '/admin/interface/approveeftrechargerequest')">CCMS
+                                    Recharge Approval</a>
+                                <a (click)="changeRoute($event, '/admin/interface/approveeftreversalrequest')">CCMS
+                                    Reversal Recharge Approval</a>
+                                <a (click)="changeRoute($event, '/admin/interface/vieweftrechargerequest')">View EFT
+                                    Requests</a>
+                                <a (click)="changeRoute($event, '/admin/interface/requestccmsrechargereversal')">Request
+                                    CCMS Recharge Reversal</a>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;">Report</span>
+
+                    <div class="dropdown-content">
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/report/reportmenu')">Advanced Report
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/report/transactionreport')">Transaction Wise
+                                    Spend Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/dealerreport')">Dealer Wise Spend
+                                    Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/customerreport')">Customer Wise Spend
+                                    Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/customerwisereport')">Customer Wise
+                                    Rewarding Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/customerredemption')">Customer Wise
+                                    Redemption Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/negativeloyalityreport')">Negative
+                                    Loyality Points Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/transactionreport')">Transaction Wise
+                                    Spend Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/dealerreport')">Dealer Wise Spend
+                                    Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/customerreport')">Customer Wise Spend
+                                    Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/customerwisereport')">Customer Wise
+                                    Rewarding Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/customerredemption')">Customer Wise
+                                    Redemption Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/negativeloyalityreport')">Negative
+                                    Loyality Points Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/negativeccmsreport')">Negative CCMS
+                                    Balance Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/settlementreport')">Settlement
+                                    Outstanding Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/tire1report')">Tire 1 Customer Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/bireport')">Download BI Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/webreport')">Download Web Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/customerrewarddata')">Download Customer
+                                    Rewarding Data</a>
+                                <a (click)="changeRoute($event, '/admin/report/mandrreport')">M ANd R Activity Detail
+                                    Report</a>
+                                <a (click)="changeRoute($event, '/admin/report/dealerearningreport')">Dealer Earning
+                                    Report</a>
+
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;"
+                        routerLink="./download/downloadmenu">Downloads</span>
+                    <div class="dropdown-content">
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/download/downloadmenu')">Advanced Downloads
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/download/advancedownload')">Download Retail
+                                    Outlest List</a>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;"
+                        routerLink="./search/searchmenu">Search</span>
+                    <div class="dropdown-content">
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/search/searchmenu')">Advanced Search
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/search/searchparamrter')">Search Parameters</a>
+                                <a (click)="changeRoute($event, '/admin/search/resultparameter')">Result Parameters</a>
+                                <a (click)="changeRoute($event, '/admin/search/adminsearch')">Admin Search</a>
+                                <a (click)="changeRoute($event, '/admin/search/pumplocator')">Pump Locator</a>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;"
+                        routerLink="./corporatecustomer/profilemenu">Corporate Customer</span>
+                    <div class="dropdown-content">
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/corporatecustomer/profilemenu')">Profile
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/corporatecustomer/addcustomer')">Add
+                                    Customer</a>
+                                <a (click)="changeRoute($event, '/admin/corporatecustomer/verifycustomer')">Verify
+                                    Customer Profile</a>
+                                <a (click)="changeRoute($event, '/admin/corporatecustomer/managecustomer')">Manage
+                                    Customer Profile</a>
+                            </div>
+                        </a>
+
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/corporatecustomer/customerbonusmenu')">Customer Bonus
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/corporatecustomer/managecustomerbonus')">Manage
+                                    Customer Bonus</a>
+                                <a (click)="changeRoute($event, '/admin/corporatecustomer/approvecustomerbonus')">Approve
+                                    Customer Bonus</a>
+                                <a (click)="changeRoute($event, '/admin/corporatecustomer/authorizecustomerbonus')">Authorize
+                                    Customer Bonus</a>
+                            </div>
+                        </a>
+
+                    </div>
+
+                </div>
+                <div class="dropdown">
+                    <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;"
+                        routerLink="./hplubes/hplubesmenu">HP Lubes</span>
+                    <div class="dropdown-content">
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/hplubes/hplubesmenu')">Lubes Order Approval
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/hplubes/lubesorderapproval')">Lubes Order
+                                    Approval</a>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;">Fastag</span>
+                    <div class="dropdown-content">
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/fastag/requestcard')">Profile
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/fastag/managebankenrolment')">Manage Bank
+                                    Enrollment</a>
+
+                            </div>
+                        </a>
+
+
+
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/fastag/requestcard')">Requests
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/fastag/managebanklimit')">Manage Bank Credit
+                                    Limit</a>
+                                <a (click)="changeRoute($event, '/admin/fastag/bankcreditlimit')">Bank Credit Limit
+                                    Status</a>
+
+                            </div>
+                        </a>
+
+
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/fastag/financialcard')">Financial
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/fastag/statementofaccount')">Statement Of
+                                    Account</a>
+
+                            </div>
+                        </a>
+
+                        <a class="dropdown has-sub" style="cursor: pointer;"
+                            (click)="changeRoute($event, '/admin/fastag/approvalmenu')">Approval
+                            <div class="sub-menu">
+                                <a (click)="changeRoute($event, '/admin/fastag/fastagbankapproval')">Fastag Bank
+                                    Appoval</a>
+                                <a (click)="changeRoute($event, '/admin/fastag/fastagcreditlimitapproval')">Fastag
+                                    Credit Limit Appoval</a>
+
+                            </div>
+                        </a>
+
+
+                    </div>
+                </div>
+
+                <!-- 
+
+                <div class="item has_submenu"><i class="material-icons">signal_cellular_alt</i>Priorytety</div>
+<div class="item has_submenu">
+  <i class="material-icons">class</i>Klasyfikacje
+  <div class="submenu">
+    <div class="item"><i class="material-icons">face</i>ITEM 2a</div>
+    <div class="item"><i class="material-icons">face</i>ITEM 2b</div>
+  </div>
+</div>
+<div class="item has_submenu"><i class="material-icons">local_offer</i>Tagi</div> -->
+            </div>
+        </div>
+    </div>
+</div>
