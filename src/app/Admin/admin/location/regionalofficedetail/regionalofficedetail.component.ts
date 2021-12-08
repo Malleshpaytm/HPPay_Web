@@ -120,6 +120,7 @@ export class RegionalofficedetailComponent implements OnInit {
 
 }
 export interface IRandomUsers {
+  erpCode: any;
   terminal_id: number;
   merchant_id: number;
   approve_date: string;

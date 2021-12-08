@@ -186,7 +186,7 @@ if(this.basicInformationFormGroup.valid && this.contactDetailsFormGroup.valid &&
       "Perm_PIN_Code": this.contactDetailsFormGroup.controls.permPincode.value,
       "Perm_std_code": this.contactDetailsFormGroup.controls.Perm_std_code.value,
       "Perm_Ph_Off": this.contactDetailsFormGroup.controls.permPhoneOffice.value,
-      "Perm_fax": parseInt(this.contactDetailsFormGroup.controls.permFax.value),
+      "Perm_fax": this.contactDetailsFormGroup.controls.permFax.value,
       "ERP_Code": this.basicInformationFormGroup.controls.erpCode.value,
       "Outlet_Category": this.basicInformationFormGroup.controls.outletCategory.value,
       "PANNo": this.basicInformationFormGroup.controls.panNumber.value,
@@ -218,8 +218,8 @@ if(this.basicInformationFormGroup.valid && this.contactDetailsFormGroup.valid &&
       "Terminal_Type": this.terminalTypeRadioButtonValue,
       "CreatedBy": "13",
       "Merchant_Type_Id": this.basicInformationFormGroup.controls.merchantType.value,
-      "comm_mobile": "test@gmail1234.com",
-      "Comm_Email": "98765456",
+      "comm_mobile": "0",
+      "Comm_Email": "test@test.com",
       "Name": this.basicInformationFormGroup.controls.name.value,
       "email": this.basicInformationFormGroup.controls.email.value,
       "Mobile": this.basicInformationFormGroup.controls.mobile.value,
@@ -262,7 +262,7 @@ if(this.basicInformationFormGroup.valid && this.contactDetailsFormGroup.valid &&
       "userid": "1",
       "merchantid": this.ViewProfileGroup.controls.merchantId.value,
     }
-    this.adminService.getMerchant(getMerchantData)
+    this.adminService.searchMerchantByMerchantId(getMerchantData)
       .subscribe(data => {
         if(data.message.toUpperCase()==='RECORD FOUND'){
           this.AddMerchant();

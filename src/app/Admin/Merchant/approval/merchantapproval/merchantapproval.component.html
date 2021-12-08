@@ -1,11 +1,12 @@
-<div class="container pt-5">
+<body>
+  <div class="container pt-5">
     <div class="card shadow">
       <div class="card-header p-2 blue-bg text-white">
         <strong class="balanceinfo">Merchant Approval</strong>
       </div>
       
-      <div class="card-body">
-                    <table class="w-50" [formGroup]="approveMerchantListFormGroup">
+      <div class="card-body"  [formGroup]="approveMerchantListFormGroup">
+                    <table class="w-50">
                         <tr>
                             <td>
                                 <span class="required">Select Cateogory</span>:
@@ -65,29 +66,48 @@
                             </tr>
                         </tbody>
                     </table>
-                    <mat-table [dataSource]="dataSource" matSort style="width: 100%;" class="mat-elevation-z8">
+                    <br>
+                    <mat-table [dataSource]="dataSource" style="width: 100%;" class="mat-elevation-z8">
+                        <ng-container matColumnDef="sno">
+                            <mat-header-cell *matHeaderCellDef >S.No.</mat-header-cell>
+                            <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{i+1}} </mat-cell>
+                        </ng-container>
+                      <ng-container matColumnDef="select">
+                        <mat-header-cell *matHeaderCellDef>
+                          <mat-checkbox (change)="$event ? masterToggle() : null"
+                                        [checked]="selection.hasValue() && isAllSelected()"
+                                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                          </mat-checkbox>
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                          <mat-checkbox (click)="$event.stopPropagation()"
+                                        (change)="$event ? selection.toggle(row) : null"
+                                        [checked]="selection.isSelected(row)">
+                          </mat-checkbox>
+                        </mat-cell>
+                      </ng-container>
                         <ng-container matColumnDef="erpCode">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header>ERP Code </mat-header-cell>
+                          <mat-header-cell *matHeaderCellDef >ERP Code </mat-header-cell>
                           <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{row.erpCode}} </mat-cell>
                         </ng-container>
             
                         <ng-container matColumnDef="RO">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header> RO </mat-header-cell>
+                          <mat-header-cell *matHeaderCellDef > Regional Office </mat-header-cell>
                           <mat-cell *matCellDef="let row" class="text-center"> {{row.ro}} </mat-cell>
                         </ng-container>
             
                         <ng-container matColumnDef="retailOutletName">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header> Retail Outlet Name </mat-header-cell>
+                          <mat-header-cell *matHeaderCellDef > Retail Outlet Name </mat-header-cell>
                           <mat-cell *matCellDef="let row" class="text-center"> {{row.outlet_name}} </mat-cell>
                         </ng-container>
                        
                         <ng-container matColumnDef="type">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+                          <mat-header-cell *matHeaderCellDef > Type </mat-header-cell>
                           <mat-cell *matCellDef="let row" class="text-center"> {{row.merchant_Type}} </mat-cell>
                         </ng-container>
             
                         <ng-container matColumnDef="creationDate">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header> Creation Date </mat-header-cell>
+                          <mat-header-cell *matHeaderCellDef > Creation Date </mat-header-cell>
                           <mat-cell *matCellDef="let row" class="text-center"> {{row.createdOn}} </mat-cell>
                         </ng-container>
                         
@@ -95,27 +115,65 @@
                         
                         
             
-                        <ng-container matColumnDef="comments">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header> Comments </mat-header-cell>
+                        <!-- <ng-container matColumnDef="comments">
+                          <mat-header-cell *matHeaderCellDef > Comments </mat-header-cell>
                           <mat-cell *matCellDef="let row" class="text-center"> <input class="form-control"> </mat-cell>
-                        </ng-container>
+                        </ng-container> -->
             
                         <ng-container matColumnDef="actions">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header> Actions</mat-header-cell>
+                          <mat-header-cell *matHeaderCellDef > Actions</mat-header-cell>
             
                           <mat-cell *matCellDef="let element; let i=index" class="text-center">
-                            <button class="btn btn-primary btn-sm" style="margin:8px">Approve</button>
-                            <button class="btn btn-danger btn-sm">Reject</button>
+                           <p style="color: blue;cursor: pointer;" (click)="onViewMerchantDetails(element.erpCode)">View</p>
                           </mat-cell>
                         </ng-container>
             
             
+            
                         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        <mat-row [ngClass]="{'highlight2': coloredRow[i] == true}"
+                        *matRowDef="let row;let i=index; columns: displayedColumns;" (click)="selection.toggle(row)"></mat-row>
                       </mat-table>
-                      <mat-paginator [pageSizeOptions]="[2,5,10]"></mat-paginator>
+                      <mat-paginator [pageSizeOptions]="[5,10,20]"></mat-paginator>
+                      <div class="row">
+                        <div class="col-lg-2">
+                          <label style="margin-top: 4px;">
+                              <small>Comments<span style="color: red;">*</span>:</small>
+                            </label>  
+                        </div>
+                        <div class="col-lg-4">
+                          <section>
+                              <textarea class="textarea" cols="80" rows="5" style="width: 100%;"  
+                            [(ngModel)]="interaction.textValue"
+                            (ngModelChange)="onModelChange($event)"
+                            [attr.maxlength]="counter ? maxNumberOfCharacters : ''" formControlName="comments">
+                          </textarea>
+                          <!-- <span style="font-size:12px" class="text-danger"
+                          *ngIf="approveMerchantsFormGroup.controls.comments.hasError('required')">
+                          Comment is <strong>required!</strong>
+                        </span> -->
+                             
+                          </section>
+                        </div>
+                        <div class="col-lg-6">
+                          <small><i style="font-size: 12px;">({{maxNumberOfCharacters-numberOfCharacters2}} Characters Remaining)</i></small>
+                          <!-- {{numberOfCharacters2}} / {{maxNumberOfCharacters}} -->
+                      </div>
+                        
+                    </div>
+                      <div class="row">
+                        <div class="col-md-12 col-lg-12 col-xs-3">
+                          <button class="btn btn-danger btn-sm" style="float: right;" (click)="onRejectButtonClick()">Reject</button>
+                          <button class="btn btn-primary btn-sm" style="float: right;margin-right: 15px;" (click)="onApproveButtonClick()">Approve</button>
+                          
+                         
+                          
+                        </div>
+                      </div>
                 </div>
     </div>
   </div>
+</body>
+
 
   

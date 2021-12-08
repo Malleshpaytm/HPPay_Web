@@ -1,0 +1,10 @@
+.blue-bg {
+    background-color: #084594;
+  }
+  .highlight2{
+    background: #aef0e7; /* green */
+  }
+  html,
+  body {
+    height: 130%;
+  }

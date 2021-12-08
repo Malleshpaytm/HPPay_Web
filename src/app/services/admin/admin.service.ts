@@ -151,9 +151,9 @@ export class AdminService {
     const body=JSON.stringify(createMerchantData);
     return this.service.post(path,body);
   }
-  getMerchant(getMerchantData): Observable<any> {
-    let path = '/hppay/merchant/get_merchant';
-    const body=JSON.stringify(getMerchantData);
+  searchMerchant(searchMerchantData): Observable<any> {
+    let path = '/hppay/merchant/search_by_merchant';
+    const body=JSON.stringify(searchMerchantData);
     return this.service.post(path,body);
   }
   get_approve_merchants_list(get_approve_merchants_listData): Observable<any> {
@@ -164,6 +164,16 @@ export class AdminService {
   get_rejected_merchants(get_rejected_merchantsData): Observable<any> {
     let path = '/hppay/merchant/get_rejected_merchants';
     const body=JSON.stringify(get_rejected_merchantsData);
+    return this.service.post(path,body);
+  }
+  approveRejectMerchant(approveRejectMerchantData): Observable<any> {
+    let path = '/hppay/merchant/approve_merchant';
+    const body=JSON.stringify(approveRejectMerchantData);
+    return this.service.post(path,body);
+  }
+  searchMerchantByMerchantId(searchMerchantByMerchantIdData): Observable<any> {
+    let path = '/hppay/merchant/get_merchant';
+    const body=JSON.stringify(searchMerchantByMerchantIdData);
     return this.service.post(path,body);
   }
 

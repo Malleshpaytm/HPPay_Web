@@ -112,7 +112,7 @@
 
                             <div class="form-group">
                                 <select class="form-control" formControlName="merchantType" required>
-                                    <option [value]="merchantType.merchant_Type_Name"
+                                    <option [value]="merchantType.merchant_Type_Id"
                                         *ngFor="let merchantType of merchantTypes">{{merchantType.merchant_Type_Name}}
                                     </option>
                                 </select>
@@ -331,7 +331,7 @@
 
                             <div class="form-group">
                                 <select class="form-control" formControlName="regionalOffice" required>
-                                    <option [value]="regionalOffice.rO_Name"
+                                    <option [value]="regionalOffice.rO_Code"
                                         *ngFor="let regionalOffice of regionalOffices">{{regionalOffice.rO_Name}}
                                     </option>
                                 </select>
@@ -370,7 +370,7 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="erpCode" required>
+                                <input type="text" class="form-control" formControlName="erpCode" required maxlength="8">
                                 <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.erpCode.hasError('required')">
                                     ERP Code is <strong>required!</strong>
                                 </span>
@@ -563,7 +563,7 @@
 
                             <div class="form-group">
                                 <select class="form-control" formControlName="permCity">
-                                    <option [value]="city.city_Name" *ngFor="let city of cityDropdownValues">
+                                    <option [value]="city.cityCode" *ngFor="let city of cityDropdownValues">
                                         {{city.city_Name}}</option>
 
                                 </select>
@@ -584,7 +584,7 @@
 
                             <div class="form-group">
                                 <select class="form-control" formControlName="permState">
-                                    <option [value]="state.state_Name" *ngFor="let state of statesDropdownValues">
+                                    <option [value]="state.stateCode" *ngFor="let state of statesDropdownValues">
                                         {{state.state_Name}}</option>
                                 </select>
                                 <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permState.hasError('required')">
@@ -603,7 +603,7 @@
 
                             <div class="form-group">
                                 <select class="form-control" formControlName="permDistrict">
-                                    <option [value]="district.district_Name"
+                                    <option [value]="district.district_Code"
                                         *ngFor="let district of districtDropdownValues">{{district.district_Name}}
                                     </option>
                                 </select>
@@ -645,7 +645,7 @@
 
                             <div class="form-inline">
                                 <!-- <input class="form-control" type="text" maxlength="8" style="width:60px;margin-left: 15px"> -->
-                                <input class="form-control" type="text" maxlength="10" style="width: 90px;"
+                                <input class="form-control" type="text" maxlength="6" style="width: 90px;"
                                     formControlName="Perm_std_code">
                                 <input class="form-control" type="text" maxlength="10" style="width: 150px;"
                                     formControlName="permPhoneOffice">
@@ -737,7 +737,7 @@
                         <td>
                             <div class="form-group">
                                 <select class="form-control" formControlName="comm_City">
-                                    <option [value]="city.city_Name" *ngFor="let city of cityDropdownValues">
+                                    <option [value]="city.cityCode" *ngFor="let city of cityDropdownValues">
                                         {{city.city_Name}}</option>
 
                                 </select>
@@ -754,7 +754,7 @@
 
                             <div class="form-group">
                                 <select class="form-control" formControlName="comm_State">
-                                    <option [value]="state.state_Name" *ngFor="let state of statesDropdownValues">
+                                    <option [value]="state.stateCode" *ngFor="let state of statesDropdownValues">
                                         {{state.state_Name}}</option>
                                 </select>
                             </div>
@@ -771,7 +771,7 @@
 
                             <div class="form-group">
                                 <select class="form-control" formControlName="comm_District">
-                                    <option [value]="district.district_Name"
+                                    <option [value]="district.district_Code"
                                         *ngFor="let district of districtDropdownValues">{{district.district_Name}}
                                     </option>
                                 </select>
@@ -799,7 +799,7 @@
                         <td align="left">
                             <div class="form-inline">
                                 <!-- <input class="form-control" type="text" maxlength="8" style="width:60px;margin-left: 15px"> -->
-                                <input class="form-control" type="text" maxlength="10" style="width: 90px;"
+                                <input class="form-control" type="text" maxlength="6" style="width: 90px;"
                                     formControlName="Comm_std_code">
                                 <input class="form-control" type="text" maxlength="10" style="width: 150px;"
                                     formControlName="Comm_Ph_Off">

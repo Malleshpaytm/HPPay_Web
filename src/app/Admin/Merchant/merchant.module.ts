@@ -31,6 +31,8 @@ import { GenerateqrcodeComponent } from './request/generateqrcode/generateqrcode
 import { ProductmappingComponent } from './request/productmapping/productmapping.component';
 import { MerchantmenuComponent } from './request/merchantmenu/merchantmenu.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { MerchantDetailsModalComponent } from './merchant-details-modal/merchant-details-modal.component';
+import { MerchantCreationViewComponent } from './approval/merchant-creation-view/merchant-creation-view.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { MaterialModule } from 'src/app/material/material.module';
             CustomerreferalrequestComponent,
             GenerateqrcodeComponent,
             ProductmappingComponent,
-            MerchantmenuComponent
+            MerchantmenuComponent,
+            MerchantDetailsModalComponent,
+            MerchantCreationViewComponent
   ],
   imports: [
     MaterialModule,

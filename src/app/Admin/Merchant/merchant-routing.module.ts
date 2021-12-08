@@ -24,6 +24,7 @@ import { CustomerreferalrequestComponent } from './request/customerreferalreques
 import { GenerateqrcodeComponent } from './request/generateqrcode/generateqrcode.component';
 import { ProductmappingComponent } from './request/productmapping/productmapping.component';
 import { MerchantmenuComponent } from './request/merchantmenu/merchantmenu.component';
+import { MerchantCreationViewComponent } from './approval/merchant-creation-view/merchant-creation-view.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,7 @@ const routes: Routes = [
     { path:  'qrcodetransactiondetail' , component :  QrcodetransactiondetailComponent},
     { path : 'approvalmenu' , component : ApprovalmenuComponent},
     { path : 'merchantapproval' , component :  MerchantapprovalComponent},
+    { path:'merchantcreationview', component:MerchantCreationViewComponent},
     { path : 'merchantcredentailrequest' , component : MerchantcredentailrequestComponent},
     { path: 'smsalert' , component :  SmsalertdealerComponent},
     { path: 'customerreferal' , component :  CustomerreferalrequestComponent},

@@ -1,0 +1,108 @@
+<body>
+    <div class="container pt-5">
+      <div class="card shadow">
+        <div class="card-header p-2 blue-bg text-white">
+          <strong class="balanceinfo">Merchant Creation View</strong>
+        </div>
+        
+        <div class="card-body"  [formGroup]="merchantCreationViewFormGroup">
+                      <table class="w-50">
+                          <tr>
+                              <td>
+                                  <span class="required">Status</span>:
+                              </td>
+                              <td align="left">
+                                  <div class="form-group">
+                                      <select class="form-control" formControlName="status">
+                    
+                                          <option value="">All</option>
+                                          <option value="Pending">Pending</option>
+                                          <option value="Approved">Approved</option>
+                                          <option value="UnApproved">Rejected</option>
+                                        </select>
+                                  </div>
+                              </td>
+                          </tr>
+  
+                          <tbody>
+  
+                              <tr>
+                                  <td>
+                                  </td>
+                                  <td align="left">
+                                      <div class=" d-flex flex-row justify-content-end">
+                                          <div class="mr-3">
+                                              <button class="btn btn-primary" (click)="onSearchButtonClick()">Search</button>
+                                          </div>
+                                          <div class="mr-3">
+                                              <button class="btn btn-primary">Reset</button>
+                                          </div>
+                                      </div>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <br>
+                      <mat-table [dataSource]="dataSource" style="width: 100%;" class="mat-elevation-z8">
+                        <ng-container matColumnDef="sno">
+                            <mat-header-cell *matHeaderCellDef >S.No.</mat-header-cell>
+                            <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{i+1}} </mat-cell>
+                        </ng-container>
+                          <ng-container matColumnDef="erpCode">
+                            <mat-header-cell *matHeaderCellDef >ERP Code </mat-header-cell>
+                            <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{row.erP_Code}} </mat-cell>
+                          </ng-container>
+              
+                          <ng-container matColumnDef="RO">
+                            <mat-header-cell *matHeaderCellDef > Regional Office </mat-header-cell>
+                            <mat-cell *matCellDef="let row" class="text-center"> {{row.regional_Office}} </mat-cell>
+                          </ng-container>
+              
+                          <ng-container matColumnDef="retailOutletName">
+                            <mat-header-cell *matHeaderCellDef > Retail Outlet Name </mat-header-cell>
+                            <mat-cell *matCellDef="let row" class="text-center"> {{row.outletName}} </mat-cell>
+                          </ng-container>
+                         
+                          <ng-container matColumnDef="type">
+                            <mat-header-cell *matHeaderCellDef > Type </mat-header-cell>
+                            <mat-cell *matCellDef="let row" class="text-center"> {{row.merchant_Type}} </mat-cell>
+                          </ng-container>
+              
+                          <ng-container matColumnDef="status">
+                            <mat-header-cell *matHeaderCellDef > Status </mat-header-cell>
+                            <mat-cell *matCellDef="let row" class="text-center"> {{row.status}} </mat-cell>
+                          </ng-container>
+                          
+                          
+                          
+                          
+              
+                          <!-- <ng-container matColumnDef="comments">
+                            <mat-header-cell *matHeaderCellDef > Comments </mat-header-cell>
+                            <mat-cell *matCellDef="let row" class="text-center"> <input class="form-control"> </mat-cell>
+                          </ng-container> -->
+              
+                          <ng-container matColumnDef="actions">
+                            <mat-header-cell *matHeaderCellDef > Actions</mat-header-cell>
+              
+                            <mat-cell *matCellDef="let element; let i=index" class="text-center">
+                             <p style="color: blue;cursor: pointer;" (click)="onViewMerchantDetails(element.erpCode)">View</p>
+                            </mat-cell>
+                          </ng-container>
+              
+              
+              
+                          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                          <mat-row
+                          *matRowDef="let row;let i=index; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+                        <mat-paginator [pageSizeOptions]="[5,10,20]"></mat-paginator>
+                      
+                  </div>
+      </div>
+    </div>
+  </body>
+  
+  
+    
+  
