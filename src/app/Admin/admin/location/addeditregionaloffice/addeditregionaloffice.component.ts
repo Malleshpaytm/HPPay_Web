@@ -68,20 +68,20 @@ export class AddeditregionalofficeComponent implements OnInit {
   getHeadOffices(){
     //get head offices
     debugger;
-    // let headOfficesData = {
-    //   "Useragent": "web",
-    //   "Userip": "1",
-    //   "Userid": "1"
-    // }
-    // this.adminService.getHeadOffices(headOfficesData)
-    //   .subscribe(data => {
-    //     debugger;
-    //     this.headOfficesDropdownValues = data.data;
-    //   },
-    //   (err: HttpErrorResponse) => {
-    //     console.log(err);
-    //   }
-    //   );
+    let headOfficesData = {
+      "Useragent": "web",
+      "Userip": "1",
+      "Userid": "1"
+    }
+    this.adminService.getHeadOffices(headOfficesData)
+      .subscribe(data => {
+        debugger;
+        this.headOfficesDropdownValues = data.data;
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err);
+      }
+      );
   }
   onSaveButtonClick(){
     debugger;
@@ -102,11 +102,11 @@ export class AddeditregionalofficeComponent implements OnInit {
       .subscribe(data => {
         debugger;
        if(data.message.toUpperCase()==="RECORD FOUND"){
-          this.toastr.success(data.data[0].reason)
+          this.toastr.success(data.data[0].reason);
+          this.updateRegionalOfficeFormGroup.reset();
        }
        else if(data.status_Code===401){
-        this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
-        this.router.navigate(['/'])
+        this.adminService.refreshToken();
       }
        else{
          this.toastr.error(data.data[0].reason)

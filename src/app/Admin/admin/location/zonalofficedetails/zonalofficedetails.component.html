@@ -9,7 +9,7 @@
                   Office Details</strong></span>
             </div>
             <div>
-              <button type="button" class="btn btn-info" routerLink="/admin/addeditzonaloffice">Add Zonal
+              <button type="button" class="btn btn-info" routerLink="/admin/addeditzonaloffice"  [queryParams]="{isEdit: false}">Add Zonal
                 Office</button>
             </div>
           </div>
@@ -27,7 +27,7 @@
                   <input type="checkbox" [(ngModel)]="allChecked" (change)="toggleCheckAll()"
                     [checked]="setAllChecked()" />
                 </th>
-                <th>Sl No</th>
+                <th>S.No.</th>
 
                 <th>Zonal Office Code</th>
                 <th>Zonal Office ERP Code</th>
@@ -42,14 +42,14 @@
                   <input type="checkbox" />
                 </td>
                 <td>{{i+1}}</td>
-                <td>{{data.zO_Code}}</td>
+                <td>{{data.zone_Code}}</td>
 
-                <td>{{data.zO_ERPCode}}</td>
-                <td>{{data.zO_ShortName}}</td>
-                <td>{{data.zO_Name}}</td>
+                <td>{{data.zone_ERPcode}}</td>
+                <td>{{data.zone_Short_Name}}</td>
+                <td>{{data.zone_Name}}</td>
                
                 <td align="right">
-                  <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn">edit</mat-icon>
+                  <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn"  (click)="navigate(data)">edit</mat-icon>
                   <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn">delete</mat-icon>
                 </td>
               </tr>

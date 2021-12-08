@@ -54,11 +54,11 @@
                         <!-- (click)="basicinfor();" -->
 
                 <li style="margin: 0px 16px 3px 0; cursor: pointer;" ><a
-                        data-toggle="tab disabled"  [ngClass]="iscontact==1 ? 'active' : 'inactive'">Contact Detail</a></li>
+                        data-toggle="tab disabled"  [ngClass]="iscontact==1 ? 'active' : 'inactive'">Contact Details</a></li>
                         <!-- (click)="showcontact();" -->
                 <!-- <li style="margin: 0px 16px 3px 0; cursor: pointer;" (click)="showpayment();"><a data-toggle="tab">Payment Detail</a></li> -->
                 <li style="margin: 0px 16px 3px 0; cursor: pointer;" ><a
-                        data-toggle="tab disabled" [ngClass]="isterminal==1 ? 'active' : 'inactive'">Terminal Detail</a></li>
+                        data-toggle="tab disabled" [ngClass]="isterminal==1 ? 'active' : 'inactive'">Terminal Details</a></li>
                         <!-- (click)="showterminal();" -->
                 <!-- <li style="margin: 0px 16px 3px 0; cursor: pointer;" (click)="showsummary();"><a
                         data-toggle="tab">Summary Detail</a></li> -->
@@ -81,7 +81,7 @@
                 <thead>
                     <tr>
                         <th colspan="4">
-                            <span style="font-size: 15px;">Basic Information</span>
+                            <span style="font-size: 15px;font-weight: bold;">Basic Information</span>
                         </th>
                     </tr>
                 </thead>
@@ -101,8 +101,6 @@
                                 </span>
                             </div>
                         </td>
-                    </tr>
-                    <tr>
                         <td align="left">
                             <span><span class="required">Merchant Type
                                 </span>:</span>
@@ -122,9 +120,10 @@
 
                             </div>
                         </td>
-
-
-
+                    </tr>
+                    <tr>
+                       
+                       
                         <td align="left">
                             <span><span >Dealer Name
                                 </span>:</span>
@@ -133,6 +132,20 @@
                         <td>
                             <div class="form-group">
                                 <input type="text" class="form-control" formControlName="dealerName">
+                               
+                            </div>
+                        </td>
+
+
+
+                        <td align="left">
+                            <span><span class="required">Dealer Mobile
+                                </span>:</span>
+
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" maxlength="10" minlength="10" formControlName="dealerMobile">
                                
                             </div>
                         </td>
@@ -147,7 +160,7 @@
 
                             <div class="form-group">
                                 <select class="form-control" formControlName="outletCategory" required>
-                                    <option value="select">select</option>
+                                   
                                     <option value="Highway">Highway</option>
                                     <option value="Urban">Urban</option>
                                     <option value="Rural">Rural</option>
@@ -167,10 +180,11 @@
 
                             <div class="form-inline">
                                 <select class="form-control" style="width: 80px;" required>
-                                    <option>NH</option>
-                                    <option>SH</option>
+                                    <option value="NH">NH</option>
+                                    <option value="SH">SH</option>
+                                    <option value="Others">Others</option>
                                 </select>
-                                <input type="text" class="form-control" formControlName="highwayNo" style="width: 100px;" required>
+                                <input type="text" class="form-control" formControlName="highwayNo" style="width: 100px;" required maxlength="10">
                                
                             </div>
                             <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.highwayNo.hasError('required')">
@@ -189,7 +203,7 @@
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="highwayName" required>
+                                <input type="text" class="form-control" formControlName="highwayName" required maxlength="30">
                                 <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.highwayName.hasError('required')">
                                     Highway Name is <strong>required!</strong>
                                 </span>
@@ -251,7 +265,7 @@
                     </tr>
                     <tr>
                         <td align="left">
-                            <span><span class="required">Pan Number
+                            <span><span class="required">Pan Card Number
                                 </span></span>
 
                         </td>
@@ -390,22 +404,38 @@
 
                     <tr>
                         <td align="left">
-                            <span><span class="required">Name
+                            <span><span class="required">First Name
                                 </span>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="name" required>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.name.hasError('required')">
-                                    Name is <strong>required!</strong>
+                                <input type="text" class="form-control" formControlName="firstName" required>
+                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.firstName.hasError('required')">
+                                    First Name is <strong>required!</strong>
+                                </span>
+                            </div>
+                        </td>
+                        <td align="left">
+                            <span><span class="required">Last Name
+                                </span>:</span>
+
+                        </td>
+                        <td align="left">
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="lastName" required>
+                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.lastName.hasError('required')">
+                                    Last Name is <strong>required!</strong>
                                 </span>
                             </div>
                         </td>
 
 
-
+                        
+                    </tr>
+                    <tr>
                         <td align="left">
                             <span><span class="required">Mobile
                                 </span>:</span>
@@ -420,8 +450,6 @@
                                 </span>
                             </div>
                         </td>
-                    </tr>
-                    <tr>
                         <td align="left">
                             <span><span class="required">Email
                                 </span>:</span>
@@ -523,7 +551,7 @@
                     </tr>
                     <tr>
                         <td align="left">
-                            <span><span class="required">Address 3
+                            <span><span>Address 3
                                 </span>:</span>
 
                         </td>
@@ -531,25 +559,25 @@
 
                             <div class="form-group">
                                 <input type="text" class="form-control" formControlName="permAddress3">
-                                <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permAddress3.hasError('required')">
+                                <!-- <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permAddress3.hasError('required')">
                                     Address 3 is <strong>required!</strong>
-                                </span>
+                                </span> -->
                             </div>
                         </td>
 
 
 
                         <td align="left">
-                            <span><span class="required">Location
+                            <span><span>Location
                                 </span>:</span>
 
                         </td>
                         <td>
                             <div class="form-group">
                                 <input type="text" class="form-control" formControlName="permLocation">
-                                <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permLocation.hasError('required')">
+                                <!-- <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permLocation.hasError('required')">
                                     Location is <strong>required!</strong>
-                                </span>
+                                </span> -->
                             </div>
                         </td>
                     </tr>
@@ -616,7 +644,7 @@
 
 
                         <td>
-                            <span><span class="required">Pin
+                            <span><span class="required">PIN Code
                                 </span>:</span>
 
                         </td>
@@ -625,7 +653,7 @@
                             <div class="form-group">
                                 <input type="text" minlength="6" maxlength="6" class="form-control" formControlName="permPincode">
                                 <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permPincode.hasError('required')">
-                                    Pin Code is <strong>required!</strong>
+                                    PIN Code is <strong>required!</strong>
                                 </span>
                             </div>
                         </td>
@@ -633,7 +661,7 @@
 
                     <tr>
                         <td align="left">
-                            <span><span class="required">Phone Office
+                            <span><span>Phone Office
 
                                 </span>:
 
@@ -653,19 +681,19 @@
                                 <!-- <input type="text" class="form-control" formControlName="permPhoneOffice" style="width: 40px;">
                                 <input type="text" class="form-control" formControlName="permPhoneOffice"> -->
                             </div>
-                            <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.Perm_std_code.hasError('required')">
+                            <!-- <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.Perm_std_code.hasError('required')">
                                 Ph(off) STD is <strong>required!</strong>
                             </span>
                             <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permPhoneOffice.hasError('required')">
                                 Ph(off) is <strong>required!</strong>
-                            </span>
+                            </span> -->
                         </td>
                     </tr>
                     <tr>
 
 
                         <td>
-                            <span><span class="required">Fax
+                            <span><span>Fax
                                 </span>:</span>
 
                         </td>
@@ -673,9 +701,9 @@
 
                             <div class="form-group">
                                 <input type="text" maxlength="10" minlength="10" class="form-control" formControlName="permFax">
-                                <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permFax.hasError('required')">
+                                <!-- <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permFax.hasError('required')">
                                     Fax is <strong>required!</strong>
-                                </span>
+                                </span> -->
                             </div>
                         </td>
                     </tr>
@@ -867,14 +895,14 @@
                 <thead>
                     <tr>
                         <th colspan="4">
-                            <span style="font-size: 15px;">Terminal Details</span>
+                            <span style="font-size: 15px;font-weight: bold;">Terminal Details</span>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td align="left">
-                            <span><span class="required">Terminal type requested
+                            <span><span class="required">Terminal Type Requested
                                 </span>:</span>
 
                         </td>
@@ -892,7 +920,7 @@
                             <label style="padding: 5px; font-size: 12px;" for="input-lo">
                                 <input (change)="radioButtonChecked($event.target.value)" id="input-lo" type="radio"
                                     name="capacity" value="WIFI Installation" />
-                                WIFI Installation</label>
+                                Wifi Installation</label>
 
 
 
@@ -926,7 +954,7 @@
                                     <button class="btn btn-primary pl-3 pr-3 m-3"
                                         (click)="showcontact()">Previous</button>
                                     <button class="btn btn-primary pl-3 pr-3"
-                                        (click)="onAddMerchantClick()">ADD</button>
+                                        (click)="onAddMerchantClick()">CONFIRM</button>
                                 </div>
                                 <div>
                                     <!-- <button class="btn btn-primary pl-3 pr-3"

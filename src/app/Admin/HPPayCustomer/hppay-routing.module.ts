@@ -20,10 +20,12 @@ import { FeedbackmenuComponent } from './feedback/feedbackmenu/feedbackmenu.comp
 import { ManageoffersComponent } from './offersandpromotion/manageoffers/manageoffers.component';
 import { CreateoffersComponent } from './offersandpromotion/createoffers/createoffers.component';
 import { OffermenulistComponent } from './offersandpromotion/offermenulist/offermenulist.component';
+import { ViewOrUpdateCustomerDetailsComponent } from './profile/view-or-update-customer-details/view-or-update-customer-details.component';
 
 const routes: Routes = [
   { path: 'createcustomer', component: CreatehppaycustomerComponent },
   { path: 'managecustomer', component: ManagehppaycustomerComponent },
+  { path: 'RetailCustomerUpdation', component:ViewOrUpdateCustomerDetailsComponent},
   { path: 'profilemenu', component: ProfilemenuComponent },
   { path: 'customerkyc', component: CustomerkycComponent },
   { path: 'viewcustomerfeedback', component: ViewcustomerfeedbackComponent },

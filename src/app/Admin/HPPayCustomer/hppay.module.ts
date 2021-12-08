@@ -24,6 +24,7 @@ import { FeedbackmenuComponent } from './feedback/feedbackmenu/feedbackmenu.comp
 import { ManageoffersComponent } from './offersandpromotion/manageoffers/manageoffers.component';
 import { CreateoffersComponent } from './offersandpromotion/createoffers/createoffers.component';
 import { OffermenulistComponent } from './offersandpromotion/offermenulist/offermenulist.component';
+import { ViewOrUpdateCustomerDetailsComponent } from './profile/view-or-update-customer-details/view-or-update-customer-details.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { OffermenulistComponent } from './offersandpromotion/offermenulist/offer
              ManageoffersComponent,
              CreateoffersComponent,
              OffermenulistComponent,
+             ViewOrUpdateCustomerDetailsComponent,
   ],
   imports: [
     CommonModule,

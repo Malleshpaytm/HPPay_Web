@@ -44,6 +44,7 @@ export class ManagehppaycustomerComponent implements OnInit {
     this.adminService.manageCustomerProfile(manageCustomerProfileData).subscribe(data => {
       if (data.message.toUpperCase() === 'RECORD FOUND') {
         this.manageCustomerProfileTableData = data.data;
+        this.isshow = 1;
       }
       else if(data.status_Code===401){
         this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
@@ -65,6 +66,8 @@ export class ManagehppaycustomerComponent implements OnInit {
   }
   Reset() {
     this.isshow = 0;
+    this.manageProfileFormGroup.reset();
+   
   }
 
   limitChange(limit: number) {

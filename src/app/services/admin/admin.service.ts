@@ -15,7 +15,22 @@ export class AdminService {
   constructor(private http: HttpClient, private service:ApiService) { }
  
 
-  
+  getToken(getTokenData): Observable<any> {
+    debugger;
+    let path = '/hppay/generatetoken';
+    const body=JSON.stringify(getTokenData);
+    return this.service.post(path,body);
+  }
+
+  refreshToken(){
+    let getTokenData ={
+     "useragent": "web",
+     "userip": "1",
+   }
+   this.getToken(getTokenData).subscribe(data=>{
+     this.authToken=data.token
+   })
+  }
   
   //LOCATIONS
   update_head_offices(update_head_officesData): Observable<any> {
@@ -34,6 +49,22 @@ export class AdminService {
     const body=JSON.stringify(zonalOfficeData);
     return this.service.post(path,body);
   }
+  insert_and_update_zone(insert_and_update_zoneData): Observable<any> {
+    let path = '/hppay/settings/insert_and_update_zone';
+    const body=JSON.stringify(insert_and_update_zoneData);
+    return this.service.post(path,body);
+  }
+  enabled_disabled_zone(enabled_disabled_zoneData): Observable<any> {
+    let path = '/hppay/settings/enabled_disabled_zone';
+    const body=JSON.stringify(enabled_disabled_zoneData);
+    return this.service.post(path,body);
+  }
+  getHeadOffices(getHeadOfficesData): Observable<any> {
+    let path = '/hppay/settings/get_head_offices';
+    const body=JSON.stringify(getHeadOfficesData);
+    return this.service.post(path,body);
+  }
+  ///api/hppay/settings/enabled_disabled_zone
   getCity(getCityData): Observable<any> {
     let path = '/hppay/settings/get_city';
     const body=JSON.stringify(getCityData);
@@ -57,7 +88,7 @@ export class AdminService {
     return this.service.post(path,body);
   }
   insert_and_update_regional_office(insert_and_update_regional_officeData): Observable<any> {
-    let path = '/hppay/settings/insert_and_update_regional_officeData';
+    let path = '/hppay/settings/insert_and_update_regional_office';
     const body=JSON.stringify(insert_and_update_regional_officeData);
     return this.service.post(path,body);
   }
@@ -125,7 +156,11 @@ export class AdminService {
     const body=JSON.stringify(search_userData);
     return this.service.post(path,body);
   }
-
+  getCustomerProfile(getCustomerProfileData): Observable<any> {
+    let path = '/hppay/user/get_profile';
+    const body=JSON.stringify(getCustomerProfileData);
+    return this.service.post(path,body);
+  }
  
  
   manageCustomerProfile(manageCustomerProfileData): Observable<any> {

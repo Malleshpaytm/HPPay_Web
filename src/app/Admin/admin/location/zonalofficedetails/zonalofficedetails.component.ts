@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdminService } from 'src/app/services/admin/admin.service';
 
@@ -18,7 +19,7 @@ export class ZonalofficedetailsComponent implements OnInit {
   public page: number = 1;
   public pageSize: number = 2;
   zonalOffices:Array<any>;
-  constructor(private modalService: NgbModal, public adminService:AdminService) { }
+  constructor(private modalService: NgbModal, public adminService:AdminService, private route: ActivatedRoute , private router: Router) { }
 
   ngOnInit(): void {
     debugger
@@ -43,7 +44,16 @@ export class ZonalofficedetailsComponent implements OnInit {
      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
      
    }
-
+   navigate(item): void {
+     debugger
+    this.router.navigate(['/admin/addeditzonaloffice'], {
+      queryParams: {
+        isEdit:true,
+         data: JSON.stringify(item)
+         
+      }
+   });
+  }
   GetManageUserData() {
     this.GetSaveData = [
       {

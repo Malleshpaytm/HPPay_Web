@@ -28,8 +28,8 @@ export class HeadquarterofficeComponent implements OnInit {
       "hO_Name": this.headOfficeDetailsForm.controls.headOfficeName.value,
       "hO_Short_Name": this.headOfficeDetailsForm.controls.headOfficeShortName.value,
       "useragent": "web",
-      "userip": "string",
-      "userid": "string",
+      "userip": "1",
+      "userid": "1",
     }
     
     this.adminService.update_head_offices(update_head_officesData)
@@ -38,8 +38,7 @@ export class HeadquarterofficeComponent implements OnInit {
           this.toastr.success(data.data[0].reason)
        }
        else if(data.status_Code===401){
-        this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
-        this.router.navigate(['/'])
+        this.adminService.refreshToken()
       }
        else if(data.message.toUpperCase()==="RECORD NOT FOUND"){
          this.toastr.error(data.data[0].reason)

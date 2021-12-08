@@ -1,121 +1,125 @@
-<div class="container-fluid">
-    <div class="container">
-        <div class="row form-group">
-            <div class="col-12">
-                <div class="card mt-3 mb-5 p-0">
-                    <div class="card-header text-white" style="background-color:  #084594;">
-                        Regional Office
-                        <button type="button" class="btn btn-info btn-primary" style="float: right;" routerLink="/admin/regionalofficedetail">View Regional Official Detail</button>
-
-                    </div>
-                    <div class="card-body">
-                        <table class="w-50" [formGroup]="updateRegionalOfficeFormGroup">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <span><span class="required">Regional Office Code
-                                            </span>:</span>
-
-                                    </td>
-                                    <td align="left">
-
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" formControlName="rO_Code">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span><span class="required">Regional Office Name
-                                            </span>:</span>
-
-                                    </td>
-                                    <td align="left">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" formControlName="rO_Name">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span><span class="required">Regional Office Short Name
-                                            </span>:</span>
-
-                                    </td>
-                                    <td align="left">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" formControlName="rO_Short_Name">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span><span class="required">Regional Office ERP Code
-                                            </span>:</span>
-
-                                    </td>
-                                    <td align="left">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" formControlName="rO_ERP_Code">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span><span class="required">Zonal Office</span>:</span>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <select class="form-control" formControlName="zO_Code">
-                                                <option *ngFor="let item of zonalOffices,let i=index" [value]="item.zO_Code">{{item.zO_Name}}</option>
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row form-group">
+                <div class="col-12">
+                    <div class="card mt-3 mb-5 p-0">
+                        <div class="card-header text-white" style="background-color:  #084594;">
+                            Regional Office
+                            <button type="button" class="btn btn-info btn-primary" style="float: right;" routerLink="/admin/regionalofficedetail">View Regional Official Detail</button>
+    
+                        </div>
+                        <div class="card-body">
+                            <table class="w-50" [formGroup]="updateRegionalOfficeFormGroup">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span><span class="required">Regional Office Code
+                                                </span>:</span>
+    
+                                        </td>
+                                        <td align="left">
+    
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" formControlName="rO_Code">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span><span class="required">Regional Office Name
+                                                </span>:</span>
+    
+                                        </td>
+                                        <td align="left">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" formControlName="rO_Name">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span><span class="required">Regional Office Short Name
+                                                </span>:</span>
+    
+                                        </td>
+                                        <td align="left">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" formControlName="rO_Short_Name">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span><span class="required">Regional Office ERP Code
+                                                </span>:</span>
+    
+                                        </td>
+                                        <td align="left">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" formControlName="rO_ERP_Code">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span><span class="required">Zonal Office</span>:</span>
+                                        </td>
+                                        <td align="left">
+                                            <div class="form-group">
+                                                <select class="form-control" formControlName="zO_Code">
+                                                    <option *ngFor="let item of zonalOffices,let i=index" [value]="item.zone_Code">{{item.zone_Name}}</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td>
+                                            <span><span class="required">District</span>:</span>
+                                        </td>
+                                        <td align="left">
+                                            <div class="form-group">
+                                            <select class="form-control" formControlName="district_Code">
+                                                <option *ngFor="let item of districtDropdownValues,let i=index" [value]="item.district_Code">{{item.district_Name}}</option>
+                                            </select></div>
+                                        </td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td>
+                                            <span><span class="required">Head Office</span>:</span>
+                                        </td>
+                                        <td>
+                                            <select class="form-control" formControlName="hO_Code">
+                                                <option *ngFor="let item of headOfficesDropdownValues,let i=index" [value]="item.hO_Code">{{item.hO_Name}}</option>
                                             </select>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <span><span class="required">District</span>:</span>
-                                    </td>
-                                    <td>
-                                        <select class="form-control" formControlName="district_Code">
-                                            <option *ngFor="let item of districtDropdownValues,let i=index" [value]="item.district_Code">{{item.district_Name}}</option>
-                                        </select>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <span><span class="required">Head Office</span>:</span>
-                                    </td>
-                                    <td>
-                                        <select class="form-control" formControlName="hO_Code">
-                                            <option *ngFor="let item of headOfficesDropdownValues,let i=index" [value]="item.hO_Code">{{item.hO_Name}}</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td align="left">
-                                        <div class=" d-flex flex-row justify-content-end">
-                                            <div class="mr-3">
-                                                <button class="btn btn-primary" (click)="onSaveButtonClick()">Save</button>
+                                        </td>
+                                    </tr>
+                                    <br>
+                                    <tr>
+                                        <td>
+                                        </td>
+                                        <td align="left">
+                                            <div class=" d-flex flex-row justify-content-end">
+                                                <div class="mr-3">
+                                                    <button class="btn btn-primary" (click)="onSaveButtonClick()">Save</button>
+                                                </div>
+                                                <div class="mr-3">
+                                                    <button class="btn btn-primary">Reset</button>
+                                                </div>
+                                                <div>
+                                                    <button class="btn btn-primary">Cancel</button>
+                                                </div>
                                             </div>
-                                            <div class="mr-3">
-                                                <button class="btn btn-primary">Reset</button>
-                                            </div>
-                                            <div>
-                                                <button class="btn btn-primary">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</body>
