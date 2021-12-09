@@ -23,6 +23,7 @@ export class TransactiondetailComponent implements OnInit {
   public pageSize: number = 2;
   isshow: number = 0;
   istlshow: number = 0;
+  transactionDetailsTableData:Array<any>;
   transactionDetailFormGroup: FormGroup
   constructor(private modalService: NgbModal, private customerService: CustomerService,
     private fb: FormBuilder,
@@ -48,11 +49,12 @@ export class TransactiondetailComponent implements OnInit {
     }
     this.customerService.view_transaction_detail_customer(view_transaction_detail_customerData).subscribe(data => {
       if (data.message.toUpperCase() === 'RECORD FOUND') {
-        // this.manageCustomerProfileTableData = data.data;
+        this.isshow = 1;
+         this.transactionDetailsTableData = data.data;
       }
       else if (data.status_Code === 401) {
-        this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
-        this.router.navigate(['/'])
+        //this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+        //this.router.navigate(['/'])
         this._document.defaultView.location.reload();
       }
       else {
@@ -63,43 +65,43 @@ export class TransactiondetailComponent implements OnInit {
     })
   }
 
-  ViewTransactionDetailData() {
+  // ViewTransactionDetailData() {
 
-    this.GetTransactionDetailData = [
-      {
-        "sno": 1,
-        "merchantid": "3015146710",
-        "merchant": "MURALI KRISHNA BUJJI FILLING STATION, TIRUVUR",
-        "batchid": "369/1",
-        "accountnumber": "9907042100",
-        "vehicleno": "",
-        "txndate": "07/04/2021 18:09:30",
-        "txntype": "CCMS Recharge",
-        "product": "-",
-        "price": "-",
-        "volume": 0,
-        "currency": "CCAVENUE",
-        "servicecharge": "-",
-        "amount": 100,
-        "odometerreading": "-",
-        "status": "SUCCESS"
+  //   this.GetTransactionDetailData = [
+  //     {
+  //       "sno": 1,
+  //       "merchantid": "3015146710",
+  //       "merchant": "MURALI KRISHNA BUJJI FILLING STATION, TIRUVUR",
+  //       "batchid": "369/1",
+  //       "accountnumber": "9907042100",
+  //       "vehicleno": "",
+  //       "txndate": "07/04/2021 18:09:30",
+  //       "txntype": "CCMS Recharge",
+  //       "product": "-",
+  //       "price": "-",
+  //       "volume": 0,
+  //       "currency": "CCAVENUE",
+  //       "servicecharge": "-",
+  //       "amount": 100,
+  //       "odometerreading": "-",
+  //       "status": "SUCCESS"
 
-      }
-    ];
-  }
+  //     }
+  //   ];
+  // }
 
-  ViewTransactionLocationData() {
-    this.GetTransactionLocationData = [
-      {
-        "name": "MURALI KRISHNA BUJJI FILLING STATION",
-        "location": "VIJAYAWADA RRO",
-        "city": "TIRUVUR",
-        "district": "KRISHNA",
-        "NH": "NA",
-        "state": "ANDHRA PRADESH"
-      }
-    ];
-  }
+  // ViewTransactionLocationData() {
+  //   this.GetTransactionLocationData = [
+  //     {
+  //       "name": "MURALI KRISHNA BUJJI FILLING STATION",
+  //       "location": "VIJAYAWADA RRO",
+  //       "city": "TIRUVUR",
+  //       "district": "KRISHNA",
+  //       "NH": "NA",
+  //       "state": "ANDHRA PRADESH"
+  //     }
+  //   ];
+  // }
 
   ShowTableList() {
     this.isshow = 1;

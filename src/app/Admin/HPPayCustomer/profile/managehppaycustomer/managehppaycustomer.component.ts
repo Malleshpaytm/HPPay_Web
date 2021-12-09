@@ -47,9 +47,9 @@ export class ManagehppaycustomerComponent implements OnInit {
         this.isshow = 1;
       }
       else if(data.status_Code===401){
-        this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
-        this.router.navigate(['/'])
-        this._document.defaultView.location.reload();
+        // 
+        this.adminService.refreshToken();
+       // this._document.defaultView.location.reload();
       }
       else{
         this.toastr.error(data.message)

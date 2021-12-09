@@ -84,32 +84,32 @@
                 <th>Product</th>
                 <th>Price</th>
                 <th>Volume (Ltr.)</th>
-                <th>Currency</th>
+                <!-- <th>Currency</th> -->
                 <th>Service Charge</th>
                 <th>Amount</th>
                 <th>Odometer Reading</th>
-                <th>Status</th>
+                <!-- <th>Status</th> -->
                 
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let data of GetTransactionDetailData; let i = index">
+              <tr *ngFor="let data of transactionDetailsTableData; let i = index">
                 <td>{{data.sno}}</td>
                 <td><a style="cursor: pointer;  color: #084594;" (click)="ShowLocationTableList();">{{data.merchantid}}</a></td>
-                <td>{{data.merchant}}</td>
-                <td>{{data.batchid}}</td>
+                <td>{{data.merchant_Name}}</td>
+                <td>{{data.batchid_roc}}</td>
                 <td>{{data.accountnumber}}</td>
-                <td>{{data.vehicleno}}</td>
-                <td>{{data.txndate}}</td>
-                <td>{{data.txntype}}</td>
+                <td>{{data.vehicleNo}}</td>
+                <td>{{data.transaction_Date}}</td>
+                <td>{{data.transaction_type}}</td>
                 <td>{{data.product}}</td>
                 <td>{{data.price}}</td>
-                <td>{{data.volume}}</td>
-                <td>{{data.currency}}</td>
-                <td>{{data.servicecharge}}</td>
+                <td>{{data.vol_in_ltr}}</td>
+                <!-- <td>{{data.currency}}</td> -->
+                <td>{{data.serviceCharge}}</td>
                 <td>{{data.amount}}</td>
-                <td>{{data.odometerreading}}</td>
-                <td>{{data.status}}</td>
+                <td>{{data.odometer_reading}}</td>
+                <!-- <td>{{data.status}}</td> -->
   
               
               </tr>
@@ -125,7 +125,7 @@
                   </div>
                 </div> -->
   
-            <ngb-pagination class="float-left" [collectionSize]="totalRow" [(page)]="page" [boundaryLinks]="true"
+            <!-- <ngb-pagination class="float-left" [collectionSize]="totalRow" [(page)]="page" [boundaryLinks]="true"
               [pageSize]="1"></ngb-pagination>
             <select class="custom-select float-right" style="width: auto;" (ngModelChange)="limitChange($event)"
               [(ngModel)]="pageSize">
@@ -133,10 +133,10 @@
               <option [ngValue]="10">10</option>
               <option [ngValue]="50">50</option>
               <option [ngValue]="100">100</option>
-            </select>
+            </select> -->
           </div>
         </fieldset>
-  <fieldset class="form-group border px-3 pt-0" *ngIf="istlshow==1">
+  <!-- <fieldset class="form-group border px-3 pt-0" *ngIf="istlshow==1">
      <legend class="w-auto px-2" style="font-size: 12px;">Transaction Location</legend>
         <span>Terminal ID :	5000004725</span>
           <table id="data-table" class="table table-striped table-borderless table-sm"
@@ -164,13 +164,13 @@
           </table>
          
           <div class="form-group col-md-12">
-            <!-- <div class="col-auto">
+            <div class="col-auto">
                   <div class="pagination-info">
                     <span>{{ filter.page }}</span> -
                     <span>{{ filter.limit }}</span>
                     of <span>{{ totalRow }}</span>
                   </div>
-                </div> -->
+                </div>
   
             <ngb-pagination class="float-left" [collectionSize]="totalRow" [(page)]="page" [boundaryLinks]="true"
               [pageSize]="1"></ngb-pagination>
@@ -182,7 +182,7 @@
               <option [ngValue]="100">100</option>
             </select>
           </div>
-        </fieldset>
+        </fieldset> -->
       </div>
     </div>
   </div>

@@ -248,5 +248,12 @@ export class AdminService {
     const body=JSON.stringify(get_all_ccms_recharge_through_eftData);
     return this.service.post(path,body);
   }
+  //financials 
+  get_user_wallet_balance(get_user_wallet_balanceData): Observable<any> {
+    let path = '/hppay/wallet/get_user_wallet_balance';
+    const body=JSON.stringify(get_user_wallet_balanceData);
+    return this.service.post(path,body);
+  }
+
   
 }

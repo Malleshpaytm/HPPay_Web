@@ -174,7 +174,7 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" maxlength="10" minlength="10" [value]="this.customerDetails?.user_mobile">
+                                            <input type="text" class="form-control" maxlength="10" minlength="10" [value]="this.customerDetails?.user_mobile" formControlName="mobile_number">
                                         </div>
                                     </td>
                                 </tr>
@@ -204,7 +204,7 @@
                                         <div class="form-group">
                                             <!-- <input class=" input" placeholder="dd/mm/yyyy" name="d1"
                          [(ngModel)]="model1" ngbDatepicker #d1="ngbDatepicker" class="form-control" formControlName="dob" (click)="d1.toggle()"> -->
-                    <input type="date" class="form-control" [value]="this.customerDetails?.dob | date:'yyyy-MM-dd'">
+                    <input type="date" class="form-control" [value]="this.customerDetails?.dob | date:'yyyy-MM-dd'" formControlName="dob">
 
                                         </div>
                                     </td>
