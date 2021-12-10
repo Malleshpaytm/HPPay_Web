@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { IRandomUsers } from 'src/app/Admin/admin/location/regionalofficedetail/regionalofficedetail.component';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/shared/confirm-modal/confirm-modal.component';
+import { DialogBoxComponent } from 'src/app/shared/dialog-box/dialog-box.component';
 import { MerchantDetailsModalComponent } from '../../merchant-details-modal/merchant-details-modal.component';
 
 @Component({
@@ -25,7 +26,7 @@ export class MerchantapprovalComponent implements OnInit {
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   selection = new SelectionModel<IRandomUsers>(true, []);
   displayedColumns: string[] = ['sno','select','erpCode', 'RO',
-    'retailOutletName', 'type', 'creationDate', 'actions'];
+    'retailOutletName','city', 'type', 'creationDate', 'actions'];
   private dataArray: any;
   merchantTypes: Array<any>;
   approveMerchantListFormGroup:FormGroup;
@@ -153,7 +154,7 @@ export class MerchantapprovalComponent implements OnInit {
         .subscribe(data => {
           if (data.message.toUpperCase() === 'RECORD FOUND') {
             debugger;
-            this.toastr.success("Merchant(s) approved successfully!")
+            this.openDialog("Merchant(s) approved successfully!")
             this.onSearchButtonClick();
             this.approveMerchantListFormGroup.controls.comments.reset();
            // this.merchantTypes = data.data;
@@ -199,7 +200,7 @@ export class MerchantapprovalComponent implements OnInit {
       .subscribe(data => {
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           debugger;
-          this.toastr.success("Merchant(s) rejected successfully!")
+          this.openDialog("Merchant(s) rejected successfully!")
           this.onSearchButtonClick();
           this.approveMerchantListFormGroup.controls.comments.reset();
          // this.merchantTypes = data.data;
@@ -244,5 +245,19 @@ else{
   }
   call() {
     console.log(this.selection.selected);
+  }
+  Reset(){
+    this.approveMerchantListFormGroup.reset()
+  }
+  openDialog(message): void {
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      width: '400px',
+      data: { message: message }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+    });
   }
 }

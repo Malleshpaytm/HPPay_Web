@@ -26,7 +26,7 @@
 
                         <tr>
                             <td>
-                                <span class="required">From Date</span>:
+                                <span >From Date</span>:
                             </td>
                             <td align="left">
                                 <div class="form-group">
@@ -37,7 +37,7 @@
 
                         <tr>
                             <td>
-                                <span class="required">To Date</span>:
+                                <span >To Date</span>:
                             </td>
                             <td align="left">
                                 <div class="form-group">
@@ -59,7 +59,7 @@
                                             <button class="btn btn-primary" (click)="onSearchButtonClick()">Search</button>
                                         </div>
                                         <div class="mr-3">
-                                            <button class="btn btn-primary">Reset</button>
+                                            <button class="btn btn-primary" (click)="Reset()">Reset</button>
                                         </div>
                                     </div>
                                 </td>
@@ -100,6 +100,11 @@
                           <mat-header-cell *matHeaderCellDef > Retail Outlet Name </mat-header-cell>
                           <mat-cell *matCellDef="let row" class="text-center"> {{row.outlet_name}} </mat-cell>
                         </ng-container>
+
+                        <ng-container matColumnDef="city">
+                          <mat-header-cell *matHeaderCellDef > City </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="text-center"> {{row.city}} </mat-cell>
+                        </ng-container>
                        
                         <ng-container matColumnDef="type">
                           <mat-header-cell *matHeaderCellDef > Type </mat-header-cell>
@@ -121,7 +126,7 @@
                         </ng-container> -->
             
                         <ng-container matColumnDef="actions">
-                          <mat-header-cell *matHeaderCellDef > Actions</mat-header-cell>
+                          <mat-header-cell *matHeaderCellDef > Action</mat-header-cell>
             
                           <mat-cell *matCellDef="let element; let i=index" class="text-center">
                            <p style="color: blue;cursor: pointer;" (click)="onViewMerchantDetails(element.erpCode)">View</p>
