@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { BaseHttpService } from '../base-http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +14,21 @@ authToken='Bearer '+localStorage.getItem('token')
   forLocalHost='http://180.179.198.148:8086/';
   //forLocalHost='http://localhost:8086/';
   //forServer='http://180.179.198.148:8086/'
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient, private baseHttpService: BaseHttpService) {}
   applicationLogin(loginData:any): Observable<any> {
     debugger;
     let headers = {
       'Content-Type': 'application/json',
       'Authorization': this.authToken,
-      'API_Key':this.api_key};  
+      'API_Key':this.api_key};
     const body=JSON.stringify(loginData);
-    
+
     return this.http.post(`${this.forLocalHost}http://180.179.222.161/hpp/api/hppay/login/get_user_login`, body,{'headers':headers})
   }
 
 
 
   getToken(getTokenData): Observable<any> {
-    debugger;
     let headers = {
       'Content-Type': 'application/json',
       'Secret_Key': 'PVmMSclp834KBIUa9O-XxpBsDJhsi1dsds74CiGaoo5',
@@ -37,6 +38,7 @@ authToken='Bearer '+localStorage.getItem('token')
 
     return this.http.post(`${this.forLocalHost}180.179.222.161/hpp/api/hppay/generatetoken`, body, { 'headers': headers })
   }
+
 
 }
 //x7r2lm83

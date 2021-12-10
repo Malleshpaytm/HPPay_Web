@@ -18,6 +18,7 @@ import { MerDayearningDataComponent } from './financials/mer-dayearning-data/mer
 import { MerQrTransactionsComponent } from './financials/mer-qr-transactions/mer-qr-transactions.component';
 import { AcceptTransactionComponent } from './accept-transaction/accept-transaction.component';
 import { RequestsComponent } from './requests/requests.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -41,6 +42,8 @@ import { RequestsComponent } from './requests/requests.component';
   imports: [
     MaterialModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MerchantRoutingModule,
     PrimengModule
   ]

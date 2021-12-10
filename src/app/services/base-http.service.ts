@@ -1,27 +1,45 @@
-import { HttpClient, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BaseHttpService {
-    api_key=`1BA280E6-BAD6-4AD8-9C2B-6CD5777F517B`;
-    authToken='Bearer '+ localStorage.getItem('token')
-    constructor(readonly httpClient: HttpClient) {        
-        let headers = {
-            'Content-Type': 'application/json',
-            'Authorization': this.authToken,
-            'API_Key':this.api_key
-        }          
-    }
+  api_key = `1BA280E6-BAD6-4AD8-9C2B-6CD5777F517B`;
+  authToken = 'Bearer ' + localStorage.getItem('token');
+  hpPayApiRoot = environment.hpPayApiRoot;
+  constructor(readonly httpClient: HttpClient) {}
 
-    private get<T>(url: string, options: any): Observable<HttpEvent<T>> {
-        return this.httpClient.get<T>(url, options);
-    }
+  public get<T>(
+    url: string,
+    options: { headers: HttpHeaders } = { headers: new HttpHeaders() }
+  ): Observable<T> {
+    options.headers = this.setHeaders(options.headers);
+    return this.httpClient.get<T>(url, options);
+  }
 
-    private post<T>(url: string,payload: any, options: any): Observable<HttpEvent<T>> {
-        const stringifiedPayload = JSON.stringify(payload); 
-        return this.httpClient.post<any>(url, stringifiedPayload, options);
+  public post<T>(
+    url: string,
+    payload: any,
+    options: { headers: HttpHeaders } = { headers: new HttpHeaders() }
+  ): Observable<T> {
+    options.headers = this.setHeaders(options.headers);
+    const stringifiedPayload = JSON.stringify(payload);
+    return this.httpClient
+      .post<T>(url, stringifiedPayload, options)
+      .pipe(map((resp) => resp));
+  }
+
+  private setHeaders(headers: HttpHeaders): HttpHeaders {
+    if (!headers) {
+      headers = new HttpHeaders();
     }
+    return headers
+      .set('Content-Type', 'application/json')
+      .set('Authorization', this.authToken)
+      .set('API_Key', this.api_key);
+  }
 }

@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  hpPayApiRoot: 'http://localhost:8086/http://180.179.222.161/hpp/'
 };
 
 /*
