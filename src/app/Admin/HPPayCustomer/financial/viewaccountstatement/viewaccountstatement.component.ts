@@ -1,12 +1,17 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/services/customer/customer.service';
-
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import htmlToPdfmake from 'html-to-pdfmake';
+import html2canvas from 'html2canvas';
+import jspdf from 'jspdf';
 @Component({
   selector: 'app-viewaccountstatement',
   templateUrl: './viewaccountstatement.component.html',
@@ -24,10 +29,15 @@ export class ViewaccountstatementComponent implements OnInit {
   public pageSize: number = 2;
   isshow:number=0;
   accountStatementFormGroup: FormGroup;
+  customerstatement:Array<any>;
+  ccmsacctsummary:Array<any>;
+  transactionsummary:Array<any>;
   constructor(private modalService: NgbModal,private customerService: CustomerService,
     private fb: FormBuilder,
     @Inject(DOCUMENT) private _document: Document, private toastr: ToastrService, private router: Router,) { }
-
+    @ViewChild('summaryTable') summaryTable: ElementRef;
+    @ViewChild('ccmsTable') ccmsTable: ElementRef;
+    @ViewChild('transactionTable') transactionTable: ElementRef;
   ngOnInit(): void {
     this.accountStatementFormGroup = this.fb.group({
       mobile_No: [''],
@@ -48,7 +58,10 @@ export class ViewaccountstatementComponent implements OnInit {
     }
     this.customerService.get_customer_account_statement(get_customer_account_statementData).subscribe(data => {
       if (data.message.toUpperCase() === 'RECORD FOUND') {
-        // this.manageCustomerProfileTableData = data.data;
+        this.ShowTableList();
+        this.customerstatement=data.data.customerstatement[0];
+        this.ccmsacctsummary=data.data.ccmsacctsummary[0];
+        this.transactionsummary=data.data.transactionsummary;
       }
       else if (data.status_Code === 401) {
         this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
@@ -62,32 +75,13 @@ export class ViewaccountstatementComponent implements OnInit {
       console.log(err)
     })
   }
- ViewAccountStatmentSummaryData() {
-    
-    this.GetCustomerStatementSummaryData = [
-      {
-        "customername": "Test",
-        "address": "NEW DELHI",
-        "statementdate": "2021/06/10",
-        "period": "From 01/04/2021 To 02/04/2021",
-      }
-    ];
-    this.GetCCMSAccountSummaryData = [
-      {
-        "openingbalance": "1,000",
-        "credits": "0.00",
-        "debits": "0.00",
-        "closingbalance": "1,000",
-        "totalpayback":0
-      }
-    ];
-  }
   ShowTableList(){
     this.isshow=1;
  }
 
  Reset(){
    this.isshow=0;
+   this.accountStatementFormGroup.reset();
  }
   limitChange(limit: number) {
    
@@ -100,7 +94,35 @@ export class ViewaccountstatementComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
- 
+  public downloadAsPDF() {
+    debugger;
+    var data = document.getElementById('transactionTable');
+    html2canvas(data).then(canvas => {
+      var imgWidth = 208;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jspdf('p', 'mm', 'a4');
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.save(`${this.accountStatementFormGroup.controls.mobile_No.value}.pdf`);
+    });
+  }
+    // const doc = new jspdf();
+   
+    // const summaryTable = this.summaryTable.nativeElement;
+    // const ccmsTable = this.ccmsTable.nativeElement;
+    // var data = document.getElementById('transactionTable')
+    // const documentDefinition =doc.html(data.innerHTML)
+    // // var html = htmlToPdfmake(transactionTable.innerHTML);
+    // // // var html2 = htmlToPdfmake(ccmsTable.innerHTML);
+    // // // var html3 = htmlToPdfmake(transactionTable.innerHTML);
+     
+    // // const documentDefinition = { content: html };
+    // // const documentDefinition2 = { content: html2 };
+    // // const documentDefinition3 = { content: html3 };
+    // pdfMake.createPdf(documentDefinition).open(); 
+     
+  //}
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

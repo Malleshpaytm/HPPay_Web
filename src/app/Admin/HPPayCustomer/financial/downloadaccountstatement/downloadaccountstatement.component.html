@@ -8,18 +8,18 @@
                          <strong class = "help" style="cursor: pointer;" (click)="open(help)">Help</strong>
                     </div>
                     <div class="card-body">
-                        <table class="w-50">
+                        <table class="w-50" [formGroup]="accountStatementFormGroup">
                             <tr>
                                 <td width="40%">
                                     <span class="required">Mobile Number</span>:
                                 </td>
                                    <td align="left">
                                         <div class="form-group">
-                                            <input type="text" class="form-control">
+                                            <input type="text" maxlength="10" minlength="10" class="form-control" formControlName="mobile_No">
                                         </div>
                                     </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td width="40%">
                                     <span class="required">Report Type</span>:
                                 </td>
@@ -32,8 +32,19 @@
                                         </select>
                                     </div>
                                 </td>
+                            </tr> -->
+                            <tr>
+                                <td>
+                                </td>
+                                <td align="left">
+                                    <div class=" d-flex flex-row justify-content-end">
+                                        <div class="mr-3">
+                                            <button class="btn btn-primary"(click)="onSearchButtonClick()">DOWNLOAD</button>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
-                            <tbody *ngIf="showBody">
+                            <!-- <tbody *ngIf="showBody">
                                 <tr>
                                     <td>
                                         <span *ngIf="entityTypeValue === 'Monthly'"><span class="required">Month
@@ -89,7 +100,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                            </tbody>
+                            </tbody> -->
                         </table>
                     </div>
                 </div>
