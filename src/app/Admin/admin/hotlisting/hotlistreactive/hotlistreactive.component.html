@@ -7,17 +7,17 @@
                         Hotlisted/Reactivated Details
                     </div>
                     <div class="card-body">
-                        <table class="w-50">
+                        <table class="w-50" [formGroup]="hotListFormGroup">
                             <tr>
                                 <td width="40%">
                                     <span class="required">Entity Type</span>:
                                 </td>
                                 <td align="left">
                                     <div class="form-group">
-                                        <select class="form-control" (change)="entityChange($event)">
-                                            <option value="select">select</option>
-                                            <option value="Customer">Customer</option>
-                                            <option value="Merchant">Merchant</option>
+                                        <select class="form-control" (change)="entityChange($event)" formControlName="entity_Type">
+                                            <option value="select" selected="selected">select</option>
+                                            <option [value]="optionid.option" *ngFor="let optionid of selectOptions">
+                                              {{optionid.option}}</option>
                                         </select>
                                     </div>
                                 </td>
@@ -25,14 +25,11 @@
                             <tbody *ngIf="showBody">
                                 <tr>
                                     <td>
-                                        <span *ngIf="entityTypeValue === 'Merchant'"><span class="required">Merchant
-                                                ID</span>:</span>
-                                        <span *ngIf="entityTypeValue === 'Customer'"><span class="required">Mobile
-                                                Number</span>:</span>
+                                        <span><span class="required">{{entityTypeName}}</span>:</span>
                                     </td>
                                     <td align="left">
                                         <div class="form-group">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" formControlName="entity_Id">
                                         </div>
                                     </td>
                                 </tr>
@@ -41,10 +38,10 @@
                                         <span><span class="required">Action</span>:</span>
                                     </td>
                                     <div class="form-group">
-                                        <select class="form-control">
+                                        <select class="form-control" formControlName="action">
                                             <option value="select">select</option>
-                                            <option value="Customer">Customer</option>
-                                            <option value="Merchant">Merchant</option>
+                                            <option [value]="optionid.option" *ngFor="let optionid of selectActionOptions">
+                                              {{optionid.option}}</option>
                                         </select>
                                     </div>
                                 </tr>
@@ -53,10 +50,10 @@
                                         <span><span class="required">Reason</span>:</span>
                                     </td>
                                     <div class="form-group">
-                                        <select class="form-control">
+                                        <select class="form-control" formControlName="reason">
                                             <option value="select">select</option>
-                                            <option value="Customer">Customer</option>
-                                            <option value="Merchant">Merchant</option>
+                                            <option [value]="optionid.option" *ngFor="let optionid of selectReasonOptions">
+                                              {{optionid.option}}</option>
                                         </select>
                                     </div>
                                 </tr>
@@ -66,7 +63,7 @@
                                     </td>
                                     <td align="left">
                                         <div class="form-group">
-                                            <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
+                                            <textarea name="" id="" cols="30" rows="3" class="form-control" formControlName="remarks"  ></textarea>
                                         </div>
                                     </td>
                                 </tr>
@@ -76,7 +73,7 @@
                                     <td align="left">
                                         <div class=" d-flex flex-row justify-content-end">
                                             <div class="mr-3">
-                                                <button class="btn btn-primary">APPLY</button>
+                                                <button class="btn btn-primary" (click)="onApplyButtonClick()">APPLY</button>
                                             </div>
                                             <div>
                                                 <button class="btn btn-primary" (click)="resetValue()">RESET</button>
