@@ -13,7 +13,7 @@ export class AdminService {
   authToken = this.service.authToken;
   //authoken
   constructor(private http: HttpClient, private service:ApiService) { }
- 
+
 
   getToken(getTokenData): Observable<any> {
     debugger;
@@ -31,7 +31,7 @@ export class AdminService {
      this.authToken=data.token
    })
   }
-  
+
   //LOCATIONS
   update_head_offices(update_head_officesData): Observable<any> {
     let path = '/hppay/settings/update_head_offices';
@@ -43,7 +43,7 @@ export class AdminService {
     const body=JSON.stringify(getStatesData);
     return this.service.post(path,body);
   }
-  
+
   getZonalOffice(zonalOfficeData): Observable<any> {
     let path = '/hppay/settings/get_zone';
     const body=JSON.stringify(zonalOfficeData);
@@ -161,8 +161,8 @@ export class AdminService {
     const body=JSON.stringify(getCustomerProfileData);
     return this.service.post(path,body);
   }
- 
- 
+
+
   manageCustomerProfile(manageCustomerProfileData): Observable<any> {
     let path = '/hppay/user/get_profile';
     const body=JSON.stringify(manageCustomerProfileData);
@@ -173,7 +173,7 @@ export class AdminService {
     const body=JSON.stringify(getSalesAreaData);
     return this.service.post(path,body);
   }
- 
+
   //MERCHANT APIS
 
   getMerchantType(getMerchantTypeData): Observable<any> {
@@ -248,12 +248,17 @@ export class AdminService {
     const body=JSON.stringify(get_all_ccms_recharge_through_eftData);
     return this.service.post(path,body);
   }
-  //financials 
+  //financials
   get_user_wallet_balance(get_user_wallet_balanceData): Observable<any> {
     let path = '/hppay/wallet/get_user_wallet_balance';
     const body=JSON.stringify(get_user_wallet_balanceData);
     return this.service.post(path,body);
   }
 
-  
+  activate_deactivate_entity(get_user_wallet_balanceData): Observable<any> {
+    let path = '/dtplus/settings/activate_deactivate_entity';
+    const body=JSON.stringify(get_user_wallet_balanceData);
+    return this.service.post(path,body);
+  }
+
 }

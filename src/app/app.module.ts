@@ -21,9 +21,11 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { LoginComponent } from './auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MaterialModule } from './material/material.module';
+import { AuthenticationService } from './services/authentication/authentication.service';
+import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent, LoginComponent],
@@ -43,7 +45,13 @@ import { MaterialModule } from './material/material.module';
     HttpClientModule,
     //NgbPaginationModule,
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [AuthenticationService, { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+  }],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}
