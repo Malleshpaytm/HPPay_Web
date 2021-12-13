@@ -16,7 +16,10 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.changePasswordModel = new MerChangePasswordPayload();
-    this.changePasswordModel.merchantId = 3090000002;
+    this.changePasswordModel.merchantid = 3090000002;
+    this.changePasswordModel.userid = "3090000002";
+    this.changePasswordModel.userip = '1';
+    this.changePasswordModel.useragent = 'web';
 
   }
 
