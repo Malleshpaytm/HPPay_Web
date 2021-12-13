@@ -80,6 +80,7 @@ export class MerchantCreationViewComponent implements OnInit {
         })
   }
   onViewMerchantDetails(merchantid): void {
+    debugger;
     let dialogRef = this.dialog.open(MerchantDetailsModalComponent, {
       width: '900px',
       data: { merchantid:merchantid }

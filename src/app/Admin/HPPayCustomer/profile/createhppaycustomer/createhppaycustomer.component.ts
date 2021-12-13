@@ -1,13 +1,15 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgbCalendar, NgbDateAdapter, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { CustomAdapter, CustomDateParserFormatter } from 'src/app/services/datepicker/datepicker.service';
-
+import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/shared/confirm-modal/confirm-modal.component';
+import { DialogBoxComponent } from 'src/app/shared/dialog-box/dialog-box.component';
 @Component({
   selector: 'app-createhppaycustomer',
   templateUrl: './createhppaycustomer.component.html',
@@ -22,77 +24,98 @@ export class CreatehppaycustomerComponent implements OnInit {
   cityDropdownValues: Array<any>;
   districtDropdownValues: Array<any>;
   statesDropdownValues: Array<any>;
-  model1=''
+  model1='';
+  date = new Date();
+  minDate = new Date(1900, 0, 1);
+  maxDate = new Date(this.date.getFullYear() - 18, 0, 1);
   constructor(@Inject(DOCUMENT) private _document: Document,
   private router: Router, private adminService: AdminService, 
   private toastr: ToastrService, private fb: FormBuilder,
-  private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>) { }
+  private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.customerCreationFormGroup = this.fb.group({
-      title: [''],
-      first_name: [''],
-      last_name: [''],
-      mobile_number: [''],
-      dob: [''],
-      pincode: [''],
-      city: [''],
-      state: [''],
-      district: [''],
-      address: [''],
-      gender: [''],
-      email: ['']
+      title: ['', Validators.required],
+      first_name: ['' , Validators.required],
+      last_name: ['' , Validators.required],
+      mobile_number: ['' , Validators.required],
+      dob: ['' , Validators.required],
+      pincode: ['' , Validators.compose([Validators.required, Validators.min(6)])],
+      city: ['' , Validators.required],
+      state: ['' , Validators.required],
+      district: ['' , Validators.required],
+      address: ['', Validators.required],
+      gender: ['', Validators.required],
+      email: ['', Validators.email]
     });
     this.getDropdownValues();
   }
   onSubmitButtonClick() {
     debugger;
-    var date = this.customerCreationFormGroup.controls.dob.value;
-    var datearray = date.split("-");
+    if(this.customerCreationFormGroup.valid){
+      const message = `Are you sure you want to create this customer?`;
 
-    var newdate = datearray[2] + '-' + datearray[1] + '-' + datearray[0];
-    let customerCreationData = {
-      "title": this.customerCreationFormGroup.controls.title.value,
-      "first_name": this.customerCreationFormGroup.controls.first_name.value,
-      "last_name": this.customerCreationFormGroup.controls.last_name.value,
-      "mobile_number": this.customerCreationFormGroup.controls.mobile_number.value,
-      "dob": this.customerCreationFormGroup.controls.dob.value,
-      "pincode": this.customerCreationFormGroup.controls.pincode.value,
-      "password": "",
-      "city": this.customerCreationFormGroup.controls.city.value,
-      "state": this.customerCreationFormGroup.controls.state.value,
-      "district": this.customerCreationFormGroup.controls.district.value,
-      "address": this.customerCreationFormGroup.controls.address.value,
-      "gender": this.customerCreationFormGroup.controls.gender.value,
-      "email": this.customerCreationFormGroup.controls.email.value,
-      "isaccept_policy": "0",
-      "isScoialMedia": "0",
-      "media_type": "",
-      "deviceToken": "",
-      "useragent": "web",
-      "userip": "1",
-      "userid": "1",
+      const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        maxWidth: "400px",
+        data: dialogData
+      });
+      dialogRef.afterClosed().subscribe(dialogResult => {
+        if (dialogResult) {
+      let customerCreationData = {
+        "title": this.customerCreationFormGroup.controls.title.value,
+        "first_name": this.customerCreationFormGroup.controls.first_name.value,
+        "last_name": this.customerCreationFormGroup.controls.last_name.value,
+        "mobile_number": this.customerCreationFormGroup.controls.mobile_number.value,
+        "dob": this.customerCreationFormGroup.controls.dob.value,
+        "pincode": this.customerCreationFormGroup.controls.pincode.value,
+        "password": "",
+        "city": this.customerCreationFormGroup.controls.city.value,
+        "state": this.customerCreationFormGroup.controls.state.value,
+        "district": this.customerCreationFormGroup.controls.district.value,
+        "address": this.customerCreationFormGroup.controls.address.value,
+        "gender": this.customerCreationFormGroup.controls.gender.value,
+        "email": this.customerCreationFormGroup.controls.email.value,
+        "isaccept_policy": "0",
+        "isScoialMedia": "0",
+        "media_type": "",
+        "deviceToken": "",
+        "useragent": "web",
+        "userip": "1",
+        "userid": "1",
+      }
+      this.adminService.customerRegistration(customerCreationData)
+        .subscribe(data => {
+          debugger;
+          if(data.message.toUpperCase()==='RECORD FOUND'){
+            this.openDialog(data.data[0].reason);
+            this.customerCreationFormGroup.reset();
+          }
+          
+          else if(data.status_Code===401){
+            // this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+            // this.router.navigate(['/']);
+            // this._document.defaultView.location.reload();
+          }
+          else{
+            this.toastr.error(data.message)
+          }
+  
+        },
+          (err: HttpErrorResponse) => {
+            console.log(err)
+          })
+        }})
     }
-    this.adminService.customerRegistration(customerCreationData)
-      .subscribe(data => {
-        debugger;
-        if(data.message.toUpperCase()==='RECORD FOUND'){
-          this.toastr.success(data.data[0].reason)
-        }
-        
-        else if(data.status_Code===401){
-          this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
-          this.router.navigate(['/']);
-          this._document.defaultView.location.reload();
-        }
-        else{
-          this.toastr.error(data.message)
-        }
+    else{
+      this.toastr.error("Please fill all the required fields!")
+    }
+    // var date = this.customerCreationFormGroup.controls.dob.value;
+    // var datearray = date.split("-");
 
-      },
-        (err: HttpErrorResponse) => {
-          console.log(err)
-        })
+    // var newdate = datearray[2] + '-' + datearray[1] + '-' + datearray[0];
+   
   }
 
   getDropdownValues() {
@@ -144,5 +167,17 @@ export class CreatehppaycustomerComponent implements OnInit {
           console.log(err);
         });
   }
+  openDialog(message): void {
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      width: '400px',
+      data: { message: message }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+    });
+  }
 }
+
+

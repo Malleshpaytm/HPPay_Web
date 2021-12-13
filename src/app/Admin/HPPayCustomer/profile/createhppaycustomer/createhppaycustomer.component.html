@@ -36,17 +36,30 @@
                             <tbody>
                                 <tr>
                                     <td align="left">
-                                        <span><span class="required">Title
-                                            </span>:</span>
+                                        <span><label class="required">Title
+                                        </label>:</span>
 
                                     </td>
                                     <td align="left">
                                         <div class="form-group">
-                                            <select class="form-control" formControlName="title">
+                                            <!-- <select class="form-control" formControlName="title">
                                                 <option value="Ms.">Ms. </option>
                                                 <option value="Mr.">Mr. </option>
                                                 <option value="Mrs.">Mrs. </option>
-                                            </select>
+                                            </select> -->
+                                            <mat-form-field appearance="outline">
+
+                                                <mat-select matNativeControl required formControlName="title">
+                                                  <mat-option value="Mr.">Mr.</mat-option>
+                                                  <mat-option value="Ms.">Ms.</mat-option>
+                                                  <mat-option value="Mrs.">Mrs.</mat-option>
+                              
+                                                </mat-select>
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['title'].hasError('required')">
+                                                  Title is required!
+                                                </mat-error>
+                              
+                                              </mat-form-field>
                                         </div>
                                     </td>
 
@@ -57,69 +70,112 @@
 
                                 <tr>
                                     <td align="left">
-                                        <span><span class="required">First Name
-                                            </span>:</span>
+                                        <span><label class="required">First Name
+                                        </label>:</span>
 
                                     </td>
                                     <td align="left">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" formControlName="first_name">
+                                            <!-- <input type="text" class="form-control" formControlName="first_name"> -->
+                                            <mat-form-field appearance="outline">
+
+                                                <input matInput class="input" required formControlName="first_name">
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['first_name'].hasError('required')">
+                                                  First Name is required!
+                                                </mat-error>
+                                              </mat-form-field>
                                         </div>
                                     </td>
                                     <td align="left">
-                                        <span><span class="required">Last Name
-                                            </span>:</span>
+                                        <span><label class="required">Last Name
+                                        </label>:</span>
 
                                     </td>
                                     <td align="left">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" formControlName="last_name">
+                                            <mat-form-field appearance="outline">
+
+                                                <input matInput class="input" required formControlName="last_name">
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['last_name'].hasError('required')">
+                                                  Last Name is required!
+                                                </mat-error>
+                                              </mat-form-field>
+                                            <!-- <input type="text" class="form-control" formControlName="last_name"> -->
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="left">
-                                        <span><span class="required">Address
-                                            </span>:</span>
+                                        <span><label class="required">Address
+                                        </label>:</span>
 
                                     </td>
                                     <td align="left">
-                                        <div class="form-group">
-                                            <textarea type="text" class="form-control"
-                                                formControlName="address"></textarea>
-                                        </div>
+                                       
+                                            <mat-form-field appearance="outline">
+
+                                                <input matInput required formControlName="address">
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['address'].hasError('required')">
+                                                  Address is required!
+                                                </mat-error>
+                                              </mat-form-field>
+                                            <!-- <textarea type="text" class="form-control"
+                                                formControlName="address"></textarea> -->
+                                      
                                     </td>
                                 </tr>
                                 <tr>
 
                                     <td align="left">
-                                        <span><span class="required">City
-                                            </span>:</span>
+                                        <span><label class="required">City
+                                        </label>:</span>
 
                                     </td>
                                     <td align="left">
                                         <div class="form-group">
-                                            <select class="form-control" formControlName="city">
-                                                <option [value]="city.cityCode"
-                                                    *ngFor="let city of cityDropdownValues">{{city.city_Name}}</option>
-                                            </select>
+                                            <mat-form-field appearance="outline">
+
+                                                <mat-select matNativeControl required formControlName="city">
+                                                  <mat-option value="select">Select</mat-option>
+                                                  <mat-option [value]="cityDropdown.cityCode" *ngFor="let cityDropdown of cityDropdownValues">
+                                                    {{cityDropdown.city_Name}}</mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['city'].hasError('required')">
+                                                  City is required!
+                                                </mat-error>
+                              
+                                              </mat-form-field>
+                                        
                                         </div>
                                     </td>
 
                                     <td align="left">
-                                        <span><span class="required">District
-                                            </span></span>
+                                        <span><label class="required">District
+                                        </label></span>
 
                                     </td>
                                     <td align="left">
 
                                         <div class="form-group">
-                                            <select class="form-control" formControlName="district">
+                                            <mat-form-field appearance="outline">
+                                                <mat-select matNativeControl required formControlName="district">
+                                                  <mat-option value="select">Select</mat-option>
+                                                  <mat-option [value]="districtDropdown.district_Code"
+                                                    *ngFor="let districtDropdown of districtDropdownValues">{{districtDropdown.district_Name}}
+                                                  </mat-option>
+                                                </mat-select>
+                              
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['district'].hasError('required')">
+                                                  District is required!
+                                                </mat-error>
+                              
+                                              </mat-form-field>
+                                            <!-- <select class="form-control" formControlName="district">
                                                 <option [value]="district.district_Code"
                                                     *ngFor="let district of districtDropdownValues">
                                                     {{district.district_Name}}</option>
 
-                                            </select>
+                                            </select> -->
                                         </div>
                                     </td>
 
@@ -129,75 +185,128 @@
 
                                 <tr>
                                     <td align="left">
-                                        <span><span class="required">State
-                                            </span>:</span>
+                                        <span><label class="required">State
+                                        </label>:</span>
 
                                     </td>
                                     <td align="left">
 
                                         <div class="form-group">
-                                            <select class="form-control" formControlName="state">
+                                            <mat-form-field appearance="outline">
+                                                <mat-select matNativeControl required formControlName="state">
+                                                  <!-- <mat-option value="select">Select</mat-option> -->
+                                                  <mat-option [value]="stateDropdown.state_Id" *ngFor="let stateDropdown of statesDropdownValues">
+                                                    {{stateDropdown.state_Name}}
+                                                  </mat-option>
+                                                </mat-select>
+                                                <!-- <mat-select matNativeControl required formControlName="state">
+                                                  <mat-option value="select">Select</mat-option>
+                                                  <mat-option [value]="stateDropdown.stateCode" *ngFor="let stateDropdown of statesDropdownValues">
+                                                    {{stateDropdown.state_Name}}
+                                                  </mat-option>
+                              
+                                                </mat-select> -->
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['state'].hasError('required')">
+                                                  State is required!
+                                                </mat-error>
+                              
+                                              </mat-form-field>
+                                            <!-- <select class="form-control" formControlName="state">
                                                 <option [value]="state.stateCode" *ngFor="let state of statesDropdownValues">{{state.state_Name}}</option>
 
-                                            </select>
+                                            </select> -->
                                         </div>
                                     </td>
 
 
 
                                     <td align="left">
-                                        <span><span class="required">Pin Code
-                                            </span>:</span>
+                                        <span><label class="required">Pin Code
+                                        </label>:</span>
 
                                     </td>
                                     <td>
 
                                         <div class="form-group">
-                                            <input type="text" maxlength="6" minlength="6" class="form-control" formControlName="pincode">
+                                            <mat-form-field appearance="outline">
+                                                <input matInput class="input" type="string" maxlength="6" minlength="6" required
+                                                  formControlName="pincode">
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['pincode'].hasError('required')">
+                                                  PIN Code is required!
+                                                </mat-error>
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['pincode'].hasError('minlength')">
+                                                    PIN Code is invalid!
+                                                  </mat-error>
+                                              </mat-form-field>
+                                            <!-- <input type="text" maxlength="6" minlength="6" class="form-control" formControlName="pincode"> -->
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="left">
-                                        <span><span class="required">Gender
-                                            </span>:</span>
+                                        <span><label class="required">Gender
+                                        </label>:</span>
 
                                     </td>
                                     <td align="left">
 
                                         <div class="form-group">
-                                            <select class="form-control" formControlName="gender">
-                                                <option value="select">select</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
+                                            <mat-form-field appearance="outline">
 
-                                            </select>
+                                                <mat-select matNativeControl required formControlName="gender">
+                                                    <mat-option value="Male">Male</mat-option>
+                                                    <mat-option value="Female">Female</mat-option>
+                              
+                                                </mat-select>
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['gender'].hasError('required')">
+                                                  Title is required!
+                                                </mat-error>
+                              
+                                              </mat-form-field>
+                                          
                                         </div>
                                     </td>
 
 
 
                                     <td align="left">
-                                        <span><span class="required">Mobile
-                                            </span>:</span>
+                                        <span><label class="required">Mobile
+                                        </label>:</span>
 
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" maxlength="10" minlength="10" formControlName="mobile_number">
+                                            <mat-form-field appearance="outline">
+                                                <input matInput class="input" type="string" maxlength="10" minlength="10"
+                                                  required formControlName="mobile_number">
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['mobile_number'].hasError('required')">
+                                                  Mobile is required!
+                                                </mat-error>
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['mobile_number'].hasError('minlength')">
+                                                  Mobile is not Valid!
+                                                </mat-error>
+                                              </mat-form-field>
+                                            <!-- <input type="text" class="form-control" maxlength="10" minlength="10" formControlName="mobile_number"> -->
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align=" left">
-                                        <span><span class="required">Email
-                                            </span>:</span>
+                                        <span><label >Email
+                                        </label>:</span>
 
                                     </td>
                                     <td align="left">
 
                                         <div class="form-group">
-                                            <input type="text" class="form-control" formControlName="email">
+                                            <mat-form-field appearance="outline">
+                                                <input matInput class="input" formControlName="email">
+                              
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['email'].hasError('email')">
+                                                  Email is not Valid!
+                                                </mat-error>
+                                              </mat-form-field>
+                                            <!-- <input type="text" class="form-control" formControlName="email"> -->
 
                                         </div>
                                     </td>
@@ -205,18 +314,27 @@
 
 
                                     <td align="left">
-                                        <span><span class="required">Date Of Birth
-                                            </span>:</span>
+                                        <span><label class="required">Date Of Birth
+                                        </label>:</span>
 
                                     </td>
                                     <td>
 
-                                        <div class="form-group">
+                                      
+                                            <mat-form-field appearance="outline">
+                                                <input class="input" formControlName="dob"  matInput [matDatepicker]="dateOfBirth"
+                                                 [min]="minDate" [max]="maxDate">
+                                                <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+                                                <mat-datepicker #dateOfBirth></mat-datepicker>
+                                                <mat-error *ngIf="customerCreationFormGroup.controls['dob'].errors?.required">
+                                                 Date of Birth is required!
+                                                </mat-error>
+                                              </mat-form-field>
                                             <!-- <input class=" input" placeholder="dd/mm/yyyy" name="d1"
                          [(ngModel)]="model1" ngbDatepicker #d1="ngbDatepicker" class="form-control" formControlName="dob" (click)="d1.toggle()"> -->
-                    <input type="date" class="form-control" formControlName="dob">
+                    <!-- <input type="date" class="form-control" formControlName="dob" [min]="minDate" [max]="maxDate"> -->
 
-                                        </div>
+                                      
                                     </td>
                                 </tr>
 
