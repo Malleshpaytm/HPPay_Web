@@ -89,7 +89,8 @@ export class CreatehppaycustomerComponent implements OnInit {
         .subscribe(data => {
           debugger;
           if(data.message.toUpperCase()==='RECORD FOUND'){
-            this.openDialog(data.data[0].reason);
+            this.openDialog(`Customer created successfully with mobile number ${data.data[0].user_mobile}!`)
+           
             this.customerCreationFormGroup.reset();
           }
           
@@ -117,7 +118,22 @@ export class CreatehppaycustomerComponent implements OnInit {
     // var newdate = datearray[2] + '-' + datearray[1] + '-' + datearray[0];
    
   }
-
+  onSelectState(state_code){
+    this.getDistrictByState(state_code)
+  }
+  getDistrictByState(state_code){
+    let getDistrictByStateData={
+      "state_Code":state_code,
+      "useragent": "web",
+      "userip": "1",
+      "userid": "1"
+    }
+    this.adminService.getDistrictByState(getDistrictByStateData)
+      .subscribe(data => {
+        debugger;
+        this.districtDropdownValues = data.data;
+      });
+  }
   getDropdownValues() {
     debugger;
     //City Values
@@ -137,20 +153,20 @@ export class CreatehppaycustomerComponent implements OnInit {
 
     // district values
 
-    let districtData = {
-      "Useragent": "web",
-      "Userip": "1",
-      "Userid": "1"
-    }
-    this.adminService.getDistrict(districtData)
-      .subscribe(data => {
-        debugger;
-        this.districtDropdownValues = data.data;
-      },
-        (err: HttpErrorResponse) => {
-          console.log(err);
-        }
-      );
+    // let districtData = {
+    //   "Useragent": "web",
+    //   "Userip": "1",
+    //   "Userid": "1"
+    // }
+    // this.adminService.getDistrict(districtData)
+    //   .subscribe(data => {
+    //     debugger;
+    //     this.districtDropdownValues = data.data;
+    //   },
+    //     (err: HttpErrorResponse) => {
+    //       console.log(err);
+    //     }
+    //   );
     // state value
     let stateData = {
       "Useragent": "web",

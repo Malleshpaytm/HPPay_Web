@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="container">
-        <div class="row form-group">
-            <div class="col-12">
+        <div class="row form-group" [formGroup]="corporateCustomerCreationFormGroup">
+            <div class="col-12"  >
                 <div class="card mt-3 mb-5 p-0">
                     <div class="card-header text-white" style="background-color:  #084594;">
                         <strong>Create Corporate Customer</strong>
@@ -15,33 +15,49 @@
                                 <tbody>
                                     <tr>
                                         <td align="left">
-                                            <span><span class="required">Customer Type
-                                                </span>:</span>
+                                            <span><label class="required">Customer Type
+                                            </label>:</span>
 
                                         </td>
                                         <td align="left">
                                             <div class="form-group">
-                                                <select class="form-control">
-                                                    <option value="Select">Select</option>
-                                                    <option value="Customer">Corporate Group</option>
-                                                    <option value="Merchant">Ride Share</option>
-                                                </select>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-select formControlName="customerType">
+                                                        <!-- <option value="Select">Select</option> -->
+                                                        <mat-option value="Corporate Group">Corporate Group</mat-option>
+                                                        <mat-option value="Ride Share">Ride Share</mat-option>
+                                                    </mat-select>
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['customerType'].hasError('required')">
+                                                        Title is required!
+                                                      </mat-error>
+                                                </mat-form-field>
+                                                
 
                                             </div>
                                         </td>
                                         <td align="left">
-                                            <span><span class="required">Entity Type
-                                                </span>:</span>
+                                            <span><label class="required">Entity Type
+                                            </label>:</span>
                                         </td>
                                         <td align="left">
                                             <div class="form-group">
-                                                <select class="form-control">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-select formControlName="entityType">
+                                                        <!-- <option value="Select">Select</option> -->
+                                                        <mat-option value="Corporate Group">Corporate Group</mat-option>
+                                                        <mat-option value="Ride Share">Ride Share</mat-option>
+                                                    </mat-select>
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['entityType'].hasError('required')">
+                                                        Entity Type is required!
+                                                      </mat-error>
+                                                </mat-form-field>
+                                                <!-- <select class="form-control" formControlName="entityType">
                                                     <option value="Select">Select</option>
                                                     <option value="Customer">L-1</option>
                                                     <option value="Merchant">L-2</option>
                                                     <option value="Customer">L-3</option>
                                                     <option value="Merchant">L-4</option>
-                                                </select>
+                                                </select> -->
 
                                             </div>
                                         </td>
@@ -49,88 +65,158 @@
                                     <tr>
 
                                         <td align="left">
-                                            <span><span class="required">Company Name
-                                                </span>:</span>
+                                            <span><label class="required">Company Name
+                                            </label>:</span>
 
                                         </td>
                                         <td align="left">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <mat-form-field appearance="outline">
+
+                                                    <input matInput required formControlName="companyName">
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['companyName'].hasError('required')">
+                                                        Company Name is required!
+                                                    </mat-error>
+                                                  </mat-form-field>
+                                              
 
                                             </div>
                                         </td>
                                         <td align="left">
-                                            <span><span class="required">Company Phone No.
-                                                </span>:</span>
+                                            <span><label class="required">Company Phone No.
+                                            </label>:</span>
                                         </td>
                                         <td align="left">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <mat-form-field appearance="outline">
+
+                                                    <input matInput required formControlName="companyPhoneNo">
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['companyPhoneNo'].hasError('required')">
+                                                        Company Phone Number is required!
+                                                    </mat-error>
+                                                  </mat-form-field>
+                                              
 
                                             </div>
                                         </td>
                                     </tr>
                                
                                     <tr>
-
                                         <td align="left">
-                                            <span><span class="required">Company Email Address
-                                                </span>:</span>
+                                            <span><label class="required">Company Mobile Number
+                                            </label>:</span>
 
                                         </td>
                                         <td align="left">
                                             <div class="form-group">
-                                                <input type="email" class="form-control">
+                                                <mat-form-field appearance="outline">
+
+                                                    <input matInput required formControlName="companyMobileNo" maxlength="10" minlength="10">
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['companyMobileNo'].hasError('required')">
+                                                        Company Mobile Number is required!
+                                                    </mat-error>
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['companyMobileNo'].hasError('minlength')">
+                                                        Company Mobile Number is invalid!
+                                                      </mat-error>
+                                                  </mat-form-field>
+                                                <!-- <input class="form-control" formControlName="companyMobileNo"> -->
                                             </div>
                                         </td>
-
                                         <td align="left">
-                                            <span><span class="required">Company Address
-                                                </span>:</span>
+                                            <span><label class="required">Company Email Address
+                                            </label>:</span>
 
                                         </td>
                                         <td align="left">
-
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
-                                                <input type="text" class="form-control">
-                                                <input type="text" class="form-control">
-                                                <input type="text" class="form-control">
+                                                <mat-form-field appearance="outline">
 
+                                                    <input matInput required formControlName="comapnyEmailAddress">
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['comapnyEmailAddress'].hasError('required')">
+                                                        Company Email Address is required!
+                                                    </mat-error>
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['comapnyEmailAddress'].hasError('email')">
+                                                        Company Email Address is invalid!
+                                                    </mat-error>
+                                                  </mat-form-field>
+                                                <!-- <input type="email" class="form-control" formControlName="comapnyEmailAddress"> -->
                                             </div>
                                         </td>
+                                        
+                                       
 
                                     </tr>
 
+<tr>
+    <td align="left">
+        <span><label class="required">Company Address
+        </label>:</span>
 
+    </td>
+    <td align="left">
+
+        <div class="form-group">
+            <mat-form-field >
+                <textarea matInput  formControlName="companyAddress" rows="5"></textarea>
+                <!-- <input matInput required formControlName="address"> -->
+                <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['companyAddress'].hasError('required')">
+                  Address is required!
+                </mat-error>
+              </mat-form-field>
+            
+            <!-- <input type="text" class="form-control">
+            <input type="text" class="form-control">
+            <input type="text" class="form-control">
+            <input type="text" class="form-control"> -->
+
+        </div>
+    </td>
+</tr>
 
                                     <tr>
                                         <td align="left">
-                                            <span><span class="required">City
-                                                </span>:</span>
+                                            <span><label class="required">City
+                                            </label>:</span>
 
                                         </td>
                                         <td align="left">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-select matNativeControl required formControlName="city">
+                                                        <mat-option value="select">Select</mat-option>
+                                                        <mat-option [value]="cityDropdown.cityCode" *ngFor="let cityDropdown of cityDropdownValues">
+                                                          {{cityDropdown.city_Name}}</mat-option>
+                                                      </mat-select>
+                                                    
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['city'].hasError('required')">
+                                                        City is required!
+                                                    </mat-error>
+                                                  </mat-form-field>
+                                                
                                             </div>
                                         </td>
 
                                         <td align="left">
-                                            <span><span class="required">State
-                                                </span>:</span>
+                                            <span><label class="required">State
+                                            </label>:</span>
 
                                         </td>
                                         <td align="left">
 
                                             <div class="form-group">
-                                                <select class="form-control">
-                                                    <option value="select">select</option>
-                                                    <option value="Customer">L-1</option>
-                                                    <option value="Merchant">L-2</option>
-                                                    <option value="Customer">L-3</option>
-                                                    <option value="Merchant">L-4</option>
-                                                </select>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-select matNativeControl required formControlName="state" (selectionChange)="onSelectState($event.value)">
+                                                      <!-- <mat-option value="select">Select</mat-option> -->
+                                                      <mat-option [value]="stateDropdown.stateCode" *ngFor="let stateDropdown of statesDropdownValues">
+                                                        {{stateDropdown.state_Name}}
+                                                      </mat-option>
+                                                    </mat-select>
+                                                   
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['state'].hasError('required')">
+                                                      State is required!
+                                                    </mat-error>
+                                  
+                                                  </mat-form-field>
                                             </div>
                                         </td>
 
@@ -138,55 +224,71 @@
                                     </tr>
                                     <tr>
                                         <td align="left">
-                                            <span><span class="required">Dsitrict
-                                                </span>:</span>
+                                            <span><label class="required">District
+                                            </label>:</span>
 
                                         </td>
                                         <td align="left">
 
                                             <div class="form-group">
-                                                <select class="form-control">
-                                                    <option value="select">select</option>
-                                                    <option value="Customer">Male</option>
-                                                    <option value="Merchant">Female</option>
-
-                                                </select>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-select matNativeControl required formControlName="district">
+                                                      <!-- <mat-option value="select">Select</mat-option> -->
+                                                      <mat-option [value]="districtDropdown.district_Code"
+                                                        *ngFor="let districtDropdown of districtDropdownValues">{{districtDropdown.district_Name}}
+                                                      </mat-option>
+                                                    </mat-select>
+                                  
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['district'].hasError('required')">
+                                                      District is required!
+                                                    </mat-error>
+                                  
+                                                  </mat-form-field>
                                             </div>
                                         </td>
 
 
 
                                         <td align="left">
-                                            <span><span class="required">Zonal Office
-                                                </span>:</span>
+                                            <span><label class="required">Zonal Office
+                                            </label>:</span>
 
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <select class="form-control">
-                                                    <option value="select">select</option>
-                                                    <option value="Customer">Male</option>
-                                                    <option value="Merchant">Female</option>
-
-                                                </select>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-select formControlName="zonalOffice" required>
+                                                        <mat-option [value]="zonalOffice.zone_Code" *ngFor="let zonalOffice of zonalOffices">
+                                                            {{zonalOffice.zone_Name}}</mat-option>
+                                                    </mat-select>
+                                                    <mat-error style="font-size:12px" class="text-danger" *ngIf="corporateCustomerCreationFormGroup.controls.zonalOffice.hasError('required')">
+                                                        Zonal Office is required!
+                                                    </mat-error>
+                                                </mat-form-field>
+                                                
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td align=" left">
-                                            <span><span class="required">Regional Office
-                                                </span>:</span>
+                                            <span><label class="required">Regional Office
+                                            </label>:</span>
 
                                         </td>
                                         <td align="left">
 
                                             <div class="form-group">
-                                                <select class="form-control">
-                                                    <option value="select">select</option>
-                                                    <option value="Customer">Male</option>
-                                                    <option value="Merchant">Female</option>
-
-                                                </select>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-select  formControlName="regionalOffice" required>
+                                                        <mat-option [value]="regionalOffice.rO_Code"
+                                                            *ngFor="let regionalOffice of regionalOffices">{{regionalOffice.rO_Name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                    <mat-error style="font-size:12px" class="text-danger" *ngIf="corporateCustomerCreationFormGroup.controls.regionalOffice.hasError('required')">
+                                                        Regional Office is <strong>required!</strong>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                                
 
                                             </div>
                                         </td>
@@ -194,14 +296,24 @@
 
 
                                         <td align="left">
-                                            <span><span class="required">PIN Code
-                                                </span>:</span>
+                                            <span><label class="required">PIN Code
+                                            </label>:</span>
 
                                         </td>
                                         <td>
 
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+
+                                            <mat-form-field appearance="outline">
+
+                                                    <input matInput required maxlength="6" minlength="6" formControlName="pinCode">
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['pinCode'].hasError('required')">
+                                                        PIN Code is required!
+                                                    </mat-error>
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['pinCode'].hasError('minlength')">
+                                                        PIN Code is invalid!
+                                                      </mat-error>
+                                                  </mat-form-field>
 
                                             </div>
                                         </td>
@@ -218,45 +330,77 @@
                                 <tbody>
                                     <tr>
                                         <td align="left">
-                                            <span><span class="required">First Name
-                                                </span>:</span>
+                                            <span><label class="required">First Name
+                                            </label>:</span>
 
                                         </td>
                                         <td align="left">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <mat-form-field appearance="outline">
+
+                                                    <input matInput required formControlName="firstName">
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['firstName'].hasError('required')">
+                                                        First Name is required!
+                                                    </mat-error>
+                                                   
+                                                  </mat-form-field>
                                             </div>
                                         </td>
                                         <td align="left">
-                                            <span><span class="required">Last Name
-                                                </span>:</span>
+                                            <span><label class="required">Last Name
+                                            </label>:</span>
                                         </td>
                                         <td align="left">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <mat-form-field appearance="outline">
+
+                                                    <input matInput required formControlName="lastName">
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['lastName'].hasError('required')">
+                                                        Last Name is required!
+                                                    </mat-error>
+                                                   
+                                                  </mat-form-field>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
 
                                         <td align="left">
-                                            <span><span class="required">Contact Person Mobile No.
-                                                </span>:</span>
+                                            <span><label class="required">Contact Person Mobile No.
+                                            </label>:</span>
 
                                         </td>
                                         <td align="left">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <mat-form-field appearance="outline">
 
+                                                    <input matInput required maxlength="10" minlength="10" formControlName="contactPersonMobileNo">
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['contactPersonMobileNo'].hasError('required')">
+                                                        Contact Person Mobile No. is required!
+                                                    </mat-error>
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['contactPersonMobileNo'].hasError('minlength')">
+                                                        Contact Person Mobile No. is invalid!
+                                                      </mat-error>
+                                                  </mat-form-field>
                                             </div>
                                         </td>
                                         <td align="left">
-                                            <span><span class="required">Contact Person Email
-                                                </span>:</span>
+                                            <span><label class="required">Contact Person Email
+                                            </label>:</span>
                                         </td>
                                         <td align="left">
                                             <div class="form-group">
-                                                <input type="email" class="form-control">
+                                                <mat-form-field appearance="outline">
+
+                                                    <input matInput required formControlName="contactPersonEmailAddress">
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['contactPersonEmailAddress'].hasError('required')">
+                                                        Contact Person Email is required!
+                                                    </mat-error>
+                                                    <mat-error *ngIf="corporateCustomerCreationFormGroup.controls['contactPersonEmailAddress'].hasError('email')">
+                                                        Contact Person Email is invalid!
+                                                    </mat-error>
+                                                   
+                                                  </mat-form-field>
 
                                             </div>
                                         </td>
@@ -267,7 +411,7 @@
                         </fieldset>
                         <div class=" d-flex flex-row justify-content-end">
                             <div class="mr-3">
-                                <button class="btn btn-primary pl-3 pr-3">Submit</button>
+                                <button class="btn btn-primary pl-3 pr-3" (click)="onSubmitButtonClick()">Submit</button>
                             </div>
                             <div>
                                 <button class="btn btn-primary pl-3 pr-3">Reset</button>
