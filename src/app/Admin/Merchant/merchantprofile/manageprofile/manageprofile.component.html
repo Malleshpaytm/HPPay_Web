@@ -325,7 +325,7 @@
 
                             <div class="form-group">
                                 <select class="form-control" formControlName="zonalOffice" required>
-                                    <option [value]="zonalOffice.zone_Id" *ngFor="let zonalOffice of zonalOffices">
+                                    <option [value]="zonalOffice.zone_Code" *ngFor="let zonalOffice of zonalOffices">
                                         {{zonalOffice.zone_Name}}</option>
                                 </select>
                                 <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.zonalOffice.hasError('required')">

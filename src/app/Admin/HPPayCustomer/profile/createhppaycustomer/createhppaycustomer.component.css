@@ -1,0 +1,11 @@
+label{
+    /* font-size: 14px !important; */
+    margin-top: 22px;
+  }
+
+  mat-form-field{
+      width: 290px;
+  }
+  ::ng-deep .mat-form-field-underline{
+    display: none;
+}

@@ -36,6 +36,7 @@ export class MerchantDetailsModalComponent implements OnInit {
    
   }
   getMerchantDetails(){
+    debugger;
     let searchMerchantByMerchantIdData={
       "merchantid": this.data.merchantid,
   "useragent": "web",

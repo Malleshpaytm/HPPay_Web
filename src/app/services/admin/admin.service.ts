@@ -87,6 +87,11 @@ export class AdminService {
     const body=JSON.stringify(getDistrictData);
     return this.service.post(path,body);
   }
+  getDistrictByState(getDistrictByStateData): Observable<any> {
+    let path = '/hppay/settings/get_district_by_state';
+    const body=JSON.stringify(getDistrictByStateData);
+    return this.service.post(path,body);
+  }
   insert_and_update_regional_office(insert_and_update_regional_officeData): Observable<any> {
     let path = '/hppay/settings/insert_and_update_regional_office';
     const body=JSON.stringify(insert_and_update_regional_officeData);
@@ -145,6 +150,12 @@ export class AdminService {
     return this.service.post(path,body);
   }
 
+  updateCustomerProfile(updateCustomerProfileData): Observable<any> {
+    let path = '/hppay/user/edit_new_user_web';
+    const body=JSON.stringify(updateCustomerProfileData);
+    return this.service.post(path,body);
+  }
+
   createManagerRole(createManagerRoleData): Observable<any> {
     let path = '/hppay/user/create_manage_role';
     const body=JSON.stringify(createManagerRoleData);
@@ -174,6 +185,13 @@ export class AdminService {
     return this.service.post(path,body);
   }
 
+  //corporate customer
+  
+  corporateCustomerRegistration(corporateCustomerRegistrationData): Observable<any> {
+    let path = '/hppay/registration/add_new_corporate_customer';
+    const body=JSON.stringify(corporateCustomerRegistrationData);
+    return this.service.post(path,body);
+  }
   //MERCHANT APIS
 
   getMerchantType(getMerchantTypeData): Observable<any> {

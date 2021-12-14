@@ -78,22 +78,18 @@ export class ViewOrUpdateCustomerDetailsComponent implements OnInit {
       "mobile_number": this.customerCreationFormGroup.controls.mobile_number.value?this.customerCreationFormGroup.controls.mobile_number.value:this.customerDetails?.user_mobile,
       "dob": this.customerCreationFormGroup.controls.dob.value?this.customerCreationFormGroup.controls.dob.value:this.customerDetails?.dob,
       "pincode": this.customerCreationFormGroup.controls.pincode.value?this.customerCreationFormGroup.controls.pincode.value:this.customerDetails?.pincode,
-      "password": "",
       "city": this.customerCreationFormGroup.controls.city.value?this.customerCreationFormGroup.controls.city.value:this.customerDetails?.cityCode,
       "state": this.customerCreationFormGroup.controls.state.value?this.customerCreationFormGroup.controls.state.value:this.customerDetails?.stateCode,
       "district": this.customerCreationFormGroup.controls.district.value?this.customerCreationFormGroup.controls.district.value:this.customerDetails?.districtCode,
       "address": this.customerCreationFormGroup.controls.address.value?this.customerCreationFormGroup.controls.address.value:this.customerDetails?.address,
       "gender": this.customerCreationFormGroup.controls.gender.value?this.customerCreationFormGroup.controls.gender.value:this.customerDetails?.gender,
       "email": this.customerCreationFormGroup.controls.email.value?this.customerCreationFormGroup.controls.email.value:this.customerDetails?.user_email,
-      "isaccept_policy": "0",
-      "isScoialMedia": "0",
-      "media_type": "",
-      "deviceToken": "",
+     
       "useragent": "web",
       "userip": "1",
       "userid": "1",
     }
-    this.adminService.customerRegistration(customerCreationData)
+    this.adminService.updateCustomerProfile(customerCreationData)
       .subscribe(data => {
         debugger;
         if(data.message.toUpperCase()==='RECORD FOUND'){

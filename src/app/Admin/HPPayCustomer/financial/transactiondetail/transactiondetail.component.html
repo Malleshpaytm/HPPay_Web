@@ -94,8 +94,8 @@
             </thead>
             <tbody>
               <tr *ngFor="let data of transactionDetailsTableData; let i = index">
-                <td>{{data.sno}}</td>
-                <td><a style="cursor: pointer;  color: #084594;" (click)="ShowLocationTableList();">{{data.merchantid}}</a></td>
+                <td>{{i+1}}</td>
+                <td>{{data.merchantid}}</td>
                 <td>{{data.merchant_Name}}</td>
                 <td>{{data.batchid_roc}}</td>
                 <td>{{data.accountnumber}}</td>

@@ -86,6 +86,12 @@ export class LoginComponent implements OnInit {
               this.authService.userRole = 'admin';
               this.router.navigate(['admin']);
             }
+           else if (data.data[0].userrole.toUpperCase() === "MERCHANT") {
+             debugger;
+              this.authService.login = true;
+              this.authService.userRole = 'merchant';
+              this.router.navigate(['merchant']);
+            }
 
           }
           else {

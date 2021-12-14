@@ -14,6 +14,7 @@ import { ManagecustomerbonusComponent } from './customerbonus/managecustomerbonu
 import { AddcustomerbonusComponent } from './customerbonus/addcustomerbonus/addcustomerbonus.component';
 import { ApprovecustomerbonusComponent } from './customerbonus/approvecustomerbonus/approvecustomerbonus.component';
 import { AuthorizecustomerbonusComponent } from './customerbonus/authorizecustomerbonus/authorizecustomerbonus.component';
+import { MaterialModule } from 'src/app/material/material.module';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { AuthorizecustomerbonusComponent } from './customerbonus/authorizecustom
                 AuthorizecustomerbonusComponent
   ],
   imports: [
+    MaterialModule,
     CommonModule,
     corporateRoutingModule,
     FormsModule,

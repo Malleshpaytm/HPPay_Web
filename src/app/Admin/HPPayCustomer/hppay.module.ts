@@ -25,6 +25,7 @@ import { ManageoffersComponent } from './offersandpromotion/manageoffers/manageo
 import { CreateoffersComponent } from './offersandpromotion/createoffers/createoffers.component';
 import { OffermenulistComponent } from './offersandpromotion/offermenulist/offermenulist.component';
 import { ViewOrUpdateCustomerDetailsComponent } from './profile/view-or-update-customer-details/view-or-update-customer-details.component';
+import { MaterialModule } from 'src/app/material/material.module';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ViewOrUpdateCustomerDetailsComponent } from './profile/view-or-update-c
     NgbPaginationModule,
     SharedModule,
     MatIconModule,
+    MaterialModule
   ],
 })
 export class hppayModule {}

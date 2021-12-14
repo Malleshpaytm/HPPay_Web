@@ -112,6 +112,7 @@ export class TransactiondetailComponent implements OnInit {
   Reset() {
     this.isshow = 0;
     this.istlshow = 0;
+    this.transactionDetailFormGroup.reset();
   }
   limitChange(limit: number) {
 
