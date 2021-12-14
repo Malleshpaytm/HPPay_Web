@@ -72,6 +72,7 @@ export class ViewOrUpdateCustomerDetailsComponent implements OnInit {
 
     var newdate = datearray[2] + '-' + datearray[1] + '-' + datearray[0];
     let customerCreationData = {
+      "customer_Id": this.customerDetails?.customer_Id,
       "title": this.customerDetails?.title,
       "first_name": this.customerDetails?.first_name,
       "last_name": this.customerDetails?.last_name,
@@ -93,7 +94,8 @@ export class ViewOrUpdateCustomerDetailsComponent implements OnInit {
       .subscribe(data => {
         debugger;
         if(data.message.toUpperCase()==='RECORD FOUND'){
-          this.toastr.success(data.data[0].reason)
+          this.toastr.success(data.data[0].reason);
+          this.router.navigate(['../managecustomer']);
         }
         
         else if(data.status_Code===401){

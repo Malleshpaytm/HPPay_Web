@@ -170,4 +170,12 @@
     color: red;
   }
   
-  
+  label{
+    /* font-size: 14px !important; */
+    margin-top: 22px;
+  }
+
+  mat-form-field{
+      width: 290px;
+      height: 48px;
+  }

@@ -88,36 +88,40 @@
                 <tbody>
                     <tr>
                         <td align="left">
-                            <span><span class="required">Retail Outlet Name
-                                </span>:</span>
+                            <span><label class="required">Retail Outlet Name
+                            </label>:</span>
 
                         </td>
                         <td>
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="retailOutletName" required>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.retailOutletName.hasError('required')">
-                                    Retail Outlet Name is <strong>required!</strong>
-                                </span>
+                                <mat-form-field appearance="outline">
+                                    <input matInput type="text" formControlName="retailOutletName" required>
+                                    <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.retailOutletName.hasError('required')">
+                                        Retail Outlet Name is <strong>required!</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                
                             </div>
                         </td>
                         <td align="left">
-                            <span><span class="required">Merchant Type
-                                </span>:</span>
+                            <span><label class="required">Merchant Type
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <select class="form-control" formControlName="merchantType" required>
-                                    <option [value]="merchantType.merchant_Type_Id"
+                                <mat-form-field appearance="outline">
+                                <mat-select select formControlName="merchantType" required>
+                                    <mat-option [value]="merchantType.merchant_Type_Id"
                                         *ngFor="let merchantType of merchantTypes">{{merchantType.merchant_Type_Name}}
-                                    </option>
-                                </select>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.merchantType.hasError('required')">
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.merchantType.hasError('required')">
                                     Merchant Type is <strong>required!</strong>
-                                </span>
-
+                                </mat-error>
+                            </mat-form-field>
                             </div>
                         </td>
                     </tr>
@@ -125,102 +129,132 @@
                        
                        
                         <td align="left">
-                            <span><span >Dealer Name
-                                </span>:</span>
+                            <span><label>Dealer Name
+                            </label>:</span>
 
                         </td>
                         <td>
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="dealerName">
-                               
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="dealerName">
+                               </mat-form-field>
                             </div>
                         </td>
 
 
 
                         <td align="left">
-                            <span><span class="required">Dealer Mobile
-                                </span>:</span>
+                            <span><label class="required">Dealer Mobile
+                            </label>:</span>
 
                         </td>
                         <td>
                             <div class="form-group">
-                                <input type="text" class="form-control" maxlength="10" minlength="10" formControlName="dealerMobile">
-                               
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput maxlength="10" minlength="10" formControlName="dealerMobile">
+                               </mat-form-field>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td align="left">
-                            <span><span class="required">Outlet Category
-                                </span></span>
+                            <span><label class="required">Outlet Category
+                            </label></span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <select class="form-control" formControlName="outletCategory" required>
-                                   
-                                    <option value="Highway">Highway</option>
-                                    <option value="Urban">Urban</option>
-                                    <option value="Rural">Rural</option>
-                                    <option value="Others">Others</option>
-                                </select>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.outletCategory.hasError('required')">
-                                    Outlet Category is <strong>required!</strong>
-                                </span>
-                            </div>
-                        </td>
-                        <td align="left">
-                            <span><span class="required">Highway No
-                                </span></span>
+                                <mat-form-field appearance="outline">
 
-                        </td>
-                        <td align="left">
+                                    <mat-select matNativeControl (selectionChange)="onSelectOutletCategory($event)" required formControlName="outletCategory">
+                                       
+                                        <mat-option value="Highway">Highway</mat-option>
+                                        <mat-option value="Urban">Urban</mat-option>
+                                        <mat-option value="Rural">Rural</mat-option>
+                                        <mat-option value="Others">Others</mat-option>
+                                    </mat-select>
+                                    <mat-error
+                                        *ngIf="basicInformationFormGroup.controls['outletCategory'].hasError('required')">
+                                        Outlet Category is <strong>required!</strong>
+                                    </mat-error>
 
-                            <div class="form-inline">
-                                <select class="form-control" style="width: 80px;" required>
-                                    <option value="NH">NH</option>
-                                    <option value="SH">SH</option>
-                                    <option value="Others">Others</option>
-                                </select>
-                                <input type="text" class="form-control" formControlName="highwayNo" style="width: 100px;" required maxlength="10">
+                                </mat-form-field>
                                
                             </div>
-                            <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.highwayNo.hasError('required')">
-                                Highway No is <strong>required!</strong>
-                            </span>
+                        </td>
+                        <td align="left" *ngIf="showHighwayNo">
+                            <span><label class="required">Highway No
+                            </label></span>
+
+                        </td>
+                        <td align="left">
+
+                            <div class="row" *ngIf="showHighwayNo">
+                                <div class="col-2">
+
+
+
+                                    <mat-form-field style="width: 75px;" appearance="outline">
+                                        <mat-select matNativeControl  formControlName="HighwayNoSelect">
+                                            <mat-option value="NH">NH</mat-option>
+                                            <mat-option value="SH">SH</mat-option>
+                                            <mat-option value="Other">Other</mat-option>
+                                        </mat-select>
+                                        <mat-error
+                                            *ngIf="basicInformationFormGroup.controls['HighwayNoSelect'].hasError('required')">
+                                            required
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                </div>
+                                <div class="col-4" style="margin-left: 24px !important;">
+                                    <mat-form-field style="width: 130px;" appearance="outline">
+                                        <input matInput class="input"  formControlName="HighwayNoName" maxlength="10">
+                                        <mat-error
+                                            *ngIf="basicInformationFormGroup.controls['HighwayNoName'].hasError('required')">
+                                            Highway No is required!
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                </div>
+
+                            </div>
                         </td>
 
                     </tr>
 
                     <tr>
-                        <td align="left">
-                            <span><span class="required">Highway Name
-                                </span></span>
+                        <td align="left" *ngIf="showHighwayName">
+                            <span><label class="required">Highway Name
+                            </label></span>
 
                         </td>
-                        <td align="left">
+                        <td align="left" *ngIf="showHighwayName">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="highwayName" required maxlength="30">
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.highwayName.hasError('required')">
+                                <mat-form-field appearance="outline">
+                                <input matInput type="text" formControlName="HighwayName" maxlength="30">
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.HighwayName.hasError('required')">
                                     Highway Name is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                            </mat-form-field>
                             </div>
                         </td>
                         <td align="left">
-                            <span><span class="required">Caution Amount
-                                </span></span>
+                            <span><label class="required">Caution Amount
+                            </label></span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="cautionAmount" required>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.cautionAmount.hasError('required')">
+                                <mat-form-field appearance="outline">
+                                <input matInput type="text"  formControlName="cautionAmount" required>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.cautionAmount.hasError('required')">
                                     Caution Amount is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
 
@@ -229,74 +263,82 @@
 
                     <tr>
                         <td align="left">
-                            <span><span class="required">Monthly HSD Sale
-                                </span></span>
+                            <span><label class="required">Monthly HSD Sale
+                            </label></span>
                                 <p style="font-size: 11px;">(3 months average in KL)</p>
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="monthlyHSDSale" required>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.monthlyHSDSale.hasError('required')">
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="monthlyHSDSale" required>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.monthlyHSDSale.hasError('required')">
                                     Monthly HSD Sale is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
                         <td align="left">
-                            <span><span class="required">SBU Type
-                                </span></span>
+                            <span><label class="required">SBU Type
+                            </label></span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <select class="form-control" formControlName="sbuType" required>
-                                    <option value="select">select</option>
-                                    <option value="Retails">Retails</option>
-                                    <option value="LPG">LPG</option>
-                                    <option value="LUBE">LUBE</option>
-                                </select>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.sbuType.hasError('required')">
+                                <mat-form-field appearance="outline">
+                                <mat-select formControlName="sbuType" required>
+                                    <!-- <mat-option value="select">select</mat-option> -->
+                                    <mat-option value="Retails">Retails</mat-option>
+                                    <mat-option value="LPG">LPG</mat-option>
+                                    <mat-option value="LUBE">LUBE</mat-option>
+                                </mat-select>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.sbuType.hasError('required')">
                                     SBU Type is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                            </mat-form-field>
                             </div>
                         </td>
 
                     </tr>
                     <tr>
                         <td align="left">
-                            <span><span class="required">Pan Card Number
-                                </span></span>
+                            <span><label class="required">Pan Card Number
+                            </label></span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" minlength="10" maxlength="10" class="form-control" formControlName="panNumber" required>
+                                <mat-form-field appearance="outline">
+                                <input matInput type="text" minlength="10" maxlength="10" formControlName="panNumber" required>
 
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.panNumber.hasError('pattern')">
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.panNumber.hasError('pattern')">
                                     Pan Number is <strong>invalid!</strong>
-                                </span>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.panNumber.hasError('required')">
+                                </mat-error>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.panNumber.hasError('required')">
                                     Pan Number is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                            </mat-form-field>
                             </div>
                         </td>
                         <td align="left">
-                            <span><span class="required">GST Number
-                                </span></span>
+                            <span><label class="required">GST Number
+                            </label></span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" minlength="15" maxlength="15" class="form-control" formControlName="gstNumber" required>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.gstNumber.hasError('pattern')">
+                                <mat-form-field appearance="outline">
+                                <input matInput type="text" minlength="15" maxlength="15" formControlName="gstNumber" required>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.gstNumber.hasError('pattern')">
                                     GST Number is <strong>invalid!</strong>
-                                </span>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.gstNumber.hasError('required')">
+                                </mat-error>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.gstNumber.hasError('required')">
                                     GST Number is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
 
@@ -317,77 +359,85 @@
 
                     <tr>
                         <td align="left">
-                            <span><span class="required">Zonal Office
-                                </span>:</span>
+                            <span><label class="required">Zonal Office
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <select class="form-control" formControlName="zonalOffice" required>
-                                    <option [value]="zonalOffice.zone_Code" *ngFor="let zonalOffice of zonalOffices">
-                                        {{zonalOffice.zone_Name}}</option>
-                                </select>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.zonalOffice.hasError('required')">
+                                <mat-form-field appearance="outline">
+                                <mat-select formControlName="zonalOffice" required>
+                                    <mat-option [value]="zonalOffice.zone_Code" *ngFor="let zonalOffice of zonalOffices">
+                                        {{zonalOffice.zone_Name}}</mat-option>
+                                </mat-select>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.zonalOffice.hasError('required')">
                                     Zonal Office is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
 
 
 
                         <td align="left">
-                            <span><span class="required">Regional Office
-                                </span>:</span>
+                            <span><label class="required">Regional Office
+                            </label>:</span>
 
                         </td>
                         <td>
 
                             <div class="form-group">
-                                <select class="form-control" formControlName="regionalOffice" required>
-                                    <option [value]="regionalOffice.rO_Code"
+                                <mat-form-field appearance="outline">
+                                <mat-select formControlName="regionalOffice" required>
+                                    <mat-option [value]="regionalOffice.rO_Code"
                                         *ngFor="let regionalOffice of regionalOffices">{{regionalOffice.rO_Name}}
-                                    </option>
-                                </select>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.regionalOffice.hasError('required')">
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.regionalOffice.hasError('required')">
                                     Regional Office is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td align="left">
-                            <span><span class="required">Sales Area
-                                </span>:</span>
+                            <span><label class="required">Sales Area
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <select class="form-control" formControlName="salesArea" required>
-                                    <option [value]="salesArea.district_Name"
+                                <mat-form-field appearance="outline">
+                                <mat-select formControlName="salesArea" required>
+                                    <mat-option [value]="salesArea.district_Code"
                                         *ngFor="let salesArea of salesAreaDropdownValues">{{salesArea.district_Name}}
-                                    </option>
-                                </select>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.salesArea.hasError('required')">
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.salesArea.hasError('required')">
                                     Sales Area is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
 
 
 
                         <td align="left">
-                            <span><span class="required">ERP Code
-                                </span>:</span>
+                            <span><label class="required">ERP Code
+                            </label>:</span>
 
                         </td>
                         <td>
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="erpCode" required maxlength="8">
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.erpCode.hasError('required')">
+                                <mat-form-field appearance="outline">
+                                <input matInput type="text" formControlName="erpCode" required maxlength="8">
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.erpCode.hasError('required')">
                                     ERP Code is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
                     </tr>
@@ -404,31 +454,35 @@
 
                     <tr>
                         <td align="left">
-                            <span><span class="required">First Name
-                                </span>:</span>
+                            <span><label class="required">First Name
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="firstName" required>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.firstName.hasError('required')">
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="firstName" required>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.firstName.hasError('required')">
                                     First Name is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
                         <td align="left">
-                            <span><span class="required">Last Name
-                                </span>:</span>
+                            <span><label class="required">Last Name
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="lastName" required>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.lastName.hasError('required')">
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="lastName" required>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.lastName.hasError('required')">
                                     Last Name is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
 
@@ -437,34 +491,38 @@
                     </tr>
                     <tr>
                         <td align="left">
-                            <span><span class="required">Mobile
-                                </span>:</span>
+                            <span><label class="required">Mobile
+                            </label>:</span>
 
                         </td>
                         <td>
 
                             <div class="form-group">
-                                <input type="text" class="form-control" maxlength="10" minlength="10" formControlName="mobile" required>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.mobile.hasError('required')">
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput maxlength="10" minlength="10" formControlName="mobile" required>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.mobile.hasError('required')">
                                     Mobile is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
                         <td align="left">
-                            <span><span class="required">Email
-                                </span>:</span>
+                            <span><label class="required">Email
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="email" required>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.email.hasError('required')">
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="email" required>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.email.hasError('required')">
                                     Email is <strong>required!</strong>
-                                </span>
-                                <span style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.email.hasError('email')">
+                                </mat-error>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.email.hasError('email')">
                                     Email is <strong>invalid!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
 
@@ -604,40 +662,45 @@
 
 
                         <td align="left">
-                            <span><span class="required">State
-                                </span>:</span>
+                            <span><label class="required">State
+                            </label>:</span>
 
                         </td>
                         <td>
 
                             <div class="form-group">
-                                <select class="form-control" formControlName="permState">
-                                    <option [value]="state.stateCode" *ngFor="let state of statesDropdownValues">
-                                        {{state.state_Name}}</option>
-                                </select>
-                                <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permState.hasError('required')">
-                                    State is <strong>required!</strong>
-                                </span>
+                                <mat-form-field appearance="outline">
+                                    <mat-select (selectionChange)="onSelectState($event.value)" formControlName="permState">
+                                        <mat-option [value]="state.stateCode" *ngFor="let state of statesDropdownValues">
+                                            {{state.state_Name}}</mat-option>
+                                    </mat-select>
+                                    <mat-error style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permState.hasError('required')">
+                                        State is <strong>required!</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                                
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td align="left">
-                            <span><span class="required">District
-                                </span>:</span>
+                            <span><label class="required">District
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <select class="form-control" formControlName="permDistrict">
-                                    <option [value]="district.district_Code"
+                                <mat-form-field appearance="outline">
+                                <mat-select formControlName="permDistrict">
+                                    <mat-option [value]="district.district_Code"
                                         *ngFor="let district of districtDropdownValues">{{district.district_Name}}
-                                    </option>
-                                </select>
-                                <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permDistrict.hasError('required')">
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permDistrict.hasError('required')">
                                     District is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
 
@@ -900,6 +963,23 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    <tr>
+                        <td align="left">
+                            <span><span class="required">No. of Live Terminal(s)
+                                </span>:</span>
+
+                        </td>
+                        <td align="left">
+
+                            <div class="form-group">
+                                <input type="number" class="form-control" formControlName="NoofLiveTerminals">
+                                <span style="font-size:12px" class="text-danger" *ngIf="terminalDetailsFormGroup.controls.NoofLiveTerminals.hasError('required')">
+                                    No. of Live Terminal(s) is <strong>required!</strong>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <td align="left">
                             <span><span class="required">Terminal Type Requested
@@ -930,23 +1010,6 @@
                         </td>
 
                     </tr>
-                    <tr>
-                        <td align="left">
-                            <span><span class="required">No. of Live Terminal(s)
-                                </span>:</span>
-
-                        </td>
-                        <td align="left">
-
-                            <div class="form-group">
-                                <input type="number" class="form-control" formControlName="NoofLiveTerminals">
-                                <span style="font-size:12px" class="text-danger" *ngIf="terminalDetailsFormGroup.controls.NoofLiveTerminals.hasError('required')">
-                                    No. of Live Terminal(s) is <strong>required!</strong>
-                                </span>
-                            </div>
-                        </td>
-                    </tr>
-
                     <tr>
                         <td align="right" colspan="4">
                             <div class=" d-flex flex-row justify-content-end">
