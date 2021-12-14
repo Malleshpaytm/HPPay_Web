@@ -1,10 +1,11 @@
 
 export class MerchantHelper {
   public static addMerchantMetadataToModels = (model) => {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     return {
       ...model,
-      merchantid: '3090000002',
-      userid: '3090000002',
+      merchantid: userInfo.userid,
+      userid: userInfo.userid,
       userip: '1',
       useragent: 'web',
     };

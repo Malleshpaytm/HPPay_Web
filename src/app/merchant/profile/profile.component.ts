@@ -31,15 +31,16 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-
-
-
   constructor(private merchantService: MerchantService) { }
 
   ngOnInit(): void {
     this.merchantService.getMerchantDetails(MerchantHelper.addMerchantMetadataToModels({})).subscribe(details => {
       this.merchantDetails = details;
     });
+  }
+
+  handleSaveDetails(){
+    this.merchantService.updateMerchantDetails(MerchantHelper.addMerchantMetadataToModels(this.merchantDetails)).subscribe();
   }
 
 }
