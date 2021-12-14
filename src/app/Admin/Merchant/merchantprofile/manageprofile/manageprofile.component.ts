@@ -43,6 +43,8 @@ export class ManageprofileComponent implements OnInit {
   zonalOffices: Array<any>;
   regionalOffices: Array<any>;
   salesAreaDropdownValues: Array<any>;
+  showHighwayNo:boolean=true;
+  showHighwayName:boolean=true;
   terminalTypeRadioButtonValue = 'GPRS Installation';
   public regexGstNo = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
   regexPanNo = /^[A-Za-z]{5}[0-9]{4}[A-Za-z]$/;
@@ -120,8 +122,9 @@ export class ManageprofileComponent implements OnInit {
       merchantType: ['', Validators.required],
       dealerName: [''], dealerMobile: [''],
       outletCategory: ['', Validators.required],
-      highwayNo: ['', Validators.required],
-      highwayName: ['', Validators.required],
+      HighwayNoSelect: [''],
+      HighwayNoName: [''],
+      HighwayName: [''],
       cautionAmount: ['', Validators.required],
       monthlyHSDSale: ['', Validators.required],
       sbuType: ['', Validators.required],
@@ -169,7 +172,22 @@ export class ManageprofileComponent implements OnInit {
       //Terminal_Type: ['', Validators.required],
     });
   }
-
+  onSelectState(state_code){
+    this.getDistrictByState(state_code)
+  }
+  getDistrictByState(state_code){
+    let getDistrictByStateData={
+      "state_Code":state_code,
+      "useragent": "web",
+      "userip": "1",
+      "userid": "1"
+    }
+    this.adminService.getDistrictByState(getDistrictByStateData)
+      .subscribe(data => {
+        debugger;
+        this.districtDropdownValues = data.data;
+      });
+  }
   onAddMerchantClick() {
     debugger;
     //this.findInvalidControls()
@@ -205,12 +223,12 @@ export class ManageprofileComponent implements OnInit {
             "PANNo": this.basicInformationFormGroup.controls.panNumber.value,
             "GSTNo": this.basicInformationFormGroup.controls.gstNumber.value,
             "Dealer_name": this.basicInformationFormGroup.controls.dealerName.value,
-            "Highway_Name": this.basicInformationFormGroup.controls.highwayName.value,
-            "Highway_No": this.basicInformationFormGroup.controls.highwayNo.value,
-            "CautionAmt_DTP": "20000",
+            "Highway_Name": this.basicInformationFormGroup.controls.HighwayName.value,
+            "Highway_No": this.basicInformationFormGroup.controls.HighwayNoSelect.value +' ' +this.basicInformationFormGroup.controls.HighwayNoName.value,
+            "CautionAmt_DTP": this.basicInformationFormGroup.controls.cautionAmount.value,
             "CautionAmt_HP": this.basicInformationFormGroup.controls.cautionAmount.value,
-            "LPGSale": "1000",
-            "MSSale": "1000",
+            "LPGSale": "0",
+            "MSSale": "0",
             "SBU_TYpe": this.basicInformationFormGroup.controls.sbuType.value,
             "MonthlyHSD": this.basicInformationFormGroup.controls.monthlyHSDSale.value,
             "Zonal_Office": this.basicInformationFormGroup.controls.zonalOffice.value,
@@ -232,7 +250,7 @@ export class ManageprofileComponent implements OnInit {
             "CreatedBy": "13",
             "Merchant_Type_Id": this.basicInformationFormGroup.controls.merchantType.value,
             "comm_mobile": "0",
-            "Comm_Email": "test@test.com",
+            "Comm_Email": "0",
             "Name": this.basicInformationFormGroup.controls.firstName.value+' '+this.basicInformationFormGroup.controls.lastName.value,
             "email": this.basicInformationFormGroup.controls.email.value,
             "Mobile": this.basicInformationFormGroup.controls.mobile.value,
@@ -247,8 +265,8 @@ export class ManageprofileComponent implements OnInit {
               debugger;
               if (data.message.toUpperCase() === 'RECORD FOUND') {
                 debugger;
-                this.openDialog(`Merchant Id (${data.data[0].merchant_Id}) created successfully`)
-                //this.toastr.success(data.data[0].reason);
+                this.openDialog(`Merchant Id (${data.data[0].merchant_Id}) created successfully`);
+                this._document.defaultView.location.reload();
                
               }
               else if (data.status_Code === 401) {
@@ -330,6 +348,29 @@ export class ManageprofileComponent implements OnInit {
     //this.terminalDetailsFormGroup.controls.Terminal_Type.setValue(event);
 
   }
+  onSelectOutletCategory(event){
+    debugger;
+    if(event.value.toUpperCase()==='OTHERS' || 
+    event.value.toUpperCase()==='URBAN' || 
+    event.value.toUpperCase()==='RURAL'){
+    
+      this.showHighwayNo=false;
+      this.showHighwayName=false;
+      this.basicInformationFormGroup.controls.HighwayNoSelect.clearValidators();
+      this.basicInformationFormGroup.controls.HighwayNoName.clearValidators();
+      this.basicInformationFormGroup.controls.HighwayNoSelect.setValue('');
+      this.basicInformationFormGroup.controls.HighwayNoName.setValue('');
+      this.basicInformationFormGroup.controls.HighwayName.setValue('');
+    }
+    
+    else{
+      this.showHighwayNo=true;
+      this.showHighwayName=true;
+      this.basicInformationFormGroup.controls.HighwayNoSelect.setValidators([Validators.required]);
+      this.basicInformationFormGroup.controls.HighwayNoName.setValidators([Validators.required]);
+    }
+    
+  }
   getDropdownValues() {
     debugger;
     //merchant type
@@ -394,26 +435,26 @@ export class ManageprofileComponent implements OnInit {
           console.log(err);
         });
     //district
-    let districtData = {
-      "Useragent": "web",
-      "Userip": "1",
-      "Userid": "1"
-    }
-    this.adminService.getDistrict(districtData)
-      .subscribe(data => {
-        if (data.message.toUpperCase() === 'RECORD FOUND') {
-          debugger;
-          this.districtDropdownValues = data.data;
-        }
-        else if (data.status_Code === 401) {
-          this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
-          this.router.navigate(['/'])
-        }
-      },
-        (err: HttpErrorResponse) => {
-          console.log(err);
-        }
-      );
+    // let districtData = {
+    //   "Useragent": "web",
+    //   "Userip": "1",
+    //   "Userid": "1"
+    // }
+    // this.adminService.getDistrict(districtData)
+    //   .subscribe(data => {
+    //     if (data.message.toUpperCase() === 'RECORD FOUND') {
+    //       debugger;
+    //       this.districtDropdownValues = data.data;
+    //     }
+    //     else if (data.status_Code === 401) {
+    //       this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+    //       this.router.navigate(['/'])
+    //     }
+    //   },
+    //     (err: HttpErrorResponse) => {
+    //       console.log(err);
+    //     }
+    //   );
     //zonal office
     let zonalOfficeData = {
       "Useragent": "web",
