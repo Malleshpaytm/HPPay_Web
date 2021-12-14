@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { GlobalConstants } from '../shared/helpers/global-constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BaseHttpService {
-  api_key = `1BA280E6-BAD6-4AD8-9C2B-6CD5777F517B`;
   authToken = 'Bearer ' + localStorage.getItem('token');
   hpPayApiRoot = environment.hpPayApiRoot;
   constructor(readonly httpClient: HttpClient) {}
@@ -40,6 +40,6 @@ export class BaseHttpService {
     return headers
       .set('Content-Type', 'application/json')
       .set('Authorization', this.authToken)
-      .set('API_Key', this.api_key);
+      .set('API_Key', GlobalConstants.API_KEY);
   }
 }

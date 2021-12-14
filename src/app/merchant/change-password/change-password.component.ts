@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { MerChangePasswordPayload } from 'src/app/models/mer-change-password-payload';
 import { MerchantService } from 'src/app/services/merchant/merchant.service';
+import { MerchantHelper } from 'src/app/shared/helpers/merchant.helper';
 
 @Component({
   selector: 'app-change-password',
@@ -16,17 +17,17 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.changePasswordModel = new MerChangePasswordPayload();
-    this.changePasswordModel.merchantid = 3090000002;
-    this.changePasswordModel.userid = "3090000002";
-    this.changePasswordModel.userip = '1';
-    this.changePasswordModel.useragent = 'web';
-
+    this.changePasswordModel = MerchantHelper.addMerchantMetadataToModels(this.changePasswordModel);
   }
 
   handleSubmit() {
     if (this.isValid()) {
-      this.merchantService.changeMerchantPassword(this.changePasswordModel).subscribe(_ => {
-        console.log(_);
+      this.merchantService.changeMerchantPassword(this.changePasswordModel).subscribe(resp => {
+        if(resp.data && resp.data[0].status === 1) {
+          this.toastrService.success(resp.data[0].reason);
+        } else {
+          this.toastrService.error(resp.data[0].reason);
+        }
       });
     }
   }
