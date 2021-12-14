@@ -1,5 +1,8 @@
 export class MerChangePasswordPayload {
-  merchantId: any;
+  merchantid: any;
   oldpassword: string;
   newpassword: string;
+  useragent: string;
+  userip: string;
+  userid: any;
 }

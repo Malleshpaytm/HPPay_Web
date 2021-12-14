@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { MerchantDetails } from 'src/app/models/merchant-details';
+import { MerchantService } from 'src/app/services/merchant/merchant.service';
+import { MerchantHelper } from 'src/app/shared/helpers/merchant.helper';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +17,8 @@ export class ProfileComponent implements OnInit {
   isShowing = false;
   showSubSubMenu: boolean = false;
 
+  merchantDetails: MerchantDetails = new MerchantDetails();
+
   mouseenter() {
     if (!this.isExpanded) {
       this.isShowing = true;
@@ -25,9 +30,16 @@ export class ProfileComponent implements OnInit {
       this.isShowing = false;
     }
   }
-  constructor() { }
+
+
+
+
+  constructor(private merchantService: MerchantService) { }
 
   ngOnInit(): void {
+    this.merchantService.getMerchantDetails(MerchantHelper.addMerchantMetadataToModels({})).subscribe(details => {
+      this.merchantDetails = details;
+    });
   }
 
 }
