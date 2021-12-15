@@ -7,7 +7,7 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css'],
 })
-export class SidenavComponent implements OnInit, AfterViewInit {
+export class SidenavComponent implements OnInit {
   @ViewChild(MatMenuTrigger) triggerBtn: MatMenuTrigger;
   items: MenuItem[];
   constructor() {}
@@ -76,7 +76,5 @@ export class SidenavComponent implements OnInit, AfterViewInit {
     ];
   }
 
-  ngAfterViewInit() {
-    this.triggerBtn.openMenu();
-  }
+
 }

@@ -1,344 +1,289 @@
-<div class="profile-heading">
-  <h2 style="padding-top: 14px; padding-left: 14px">Details</h2>
-</div>
-<mat-horizontal-stepper [linear]="isLinear" #stepper labelPosition="bottom">
-  <mat-step label="Basic Information">
-    <div class="form">
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">Merchant Type </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.merchant_Type_Id"
-            required
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">Outlet Category </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.outlet_Category"
-            required
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">Retail Outlet Name </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.outletName"
-            required
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">Merchant Name </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.dealer_name"
-            required
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">Highway Name </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.highway_Name"
-            required
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">Monthly HSD Sale </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.monthlyHSD"
-            required
-          />
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">Merchant Id </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.merchantid"
-            required
-          />
-        </div>
-      </div>
-    </div>
-  </mat-step>
-  <mat-step label="Retail Outlet Address">
-    <div class="form">
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">State </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.perm_State"
-            required
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">City </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.perm_City"
-            required
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">District </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.perm_District"
-            required
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">Address 1 </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.perm_Address1"
-            required
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">Address 2 </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.perm_Address2"
-            required
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">Address 3 </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.perm_Address3"
-            required
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">Pin </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.perm_PIN_Code"
-            required
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">Phone Office </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.perm_Ph_Off"
-            required
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <span><span class="required">Fax </span>:</span>
-        </div>
-
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="merchantDetails.perm_fax"
-            required
-          />
-        </div>
-      </div>
-    </div>
-  </mat-step>
-  <mat-step label="Business Details">
-    <div class="row">
-      <div class="col-4">
-        <span><span class="required">Zonal Office </span>:</span>
-      </div>
-
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="merchantDetails.zonal_Office"
-          required
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-4">
-        <span><span class="required">Regional Office </span>:</span>
-      </div>
-
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="merchantDetails.regional_Office"
-          required
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-4">
-        <span><span class="required">ERP Code </span>:</span>
-      </div>
-
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="merchantDetails.erP_Code"
-          required
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-4">
-        <span><span class="required">Sales Area </span>:</span>
-      </div>
-
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="merchantDetails.salesArea"
-          required
-        />
-      </div>
-    </div>
-  </mat-step>
-  <mat-step label="Contact Person Details">
-    <div class="row">
-      <div class="col-4">
-        <span><span class="required">Name </span>:</span>
-      </div>
-
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="merchantDetails.name"
-          required
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-4">
-        <span><span class="required">Mobile </span>:</span>
-      </div>
-
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="merchantDetails.mobile"
-          required
-        />
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-4">
-        <span><span class="required">Email </span>:</span>
-      </div>
-
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="merchantDetails.email"
-          required
-        />
-      </div>
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
-<div class="row d-flex flex-row-reverse">
+<div class="row d-flex flex-row-reverse p-2" style="margin-right: 10px">
   <button class="btn btn-primary" (click)="handleSaveDetails()">Save</button>
 </div>
+<p-panel header="Basic Information" [toggleable]="true">
+  <div class="form">
+    <div class="row">
+      <div class="col-3">
+        <span><span class="required">Merchant Type </span>:</span>
+      </div>
+      <div class="form-group col-3">
+        <p-dropdown [options]="merchantTypeList" [(ngModel)]="merchantDetails.merchant_Type_Id" optionLabel="merchant_Type_Name" optionValue="merchant_Type_Id"></p-dropdown>
+
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">Outlet Category </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="merchantDetails.outlet_Category"
+          required
+        />
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">Retail Outlet Name </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="merchantDetails.outletName"
+          required
+        />
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">Merchant Name </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="merchantDetails.dealer_name"
+          required
+        />
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">Highway Name </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="merchantDetails.highway_Name"
+          required
+        />
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">Monthly HSD Sale </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="merchantDetails.monthlyHSD"
+          required
+        />
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">Merchant Id </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="merchantDetails.merchantid"
+          required
+        />
+      </div>
+    </div>
+  </div>
+</p-panel>
+<p-panel header="Retail Outlet Address" [toggleable]="true">
+  <div class="form">
+    <div class="row">
+      <div class="col-3">
+        <span><span class="required">State </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <p-dropdown [options]="stateList" [(ngModel)]="merchantDetails.perm_State" optionLabel="state_Name" optionValue="stateCode"></p-dropdown>
+
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">City </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <p-dropdown [options]="cityList" [(ngModel)]="merchantDetails.perm_City" optionLabel="city_Name" optionValue="city_Id"></p-dropdown>
+
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">District </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <p-dropdown [options]="districtList" [(ngModel)]="merchantDetails.perm_District" optionLabel="district_Name" optionValue="district_Code"></p-dropdown>
+
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">Address 1 </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="merchantDetails.perm_Address1"
+          required
+        />
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">Address 2 </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="merchantDetails.perm_Address2"
+          required
+        />
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">Address 3 </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="merchantDetails.perm_Address3"
+          required
+        />
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">Pin </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="merchantDetails.perm_PIN_Code"
+          required
+        />
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">Phone Office </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="merchantDetails.perm_Ph_Off"
+          required
+        />
+      </div>
+
+      <div class="col-3">
+        <span><span class="required">Fax </span>:</span>
+      </div>
+
+      <div class="form-group col-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="merchantDetails.perm_fax"
+          required
+        />
+      </div>
+    </div>
+  </div>
+</p-panel>
+<p-panel header="Business Details" [toggleable]="true">
+  <div class="row">
+    <div class="col-3">
+      <span><span class="required">Zonal Office </span>:</span>
+    </div>
+
+    <div class="form-group col-3">
+      <p-dropdown [options]="zonalOfficeList" [(ngModel)]="merchantDetails.zonal_Office" optionLabel="zone_Name" optionValue="zone_Code"></p-dropdown>
+
+    </div>
+
+    <div class="col-3">
+      <span><span class="required">Regional Office </span>:</span>
+    </div>
+
+    <div class="form-group col-3">
+      <p-dropdown [options]="regionalOfficeList" [(ngModel)]="merchantDetails.regional_Office" optionLabel="rO_Name" optionValue="rO_Code"></p-dropdown>
+
+    </div>
+
+    <div class="col-3">
+      <span><span class="required">ERP Code </span>:</span>
+    </div>
+
+    <div class="form-group col-3">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="merchantDetails.erP_Code"
+        required
+      />
+    </div>
+
+    <div class="col-3">
+      <span><span class="required">Sales Area </span>:</span>
+    </div>
+
+    <div class="form-group col-3">
+      <p-dropdown [options]="salesAreaList" [(ngModel)]="merchantDetails.salesArea" optionLabel="district_Name" optionValue="district_Code"></p-dropdown>
+
+    </div>
+  </div>
+</p-panel>
+<p-panel header="Contact Person Details" [toggleable]="true">
+  <div class="row">
+    <div class="col-3">
+      <span><span class="required">Name </span>:</span>
+    </div>
+
+    <div class="form-group col-3">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="merchantDetails.name"
+        required
+      />
+    </div>
+
+    <div class="col-3">
+      <span><span class="required">Mobile </span>:</span>
+    </div>
+
+    <div class="form-group col-3">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="merchantDetails.mobile"
+        required
+      />
+    </div>
+
+    <div class="col-3">
+      <span><span class="required">Email </span>:</span>
+    </div>
+
+    <div class="form-group col-3">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="merchantDetails.email"
+        required
+      />
+    </div>
+  </div>
+</p-panel>
