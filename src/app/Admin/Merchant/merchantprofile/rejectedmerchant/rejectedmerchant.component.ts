@@ -23,7 +23,9 @@ export class RejectedmerchantComponent implements OnInit {
   public pageSize: number = 2;
   isshow: number = 0;
   rejectedMerchantListFormGroup: FormGroup;
-  constructor(private router: Router, private modalService: NgbModal, private fb: FormBuilder, private adminService: AdminService, private toastr: ToastrService) { }
+  rejectedMerchantData:Array<any>;
+  constructor(private router: Router, private modalService: NgbModal, private fb: FormBuilder, 
+    private adminService: AdminService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.rejectedMerchantListFormGroup = this.fb.group({
@@ -44,6 +46,8 @@ export class RejectedmerchantComponent implements OnInit {
       .subscribe(data => {
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           debugger;
+          this.isshow=1;
+          this.rejectedMerchantData=data.data;
           //this.merchantTypes = data.data;
         }
         else if (data.status_Code === 401) {
@@ -60,6 +64,7 @@ export class RejectedmerchantComponent implements OnInit {
   }
   Reset() {
     this.isshow = 0;
+    this.rejectedMerchantListFormGroup.reset();
   }
 
   GetManageUserData() {

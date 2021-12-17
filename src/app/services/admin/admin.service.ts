@@ -149,7 +149,12 @@ export class AdminService {
     const body=JSON.stringify(customerRegistrationData);
     return this.service.post(path,body);
   }
-
+  checkMobileNo(checkMobileNoData): Observable<any> {
+    let path = '/hppay/login/check_mobileno';
+    const body=JSON.stringify(checkMobileNoData);
+    return this.service.post(path,body);
+  }
+  
   updateCustomerProfile(updateCustomerProfileData): Observable<any> {
     let path = '/hppay/user/edit_new_user_web';
     const body=JSON.stringify(updateCustomerProfileData);
@@ -182,6 +187,12 @@ export class AdminService {
   getSalesArea(getSalesAreaData): Observable<any> {
     let path = '/hppay/settings/get_sales_area';
     const body=JSON.stringify(getSalesAreaData);
+    return this.service.post(path,body);
+  }
+
+  viewCcmsRecharge(viewCcmsRechargeData): Observable<any> {
+    let path = '/hppay/transaction/view_ccms_recharge';
+    const body=JSON.stringify(viewCcmsRechargeData);
     return this.service.post(path,body);
   }
 

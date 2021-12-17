@@ -95,7 +95,7 @@ export class ViewOrUpdateCustomerDetailsComponent implements OnInit {
         debugger;
         if(data.message.toUpperCase()==='RECORD FOUND'){
           this.toastr.success(data.data[0].reason);
-          this.router.navigate(['../managecustomer']);
+          this.router.navigate(['admin/HPPayCustomer/managecustomer']);
         }
         
         else if(data.status_Code===401){

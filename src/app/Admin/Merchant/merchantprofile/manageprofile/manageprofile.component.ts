@@ -4,7 +4,7 @@ import { invalid } from '@angular/compiler/src/render3/view/util';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/services/admin/admin.service';
@@ -43,75 +43,35 @@ export class ManageprofileComponent implements OnInit {
   zonalOffices: Array<any>;
   regionalOffices: Array<any>;
   salesAreaDropdownValues: Array<any>;
-  showHighwayNo:boolean=true;
-  showHighwayName:boolean=true;
+  showHighwayNo: boolean = true;
+  showHighwayName: boolean = true;
   terminalTypeRadioButtonValue = 'GPRS Installation';
   public regexGstNo = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
   regexPanNo = /^[A-Za-z]{5}[0-9]{4}[A-Za-z]$/;
   searchMerchantId: number;
-  merchantSearchData: {
-    cautionAmt_DTP: number
-    cautionAmt_HP: number
-    comm_Address1: ""
-    comm_Address2: ""
-    comm_Address3: ""
-    comm_City: null
-    comm_District: string
-    comm_Email: ""
-    comm_Fax: number
-    comm_Location: ""
-    comm_Mobile: ""
-    comm_PIN_Code: string
-    comm_Ph_Off: string
-    comm_State: string
-    comm_std_code: string
-    createdBy: number
-    dealer_name: ""
-    email: ""
-    erP_Code: ""
-    groupid: number
-    groupname: ""
-    gstNo: ""
-    highway_Name: ""
-    highway_No: ""
-    lpgSale: number
-    merchant_Type_Id: ""
-    merchantid: number
-    mobile: ""
-    monthlyHSD: ""
-    msSale: number
-    name: ""
-    noofLiveTerminals: number
-    outletName: ""
-    outlet_Category: ""
-    panNo: ""
-    perm_Address1: ""
-    perm_Address2: ""
-    perm_Address3: ""
-    perm_City: ""
-    perm_District: ''
-    perm_Location: ""
-    perm_PIN_Code: ""
-    perm_Ph_Off: ""
-    perm_State: ""
-    perm_fax: ""
-    perm_std_code: ""
-    regional_Office: ''
-    salesArea: ""
-    sbU_TYpe: ""
-    store_password: ""
-    terminal_Type: ""
-
-  }
+  merchantSearchData: any;
+  merchantid = '';
+  isReject: boolean = false;
   constructor(@Inject(DOCUMENT) private _document: Document, private router: Router,
     private modalService: NgbModal, private fb: FormBuilder, private adminService: AdminService,
-    private toastr: ToastrService, public dialog: MatDialog) { }
+    private toastr: ToastrService, public dialog: MatDialog, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.createForm();
+
+    this.route.queryParams
+      .subscribe(params => {
+        debugger;
+        this.merchantid = params.merchantid;
+        this.isReject = params.isReject;
+
+      })
+    if (this.isReject) {
+      this.AddMerchant();
+      debugger;
+      this.onSearchMechantClick(this.merchantid)
+    }
     this.getDropdownValues();
-
-
   }
   createForm() {
     this.ViewProfileGroup = this.fb.group({
@@ -125,7 +85,8 @@ export class ManageprofileComponent implements OnInit {
       HighwayNoSelect: [''],
       HighwayNoName: [''],
       HighwayName: [''],
-      cautionAmount: ['', Validators.required],
+      cautionAmountDTP: ['', Validators.required],
+      cautionAmountHP: ['', Validators.required],
       monthlyHSDSale: ['', Validators.required],
       sbuType: ['', Validators.required],
       panNumber: ['', Validators.compose([Validators.required, Validators.pattern(this.regexPanNo)])],
@@ -143,6 +104,7 @@ export class ManageprofileComponent implements OnInit {
 
     });
     this.contactDetailsFormGroup = this.fb.group({
+      checkboxRetails:[''],
       permAddress1: ['', Validators.required],
       permAddress2: ['', Validators.required],
       permAddress3: [''],
@@ -172,12 +134,12 @@ export class ManageprofileComponent implements OnInit {
       //Terminal_Type: ['', Validators.required],
     });
   }
-  onSelectState(state_code){
+  onSelectState(state_code) {
     this.getDistrictByState(state_code)
   }
-  getDistrictByState(state_code){
-    let getDistrictByStateData={
-      "state_Code":state_code,
+  getDistrictByState(state_code) {
+    let getDistrictByStateData = {
+      "state_Code": state_code,
       "useragent": "web",
       "userip": "1",
       "userid": "1"
@@ -215,18 +177,18 @@ export class ManageprofileComponent implements OnInit {
             "perm_City": this.contactDetailsFormGroup.controls.permCity.value,
             "perm_State": this.contactDetailsFormGroup.controls.permState.value,
             "Perm_PIN_Code": this.contactDetailsFormGroup.controls.permPincode.value,
-            "Perm_std_code": this.contactDetailsFormGroup.controls.Perm_std_code.value?this.contactDetailsFormGroup.controls.Perm_std_code.value:0,
+            "Perm_std_code": this.contactDetailsFormGroup.controls.Perm_std_code.value ? this.contactDetailsFormGroup.controls.Perm_std_code.value : 0,
             "Perm_Ph_Off": this.contactDetailsFormGroup.controls.permPhoneOffice.value,
-            "Perm_fax": this.contactDetailsFormGroup.controls.permFax.value?this.contactDetailsFormGroup.controls.permFax.value:0,
+            "Perm_fax": this.contactDetailsFormGroup.controls.permFax.value ? this.contactDetailsFormGroup.controls.permFax.value : 0,
             "ERP_Code": this.basicInformationFormGroup.controls.erpCode.value,
             "Outlet_Category": this.basicInformationFormGroup.controls.outletCategory.value,
             "PANNo": this.basicInformationFormGroup.controls.panNumber.value,
             "GSTNo": this.basicInformationFormGroup.controls.gstNumber.value,
             "Dealer_name": this.basicInformationFormGroup.controls.dealerName.value,
             "Highway_Name": this.basicInformationFormGroup.controls.HighwayName.value,
-            "Highway_No": this.basicInformationFormGroup.controls.HighwayNoSelect.value +' ' +this.basicInformationFormGroup.controls.HighwayNoName.value,
-            "CautionAmt_DTP": this.basicInformationFormGroup.controls.cautionAmount.value,
-            "CautionAmt_HP": this.basicInformationFormGroup.controls.cautionAmount.value,
+            "Highway_No": this.basicInformationFormGroup.controls.HighwayNoSelect.value + ' ' + this.basicInformationFormGroup.controls.HighwayNoName.value,
+            "CautionAmt_DTP": this.basicInformationFormGroup.controls.cautionAmountDTP.value,
+            "CautionAmt_HP": this.basicInformationFormGroup.controls.cautionAmountHP.value,
             "LPGSale": "0",
             "MSSale": "0",
             "SBU_TYpe": this.basicInformationFormGroup.controls.sbuType.value,
@@ -251,13 +213,13 @@ export class ManageprofileComponent implements OnInit {
             "Merchant_Type_Id": this.basicInformationFormGroup.controls.merchantType.value,
             "comm_mobile": "0",
             "Comm_Email": "0",
-            "Name": this.basicInformationFormGroup.controls.firstName.value+' '+this.basicInformationFormGroup.controls.lastName.value,
+            "Name": this.basicInformationFormGroup.controls.firstName.value + ' ' + this.basicInformationFormGroup.controls.lastName.value,
             "email": this.basicInformationFormGroup.controls.email.value,
             "Mobile": this.basicInformationFormGroup.controls.mobile.value,
             "groupid": "1",
             "groupname": "HPCL",
-            "store_password": "12345678"
-
+            "store_password": "12345678",
+            "dealer_Mobile": this.basicInformationFormGroup.controls.dealerMobile.value,
 
           }
           this.adminService.createMerchant(createMerchantData)
@@ -266,8 +228,8 @@ export class ManageprofileComponent implements OnInit {
               if (data.message.toUpperCase() === 'RECORD FOUND') {
                 debugger;
                 this.openDialog(`Merchant Id (${data.data[0].merchant_Id}) created successfully`);
-                this._document.defaultView.location.reload();
-               
+
+
               }
               else if (data.status_Code === 401) {
                 this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
@@ -282,7 +244,7 @@ export class ManageprofileComponent implements OnInit {
         }
       })
     }
-    else{
+    else {
       this.toastr.error("Invalid Form!")
       //let sinvalid=invalid.toString()
       //this.toastr.error(`Please fill the form properly! ${sinvalid}`)
@@ -295,25 +257,45 @@ export class ManageprofileComponent implements OnInit {
       "useragent": "web",
       "userip": "1",
       "userid": "1",
-      "merchantid": this.ViewProfileGroup.controls.merchantId.value,
+      "merchantid": merchantid,
     }
     this.adminService.searchMerchantByMerchantId(getMerchantData)
       .subscribe(data => {
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           this.AddMerchant();
+          this.getDropdownValues();
+          
           this.merchantSearchData = data.data[0];
-          this.searchMerchantId = this.merchantSearchData.merchantid;
+          this.basicInformationFormGroup.controls.retailOutletName.setValue(data.data[0].outletName);
+          this.basicInformationFormGroup.controls.dealerName.setValue(data.data[0].dealer_name);
+          this.basicInformationFormGroup.controls.dealerMobile.setValue(data.data[0].dealer_Mobile);
+          
+          this.basicInformationFormGroup.controls.outletCategory.setValue(data.data[0].outlet_Category);
+          this.onSelectOutletCategory(data.data[0].outlet_Category);
+          this.basicInformationFormGroup.controls.HighwayNoName.setValue(data.data[0].highway_No);
+          this.basicInformationFormGroup.controls.HighwayName.setValue(data.data[0].highway_Name);
+          this.basicInformationFormGroup.controls.cautionAmountDTP.setValue(data.data[0].cautionAmt_dtp);
+          this.basicInformationFormGroup.controls.cautionAmountHP.setValue(data.data[0].cautionAmt_hp);
+          this.basicInformationFormGroup.controls.monthlyHSDSale.setValue(data.data[0].monthlyHSD);
+          this.basicInformationFormGroup.controls.sbuType.setValue(data.data[0].sbU_TYpe);
+          this.basicInformationFormGroup.controls.panNumber.setValue(data.data[0].panNo);
+          this.basicInformationFormGroup.controls.gstNumber.setValue(data.data[0].gstNo),
+            this.basicInformationFormGroup.controls.erpCode.setValue(data.data[0].erP_Code),
+            this.basicInformationFormGroup.controls.mobile.setValue(data.data[0].mobile),
+            this.basicInformationFormGroup.controls.email.setValue(data.data[0].email),
+            //this.basicInformationFormGroup.controls.erpCode.setValue(data.data[0].erP_Code),
+            this.searchMerchantId = this.merchantSearchData.merchantid;
           this.contactDetailsFormGroup.controls.permAddress1.setValue(this.merchantSearchData.perm_Address1),
             this.contactDetailsFormGroup.controls.permAddress2.setValue(this.merchantSearchData.perm_Address2),
             this.contactDetailsFormGroup.controls.permAddress3.setValue(this.merchantSearchData.perm_Address3),
-            this.basicInformationFormGroup.controls.retailOutletName.setValue(data.data[0].outletName);
-          this.basicInformationFormGroup.controls.merchantType.setValue(this.merchantTypes[0].merchant_Type_Name)
-          // this.merchantTypes.forEach(ele=>{
-          //   if(ele.merchant_Type_Name===this.merchantSearchData.merchant_Type_Id){
-          //     this.basicInformationFormGroup.controls.merchantType.setValue(ele.merchant_Type_Name)
-          //   }
-          // })
-          this.contactDetailsFormGroup.controls.Comm_Address1.setValue(this.merchantSearchData.comm_Address1),
+
+            //this.basicInformationFormGroup.controls.merchantType.setValue(this.merchantTypes[0].merchant_Type_Name)
+            // this.merchantTypes.forEach(ele=>{
+            //   if(ele.merchant_Type_Name===this.merchantSearchData.merchant_Type_Id){
+            //     this.basicInformationFormGroup.controls.merchantType.setValue(ele.merchant_Type_Name)
+            //   }
+            // })
+            this.contactDetailsFormGroup.controls.Comm_Address1.setValue(this.merchantSearchData.comm_Address1),
             this.contactDetailsFormGroup.controls.Comm_Address2.setValue(this.merchantSearchData.comm_Address2),
             this.contactDetailsFormGroup.controls.Comm_Address3.setValue(this.merchantSearchData.comm_Address3),
             this.contactDetailsFormGroup.controls.comm_City.setValue(this.merchantSearchData.comm_City),
@@ -323,7 +305,7 @@ export class ManageprofileComponent implements OnInit {
             this.contactDetailsFormGroup.controls.Comm_Location.setValue(this.merchantSearchData.comm_Location),
             // this.contactDetailsFormGroup.controls.commMobile.setValue(this.merchantSearchData.comm_Mobile),
             this.contactDetailsFormGroup.controls.Comm_PIN_Code.setValue(this.merchantSearchData.comm_PIN_Code),
-            this.contactDetailsFormGroup.controls.Comm_State.setValue(this.merchantSearchData.comm_State),
+            this.contactDetailsFormGroup.controls.comm_State.setValue(this.merchantSearchData.comm_State),
             this.contactDetailsFormGroup.controls.Comm_Ph_Off.setValue(this.merchantSearchData.comm_Ph_Off)
           // this.basicInformationFormGroup.controls.cautionAmt_HP.setValue(this.merchantSearchData.cautionAmt_HP),
           // this.basicInformationFormGroup.controls.cautionAmt_DTP.setValue(this.merchantSearchData.cautionAmt_DTP),
@@ -348,28 +330,28 @@ export class ManageprofileComponent implements OnInit {
     //this.terminalDetailsFormGroup.controls.Terminal_Type.setValue(event);
 
   }
-  onSelectOutletCategory(event){
+  onSelectOutletCategory(event) {
     debugger;
-    if(event.value.toUpperCase()==='OTHERS' || 
-    event.value.toUpperCase()==='URBAN' || 
-    event.value.toUpperCase()==='RURAL'){
-    
-      this.showHighwayNo=false;
-      this.showHighwayName=false;
+    if (event.toUpperCase() === 'OTHERS' ||
+      event.toUpperCase() === 'URBAN' ||
+      event.toUpperCase() === 'RURAL') {
+
+      this.showHighwayNo = false;
+      this.showHighwayName = false;
       this.basicInformationFormGroup.controls.HighwayNoSelect.clearValidators();
       this.basicInformationFormGroup.controls.HighwayNoName.clearValidators();
       this.basicInformationFormGroup.controls.HighwayNoSelect.setValue('');
       this.basicInformationFormGroup.controls.HighwayNoName.setValue('');
       this.basicInformationFormGroup.controls.HighwayName.setValue('');
     }
-    
-    else{
-      this.showHighwayNo=true;
-      this.showHighwayName=true;
+
+    else {
+      this.showHighwayNo = true;
+      this.showHighwayName = true;
       this.basicInformationFormGroup.controls.HighwayNoSelect.setValidators([Validators.required]);
       this.basicInformationFormGroup.controls.HighwayNoName.setValidators([Validators.required]);
     }
-    
+
   }
   getDropdownValues() {
     debugger;
@@ -384,6 +366,13 @@ export class ManageprofileComponent implements OnInit {
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           debugger;
           this.merchantTypes = data.data;
+          if (this.isReject) {
+            this.merchantTypes.forEach(ele => {
+              if (ele.merchant_Type_Name === this.merchantSearchData?.merchant_Type_Id) {
+                this.basicInformationFormGroup.controls.merchantType.setValue(ele.merchant_Type_Id)
+              }
+            })
+          }
         }
         else if (data.status_Code === 401) {
           this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
@@ -425,6 +414,7 @@ export class ManageprofileComponent implements OnInit {
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           debugger;
           this.statesDropdownValues = data.data;
+          this.statesDropdownValues.sort((a, b) => a.state_Name.localeCompare(b.state_Name))
         }
         else if (data.status_Code === 401) {
           this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
@@ -466,6 +456,13 @@ export class ManageprofileComponent implements OnInit {
         debugger;
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           this.zonalOffices = data.data;
+          if (this.isReject) {
+            this.zonalOffices.filter(ele => {
+              if (ele.zone_Name === this.merchantSearchData?.zonal_Office) {
+                this.basicInformationFormGroup.controls.zonalOffice.setValue(ele.zone_Code)
+              }
+            })
+          }
         }
         else if (data.status_Code === 401) {
           this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
@@ -486,6 +483,13 @@ export class ManageprofileComponent implements OnInit {
         debugger;
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           this.regionalOffices = data.data;
+          if (this.isReject) {
+            this.regionalOffices.filter(ele => {
+              if (ele.rO_Name === this.merchantSearchData?.regional_Office) {
+                this.basicInformationFormGroup.controls.regionalOffice.setValue(ele.rO_Code)
+              }
+            })
+          }
         }
         else if (data.status_Code === 401) {
           this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
@@ -506,6 +510,13 @@ export class ManageprofileComponent implements OnInit {
         debugger;
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           this.salesAreaDropdownValues = data.data;
+          if (this.isReject) {
+            this.salesAreaDropdownValues.forEach(ele => {
+              if (ele.district_Code == this.merchantSearchData?.salesArea) {
+                this.basicInformationFormGroup.controls.salesArea.setValue(ele.district_Code)
+              }
+            })
+          }
         }
         else if (data.status_Code === 401) {
           this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
@@ -516,7 +527,93 @@ export class ManageprofileComponent implements OnInit {
           console.log(err);
         });
   }
+  onPermanentCommunicationAddressCheckboxChecked(event) {
+    debugger;
+    
+    if(this.contactDetailsFormGroup.controls.permAddress1.value && this.contactDetailsFormGroup.controls.permAddress2.value
+      && this.contactDetailsFormGroup.controls.permCity.value && this.contactDetailsFormGroup.controls.permPincode.value 
+      && this.contactDetailsFormGroup.controls.permState.value && 
+      this.contactDetailsFormGroup.controls.permDistrict.value ){
+       this.contactDetailsFormGroup.controls.checkboxRetails.enable();
+    if ((this.contactDetailsFormGroup.controls.permAddress1.value != '' || this.contactDetailsFormGroup.controls.permAddress2.value != '' ||
+      this.contactDetailsFormGroup.controls.permAddress3.value != '' || this.contactDetailsFormGroup.controls.permLocation.value != '' ||
+      this.contactDetailsFormGroup.controls.permCity.value != '' || this.contactDetailsFormGroup.controls.permPincode.value != '' ||
+      this.contactDetailsFormGroup.controls.permState.value != '' || this.contactDetailsFormGroup.controls.permDistrict.value != '' ||
+      this.contactDetailsFormGroup.controls.permPhoneOffice.value != '' ||
+      this.contactDetailsFormGroup.controls.Perm_std_code.value != '' || this.contactDetailsFormGroup.controls.permFax.value !='' 
+      //||
+      //this.contactDetailsFormGroup.controls.retailOutletFaxSecond.value != '' || 
+     // this.contactDetailsFormGroup.controls.retailOutletEmail.value
+      )
+      && event.target.checked) {     
+      this.contactDetailsFormGroup.controls.Comm_Address1.setValue(this.contactDetailsFormGroup.controls.permAddress1.value);
+      this.contactDetailsFormGroup.controls.Comm_Address2.setValue(this.contactDetailsFormGroup.controls.permAddress2.value);
+      this.contactDetailsFormGroup.controls.Comm_Address3.setValue(this.contactDetailsFormGroup.controls.permAddress3.value);
+      this.contactDetailsFormGroup.controls.Comm_Location.setValue(this.contactDetailsFormGroup.controls.permLocation.value);
+      this.contactDetailsFormGroup.controls.comm_City.setValue(this.contactDetailsFormGroup.controls.permCity.value);
+      this.contactDetailsFormGroup.controls.Comm_PIN_Code.setValue(this.contactDetailsFormGroup.controls.permPincode.value);
+      this.contactDetailsFormGroup.controls.comm_State.setValue(this.contactDetailsFormGroup.controls.permState.value);
+      this.contactDetailsFormGroup.controls.comm_District.setValue(this.contactDetailsFormGroup.controls.permDistrict.value);
+      this.contactDetailsFormGroup.controls.Comm_Ph_Off.setValue(this.contactDetailsFormGroup.controls.permPhoneOffice.value);
+      //this.contactDetailsFormGroup.controls.commMobile.setValue(this.contactDetailsFormGroup.controls.retailOutletMobile.value);
+      this.contactDetailsFormGroup.controls.Comm_std_code.setValue(this.contactDetailsFormGroup.controls.Perm_std_code.value);
+      this.contactDetailsFormGroup.controls.Comm_Fax.setValue(this.contactDetailsFormGroup.controls.permFax.value);
+      //this.contactDetailsFormGroup.controls.commFaxSecond.setValue(this.contactDetailsFormGroup.controls.retailOutletFaxSecond.value);
+      //this.contactDetailsFormGroup.controls.commEmail.setValue(this.contactDetailsFormGroup.controls.retailOutletEmail.value)
+      // to disable the fields after setting values
+      this.contactDetailsFormGroup.controls.Comm_Address1.disable();
+      this.contactDetailsFormGroup.controls.Comm_Address2.disable();
+      this.contactDetailsFormGroup.controls.Comm_Address3.disable();
+      this.contactDetailsFormGroup.controls.Comm_Location.disable();
+      this.contactDetailsFormGroup.controls.comm_City.disable();
+      this.contactDetailsFormGroup.controls.Comm_PIN_Code.disable();
+      this.contactDetailsFormGroup.controls.comm_State.disable();
+      this.contactDetailsFormGroup.controls.comm_District.disable();
+      this.contactDetailsFormGroup.controls.Comm_Ph_Off.disable();
+      //this.contactDetailsFormGroup.controls.commMobile.disable();
+      this.contactDetailsFormGroup.controls.Comm_std_code.disable();
+      this.contactDetailsFormGroup.controls.Comm_Fax.disable();
+      // this.contactDetailsFormGroup.controls.commFaxSecond.disable();
+      // this.contactDetailsFormGroup.controls.commEmail.disable();
+    }
+    else if (!event.target.checked) {
+      this.contactDetailsFormGroup.controls.Comm_Address1.setValue('');
+      this.contactDetailsFormGroup.controls.Comm_Address2.setValue('');
+      this.contactDetailsFormGroup.controls.Comm_Address3.setValue('');
+      this.contactDetailsFormGroup.controls.Comm_Location.setValue('');
+      this.contactDetailsFormGroup.controls.comm_City.setValue('');
+      this.contactDetailsFormGroup.controls.Comm_PIN_Code.setValue('');
+      this.contactDetailsFormGroup.controls.comm_State.setValue('');
+      this.contactDetailsFormGroup.controls.comm_District.setValue('');
+      this.contactDetailsFormGroup.controls.Comm_Ph_Off.setValue('');
+      //this.contactDetailsFormGroup.controls.commMobile.setValue('');
+      this.contactDetailsFormGroup.controls.Comm_std_code.setValue('');
+      this.contactDetailsFormGroup.controls.Comm_Fax.setValue('');
+      // this.contactDetailsFormGroup.controls.commFaxSecond.setValue('');
+      // this.contactDetailsFormGroup.controls.commEmail.setValue('');
 
+      this.contactDetailsFormGroup.controls.Comm_Address1.enable();
+      this.contactDetailsFormGroup.controls.Comm_Address2.enable();
+      this.contactDetailsFormGroup.controls.Comm_Address1.enable();
+      this.contactDetailsFormGroup.controls.Comm_Location.enable();
+      this.contactDetailsFormGroup.controls.comm_City.enable();
+      this.contactDetailsFormGroup.controls.Comm_PIN_Code.enable();
+      this.contactDetailsFormGroup.controls.comm_State.enable();
+      this.contactDetailsFormGroup.controls.comm_District.enable();
+      this.contactDetailsFormGroup.controls.Comm_Ph_Off.enable();
+      //this.contactDetailsFormGroup.controls.commMobile.enable();
+      this.contactDetailsFormGroup.controls.Comm_std_code.enable();
+      this.contactDetailsFormGroup.controls.Comm_Fax.enable();
+      // this.contactDetailsFormGroup.controls.commFaxSecond.enable();
+      // this.contactDetailsFormGroup.controls.commEmail.enable();
+    }
+  }
+  else{
+    this.contactDetailsFormGroup.controls.checkboxRetails.disable();
+    this.toastr.error("Please select all the retail outlet details!");
+    this.contactDetailsFormGroup.controls.checkboxRetails.enable();
+  }
+  }
   viewprofile() {
     this.iscontact = 0;
     this.isbasic = 0;
@@ -537,17 +634,18 @@ export class ManageprofileComponent implements OnInit {
 
   }
   showcontact() {
-    if(this.basicInformationFormGroup.valid){
-    this.iscontact = 1;
-    this.isbasic = 0;
-    this.ispayment = 0;
-    this.issummary = 0;
-    this.isterminal = 0
+    debugger;
+   if (this.basicInformationFormGroup.valid) {
+      this.iscontact = 1;
+      this.isbasic = 0;
+      this.ispayment = 0;
+      this.issummary = 0;
+      this.isterminal = 0
     }
-    else{
-        this.toastr.error("Invalid Form!")
-    //    //this.findInvalidControls();
-     }
+    else {
+      this.toastr.error("Invalid Form!")
+      //    //this.findInvalidControls();
+    }
   }
   basicinfor() {
     this.isbasic = 1;
@@ -565,18 +663,18 @@ export class ManageprofileComponent implements OnInit {
     this.isterminal = 0
   }
   showterminal() {
-    if(this.basicInformationFormGroup.valid && this.contactDetailsFormGroup.valid){
-    this.isterminal = 1;
-    this.ispayment = 0;
-    this.isbasic = 0;
-    this.iscontact = 0;
-    this.issummary = 0;
-      }
-      else{
-        debugger;
-        this.toastr.error("Invalid Form!")
-    this.findInvalidControls(this.contactDetailsFormGroup);
-     }
+    if (this.basicInformationFormGroup.valid && this.contactDetailsFormGroup.valid) {
+      this.isterminal = 1;
+      this.ispayment = 0;
+      this.isbasic = 0;
+      this.iscontact = 0;
+      this.issummary = 0;
+    }
+    else {
+      debugger;
+      this.toastr.error("Invalid Form!")
+      this.findInvalidControls(this.contactDetailsFormGroup);
+    }
   }
   showsummary() {
     this.issummary = 1;
@@ -630,6 +728,7 @@ export class ManageprofileComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this._document.defaultView.location.reload();
       //this.animal = result;
     });
   }

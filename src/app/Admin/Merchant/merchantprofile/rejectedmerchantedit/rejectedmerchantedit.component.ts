@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
   selector: 'app-rejectedmerchantedit',
@@ -23,10 +27,19 @@ iscontact:number=0;
 ispayment:number=0;
 isterminal:number=0;
 issummary:number=0;
-  constructor(private modalService: NgbModal) { }
+merchantid='';
+  merchantProfile: Array<any>;
+  constructor(private router: Router, private modalService: NgbModal, private fb: FormBuilder, 
+    private adminService: AdminService, private toastr: ToastrService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.GetManageUserData();
+   
+    this.route.queryParams
+    .subscribe(params => {
+      debugger;
+      this.merchantid=params.merchantid;
+    })
+    this.getMerchantDetails();
   }
   viewprofile(){
     this.iscontact=0;
@@ -120,5 +133,18 @@ this.isterminal=0
   setAllChecked() {
     //return this.fgSystemList.filter((c: FgSystemToList) => c.isChecked === true).length === this.fgSystemList.length;
   }
-
+  getMerchantDetails(){
+    debugger;
+    let searchMerchantByMerchantIdData={
+      "merchantid": this.merchantid,
+  "useragent": "web",
+  "userip": "1",
+  "userid": "1"
+    }
+    this.adminService.searchMerchantByMerchantId(searchMerchantByMerchantIdData)
+      .subscribe(data=>{
+        console.log(data.data)
+        this.merchantProfile=data.data[0];
+      })
+  }
 }

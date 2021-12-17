@@ -5,7 +5,7 @@
       <strong class="help" style="cursor: pointer;" (click)="open(help)">Help</strong>
     </div>
     <div class="card-body">
-      <table class="w-100 table table-borderless table-sm" style="font-size: small;">
+      <table class="w-100 table table-borderless table-sm" style="font-size: small;" [formGroup]="viewccmsRechargeFormGroup">
         <tbody>
           <tr>
             <td align="left">
@@ -15,7 +15,7 @@
             </td>
             <td align="left">
               <div class="form-group">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" maxlength="10" minlength="10" formControlName="customerid">
               </div>
             </td>
             <td align="left">
@@ -26,10 +26,10 @@
             <td>
 
               <div class="form-group">
-                <select class="form-control">
-                  <option value="select">select</option>
-                  <option value="Customer">ICICI PG</option>
-                  <option value="Merchant">HDFC PG</option>
+                <select class="form-control" formControlName="paymentGateway">
+              
+                  <option value="ICICI PG">ICICI PG</option>
+                  <option value="HDFC PG">HDFC PG</option>
                 </select>
               </div>
             </td>
@@ -43,7 +43,7 @@
             <td align="left">
 
               <div class="form-group">
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" formControlName="fromDate">
               </div>
             </td>
 
@@ -56,7 +56,7 @@
             </td>
             <td>
               <div class="form-group">
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" formControlName="toDate">
               </div>
             </td>
           </tr>
@@ -68,7 +68,7 @@
             <td colspan="4">
               <div class=" d-flex flex-row justify-content-end">
                 <div class="mr-3">
-                  <button class="btn btn-primary pl-3 pr-3" (click)="ShowTableList();">Search</button>
+                  <button class="btn btn-primary pl-3 pr-3" (click)="onSearchButtonClick();">Search</button>
                 </div>
                 <div class="mr-3">
                   <button class="btn btn-primary pl-3 pr-3" (click)="Reset();">Reset</button>
