@@ -40,7 +40,6 @@ export class ApiService  {
   }
 
   post(path: string, body: Object = {}, targetAPI?: string): Observable<any> {
-    debugger;
       return this.http
         .post(this.createUrl(path, targetAPI), body, {
           headers: this.setHeaders(body),
@@ -78,7 +77,7 @@ export class ApiService  {
     headersConfig['Accept'] = 'application/json';
     headersConfig['Content-Type']= 'application/json';
     headersConfig['Authorization']= this.authToken;
-    headersConfig['API_Key']= this.api_key;  
+    headersConfig['API_Key']= this.api_key;
     return new HttpHeaders(headersConfig);
   }
 

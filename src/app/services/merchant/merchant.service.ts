@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MerChangePasswordPayload } from 'src/app/models/mer-change-password-payload';
+import { MerchantDetails } from 'src/app/models/merchant-details';
 import { BaseHttpService } from '../base-http.service';
 
 @Injectable({
@@ -18,6 +19,11 @@ export class MerchantService {
   getMerchantDetails(merchantDetailsPayload: any) {
     const getMerchantDetailsUrl = `${this.baseHttpService.hpPayApiRoot}api/hppay/merchant/get_merchant`;
     return this.baseHttpService.post<any>(getMerchantDetailsUrl,merchantDetailsPayload).pipe(map(resp => resp.data[0]));
+  }
+
+  updateMerchantDetails(merchantDetailsPayload: MerchantDetails) {
+    const updateMerchantDetailsUrl = `${this.baseHttpService.hpPayApiRoot}api/hppay/merchant/update_merchant`;
+    return this.baseHttpService.post<any>(updateMerchantDetailsUrl,merchantDetailsPayload);
   }
 
 }

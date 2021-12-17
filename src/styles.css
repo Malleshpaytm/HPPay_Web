@@ -43,3 +43,8 @@ body {
   background-color: #084594;
 }
 
+.p-dropdown {
+  width: 100%;
+  line-height:.3em;
+}
+
