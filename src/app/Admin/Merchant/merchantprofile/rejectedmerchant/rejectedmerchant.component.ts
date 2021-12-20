@@ -1,10 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/services/admin/admin.service';
+import { MerchantDetailsModalComponent } from '../../merchant-details-modal/merchant-details-modal.component';
 
 @Component({
   selector: 'app-rejectedmerchant',
@@ -25,7 +27,7 @@ export class RejectedmerchantComponent implements OnInit {
   rejectedMerchantListFormGroup: FormGroup;
   rejectedMerchantData:Array<any>;
   constructor(private router: Router, private modalService: NgbModal, private fb: FormBuilder, 
-    private adminService: AdminService, private toastr: ToastrService) { }
+    private adminService: AdminService, private toastr: ToastrService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.rejectedMerchantListFormGroup = this.fb.group({
@@ -58,6 +60,17 @@ export class RejectedmerchantComponent implements OnInit {
        (err: HttpErrorResponse) => {
         console.log(err)
       })
+  }
+  onViewMerchantDetails(merchantid): void {
+    let dialogRef = this.dialog.open(MerchantDetailsModalComponent, {
+      width: '900px',
+      data: { merchantid:merchantid }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+    });
   }
   isdisplay() {
     this.isshow = 1;

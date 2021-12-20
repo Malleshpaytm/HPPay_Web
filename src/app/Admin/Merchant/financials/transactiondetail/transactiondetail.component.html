@@ -7,7 +7,7 @@
                         Transaction Details
                     </div>
                     <div class="card-body">
-                        <table class="w-100 table table-borderless table-sm" style="font-size: small;">
+                        <table class="w-100 table table-borderless table-sm" style="font-size: small;" [formGroup]="transactionDetailsFormGroup">
                             <tbody>
                                 <tr>
                                     <td style="width: 15%"></td>
@@ -26,7 +26,7 @@
                                     </td>
                                     <td style="width: 39%">
                                         <div class="form-group">
-                                            <input type="text" class="form-control maxwidth300">
+                                            <input type="text" class="form-control maxwidth300" formControlName="merchantid" maxlength="10" minlength="10">
                                         </div>
                                     </td>
                                     <td style="width: 16%">
@@ -37,7 +37,7 @@
                                     <td style="width: 30%">
 
                                         <div class="form-group">
-                                            <select class="form-control maxwidth300" multiple>
+                                            <select class="form-control maxwidth300" formControlName="transactionTypes">
                                                 <option selected="selected" value="1801">Online Sale</option>
                                                 <option selected="selected" value="1802">Reload</option>
                                                 <option selected="selected" value="1803">Loyalty Sale</option>
@@ -133,7 +133,7 @@
                                     </td>
                                     <td style="width: 39%">
                                         <div class="form-group">
-                                            <input type="date" class="form-control maxwidth300">
+                                            <input type="date" class="form-control maxwidth300" formControlName="fromdate">
                                         </div>
                                     </td>
 
@@ -147,7 +147,7 @@
                                     </td>
                                     <td style="width: 39%">
                                         <div class="form-group">
-                                            <input type="date" class="form-control maxwidth300">
+                                            <input type="date" class="form-control maxwidth300" formControlName="todate">
                                         </div>
                                     </td>
                                 </tr>
@@ -159,10 +159,10 @@
                                     <td colspan="4">
                                         <div class=" d-flex flex-row justify-content-end">
                                             <div class="mr-3">
-                                                <button class="btn btn-primary pl-3 pr-3">Search</button>
+                                                <button class="btn btn-primary pl-3 pr-3" (click)="onSearchButtonClick()">Search</button>
                                             </div>
                                             <div class="mr-3">
-                                                <button class="btn btn-primary pl-3 pr-3">Reset</button>
+                                                <button class="btn btn-primary pl-3 pr-3" (click)="Reset()">Reset</button>
                                             </div>
                                             <div>
                                                 <button class="btn btn-primary pl-3 pr-3"
@@ -173,6 +173,53 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                        <div style="overflow-x: auto;" *ngIf="showSettlementDetails">
+                            <table class="GridBorder" cellspacing="0" rules="all" border="1" style="width:1200px;border-collapse:collapse;overflow-x: scroll;">
+                              <tbody>
+                                <tr>
+                                  <th> S.No</th>
+                                  <td> Merchant Id</td>
+                                  <td> Merchant Name</td>
+                                  <td> Batch Id</td>
+                                  <td> roc</td>
+                                  <td> Account No</td>
+                                  <td> Vechile No</td>
+                                  <td> Txn Date</td>
+                                  <td> Txn Type</td>
+                                  <td> Product</td>
+                                  <td> Price</td>
+                                  <td> Volume</td>
+                                  <td> Currency</td>
+                                  <td> Service Charge</td>
+                                  <td> Amount</td>
+                                  <td> Discount</td>
+                                  <td> Odometer Reading</td>
+                                  <td> Status</td>
+                                </tr>
+                                <tr *ngFor="let mappingDetails of searchTrasactionsTableData;let i=index">
+                                  <td>{{i+1}}</td>
+                                  <td>{{mappingDetails.merchant_Id}}</td>
+                                  <td>{{mappingDetails.merchant_Name}}</td>
+                                  <td>{{mappingDetails.batchId}}</td>
+                                  <td>{{mappingDetails.roc}}</td>
+                                  <td>{{mappingDetails.accountNo}}</td>
+                                  <td>{{mappingDetails.vechileNo}}</td>
+                                  <td>{{mappingDetails.txnDate}}</td>
+                                  <td>{{mappingDetails.txnType}}</td>
+                                  <td>{{mappingDetails.product}}</td>
+                                  <td>{{mappingDetails.price}}</td>
+                                  <td>{{mappingDetails.volume}}</td>
+                                  <td>{{mappingDetails.currency}}</td>
+                                  <td>{{mappingDetails.serviceCharge}}</td>
+                                  <td>{{mappingDetails.amount}}</td>
+                                  <td>{{mappingDetails.discount}}</td>
+                                  <td>{{mappingDetails.odometerReading}}</td>
+                                  <td>{{mappingDetails.status}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
                     </div>
 
                 </div>

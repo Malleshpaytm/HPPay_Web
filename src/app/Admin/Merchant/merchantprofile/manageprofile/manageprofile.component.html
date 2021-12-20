@@ -666,29 +666,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align=" left">
-                            <span><label class="required">City
-                            </label>:</span>
-
-                        </td>
-                        <td align="left">
-
-                            <div class="form-group">
-                                <mat-form-field appearance="outline">
-                                <mat-select  formControlName="permCity">
-                                    <mat-option [value]="city.cityCode" *ngFor="let city of cityDropdownValues">
-                                        {{city.city_Name}}</mat-option>
-
-                                </mat-select>
-                                <mat-error style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permCity.hasError('required')">
-                                    City is <strong>required!</strong>
-                                </mat-error>
-                                </mat-form-field>
-                            </div>
-                        </td>
-
-
-
                         <td align="left">
                             <span><label class="required">State
                             </label>:</span>
@@ -709,8 +686,6 @@
                                 
                             </div>
                         </td>
-                    </tr>
-                    <tr>
                         <td align="left">
                             <span><label class="required">District
                             </label>:</span>
@@ -732,7 +707,34 @@
                             </div>
                         </td>
 
+                       
 
+
+
+                       
+                    </tr>
+                    <tr>
+                        
+                        <td align=" left">
+                            <span><label class="required">City
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                            <div class="form-group">
+                                <mat-form-field appearance="outline">
+                                <mat-select  formControlName="permCity">
+                                    <mat-option [value]="city.cityCode" *ngFor="let city of cityDropdownValues">
+                                        {{city.city_Name}}</mat-option>
+
+                                </mat-select>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permCity.hasError('required')">
+                                    City is <strong>required!</strong>
+                                </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </td>
 
                         <td>
                             <span><label class="required">PIN Code

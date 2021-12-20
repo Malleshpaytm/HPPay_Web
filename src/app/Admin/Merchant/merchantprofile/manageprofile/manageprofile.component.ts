@@ -148,6 +148,19 @@ export class ManageprofileComponent implements OnInit {
       .subscribe(data => {
         debugger;
         this.districtDropdownValues = data.data;
+        if (this.isReject) {
+          this.districtDropdownValues.forEach(ele => {
+            if (ele.district_Name === this.merchantSearchData?.perm_District) {
+              this.contactDetailsFormGroup.controls.permDistrict.setValue(ele.district_Code)
+            }
+          })
+          
+          this.districtDropdownValues.forEach(ele => {
+            if (ele.district_Name === this.merchantSearchData?.comm_District) {
+              this.contactDetailsFormGroup.controls.comm_District.setValue(ele.district_Code)
+            }
+          })
+        }
       });
   }
   onAddMerchantClick() {
@@ -269,7 +282,10 @@ export class ManageprofileComponent implements OnInit {
           this.basicInformationFormGroup.controls.retailOutletName.setValue(data.data[0].outletName);
           this.basicInformationFormGroup.controls.dealerName.setValue(data.data[0].dealer_name);
           this.basicInformationFormGroup.controls.dealerMobile.setValue(data.data[0].dealer_Mobile);
-          
+          let text = data.data[0].name;
+const name = text.split(" ");
+this.basicInformationFormGroup.controls.firstName.setValue(name[0]);
+this.basicInformationFormGroup.controls.lastName.setValue(name[1]);
           this.basicInformationFormGroup.controls.outletCategory.setValue(data.data[0].outlet_Category);
           this.onSelectOutletCategory(data.data[0].outlet_Category);
           this.basicInformationFormGroup.controls.HighwayNoName.setValue(data.data[0].highway_No);
@@ -288,7 +304,12 @@ export class ManageprofileComponent implements OnInit {
           this.contactDetailsFormGroup.controls.permAddress1.setValue(this.merchantSearchData.perm_Address1),
             this.contactDetailsFormGroup.controls.permAddress2.setValue(this.merchantSearchData.perm_Address2),
             this.contactDetailsFormGroup.controls.permAddress3.setValue(this.merchantSearchData.perm_Address3),
-
+            this.contactDetailsFormGroup.controls.permLocation.setValue(this.merchantSearchData.perm_Location),
+            this.contactDetailsFormGroup.controls.permLocation.setValue(this.merchantSearchData.perm_Location),
+            this.contactDetailsFormGroup.controls.permPincode.setValue(this.merchantSearchData.perm_PIN_Code),
+            this.contactDetailsFormGroup.controls.Perm_std_code.setValue(this.merchantSearchData.perm_std_code),
+            this.contactDetailsFormGroup.controls.permPhoneOffice.setValue(this.merchantSearchData.perm_Ph_Off),
+            this.contactDetailsFormGroup.controls.permFax.setValue(this.merchantSearchData.perm_fax),
             //this.basicInformationFormGroup.controls.merchantType.setValue(this.merchantTypes[0].merchant_Type_Name)
             // this.merchantTypes.forEach(ele=>{
             //   if(ele.merchant_Type_Name===this.merchantSearchData.merchant_Type_Id){
@@ -298,14 +319,14 @@ export class ManageprofileComponent implements OnInit {
             this.contactDetailsFormGroup.controls.Comm_Address1.setValue(this.merchantSearchData.comm_Address1),
             this.contactDetailsFormGroup.controls.Comm_Address2.setValue(this.merchantSearchData.comm_Address2),
             this.contactDetailsFormGroup.controls.Comm_Address3.setValue(this.merchantSearchData.comm_Address3),
-            this.contactDetailsFormGroup.controls.comm_City.setValue(this.merchantSearchData.comm_City),
-            this.contactDetailsFormGroup.controls.comm_District.setValue(this.merchantSearchData.comm_District),
+           // this.contactDetailsFormGroup.controls.comm_City.setValue(this.merchantSearchData.comm_City),
+           // this.contactDetailsFormGroup.controls.comm_District.setValue(this.merchantSearchData.comm_District),
             //this.contactDetailsFormGroup.controls.commEmail.setValue(this.merchantSearchData.comm_Email),
             this.contactDetailsFormGroup.controls.Comm_Fax.setValue(this.merchantSearchData.comm_Fax),
             this.contactDetailsFormGroup.controls.Comm_Location.setValue(this.merchantSearchData.comm_Location),
-            // this.contactDetailsFormGroup.controls.commMobile.setValue(this.merchantSearchData.comm_Mobile),
+             this.contactDetailsFormGroup.controls.Comm_std_code.setValue(this.merchantSearchData.comm_std_code),
             this.contactDetailsFormGroup.controls.Comm_PIN_Code.setValue(this.merchantSearchData.comm_PIN_Code),
-            this.contactDetailsFormGroup.controls.comm_State.setValue(this.merchantSearchData.comm_State),
+            //this.contactDetailsFormGroup.controls.comm_State.setValue(this.merchantSearchData.comm_State),
             this.contactDetailsFormGroup.controls.Comm_Ph_Off.setValue(this.merchantSearchData.comm_Ph_Off)
           // this.basicInformationFormGroup.controls.cautionAmt_HP.setValue(this.merchantSearchData.cautionAmt_HP),
           // this.basicInformationFormGroup.controls.cautionAmt_DTP.setValue(this.merchantSearchData.cautionAmt_DTP),
@@ -392,6 +413,18 @@ export class ManageprofileComponent implements OnInit {
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           debugger;
           this.cityDropdownValues = data.data;
+          if (this.isReject) {
+            this.cityDropdownValues.forEach(ele => {
+              if (ele.city_Name === this.merchantSearchData?.perm_City) {
+                this.contactDetailsFormGroup.controls.permCity.setValue(ele.cityCode)
+              }
+            })
+            this.cityDropdownValues.forEach(ele => {
+              if (ele.city_Name === this.merchantSearchData?.comm_City) {
+                this.contactDetailsFormGroup.controls.comm_City.setValue(ele.cityCode)
+              }
+            })
+          }
         }
         else if (data.status_Code === 401) {
           this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
@@ -414,7 +447,19 @@ export class ManageprofileComponent implements OnInit {
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           debugger;
           this.statesDropdownValues = data.data;
-          this.statesDropdownValues.sort((a, b) => a.state_Name.localeCompare(b.state_Name))
+          this.statesDropdownValues.sort((a, b) => a.state_Name.localeCompare(b.state_Name));
+          if (this.isReject) {
+            this.statesDropdownValues.forEach(ele => {
+              if (ele.state_Name === this.merchantSearchData?.perm_State) {
+                this.contactDetailsFormGroup.controls.permState.setValue(ele.stateCode)
+              }
+            });
+            this.statesDropdownValues.forEach(ele => {
+              if (ele.state_Name === this.merchantSearchData?.comm_State) {
+                this.contactDetailsFormGroup.controls.comm_State.setValue(ele.stateCode)
+              }
+            })
+          }
         }
         else if (data.status_Code === 401) {
           this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')

@@ -63,7 +63,7 @@
                 <td>{{data.comments}}</td>
 
                 <td align="right">
-                  <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn">detail</mat-icon>
+                  <mat-icon style="font-size: 20px;cursor: pointer" (click)="onViewMerchantDetails(data.erP_Code)" color="warn">details</mat-icon>
                   <mat-icon style="font-size: 20px;cursor: pointer;" aria-hidden="warn" color="warn" routerLink="/admin/merchant/manageprofile" [queryParams]="{merchantid: data.erP_Code, isReject:true}">edit</mat-icon>
                 </td>
               </tr>
