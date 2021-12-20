@@ -36,13 +36,13 @@ export class ProfileComponent implements OnInit {
   regionalOfficeList: RegionalOffice[];
 
   cities = [
-    {label:'Select City', value:null},
-    {label:'New York', value:{id:1, name: 'New York', code: 'NY'}},
-    {label:'Rome', value:{id:2, name: 'Rome', code: 'RM'}},
-    {label:'London', value:{id:3, name: 'London', code: 'LDN'}},
-    {label:'Istanbul', value:{id:4, name: 'Istanbul', code: 'IST'}},
-    {label:'Paris', value:{id:5, name: 'Paris', code: 'PRS'}}
-];
+    { label: 'Select City', value: null },
+    { label: 'New York', value: { id: 1, name: 'New York', code: 'NY' } },
+    { label: 'Rome', value: { id: 2, name: 'Rome', code: 'RM' } },
+    { label: 'London', value: { id: 3, name: 'London', code: 'LDN' } },
+    { label: 'Istanbul', value: { id: 4, name: 'Istanbul', code: 'IST' } },
+    { label: 'Paris', value: { id: 5, name: 'Paris', code: 'PRS' } },
+  ];
 
   constructor(
     private merchantService: MerchantService,
@@ -50,52 +50,66 @@ export class ProfileComponent implements OnInit {
     private adminService: AdminService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.merchantService
       .getMerchantDetails(MerchantHelper.addMerchantMetadataToModels({}))
       .subscribe((details) => {
         this.merchantDetails = details;
       });
+    this.merchantDetails = await this.getMerchantDetailsAsync();
 
-    this.populateOptions();
+    await this.populateOptionsAsync();
+    this.populateMerchantWithOptionCodes();
   }
 
-  populateOptions() {
-    this.adminService
+  populateMerchantWithOptionCodes() {
+
+    this.merchantDetails.perm_City = this.cityList.find()
+  }
+
+  async getMerchantDetailsAsync(): Promise<MerchantDetails> {
+    return this.merchantService
+      .getMerchantDetails(MerchantHelper.addMerchantMetadataToModels({}))
+      .toPromise();
+  }
+
+  async populateOptionsAsync(): Promise<boolean> {
+    let cityPromise = this.adminService
       .getCity(MerchantHelper.addMerchantMetadataToModels({}))
-      .subscribe((resp) => {
-        this.cityList = resp.data;
-      });
-    this.adminService
+      .toPromise();
+
+    let statePromise = this.adminService
       .getStates(MerchantHelper.addMerchantMetadataToModels({}))
-      .subscribe((resp) => {
-        this.stateList = resp.data;
-      });
-    this.adminService
+      .toPromise();
+
+    let merchantTypePromise = this.adminService
       .getMerchantType(MerchantHelper.addMerchantMetadataToModels({}))
-      .subscribe((resp) => {
-        this.merchantTypeList = resp.data;
-      });
-    this.adminService
+      .toPromise();
+
+    let regionalOfficePromise = this.adminService
       .getRegionalOffice(MerchantHelper.addMerchantMetadataToModels({}))
-      .subscribe((resp) => {
-        this.regionalOfficeList = resp.data;
-      });
-    this.adminService
+      .toPromise();
+
+    let zonalOfficePromise = this.adminService
       .getZonalOffice(MerchantHelper.addMerchantMetadataToModels({}))
-      .subscribe((resp) => {
-        this.zonalOfficeList = resp.data;
-      });
-    this.adminService
+      .toPromise();
+
+    let salesAreaPromise = this.adminService
       .getSalesArea(MerchantHelper.addMerchantMetadataToModels({}))
-      .subscribe((resp) => {
-        this.salesAreaList = resp.data;
-      });
-    this.adminService
+      .toPromise();
+
+    let districtPromise = this.adminService
       .getDistrict(MerchantHelper.addMerchantMetadataToModels({}))
-      .subscribe((resp) => {
-        this.districtList = resp.data;
-      });
+      .toPromise();
+
+    this.cityList = await cityPromise;
+    this.stateList = await statePromise;
+    this.merchantTypeList = await merchantTypePromise;
+    this.regionalOfficeList = await regionalOfficePromise;
+    this.zonalOfficeList = await zonalOfficePromise;
+    this.salesAreaList = await salesAreaPromise;
+    this.districtList = await districtPromise;
+    return Promise.resolve(true);
   }
 
   handleSaveDetails() {
