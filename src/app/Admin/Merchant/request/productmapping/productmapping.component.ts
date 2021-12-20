@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
   selector: 'app-productmapping',
@@ -8,7 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProductmappingComponent implements OnInit {
 
-  
+  merchantProductMappingFormGroup:FormGroup;
   allChecked = false;
   //DataList: DatatoList[] = [];
   GetSaveData: any = [];
@@ -17,12 +22,37 @@ export class ProductmappingComponent implements OnInit {
   public pageSize: number = 2;
   isshow:number=0;
 
-  constructor(private modalService: NgbModal) { }
-
+  constructor(private modalService: NgbModal, private adminService: AdminService,
+    private fb: FormBuilder,
+    @Inject(DOCUMENT) private _document: Document, private toastr: ToastrService, private router: Router) { }
   ngOnInit(): void {
-    this.GetManageUserData();
+    this.merchantProductMappingFormGroup=this.fb.group({
+      merchantid:[''],
+    })
   }
-
+onSearchButtonClick(){
+  debugger;
+  let get_allowed_products_for_merchantData={
+    "merchantid": this.merchantProductMappingFormGroup.controls.merchantid.value,
+    "userid": "1",
+    "useragent": "web",
+    "userip": "1"
+  }
+  this.adminService.get_allowed_products_for_merchant(get_allowed_products_for_merchantData)
+    .subscribe(res=>{
+      debugger;
+      if (res.message.toUpperCase() === 'RECORD FOUND') {
+       // this.isshow=1;
+     
+      }
+      else if (res.message.toUpperCase() === 'RECORD NOT FOUND'){
+        this.toastr.error("No record found!")
+      }
+      else if (res.status_Code === 401) {
+        //this.loginService.generateToken();
+      }
+    });
+}
   GetManageUserData() {
     this.GetSaveData = [
       {
@@ -45,10 +75,11 @@ export class ProductmappingComponent implements OnInit {
   }
 
   ShowTableList(){
-    this.isshow=1;
+   
  }
  Reset(){
    this.isshow=0;
+   this.merchantProductMappingFormGroup.reset();
  }
 
   limitChange(limit: number) {

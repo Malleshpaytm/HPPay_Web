@@ -4,8 +4,8 @@
         <strong class="balanceinfo">Settlement Details</strong>
       </div>
       
-      <div class="card-body">
-                    <table class="w-50">
+      <div class="card-body" >
+                    <table class="w-50" [formGroup]="settlementDetailsFormGroup">
                         <tr>
                             <td>
                             </td>
@@ -24,7 +24,7 @@
                             </td>
                             <td align="left">
                                 <div class="form-group">
-                                   <input type="text" class="form-control">   
+                                   <input type="text" class="form-control" formControlName="merchantId" maxlength="10" minlength="10">   
                                 </div>
                             </td>
                         </tr>
@@ -35,7 +35,7 @@
                             </td>
                             <td align="left">
                                 <div class="form-group">
-                                   <input type="date" class="form-control">   
+                                   <input type="date" class="form-control" formControlName="fromDate">   
                                 </div>
                             </td>
                         </tr>
@@ -46,7 +46,7 @@
                             </td>
                             <td align="left">
                                 <div class="form-group">
-                                   <input type="date" class="form-control">   
+                                   <input type="date" class="form-control" formControlName="toDate">   
                                 </div>
                             </td>
                         </tr>
@@ -61,10 +61,10 @@
                                 <td align="left">
                                     <div class=" d-flex flex-row justify-content-end">
                                         <div class="mr-3">
-                                            <button class="btn btn-primary">Search</button>
+                                            <button class="btn btn-primary" (click)="onSearchButtonClick()">Search</button>
                                         </div>
                                         <div class="mr-3">
-                                            <button class="btn btn-primary">Reset</button>
+                                            <button class="btn btn-primary" (click)="Reset()">Reset</button>
                                         </div>
                                         <div class="mr-3">
                                             <button class="btn btn-primary">Export to Excel</button>
@@ -74,6 +74,28 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div style="overflow-x: auto;" *ngIf="showSettlementDetails">
+                        <table class="GridBorder" cellspacing="0" rules="all" border="1" style="width:1200px;border-collapse:collapse;overflow-x: scroll;">
+                          <tbody>
+                            <tr>
+                              <th> S.No</th>
+                              <th> terminal_Id</th>
+                              <th> batch_Id</th>
+                              <th> batch_Status</th>
+                              <th> settlement_Date</th>
+                              <th> no_Of_Transactions</th>
+                            </tr>
+                            <tr *ngFor="let mappingDetails of searchTrasactionsTableData;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{mappingDetails.terminal_Id}}</td>
+                              <td>{{mappingDetails.batch_Id}}</td>
+                              <td>{{mappingDetails.batch_Status}}</td>
+                              <td>{{mappingDetails.settlement_Date}}</td>
+                              <td>{{mappingDetails.no_Of_Transactions}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div> 
                 </div>
     </div>
   </div>

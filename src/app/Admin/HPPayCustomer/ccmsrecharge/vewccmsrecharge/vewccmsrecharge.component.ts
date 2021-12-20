@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { AdminService } from 'src/app/services/admin/admin.service';
+import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
   selector: 'app-vewccmsrecharge',
@@ -15,10 +21,18 @@ export class VewccmsrechargeComponent implements OnInit {
   public page: number = 1;
   public pageSize: number = 2;
   isshow:number=0;
-
-  constructor(private modalService: NgbModal) { }
+  viewccmsRechargeFormGroup:FormGroup;
+  constructor(private modalService: NgbModal, private adminService: AdminService,
+    private fb: FormBuilder,
+    @Inject(DOCUMENT) private _document: Document, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
+    this.viewccmsRechargeFormGroup=this.fb.group({
+      customerid:[''],
+      paymentGateway:[''],
+      fromDate:[''],
+      toDate:['']
+    })
     this.ViewCCMSRechargeData();
   }
 
@@ -129,5 +143,20 @@ export class VewccmsrechargeComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-
+  onSearchButtonClick(){
+    debugger;
+    let viewCcmsRechargeData={
+      "customer_id": this.viewccmsRechargeFormGroup.controls.customerid.value,
+      "paymentgateway": this.viewccmsRechargeFormGroup.controls.paymentGateway.value,
+      "from_Date": this.viewccmsRechargeFormGroup.controls.fromDate.value,
+      "to_Date":this.viewccmsRechargeFormGroup.controls.toDate.value,
+      "userid": "1",
+      "useragent": "web",
+      "userip": "1"
+    }
+    this.adminService.viewCcmsRecharge(viewCcmsRechargeData)
+      .subscribe(data=>{
+data.data
+      })
+  }
 }

@@ -149,7 +149,12 @@ export class AdminService {
     const body=JSON.stringify(customerRegistrationData);
     return this.service.post(path,body);
   }
-
+  checkMobileNo(checkMobileNoData): Observable<any> {
+    let path = '/hppay/login/check_mobileno';
+    const body=JSON.stringify(checkMobileNoData);
+    return this.service.post(path,body);
+  }
+  
   updateCustomerProfile(updateCustomerProfileData): Observable<any> {
     let path = '/hppay/user/edit_new_user_web';
     const body=JSON.stringify(updateCustomerProfileData);
@@ -184,6 +189,26 @@ export class AdminService {
     const body=JSON.stringify(getSalesAreaData);
     return this.service.post(path,body);
   }
+
+  viewCcmsRecharge(viewCcmsRechargeData): Observable<any> {
+    let path = '/hppay/transaction/view_ccms_recharge';
+    const body=JSON.stringify(viewCcmsRechargeData);
+    return this.service.post(path,body);
+  }
+
+  search_reset_mpin(search_reset_mpinData): Observable<any> {
+    let path = '/hppay/login/search_reset_mpin';
+    const body=JSON.stringify(search_reset_mpinData);
+    return this.service.post(path,body);
+  }
+
+  reset_mpin(reset_mpinData): Observable<any> {
+    let path = '/hppay/login/reset_mpin';
+    const body=JSON.stringify(reset_mpinData);
+    return this.service.post(path,body);
+  }
+
+  
 
   //corporate customer
   
@@ -229,6 +254,54 @@ export class AdminService {
     const body=JSON.stringify(searchMerchantByMerchantIdData);
     return this.service.post(path,body);
   }
+//merchant financials
+
+settlement_details_by_merchant(settlement_details_by_merchantData): Observable<any> {
+  let path = '/hppay/transaction/settlement_details_by_merchant';
+  const body=JSON.stringify(settlement_details_by_merchantData);
+  return this.service.post(path,body);
+}
+transactionDetailsByMerchant(transactionDetailsByMerchantData): Observable<any> {
+  let path = '/hppay/transaction/get_transaction_detail_by_merchantid ';
+  const body=JSON.stringify(transactionDetailsByMerchantData);
+  return this.service.post(path,body);
+}
+get_receivable_payable_details(get_receivable_payable_detailsData): Observable<any> {
+  let path = '/hppay/transaction/get_receivable_payable_details ';
+  const body=JSON.stringify(get_receivable_payable_detailsData);
+  return this.service.post(path,body);
+}
+
+get_erp_reload_sale_earnings(get_erp_reload_sale_earningsData): Observable<any> {
+  let path = '/hppay/transaction/get_erp_reload_sale_earnings';
+  const body=JSON.stringify(get_erp_reload_sale_earningsData);
+  return this.service.post(path,body);
+}
+
+get_merchant_account_statement(get_merchant_account_statementData): Observable<any> {
+  let path = '/hppay/wallet/get_merchant_account_statement';
+  const body=JSON.stringify(get_merchant_account_statementData);
+  return this.service.post(path,body);
+}
+view_merchant_earning_breakup(view_merchant_earning_breakupData): Observable<any> {
+  let path = '/hppay/transaction/view_merchant_earning_breakup';
+  const body=JSON.stringify(view_merchant_earning_breakupData);
+  return this.service.post(path,body);
+}
+daywise_merchant_earning_data(daywise_merchant_earning_dataData): Observable<any> {
+  let path = '/hppay/transaction/daywise_merchant_earning_data';
+  const body=JSON.stringify(daywise_merchant_earning_dataData);
+  return this.service.post(path,body);
+}
+
+//merchant requests
+get_allowed_products_for_merchant(get_allowed_products_for_merchantData): Observable<any> {
+  let path = '/hppay/merchant/get_allowed_products_for_merchant';
+  const body=JSON.stringify(get_allowed_products_for_merchantData);
+  return this.service.post(path,body);
+}
+
+
 
   // Interface --> EFT Reccharge API(S)
   request_ccms_recharge_through_eft(request_ccms_recharge_through_eftData): Observable<any> {

@@ -25,6 +25,7 @@ export class CreatehppaycustomerComponent implements OnInit {
   districtDropdownValues: Array<any>;
   statesDropdownValues: Array<any>;
   model1='';
+  correctMobileNumber: boolean = true;
   date = new Date();
   minDate = new Date(1900, 0, 1);
   maxDate = new Date(this.date.getFullYear() - 18, 0, 1);
@@ -89,7 +90,7 @@ export class CreatehppaycustomerComponent implements OnInit {
         .subscribe(data => {
           debugger;
           if(data.message.toUpperCase()==='RECORD FOUND'){
-            this.openDialog(`Customer created successfully with mobile number ${data.data[0].user_mobile}!`)
+            this.openDialog(`Customer created successfully with mobile number (${data.data[0].user_mobile})!`)
            
             this.customerCreationFormGroup.reset();
           }
@@ -117,6 +118,28 @@ export class CreatehppaycustomerComponent implements OnInit {
 
     // var newdate = datearray[2] + '-' + datearray[1] + '-' + datearray[0];
    
+  }
+  checkMobileNo() {
+    debugger;
+    let checkMobileNoData =
+    {
+      "mobileNo": this.customerCreationFormGroup.controls.mobile_number.value,
+      "userid": "1",
+      "useragent": "web",
+      "userip": "1"
+    }
+
+    this.adminService.checkMobileNo(checkMobileNoData)
+      .subscribe(data => {
+        debugger;
+        if (data.data[0].value.toUpperCase() === 'VALID') {
+          alert("Mobile Number already exists!");
+          this.correctMobileNumber = false;
+        }
+        else {
+          this.correctMobileNumber = true;
+        }
+      });
   }
   onSelectState(state_code){
     this.getDistrictByState(state_code)
@@ -177,7 +200,7 @@ export class CreatehppaycustomerComponent implements OnInit {
       .subscribe(data => {
         debugger;
         this.statesDropdownValues = data.data;
-
+     this.statesDropdownValues.sort((a, b) => a.state_Name.localeCompare(b.state_Name))
       },
         (err: HttpErrorResponse) => {
           console.log(err);
@@ -193,6 +216,10 @@ export class CreatehppaycustomerComponent implements OnInit {
       console.log('The dialog was closed');
       //this.animal = result;
     });
+  }
+  Reset(){
+    debugger;
+    this.customerCreationFormGroup.reset()
   }
 }
 

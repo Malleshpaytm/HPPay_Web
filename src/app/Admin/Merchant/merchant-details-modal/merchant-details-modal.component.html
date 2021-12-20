@@ -119,12 +119,12 @@
     
         </tr>
         <tr>
-            <th>Highway Name:</th>
-            <th>
+            <th *ngIf="merchantProfile?.highway_Name">Highway Name:</th>
+            <th *ngIf="merchantProfile?.highway_Name">
                 <input class="input" disabled [value]="merchantProfile?.highway_Name"> 
             </th>
-            <th>Highway Number:</th>
-            <th><input class="input" disabled [value]="merchantProfile?.highway_No"></th>
+            <th *ngIf="merchantProfile?.highway_No!=0">Highway Number:</th>
+            <th *ngIf="merchantProfile?.highway_No !=0"><input class="input" disabled [value]="merchantProfile?.highway_No"></th>
             
     
         </tr>

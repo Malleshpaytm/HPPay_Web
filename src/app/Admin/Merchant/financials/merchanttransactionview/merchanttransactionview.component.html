@@ -7,14 +7,14 @@
                          <strong class="down-stat">View Earning Break-up</strong>
                     </div>
                     <div class="card-body">
-                        <table class="w-50">
+                        <table class="w-50" [formGroup]="viewEarningBreakupFormGroup">
                             <tr>
                                 <td width="40%">
                                     <span class="required">Merchant ID</span>:
                                 </td>
                                    <td align="left">
                                         <div class="form-group">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" formControlName="merchantid" maxlength="10" minlength="10">
                                         </div>
                                     </td>
                             </tr>
@@ -24,7 +24,7 @@
                                 </td>
                                 <td align="left">
                                     <div class="form-group">
-                                        <select class="form-control" multiple>
+                                        <select class="form-control"  formControlName="transactiontype">
                                             <option value="Penalty">Penalty</option>
                                             <option value="Participation">Participation</option>
                                             <option value="Share">Share</option>
@@ -42,7 +42,7 @@
                                 </td>
                                 <td align="left">
                                         <div class="form-group">
-                                            <input type="date" class="form-control">
+                                            <input type="date" class="form-control" formControlName="fromDate">
                                         </div>
                                 </td>
                             </tr>
@@ -52,7 +52,7 @@
                                 </td>
                                 <td align="left">
                                         <div class="form-group">
-                                            <input type="date" class="form-control">
+                                            <input type="date" class="form-control" formControlName="toDate">
                                         </div>
                                 </td>
                             </tr>
@@ -64,13 +64,13 @@
                                     <td align="left">
                                         <div class=" d-flex flex-row justify-content-end">
                                             <div class="mr-3">
-                                                <button class="btn btn-primary">Search</button>
+                                                <button class="btn btn-primary" (click)="onSearchButtonClick()">Search</button>
                                             </div>
                                             <div class="mr-3">
                                                 <button class="btn btn-primary">Export to Excel</button>
                                             </div>
                                             <div class="mr-3">
-                                                <button class="btn btn-primary">Reset</button>
+                                                <button class="btn btn-primary" (click)="onResetButtonClick()">Reset</button>
                                             </div>
                                         </div>
                                     </td>

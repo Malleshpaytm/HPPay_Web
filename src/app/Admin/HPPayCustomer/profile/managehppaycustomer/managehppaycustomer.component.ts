@@ -34,29 +34,34 @@ export class ManagehppaycustomerComponent implements OnInit {
 
   searchManageCustomerProfile() {
     debugger;
-    let manageCustomerProfileData = {
-      "mobile_number_or_userid": this.manageProfileFormGroup.controls.mobileNumber.value,
-      "useragent": "web",
-      "userip": "1",
-      "userid": "1",
-
+    if(this.manageProfileFormGroup.controls.mobileNumber.value.length>0){
+      let manageCustomerProfileData = {
+        "mobile_number_or_userid": this.manageProfileFormGroup.controls.mobileNumber.value,
+        "useragent": "web",
+        "userip": "1",
+        "userid": "1",
+  
+      }
+      this.adminService.manageCustomerProfile(manageCustomerProfileData).subscribe(data => {
+        if (data.message.toUpperCase() === 'RECORD FOUND') {
+          this.manageCustomerProfileTableData = data.data;
+          this.isshow = 1;
+        }
+        else if(data.status_Code===401){
+          // 
+          this.adminService.refreshToken();
+         // this._document.defaultView.location.reload();
+        }
+        else{
+          this.toastr.error(data.message)
+        }
+      }, (err: HttpErrorResponse) => {
+        console.log(err)
+      })
     }
-    this.adminService.manageCustomerProfile(manageCustomerProfileData).subscribe(data => {
-      if (data.message.toUpperCase() === 'RECORD FOUND') {
-        this.manageCustomerProfileTableData = data.data;
-        this.isshow = 1;
-      }
-      else if(data.status_Code===401){
-        // 
-        this.adminService.refreshToken();
-       // this._document.defaultView.location.reload();
-      }
-      else{
-        this.toastr.error(data.message)
-      }
-    }, (err: HttpErrorResponse) => {
-      console.log(err)
-    })
+   else{
+     this.toastr.error("Please fill the details!")
+   }
   }
 
 

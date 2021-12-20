@@ -1,7 +1,7 @@
 <div class="container pt-5">
     <div class="card shadow">
         <div class=" card-header p-2 blue-bg text-white">
-            <strong>Manage Profile</strong>
+            <strong>Manage Profile {{this.merchantid?this.merchantid:''}}</strong>
         </div>
         <!-- <div class="card-body pt-0" style="overflow: scroll; height: 100%;"> -->
 
@@ -17,14 +17,14 @@
                 <div class="d-flex d-flex-row justify-content-between">
                     <form class="form-inline needs-validation">
                         <div class="form-group mb-2" [formGroup]="ViewProfileGroup">
-                            <label for="officerType" class="pr-2">Merchant Id</label>
+                            <label for="officerType" class="pr-2">Merchant Id </label>
                             <input type="text" name="mobile" id="mobile" class="form-control has-validation"
                                 formControlName="merchantId" maxlength="10" minlength="10">
 
                         </div>
 
                         <button type="submit" class="btn btn-info mb-2 ml-2"
-                            (click)=" onSearchMechantClick(merchantid);">Search</button>
+                            (click)=" onSearchMechantClick(this.ViewProfileGroup.controls.merchantId.value);">Search</button>
 
                     </form>
                     <button type="submit" class="btn btn-info mb-2 ml-2" (click)="AddMerchant();">Add Merchant</button>
@@ -167,7 +167,7 @@
                             <div class="form-group">
                                 <mat-form-field appearance="outline">
 
-                                    <mat-select matNativeControl (selectionChange)="onSelectOutletCategory($event)" required formControlName="outletCategory">
+                                    <mat-select matNativeControl (selectionChange)="onSelectOutletCategory($event.value)" required formControlName="outletCategory">
                                        
                                         <mat-option value="Highway">Highway</mat-option>
                                         <mat-option value="Urban">Urban</mat-option>
@@ -242,7 +242,7 @@
                             </div>
                         </td>
                         <td align="left">
-                            <span><label class="required">Caution Amount
+                            <span><label class="required">Caution Amount DTP
                             </label></span>
 
                         </td>
@@ -250,8 +250,8 @@
 
                             <div class="form-group">
                                 <mat-form-field appearance="outline">
-                                <input matInput type="text"  formControlName="cautionAmount" required>
-                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.cautionAmount.hasError('required')">
+                                <input matInput type="text"  formControlName="cautionAmountDTP" required>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.cautionAmountDTP.hasError('required')">
                                     Caution Amount is <strong>required!</strong>
                                 </mat-error>
                                 </mat-form-field>
@@ -260,7 +260,24 @@
 
                     </tr>
 
+<tr>
+    <td align="left">
+        <span><label class="required">Caution Amount HP
+        </label></span>
 
+    </td>
+    <td align="left">
+
+        <div class="form-group">
+            <mat-form-field appearance="outline">
+            <input matInput type="text"  formControlName="cautionAmountHP" required>
+            <mat-error style="font-size:12px" class="text-danger" *ngIf="basicInformationFormGroup.controls.cautionAmountHP.hasError('required')">
+                Caution Amount is <strong>required!</strong>
+            </mat-error>
+            </mat-form-field>
+        </div>
+    </td>
+</tr>
                     <tr>
                         <td align="left">
                             <span><label class="required">Monthly HSD Sale
@@ -576,91 +593,79 @@
 
                     <tr>
                         <td align="left">
-                            <span><span class="required">Address 1
-                                </span>:</span>
+                            <span><label class="required">Address 1
+                            </label>:</span>
 
                         </td>
                         <td align="left">
-
+                            
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="permAddress1">
-                                <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permAddress1.hasError('required')">
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="permAddress1">
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permAddress1.hasError('required')">
                                     Address 1 is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                            </mat-form-field>
                             </div>
+                           
                         </td>
 
 
 
                         <td align="left">
-                            <span><span class="required">Address 2
-                                </span>:</span>
+                            <span><label class="required">Address 2
+                            </label>:</span>
 
                         </td>
                         <td>
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="permAddress2">
-                                <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permAddress2.hasError('required')">
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="permAddress2">
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permAddress2.hasError('required')">
                                     Address 2 is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td align="left">
-                            <span><span>Address 3
-                                </span>:</span>
+                            <span><label>Address 3
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="permAddress3">
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="permAddress3">
                                 <!-- <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permAddress3.hasError('required')">
                                     Address 3 is <strong>required!</strong>
                                 </span> -->
+                                </mat-form-field>
                             </div>
                         </td>
 
 
 
                         <td align="left">
-                            <span><span>Location
-                                </span>:</span>
+                            <span><label>Location
+                            </label>:</span>
 
                         </td>
                         <td>
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="permLocation">
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="permLocation">
                                 <!-- <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permLocation.hasError('required')">
                                     Location is <strong>required!</strong>
                                 </span> -->
+                                </mat-form-field>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td align=" left">
-                            <span><span class="required">City
-                                </span>:</span>
-
-                        </td>
-                        <td align="left">
-
-                            <div class="form-group">
-                                <select class="form-control" formControlName="permCity">
-                                    <option [value]="city.cityCode" *ngFor="let city of cityDropdownValues">
-                                        {{city.city_Name}}</option>
-
-                                </select>
-                                <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permCity.hasError('required')">
-                                    City is <strong>required!</strong>
-                                </span>
-                            </div>
-                        </td>
-
-
-
                         <td align="left">
                             <span><label class="required">State
                             </label>:</span>
@@ -681,8 +686,6 @@
                                 
                             </div>
                         </td>
-                    </tr>
-                    <tr>
                         <td align="left">
                             <span><label class="required">District
                             </label>:</span>
@@ -704,29 +707,58 @@
                             </div>
                         </td>
 
+                       
 
+
+
+                       
+                    </tr>
+                    <tr>
+                        
+                        <td align=" left">
+                            <span><label class="required">City
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                            <div class="form-group">
+                                <mat-form-field appearance="outline">
+                                <mat-select  formControlName="permCity">
+                                    <mat-option [value]="city.cityCode" *ngFor="let city of cityDropdownValues">
+                                        {{city.city_Name}}</mat-option>
+
+                                </mat-select>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permCity.hasError('required')">
+                                    City is <strong>required!</strong>
+                                </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </td>
 
                         <td>
-                            <span><span class="required">PIN Code
-                                </span>:</span>
+                            <span><label class="required">PIN Code
+                            </label>:</span>
 
                         </td>
                         <td>
 
                             <div class="form-group">
-                                <input type="text" minlength="6" maxlength="6" class="form-control" formControlName="permPincode">
-                                <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permPincode.hasError('required')">
+                                <mat-form-field appearance="outline">
+                                <input type="text" minlength="6" maxlength="6" matInput formControlName="permPincode">
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permPincode.hasError('required')">
                                     PIN Code is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
                     </tr>
 
                     <tr>
                         <td align="left">
-                            <span><span>Phone Office
+                            <span><label>Phone Office
 
-                                </span>:
+                            </label>:
 
                             </span>
 
@@ -735,12 +767,15 @@
                         <td align="left">
 
                             <div class="form-inline">
+                                <mat-form-field appearance="outline" style="width: 90px;">
                                 <!-- <input class="form-control" type="text" maxlength="8" style="width:60px;margin-left: 15px"> -->
-                                <input class="form-control" type="text" maxlength="6" style="width: 90px;"
+                                <input matInput type="text" maxlength="6" 
                                     formControlName="Perm_std_code">
-                                <input class="form-control" type="text" maxlength="10" style="width: 150px;"
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" style="margin-left:5px;width: 150px;">
+                                <input matInput type="text" maxlength="10" 
                                     formControlName="permPhoneOffice">
-                                   
+                                  </mat-form-field>
                                 <!-- <input type="text" class="form-control" formControlName="permPhoneOffice" style="width: 40px;">
                                 <input type="text" class="form-control" formControlName="permPhoneOffice"> -->
                             </div>
@@ -756,17 +791,19 @@
 
 
                         <td>
-                            <span><span>Fax
-                                </span>:</span>
+                            <span><label>Fax
+                            </label>:</span>
 
                         </td>
                         <td>
 
                             <div class="form-group">
-                                <input type="text" maxlength="10" minlength="10" class="form-control" formControlName="permFax">
+                                <mat-form-field appearance="outline">
+                                <input type="text" maxlength="10" minlength="10" matInput formControlName="permFax">
                                 <!-- <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permFax.hasError('required')">
                                     Fax is <strong>required!</strong>
                                 </span> -->
+                            </mat-form-field>
                             </div>
                         </td>
                     </tr>
@@ -774,162 +811,195 @@
                     <tr>
                         <td colspan="4">
                             <span style="font-size: 15px; font-weight: bold;">Communication Address</span>
-                            <p>(if different from Retail Outlet Address)</p>
+                            <div class="col-md-6">
+                                <input type="checkbox" formControlName="checkboxRetails" (change)="onPermanentCommunicationAddressCheckboxChecked($event)"
+                                  [checked]="checked==true">
+                
+                                <label>
+                                   
+                                  <small style="font-size: 10px;color: red;padding: 6px;">(Click here if communication address is same as retail outlet address)</small>
+                                </label>
+                              </div>
                         </td>
                     </tr>
 
                     <tr>
                         <td align="left">
-                            <span><span>Address 1
-                                </span>:</span>
+                            <span><label>Address 1
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="Comm_Address1">
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="Comm_Address1">
+                            </mat-form-field>
                             </div>
                         </td>
 
 
 
                         <td align="left">
-                            <span><span>Address 2
-                                </span>:</span>
+                            <span><label>Address 2
+                            </label>:</span>
 
                         </td>
                         <td>
 
+                            
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="Comm_Address2">
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="Comm_Address2">
+                                </mat-form-field>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td align="left">
-                            <span><span>Address 3
-                                </span>:</span>
+                            <span><label>Address 3
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="Comm_Address3">
+                                <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="Comm_Address3">
+                                </mat-form-field>
                             </div>
                         </td>
-
-
-
                         <td align="left">
-                            <span><span>City
-                                </span>:</span>
+                            <span><label class="required">Location
+                            </label>:</span>
 
                         </td>
                         <td>
                             <div class="form-group">
-                                <select class="form-control" formControlName="comm_City">
-                                    <option [value]="city.cityCode" *ngFor="let city of cityDropdownValues">
-                                        {{city.city_Name}}</option>
-
-                                </select>
+                                <mat-form-field appearance="outline">
+                                <input type="text"matInput formControlName="Comm_Location">
+                                </mat-form-field>
                             </div>
                         </td>
+
+
+                       
                     </tr>
                     <tr>
                         <td align=" left">
-                            <span><span>State
-                                </span>:</span>
+                            <span><label>State
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <select class="form-control" formControlName="comm_State">
-                                    <option [value]="state.stateCode" *ngFor="let state of statesDropdownValues">
-                                        {{state.state_Name}}</option>
-                                </select>
+                                <mat-form-field appearance="outline">
+                                <mat-select  formControlName="comm_State">
+                                    <mat-option [value]="state.stateCode" *ngFor="let state of statesDropdownValues">
+                                        {{state.state_Name}}</mat-option>
+                                </mat-select>
+                                </mat-form-field>
                             </div>
                         </td>
 
 
 
                         <td align="left">
-                            <span><span>District
-                                </span>:</span>
+                            <span><label>District
+                            </label>:</span>
 
                         </td>
                         <td>
 
                             <div class="form-group">
-                                <select class="form-control" formControlName="comm_District">
-                                    <option [value]="district.district_Code"
+                                <mat-form-field appearance="outline">
+                                <mat-select formControlName="comm_District">
+                                    <mat-option [value]="district.district_Code"
                                         *ngFor="let district of districtDropdownValues">{{district.district_Name}}
-                                    </option>
-                                </select>
+                                    </mat-option>
+                                </mat-select>
+                                </mat-form-field>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td align="left">
-                            <span><span>Pin
-                                </span>:</span>
+                            <span><label>City
+                            </label>:</span>
+
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <mat-form-field appearance="outline" >
+                                <mat-select formControlName="comm_City">
+                                    <mat-option [value]="city.cityCode" *ngFor="let city of cityDropdownValues">
+                                        {{city.city_Name}}</mat-option>
+
+                                </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </td>
+                        <td align="left">
+                            <span><label>Pin
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" minlength="6" maxlength="6" class="form-control" formControlName="Comm_PIN_Code">
+                                <mat-form-field appearance="outline">
+                                <input type="text" minlength="6" maxlength="6" matInput formControlName="Comm_PIN_Code">
+                                </mat-form-field>
                             </div>
                         </td>
 
+                        
+
+
+                    </tr>
+
+                    <tr>
+
+                    </tr>
+                    <tr>
                         <td align="left">
-                            <span><span>Phone
-                                </span>:</span>
+                            <span><label>Phone
+                            </label>:</span>
 
                         </td>
                         <td align="left">
                             <div class="form-inline">
+                                <mat-form-field appearance="outline" style="width: 90px;">
                                 <!-- <input class="form-control" type="text" maxlength="8" style="width:60px;margin-left: 15px"> -->
-                                <input class="form-control" type="text" maxlength="6" style="width: 90px;"
+                                <input matInput type="text" maxlength="6" 
                                     formControlName="Comm_std_code">
-                                <input class="form-control" type="text" maxlength="10" style="width: 150px;"
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline" style="margin-left:5px;width: 150px;">
+                                <input matInput type="text" maxlength="10" 
                                     formControlName="Comm_Ph_Off">
-                                   
+                                   </mat-form-field>
                                 <!-- <input type="text" class="form-control" formControlName="permPhoneOffice" style="width: 40px;">
                                 <input type="text" class="form-control" formControlName="permPhoneOffice"> -->
                             </div>
                             
                         </td>
-
-
-                    </tr>
-
-                    <tr>
-
-                    </tr>
-                    <tr>
                         <td align="left">
-                            <span><span>Fax
-                                </span>:</span>
+                            <span><label>Fax
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="Comm_Fax" maxlength="10" minlength="10">
+                                <mat-form-field appearance="outline" >
+                                    <input type="text" matInput formControlName="Comm_Fax" maxlength="10" minlength="10">
+
+                                </mat-form-field>
                             </div>
                         </td>
-                        <td align="left">
-                            <span><span class="required">Location
-                                </span>:</span>
-
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <input type="text" class="form-control" formControlName="Comm_Location">
-                            </div>
-                        </td>
-
+                        
+                       
 
 
                     </tr>
@@ -966,24 +1036,26 @@
 
                     <tr>
                         <td align="left">
-                            <span><span class="required">No. of Live Terminal(s)
-                                </span>:</span>
+                            <span><label class="required">No. of Live Terminal(s)
+                            </label>:</span>
 
                         </td>
                         <td align="left">
 
                             <div class="form-group">
-                                <input type="number" class="form-control" formControlName="NoofLiveTerminals">
-                                <span style="font-size:12px" class="text-danger" *ngIf="terminalDetailsFormGroup.controls.NoofLiveTerminals.hasError('required')">
+                                <mat-form-field appearance="outline" >
+                                <input type="number" matInput formControlName="NoofLiveTerminals">
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="terminalDetailsFormGroup.controls.NoofLiveTerminals.hasError('required')">
                                     No. of Live Terminal(s) is <strong>required!</strong>
-                                </span>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td align="left">
-                            <span><span class="required">Terminal Type Requested
-                                </span>:</span>
+                            <span><label class="required">Terminal Type Requested
+                            </label>:</span>
 
                         </td>
                         <td align="left">

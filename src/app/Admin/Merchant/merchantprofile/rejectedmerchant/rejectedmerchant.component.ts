@@ -1,10 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/services/admin/admin.service';
+import { MerchantDetailsModalComponent } from '../../merchant-details-modal/merchant-details-modal.component';
 
 @Component({
   selector: 'app-rejectedmerchant',
@@ -23,7 +25,9 @@ export class RejectedmerchantComponent implements OnInit {
   public pageSize: number = 2;
   isshow: number = 0;
   rejectedMerchantListFormGroup: FormGroup;
-  constructor(private router: Router, private modalService: NgbModal, private fb: FormBuilder, private adminService: AdminService, private toastr: ToastrService) { }
+  rejectedMerchantData:Array<any>;
+  constructor(private router: Router, private modalService: NgbModal, private fb: FormBuilder, 
+    private adminService: AdminService, private toastr: ToastrService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.rejectedMerchantListFormGroup = this.fb.group({
@@ -44,6 +48,8 @@ export class RejectedmerchantComponent implements OnInit {
       .subscribe(data => {
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           debugger;
+          this.isshow=1;
+          this.rejectedMerchantData=data.data;
           //this.merchantTypes = data.data;
         }
         else if (data.status_Code === 401) {
@@ -55,11 +61,23 @@ export class RejectedmerchantComponent implements OnInit {
         console.log(err)
       })
   }
+  onViewMerchantDetails(merchantid): void {
+    let dialogRef = this.dialog.open(MerchantDetailsModalComponent, {
+      width: '900px',
+      data: { merchantid:merchantid }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+    });
+  }
   isdisplay() {
     this.isshow = 1;
   }
   Reset() {
     this.isshow = 0;
+    this.rejectedMerchantListFormGroup.reset();
   }
 
   GetManageUserData() {

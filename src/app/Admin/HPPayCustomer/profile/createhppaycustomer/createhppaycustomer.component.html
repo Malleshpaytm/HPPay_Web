@@ -250,7 +250,7 @@
                                                 <mat-select matNativeControl required formControlName="gender">
                                                     <mat-option value="Male">Male</mat-option>
                                                     <mat-option value="Female">Female</mat-option>
-                              
+                                                    <mat-option value="Other">Other</mat-option>
                                                 </mat-select>
                                                 <mat-error *ngIf="customerCreationFormGroup.controls['gender'].hasError('required')">
                                                   Title is required!
@@ -271,7 +271,7 @@
                                     <td>
                                         <div class="form-group">
                                             <mat-form-field appearance="outline">
-                                                <input matInput class="input" type="string" maxlength="10" minlength="10"
+                                                <input (blur)="checkMobileNo()" matInput class="input" type="string" maxlength="10" minlength="10"
                                                   required formControlName="mobile_number">
                                                 <mat-error *ngIf="customerCreationFormGroup.controls['mobile_number'].hasError('required')">
                                                   Mobile is required!
@@ -342,7 +342,7 @@
                                                     (click)="onSubmitButtonClick()">Submit</button>
                                             </div>
                                             <div>
-                                                <button class="btn btn-primary pl-3 pr-3">Reset</button>
+                                                <button class="btn btn-primary pl-3 pr-3" (click)="Reset()">Reset</button>
                                             </div>
                                         </div>
                                     </td>

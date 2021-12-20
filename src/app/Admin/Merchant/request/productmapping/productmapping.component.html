@@ -4,16 +4,16 @@
         <strong>Merchant Product Mapping</strong>
       </div>
       <div class="card-body pt-0">
-        <fieldset class="form-group border px-3 pt-0">
+        <fieldset class="form-group border px-3 pt-0" >
           <legend class="w-auto px-2" style="font-size: 12px;">Search</legend>
           <div class="d-flex d-flex-row justify-content-between">
-            <form class="form-inline">
+            <form class="form-inline" [formGroup]="merchantProductMappingFormGroup">
               <div class="form-group mb-2">
                 <label for="officerType" class="pr-2">Merchant Id</label>
-                <input type="text" name="mobile" id="mobile" class="form-control">
+                <input type="text" name="mobile" id="mobile" class="form-control" formControlName="merchantid" maxlength="10" minlength="10">
               </div>
   
-              <button type="submit" class="btn btn-info mb-2 ml-2" (click)="ShowTableList();">Search</button>
+              <button type="submit" class="btn btn-info mb-2 ml-2" (click)="onSearchButtonClick();">Search</button>
               <button type="submit" class="btn btn-info mb-2 ml-2" (click)="Reset();">Reset</button>
   
             </form>
