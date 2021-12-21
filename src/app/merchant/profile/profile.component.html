@@ -8,7 +8,7 @@
         <span><span class="required">Merchant Type </span>:</span>
       </div>
       <div class="form-group col-3">
-        <p-dropdown [options]="merchantTypeList" [(ngModel)]="merchantDetails.merchant_Type_Id" optionLabel="merchant_Type_Name" optionValue="merchant_Type_Id"></p-dropdown>
+        <p-dropdown [options]="merchantTypeList" [(ngModel)]="displayMerchantDetails.merchant_Type_Id" optionLabel="merchant_Type_Name" optionValue="merchant_Type_Id"></p-dropdown>
 
       </div>
 
@@ -100,7 +100,7 @@
       </div>
 
       <div class="form-group col-3">
-        <p-dropdown [options]="stateList" [(ngModel)]="merchantDetails.perm_State" optionLabel="state_Name" optionValue="stateCode"></p-dropdown>
+        <p-dropdown [options]="stateList" [(ngModel)]="displayMerchantDetails.perm_State" optionLabel="state_Name" optionValue="stateCode"></p-dropdown>
 
       </div>
 
@@ -109,7 +109,7 @@
       </div>
 
       <div class="form-group col-3">
-        <p-dropdown [options]="cityList" [(ngModel)]="merchantDetails.perm_City" optionLabel="city_Name" optionValue="city_Id"></p-dropdown>
+        <p-dropdown [options]="cityList" [(ngModel)]="displayMerchantDetails.perm_City" optionLabel="city_Name" optionValue="city_Id"></p-dropdown>
 
       </div>
 
@@ -118,7 +118,7 @@
       </div>
 
       <div class="form-group col-3">
-        <p-dropdown [options]="districtList" [(ngModel)]="merchantDetails.perm_District" optionLabel="district_Name" optionValue="district_Code"></p-dropdown>
+        <p-dropdown [options]="districtList" [(ngModel)]="displayMerchantDetails.perm_District" optionLabel="district_Name" optionValue="district_Code"></p-dropdown>
 
       </div>
 
@@ -209,7 +209,7 @@
     </div>
 
     <div class="form-group col-3">
-      <p-dropdown [options]="zonalOfficeList" [(ngModel)]="merchantDetails.zonal_Office" optionLabel="zone_Name" optionValue="zone_Code"></p-dropdown>
+      <p-dropdown [options]="zonalOfficeList" [(ngModel)]="displayMerchantDetails.zonal_Office" optionLabel="zone_Name" optionValue="zone_Code"></p-dropdown>
 
     </div>
 
@@ -218,7 +218,7 @@
     </div>
 
     <div class="form-group col-3">
-      <p-dropdown [options]="regionalOfficeList" [(ngModel)]="merchantDetails.regional_Office" optionLabel="rO_Name" optionValue="rO_Code"></p-dropdown>
+      <p-dropdown [options]="regionalOfficeList" [(ngModel)]="displayMerchantDetails.regional_Office" optionLabel="rO_Name" optionValue="rO_Code"></p-dropdown>
 
     </div>
 
@@ -240,7 +240,7 @@
     </div>
 
     <div class="form-group col-3">
-      <p-dropdown [options]="salesAreaList" [(ngModel)]="merchantDetails.salesArea" optionLabel="district_Name" optionValue="district_Code"></p-dropdown>
+      <p-dropdown [options]="salesAreaList" [(ngModel)]="displayMerchantDetails.salesArea" optionLabel="district_Name" optionValue="district_Code"></p-dropdown>
 
     </div>
   </div>
