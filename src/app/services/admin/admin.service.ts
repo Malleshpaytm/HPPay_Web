@@ -223,7 +223,13 @@ export class AdminService {
     const body=JSON.stringify(pending_verification_corporate_customerData);
     return this.service.post(path,body);
   }
-  ///api/hppay/registration/pending_verification_corporate_customer
+
+  verify_corporate_customer(verify_corporate_customerData): Observable<any> {
+    let path = '/hppay/registration/verify_corporate_customer';
+    const body=JSON.stringify(verify_corporate_customerData);
+    return this.service.post(path,body);
+  }
+
   //MERCHANT APIS
 
   getMerchantType(getMerchantTypeData): Observable<any> {

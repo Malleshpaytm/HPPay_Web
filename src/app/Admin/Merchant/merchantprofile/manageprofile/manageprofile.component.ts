@@ -220,8 +220,8 @@ export class ManageprofileComponent implements OnInit {
             "Comm_std_code": this.contactDetailsFormGroup.controls.Comm_std_code.value,
             "Comm_Ph_Off": this.contactDetailsFormGroup.controls.Comm_Ph_Off.value,
             "Comm_Fax": this.contactDetailsFormGroup.controls.Comm_Fax.value,
-            "NoofLiveTerminals": this.terminalDetailsFormGroup.controls.NoofLiveTerminals.value,
-            "Terminal_Type": this.terminalTypeRadioButtonValue,
+            // "NoofLiveTerminals": this.terminalDetailsFormGroup.controls.NoofLiveTerminals.value,
+            // "Terminal_Type": this.terminalTypeRadioButtonValue,
             "CreatedBy": "13",
             "Merchant_Type_Id": this.basicInformationFormGroup.controls.merchantType.value,
             "comm_mobile": "0",
@@ -233,6 +233,8 @@ export class ManageprofileComponent implements OnInit {
             "groupname": "HPCL",
             "store_password": "12345678",
             "dealer_Mobile": this.basicInformationFormGroup.controls.dealerMobile.value,
+            "noofLiveTerminals": this.terminalDetailsFormGroup.controls.NoofLiveTerminals.value,
+            "terminal_Type": this.terminalTypeRadioButtonValue
 
           }
           this.adminService.createMerchant(createMerchantData)

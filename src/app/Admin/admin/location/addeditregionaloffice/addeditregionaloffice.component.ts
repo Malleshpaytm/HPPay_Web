@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/services/admin/admin.service';
@@ -23,14 +23,14 @@ export class AddeditregionalofficeComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateRegionalOfficeFormGroup = this.fb.group({
-      rO_Code: [''],
-      rO_Name: [''],
-      rO_Short_Name: [''],
-      rO_ERP_Code: [''],
-      zO_Code: [''],
-      hO_Code: [''],
-      district_Code: [''],
-      e_D_Status: ['']
+      rO_Code: ['', Validators.required],
+      rO_Name: ['', Validators.required],
+      rO_Short_Name: ['', Validators.required],
+      rO_ERP_Code: ['', Validators.required],
+      zO_Code: ['', Validators.required],
+      hO_Code: ['', Validators.required],
+      district_Code: ['', Validators.required],
+      e_D_Status: ['', Validators.required]
     });
     this.route.queryParams
       .subscribe(params => {
@@ -127,38 +127,43 @@ export class AddeditregionalofficeComponent implements OnInit {
   }
   onSaveButtonClick() {
     debugger;
-    let insert_and_update_regional_officeData = {
-      "rO_Code": this.updateRegionalOfficeFormGroup.controls.rO_Code.value,
-      "rO_Name": this.updateRegionalOfficeFormGroup.controls.rO_Name.value,
-      "rO_Short_Name": this.updateRegionalOfficeFormGroup.controls.rO_Short_Name.value,
-      "rO_ERP_Code": this.updateRegionalOfficeFormGroup.controls.rO_ERP_Code.value,
-      "zO_Code": this.updateRegionalOfficeFormGroup.controls.zO_Code.value,
-      "hO_Code": this.updateRegionalOfficeFormGroup.controls.hO_Code.value,
-      "district_Code": this.updateRegionalOfficeFormGroup.controls.district_Code.value,
-      "e_D_Status": 0,
-      "useragent": "web",
-      "userip": "1",
-      "userid": "1",
+    if(this.updateRegionalOfficeFormGroup.valid){
+      let insert_and_update_regional_officeData = {
+        "rO_Code": this.updateRegionalOfficeFormGroup.controls.rO_Code.value,
+        "rO_Name": this.updateRegionalOfficeFormGroup.controls.rO_Name.value,
+        "rO_Short_Name": this.updateRegionalOfficeFormGroup.controls.rO_Short_Name.value,
+        "rO_ERP_Code": this.updateRegionalOfficeFormGroup.controls.rO_ERP_Code.value,
+        "zO_Code": this.updateRegionalOfficeFormGroup.controls.zO_Code.value,
+        "hO_Code": this.updateRegionalOfficeFormGroup.controls.hO_Code.value,
+        "district_Code": this.updateRegionalOfficeFormGroup.controls.district_Code.value,
+        "e_D_Status": 0,
+        "useragent": "web",
+        "userip": "1",
+        "userid": "1",
+      }
+      this.adminService.insert_and_update_regional_office(insert_and_update_regional_officeData)
+        .subscribe(data => {
+          debugger;
+          if (data.message.toUpperCase() === "RECORD FOUND") {
+            this.toastr.success(data.data[0].reason);
+            this.updateRegionalOfficeFormGroup.reset();
+          }
+          else if (data.status_Code === 401) {
+            this.adminService.refreshToken();
+          }
+          else {
+            this.toastr.error(data.data[0].reason)
+          }
+  
+        },
+  
+          (err: HttpErrorResponse) => {
+            console.log(err);
+          });
     }
-    this.adminService.insert_and_update_regional_office(insert_and_update_regional_officeData)
-      .subscribe(data => {
-        debugger;
-        if (data.message.toUpperCase() === "RECORD FOUND") {
-          this.toastr.success(data.data[0].reason);
-          this.updateRegionalOfficeFormGroup.reset();
-        }
-        else if (data.status_Code === 401) {
-          this.adminService.refreshToken();
-        }
-        else {
-          this.toastr.error(data.data[0].reason)
-        }
-
-      },
-
-        (err: HttpErrorResponse) => {
-          console.log(err);
-        });
+    else{
+      this.toastr.error("Please fill all the necessary details!")
+    }
   }
   Reset() {
     this.updateRegionalOfficeFormGroup.reset();
