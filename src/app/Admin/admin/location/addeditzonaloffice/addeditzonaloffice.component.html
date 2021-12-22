@@ -65,7 +65,7 @@
                                 <td>
                                     <div class="form-group">
                                         <select class="form-control" formControlName="state_Id">
-                                            <option *ngFor="let item of statesDropdownValues,let i=index" [value]="item.state_Id">{{item.state_Name}}</option>
+                                            <option *ngFor="let item of statesDropdownValues,let i=index" [value]="item.stateCode">{{item.state_Name}}</option>
                                         </select>
                                     </div>
                                 </td>
@@ -109,10 +109,10 @@
                                             <button class="btn btn-primary" (click)="onSaveButtonClick()">Save</button>
                                         </div>
                                         <div class="mr-3">
-                                            <button class="btn btn-primary">Reset</button>
+                                            <button class="btn btn-primary" (click)="Reset()">Reset</button>
                                         </div>
                                         <div>
-                                            <button class="btn btn-primary">Cancel</button>
+                                            <button class="btn btn-primary" routerLink="/admin/Zonalofficedetails">Cancel</button>
                                         </div>
                                     </div>
                                 </td>

@@ -56,6 +56,7 @@ this.updateZonalOfficeFormGroup.controls.zO_Name.setValue(this.zonalOfficeInfo.z
       .subscribe(data => {
         debugger;
         this.statesDropdownValues = data.data;
+        this.statesDropdownValues.sort((a, b) => a.state_Name.localeCompare(b.state_Name));
       },
       
         (err: HttpErrorResponse) => {
@@ -88,5 +89,7 @@ this.updateZonalOfficeFormGroup.controls.zO_Name.setValue(this.zonalOfficeInfo.z
      }
     })
  }
-
+ Reset(){
+   this.updateZonalOfficeFormGroup.reset();
+ }
 }

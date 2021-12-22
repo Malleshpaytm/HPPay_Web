@@ -49,8 +49,8 @@
                 <td>{{data.zone_Name}}</td>
                
                 <td align="right">
-                  <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn"  (click)="navigate(data)">edit</mat-icon>
-                  <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn">delete</mat-icon>
+                  <mat-icon style="font-size: 20px;cursor: pointer;" aria-hidden="false" color="warn"  (click)="navigate(data)">edit</mat-icon>
+                  <mat-icon style="font-size: 20px;cursor: pointer;" aria-hidden="false" color="warn" (click)="onDeleteZone(i)">delete</mat-icon>
                 </td>
               </tr>
             </tbody>

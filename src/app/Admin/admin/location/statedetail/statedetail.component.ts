@@ -102,5 +102,14 @@ export class StatedetailComponent implements OnInit {
   setAllChecked() {
     //return this.fgSystemList.filter((c: FgSystemToList) => c.isChecked === true).length === this.fgSystemList.length;
   }
-
+  navigate(item): void {
+    debugger
+   this.router.navigate(['/admin/addeditstate'], {
+     queryParams: {
+       isEdit:true,
+        data: JSON.stringify(item)
+        
+     }
+  });
+ }
 }

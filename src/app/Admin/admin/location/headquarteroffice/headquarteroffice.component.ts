@@ -38,7 +38,8 @@ export class HeadquarterofficeComponent implements OnInit {
           this.toastr.success(data.data[0].reason)
        }
        else if(data.status_Code===401){
-        this.adminService.refreshToken()
+        this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+        this.router.navigate(['/'])
       }
        else if(data.message.toUpperCase()==="RECORD NOT FOUND"){
          this.toastr.error(data.data[0].reason)
@@ -50,5 +51,7 @@ export class HeadquarterofficeComponent implements OnInit {
         this.toastr.error(err.toString());
       });
   }
-
+  onResetButtonClick(){
+    this.headOfficeDetailsForm.reset();
+  }
 }

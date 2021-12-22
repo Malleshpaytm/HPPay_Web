@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/services/admin/admin.service';
 
@@ -14,9 +14,12 @@ export class AddeditregionalofficeComponent implements OnInit {
   updateRegionalOfficeFormGroup: FormGroup;
   zonalOffices: Array<any>;
   regionalOffices: Array<any>;
-  districtDropdownValues:Array<any>;
-  headOfficesDropdownValues:Array<any>;
-  constructor(private adminService:AdminService,private fb: FormBuilder,private toastr:ToastrService, private router:Router) { }
+  districtDropdownValues: Array<any>;
+  headOfficesDropdownValues: Array<any>;
+  isEdit: boolean;
+  regionalOfficeInfo: any;
+  constructor(private adminService: AdminService, private fb: FormBuilder,
+    private toastr: ToastrService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.updateRegionalOfficeFormGroup = this.fb.group({
@@ -29,9 +32,27 @@ export class AddeditregionalofficeComponent implements OnInit {
       district_Code: [''],
       e_D_Status: ['']
     });
+    this.route.queryParams
+      .subscribe(params => {
+        debugger;
+        this.regionalOfficeInfo = params.data;
+        this.isEdit = params.isEdit
+      }
+      );
     this.getZonalOffices();
     this.getDistrict();
     this.getHeadOffices();
+    
+    if (this.isEdit = true) {
+      this.regionalOfficeInfo = JSON.parse(this.regionalOfficeInfo);
+      this.updateRegionalOfficeFormGroup.controls.rO_Code.setValue(this.regionalOfficeInfo.rO_Code);
+      this.updateRegionalOfficeFormGroup.controls.rO_Name.setValue(this.regionalOfficeInfo.rO_Name);
+      this.updateRegionalOfficeFormGroup.controls.rO_Short_Name.setValue(this.regionalOfficeInfo.rO_Short_Name);
+      this.updateRegionalOfficeFormGroup.controls.rO_ERP_Code.setValue(this.regionalOfficeInfo.rO_ERP_Code);
+      // this.updateZonalOfficeFormGroup.controls.state_Id.setValue(this.zonalOfficeInfo.zone_ERPcode);
+    
+    
+    }
   }
   getZonalOffices() {
     let zonalOfficeData = {
@@ -43,12 +64,19 @@ export class AddeditregionalofficeComponent implements OnInit {
       .subscribe(data => {
         debugger;
         this.zonalOffices = data.data;
+        if (this.isEdit = true) {
+          this.zonalOffices.forEach(ele => {
+            if (ele.zone_Code == this.regionalOfficeInfo?.zO_Code) {
+              this.updateRegionalOfficeFormGroup.controls.zO_Code.setValue(ele.zone_Code)
+            }
+          });
+        }
       },
         (err: HttpErrorResponse) => {
           console.log(err);
         });
   }
-  getDistrict(){
+  getDistrict() {
     //get district
     let districtData = {
       "Useragent": "web",
@@ -59,13 +87,20 @@ export class AddeditregionalofficeComponent implements OnInit {
       .subscribe(data => {
         debugger;
         this.districtDropdownValues = data.data;
+        if (this.isEdit = true) {
+          this.districtDropdownValues.forEach(ele => {
+            if (ele.district_Code == this.regionalOfficeInfo?.district_Code) {
+              this.updateRegionalOfficeFormGroup.controls.district_Code.setValue(ele.district_Code)
+            }
+          });
+        }
       },
-      (err: HttpErrorResponse) => {
-        console.log(err);
-      }
+        (err: HttpErrorResponse) => {
+          console.log(err);
+        }
       );
   }
-  getHeadOffices(){
+  getHeadOffices() {
     //get head offices
     debugger;
     let headOfficesData = {
@@ -77,13 +112,20 @@ export class AddeditregionalofficeComponent implements OnInit {
       .subscribe(data => {
         debugger;
         this.headOfficesDropdownValues = data.data;
+        if (this.isEdit = true) {
+          this.headOfficesDropdownValues.forEach(ele => {
+            if (ele.hO_Code == this.regionalOfficeInfo?.hO_Code) {
+              this.updateRegionalOfficeFormGroup.controls.hO_Code.setValue(ele.hO_Code)
+            }
+          });
+        }
       },
-      (err: HttpErrorResponse) => {
-        console.log(err);
-      }
+        (err: HttpErrorResponse) => {
+          console.log(err);
+        }
       );
   }
-  onSaveButtonClick(){
+  onSaveButtonClick() {
     debugger;
     let insert_and_update_regional_officeData = {
       "rO_Code": this.updateRegionalOfficeFormGroup.controls.rO_Code.value,
@@ -101,21 +143,25 @@ export class AddeditregionalofficeComponent implements OnInit {
     this.adminService.insert_and_update_regional_office(insert_and_update_regional_officeData)
       .subscribe(data => {
         debugger;
-       if(data.message.toUpperCase()==="RECORD FOUND"){
+        if (data.message.toUpperCase() === "RECORD FOUND") {
           this.toastr.success(data.data[0].reason);
           this.updateRegionalOfficeFormGroup.reset();
-       }
-       else if(data.status_Code===401){
-        this.adminService.refreshToken();
-      }
-       else{
-         this.toastr.error(data.data[0].reason)
-       }
-       
+        }
+        else if (data.status_Code === 401) {
+          this.adminService.refreshToken();
+        }
+        else {
+          this.toastr.error(data.data[0].reason)
+        }
+
       },
-      
-      (err: HttpErrorResponse) => {
-        console.log(err);
-      });
+
+        (err: HttpErrorResponse) => {
+          console.log(err);
+        });
   }
+  Reset() {
+    this.updateRegionalOfficeFormGroup.reset();
+  }
+
 }

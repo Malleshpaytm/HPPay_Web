@@ -97,6 +97,15 @@ export class CitydetailsComponent implements OnInit {
   setAllChecked() {
     //return this.fgSystemList.filter((c: FgSystemToList) => c.isChecked === true).length === this.fgSystemList.length;
   }
-
+  navigate(item): void {
+    debugger
+   this.router.navigate(['/admin/addeditcity'], {
+     queryParams: {
+       isEdit:true,
+        data: JSON.stringify(item)
+        
+     }
+  });
+ }
 
 }
