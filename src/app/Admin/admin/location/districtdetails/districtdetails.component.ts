@@ -57,6 +57,16 @@ export class DistrictdetailsComponent implements OnInit {
       );
 
   }
+  navigate(item): void {
+    debugger
+   this.router.navigate(['/admin/addeditdistrict'], {
+     queryParams: {
+       isEdit:true,
+        data: JSON.stringify(item)
+        
+     }
+  });
+ }
 onDeleteDistrict(index){
   debugger;
   let recordToBeDeleted=this.districtTableData[index];

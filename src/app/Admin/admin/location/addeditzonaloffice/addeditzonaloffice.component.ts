@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/services/admin/admin.service';
@@ -20,12 +20,12 @@ export class AddeditzonalofficeComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateZonalOfficeFormGroup = this.fb.group({
-      zO_Code: [''],
-      zO_Name: [''],
-      zO_Short_Name: [''],
-      zO_ERP_Code: [],
-      state_Id: [''],
-      e_D_Status: ['']
+      zO_Code: ['', Validators.required],
+      zO_Name: ['', Validators.required],
+      zO_Short_Name: ['', Validators.required],
+      zO_ERP_Code: ['', Validators.required],
+      state_Id: ['', Validators.required],
+      e_D_Status: ['', Validators.required]
     });
     this.getState();
     this.route.queryParams
@@ -56,6 +56,7 @@ this.updateZonalOfficeFormGroup.controls.zO_Name.setValue(this.zonalOfficeInfo.z
       .subscribe(data => {
         debugger;
         this.statesDropdownValues = data.data;
+        this.statesDropdownValues.sort((a, b) => a.state_Name.localeCompare(b.state_Name));
       },
       
         (err: HttpErrorResponse) => {
@@ -63,30 +64,37 @@ this.updateZonalOfficeFormGroup.controls.zO_Name.setValue(this.zonalOfficeInfo.z
         });
   }
  onSaveButtonClick(){
-   let addUpdateZonalOffice={
-    "zO_Code": this.updateZonalOfficeFormGroup.controls.zO_Code.value,
-    "zO_Name": this.updateZonalOfficeFormGroup.controls.zO_Name.value,
-    "zO_Short_Name":this.updateZonalOfficeFormGroup.controls.zO_Short_Name.value,
-    "zO_ERP_Code": this.updateZonalOfficeFormGroup.controls.zO_ERP_Code.value,
-    "state_Id": this.updateZonalOfficeFormGroup.controls.state_Id.value,
-    "e_D_Status": 0,
-    "useragent": "web",
-    "userip": "1",
-    "userid": "1"
-  }
-  this.adminService.insert_and_update_zone(addUpdateZonalOffice)
-    .subscribe(data=>{
-      if(data.message.toUpperCase()==="RECORD FOUND"){
-        this.toastr.success(data.data[0].reason);
-        this.updateZonalOfficeFormGroup.reset();
-     }
-     else if(data.status_Code===401){
-      this.adminService.refreshToken()
+   if(this.updateZonalOfficeFormGroup.valid){
+    let addUpdateZonalOffice={
+      "zO_Code": this.updateZonalOfficeFormGroup.controls.zO_Code.value,
+      "zO_Name": this.updateZonalOfficeFormGroup.controls.zO_Name.value,
+      "zO_Short_Name":this.updateZonalOfficeFormGroup.controls.zO_Short_Name.value,
+      "zO_ERP_Code": this.updateZonalOfficeFormGroup.controls.zO_ERP_Code.value,
+      "state_Id": this.updateZonalOfficeFormGroup.controls.state_Id.value,
+      "e_D_Status": 0,
+      "useragent": "web",
+      "userip": "1",
+      "userid": "1"
     }
-     else if(data.message.toUpperCase()==="RECORD NOT FOUND"){
-       this.toastr.error(data.data[0].reason)
-     }
-    })
+    this.adminService.insert_and_update_zone(addUpdateZonalOffice)
+      .subscribe(data=>{
+        if(data.message.toUpperCase()==="RECORD FOUND"){
+          this.toastr.success(data.data[0].reason);
+          this.updateZonalOfficeFormGroup.reset();
+       }
+       else if(data.status_Code===401){
+        this.adminService.refreshToken()
+      }
+       else if(data.message.toUpperCase()==="RECORD NOT FOUND"){
+         this.toastr.error(data.data[0].reason)
+       }
+      })
+   }
+   else{
+    this.toastr.error("Please fill all the necessary details!")
+  }
  }
-
+ Reset(){
+   this.updateZonalOfficeFormGroup.reset();
+ }
 }

@@ -58,7 +58,8 @@ export class MerchanttransactionviewComponent implements OnInit {
           this.toastr.error("No record found!")
         }
         else if (res.status_Code === 401) {
-          //this.loginService.generateToken();
+          this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+          this.router.navigate(['/'])
         }
       });
     

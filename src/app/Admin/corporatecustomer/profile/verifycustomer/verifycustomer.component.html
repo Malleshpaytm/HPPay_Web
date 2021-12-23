@@ -5,17 +5,23 @@
       </div>
       
       <div class="card-body">
-                    <table class="w-50">
+                    <table class="w-50" [formGroup]="pendingCorporateCustomerFormGroup">
                         <tr>
                             <td>
                                 <span class="required">Select  Category</span>:
                             </td>
                             <td align="left">
                                 <div class="form-group">
-                                    <select class="form-control">
-                                        <option value="New Customer">New Customer</option>
-                                        <option value="Approved Customer">Approved Customer</option>
-                                        <option value="Rejected Customer">Rejected Customer</option>
+                                    <select class="form-control" formControlName="category">
+                                        <option value="Approved">Approved</option>
+                                        <option value="Temporary Hotlisted">Temporary Hotlisted</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Permanent Hotlisted">Permanent Hotlisted</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Unverified">Unverified</option>
+                                        <option value="Verified">Verified</option>
+                                        <option value="Verification Rejected">Verification Rejected</option>
+                                        <option value="Approval Rejected">Approval Rejected</option>
                                     </select>  
                                 </div>
                             </td>
@@ -27,7 +33,7 @@
                             </td>
                             <td align="left">
                                 <div class="form-group">
-                                   <input type="date" class="form-control">   
+                                   <input type="date" class="form-control" formControlName="fromDate">   
                                 </div>
                             </td>
                         </tr>
@@ -38,7 +44,7 @@
                             </td>
                             <td align="left">
                                 <div class="form-group">
-                                   <input type="date" class="form-control">   
+                                   <input type="date" class="form-control" formControlName="toDate">   
                                 </div>
                             </td>
                         </tr>
@@ -53,16 +59,139 @@
                                 <td align="left">
                                     <div class=" d-flex flex-row justify-content-end">
                                         <div class="mr-3">
-                                            <button class="btn btn-primary">Search</button>
+                                            <button class="btn btn-primary" (click)="searchPendingCorporateCustomer()">Search</button>
                                         </div>
                                         <div class="mr-3">
-                                            <button class="btn btn-primary">Reset</button>
+                                            <button class="btn btn-primary" (click)="Reset()">Reset</button>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                    <div class="mt-3 card">
+                       
+                      
+                       
+                    <mat-table [dataSource]="dataSource" style="width: 100%;" class="mat-elevation-z8">
+                        <ng-container matColumnDef="sno">
+                            <mat-header-cell *matHeaderCellDef >S.No.</mat-header-cell>
+                            <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{i+1}} </mat-cell>
+                        </ng-container>
+                      <ng-container matColumnDef="select">
+                        <mat-header-cell *matHeaderCellDef>
+                          <mat-checkbox (change)="$event ? masterToggle() : null"
+                                        [checked]="selection.hasValue() && isAllSelected()"
+                                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                          </mat-checkbox>
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                          <mat-checkbox (click)="$event.stopPropagation()"
+                                        (change)="$event ? selection.toggle(row) : null"
+                                        [checked]="selection.isSelected(row)">
+                          </mat-checkbox>
+                        </mat-cell>
+                      </ng-container>
+                        <ng-container matColumnDef="customerCode">
+                          <mat-header-cell *matHeaderCellDef >Customer Code</mat-header-cell>
+                          <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{row.customercode}} </mat-cell>
+                        </ng-container>
+            
+                        <ng-container matColumnDef="companyName">
+                          <mat-header-cell *matHeaderCellDef > Company Name </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="text-center"> {{row.companyname}} </mat-cell>
+                        </ng-container>
+            
+                        <ng-container matColumnDef="contactPersonName">
+                          <mat-header-cell *matHeaderCellDef > Contact Person Name </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="text-center"> {{row.contactPersonFName}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="lastName">
+                          <mat-header-cell *matHeaderCellDef > Last Name </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="text-center"> {{row.lastname}} </mat-cell>
+                        </ng-container>
+                       
+                        <ng-container matColumnDef="customerType">
+                          <mat-header-cell *matHeaderCellDef >Customer Type </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="text-center"> {{row.customerType}} </mat-cell>
+                        </ng-container>
+            
+                        <ng-container matColumnDef="phoneNumber">
+                          <mat-header-cell *matHeaderCellDef > Phone Number </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="text-center"> {{row.phoneNo}} </mat-cell>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="createdBy">
+                            <mat-header-cell *matHeaderCellDef > Creation By </mat-header-cell>
+                            <mat-cell *matCellDef="let row" class="text-center"> {{row.createdBy}} </mat-cell>
+                          </ng-container>
+                        
+                          <ng-container matColumnDef="createdDate">
+                            <mat-header-cell *matHeaderCellDef > Creation Date </mat-header-cell>
+                            <mat-cell *matCellDef="let row" class="text-center"> {{row.createdOn}} </mat-cell>
+                          </ng-container>
+                          
+                        
+                        
+                        
+            
+                        <!-- <ng-container matColumnDef="comments">
+                          <mat-header-cell *matHeaderCellDef > Comments </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="text-center"> <input class="form-control"> </mat-cell>
+                        </ng-container> -->
+            
+                        <ng-container matColumnDef="viewDetail">
+                          <mat-header-cell *matHeaderCellDef > View Detail</mat-header-cell>
+            
+                          <mat-cell *matCellDef="let element; let i=index" class="text-center">
+                           <p style="color: blue;cursor: pointer;" (click)="onViewMerchantDetails(element.erpCode)">View</p>
+                          </mat-cell>
+                        </ng-container>
+            
+            
+            
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row 
+                        *matRowDef="let row;let i=index; columns: displayedColumns;" (click)="selection.toggle(row)"></mat-row>
+                      </mat-table>
+                      <mat-paginator [pageSizeOptions]="[5,10,20]"></mat-paginator>
+                      <div class="row" [formGroup]="pendingCorporateCustomerFormGroup">
+                        <div class="col-lg-2">
+                          <label style="margin-top: 4px;">
+                              <small>Comments<span style="color: red;">*</span>:</small>
+                            </label>  
+                        </div>
+                        <div class="col-lg-4">
+                          <section>
+                              <textarea class="textarea" cols="80" rows="5" style="width: 100%;"  
+                            [(ngModel)]="interaction.textValue"
+                            (ngModelChange)="onModelChange($event)"
+                            [attr.maxlength]="counter ? maxNumberOfCharacters : ''" formControlName="comments">
+                          </textarea>
+                          <!-- <span style="font-size:12px" class="text-danger"
+                          *ngIf="approveMerchantsFormGroup.controls.comments.hasError('required')">
+                          Comment is <strong>required!</strong>
+                        </span> -->
+                             
+                          </section>
+                        </div>
+                        <div class="col-lg-6">
+                          <small><i style="font-size: 12px;">({{maxNumberOfCharacters-numberOfCharacters2}} Characters Remaining)</i></small>
+                          <!-- {{numberOfCharacters2}} / {{maxNumberOfCharacters}} -->
+                      </div>
+                        
+                    </div>
+                      <div class="row">
+                        <div class="col-md-12 col-lg-12 col-xs-3">
+                          <button class="btn btn-danger btn-sm" style="float: right;" (click)="onRejectButtonClick()">Reject</button>
+                          <button class="btn btn-primary btn-sm" style="float: right;margin-right: 15px;" (click)="onVerifyButtonClick()">Verify</button>
+                          
+                         
+                          
+                        </div>
+                      </div>
+                      </div>
                 </div>
     </div>
   </div>

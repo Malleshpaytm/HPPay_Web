@@ -72,17 +72,30 @@ export class RegionalofficedetailComponent implements OnInit {
           console.log(err);
         });
   }
+
+  navigate(item): void {
+    debugger
+   this.router.navigate(['/admin/addeditregionaloffice'], {
+     queryParams: {
+       isEdit:true,
+        data: JSON.stringify(item)
+        
+     }
+  });
+ }
   onDeleteRegionalOffice(index) {
     debugger;
     let recordToBeDeleted = this.regionalOffices[index];
     let enableDisableRegionalOfficeData = {
-      "district_Code": recordToBeDeleted.district_Code,
-      "hO_Code": recordToBeDeleted.hO_Code,
       "rO_Code": recordToBeDeleted.rO_Code,
-      "rO_ERP_Code": recordToBeDeleted.rO_ERP_Code,
-      "rO_Name": recordToBeDeleted.rO_Name,
+      "rO_Name":  recordToBeDeleted.rO_Name,
       "rO_Short_Name": recordToBeDeleted.rO_Short_Name,
+      "rO_ERP_Code": recordToBeDeleted.rO_ERP_Code,
       "zO_Code": recordToBeDeleted.zO_Code,
+      "hO_Code":recordToBeDeleted.hO_Code,
+      "district_Code":recordToBeDeleted.district_Code,
+      "e_D_Status": 0,
+    
       "useragent": "web",
       "userid": "1",
       "userip": "1",
@@ -102,7 +115,7 @@ export class RegionalofficedetailComponent implements OnInit {
       console.log(err)
     })
   }
-
+  onSearchButtonClick(){}
   limitChange(limit: number) {
 
   }
@@ -120,6 +133,7 @@ export class RegionalofficedetailComponent implements OnInit {
 
 }
 export interface IRandomUsers {
+  customercode:any;
   erpCode: any;
   terminal_id: number;
   merchant_id: number;

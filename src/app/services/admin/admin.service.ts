@@ -217,6 +217,19 @@ export class AdminService {
     const body=JSON.stringify(corporateCustomerRegistrationData);
     return this.service.post(path,body);
   }
+
+  pending_verification_corporate_customer(pending_verification_corporate_customerData): Observable<any> {
+    let path = '/hppay/registration/pending_verification_corporate_customer';
+    const body=JSON.stringify(pending_verification_corporate_customerData);
+    return this.service.post(path,body);
+  }
+
+  verify_corporate_customer(verify_corporate_customerData): Observable<any> {
+    let path = '/hppay/registration/verify_corporate_customer';
+    const body=JSON.stringify(verify_corporate_customerData);
+    return this.service.post(path,body);
+  }
+
   //MERCHANT APIS
 
   getMerchantType(getMerchantTypeData): Observable<any> {
@@ -262,12 +275,12 @@ settlement_details_by_merchant(settlement_details_by_merchantData): Observable<a
   return this.service.post(path,body);
 }
 transactionDetailsByMerchant(transactionDetailsByMerchantData): Observable<any> {
-  let path = '/hppay/transaction/get_transaction_detail_by_merchantid ';
+  let path = '/hppay/transaction/get_transaction_detail_by_merchantid';
   const body=JSON.stringify(transactionDetailsByMerchantData);
   return this.service.post(path,body);
 }
 get_receivable_payable_details(get_receivable_payable_detailsData): Observable<any> {
-  let path = '/hppay/transaction/get_receivable_payable_details ';
+  let path = '/hppay/transaction/get_receivable_payable_details';
   const body=JSON.stringify(get_receivable_payable_detailsData);
   return this.service.post(path,body);
 }

@@ -20,17 +20,26 @@
     </div>
     <div class="row">
       <div class="col-12 pt-1">
-        <div class="card p-1">
+        <!-- <div class="card p-1">
           <form class="form-inline">
             <div class="form-group mb-1">
               <label for="zonalOffice" class="pr-2">Zonal Office</label>
               <select class="form-control" id="zonalOffice">
                 <option *ngFor="let item of zonalOffices,let i=index" [value]="item.zone_Code">{{item.zone_Name}}</option>
               </select>
+              <div class="align-self-center">
+                <button style="margin-left: 12px;" type="button" class="btn btn-info" (click)="onSearchButtonClick()">Search</button>
+              </div>
+              <div class="align-self-center">
+                <button style="margin-left: 12px;" type="button" class="btn btn-info" (click)="onSearchButtonClick()">Reset</button>
+              </div>
             </div>
+            
           </form>
+          
         </div>
-      </div>
+        
+      </div> -->
       <div class="col-md-12 col-sm-12">
         <div class="mt-3 card mb-3">
           <mat-table [dataSource]="dataSource" matSort style="width: 100%;" class="mat-elevation-z8">
@@ -69,7 +78,7 @@
               <mat-header-cell *matHeaderCellDef mat-sort-header> Actions</mat-header-cell>
 
               <mat-cell *matCellDef="let element;let i=index" class="text-center">
-                <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn">edit</mat-icon>
+                <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn" (click)="navigate(element)">edit</mat-icon>
                 <mat-icon mat-icon-button style="font-size: 20px;" aria-hidden="false" color="warn" (click)="onDeleteRegionalOffice(i)">delete</mat-icon>
               </mat-cell>
             </ng-container>
@@ -78,7 +87,7 @@
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           </mat-table>
-          <mat-paginator [pageSizeOptions]="[2,5,10]"></mat-paginator>
+          <mat-paginator [pageSizeOptions]="[5,10]"></mat-paginator>
 
           <!-- <table id="data-table" class="table table-striped table-borderless table-sm"
             style="width: 97%; margin-left: -1px;">

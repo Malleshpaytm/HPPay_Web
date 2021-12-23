@@ -134,7 +134,7 @@
                             (click)="changeRoute($event, '/admin/HPPayCustomer/financialemenu')">Financials
                             <div class="sub-menu">
                                 <!-- [routerLink]="['/admin/manageuser']" -->
-                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/balanceinfo')">Balace Info</a>
+                                <a (click)="changeRoute($event, '/admin/HPPayCustomer/balanceinfo')">Balance Info</a>
                                 <a (click)="changeRoute($event, '/admin/HPPayCustomer/transactiondetail')">Transaction
                                     Details</a>
                                 <a (click)="changeRoute($event, '/admin/HPPayCustomer/viewaccountstatement')">View
@@ -218,7 +218,7 @@
 
                         <a class="dropdown has-sub" style="cursor: pointer;"
                             (click)="changeRoute($event, '/admin/merchant/merchantfinancialmenu')">Financials
-                            <div class="sub-menu">
+                            <div class="sub-menu" style="max-height: 300px; overflow: scroll;">
                                 <!-- [routerLink]="['/admin/manageuser']" -->
                                 <a (click)="changeRoute($event, '/admin/merchant/settlementdetail')">
                                     Settlement Details</a>
