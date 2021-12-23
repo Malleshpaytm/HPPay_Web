@@ -1,35 +1,52 @@
 <div class="container pt-5">
   <div class="card shadow">
     <div class="card-header p-2 blue-bg text-white">
-      <strong class="balanceinfo">Settlement Details</strong>
+      <span class="h3">Settlement Details</span>
     </div>
-
     <div class="card-body">
       <div class="row">
-        <span class="required xs-2 align-self-center">Merchant ID:</span>
-        <div class="form-group xs-2 align-self-center">
-          <input type="text" class="form-control" />
+        <div class="col row align-items-center">
+          <span class="required col-3">From Date:</span>
+          <input type="date" placeholder=""  class="form-control col-9" />
         </div>
-        <span class="required xs-2 align-self-center">From Date:</span>
-        <div class="form-group xs-2 align-self-center">
-          <input type="date" class="form-control" />
-        </div>
-        <span class="required xs-2 align-self-center">To Date:</span>
-        <div class="form-group xs-2 align-self-center">
-          <input type="date" class="form-control" />
+        <div class="col row align-items-center">
+          <span class="required col-2">To Date:</span>
+          <input type="date" placeholder="" class="form-control col-10" />
         </div>
       </div>
-      <div class="d-flex flex-row justify-content-end">
+      <div class="row d-flex justify-content-end pt-1 pb-1">
         <div class="mr-3">
-          <button class="btn btn-primary">Search</button>
+          <button class="btn btn-sm btn-light">Search</button>
         </div>
         <div class="mr-3">
-          <button class="btn btn-primary">Reset</button>
+          <button class="btn btn-sm btn-light">Reset</button>
         </div>
-        <div class="mr-3">
-          <button class="btn btn-primary">Export to Excel</button>
+        <div class="mr-1">
+          <button class="btn btn-sm btn-light">Export to Excel</button>
         </div>
       </div>
+      <p-table [value]="[]">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>S.No</th>
+            <th>Terminal Id</th>
+            <th>Batch Id</th>
+            <th>Batch Status</th>
+            <th>Settlement Date</th>
+            <th>No Of Transactions</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-mappingDetails let-rowIndex="rowIndex">
+          <tr>
+            <td>{{ rowIndex + 1 }}</td>
+            <td>{{ mappingDetails.terminal_Id }}</td>
+            <td>{{ mappingDetails.batch_Id }}</td>
+            <td>{{ mappingDetails.batch_Status }}</td>
+            <td>{{ mappingDetails.settlement_Date }}</td>
+            <td>{{ mappingDetails.no_Of_Transactions }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
   </div>
 </div>
