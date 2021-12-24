@@ -33,6 +33,7 @@ import { MerchantmenuComponent } from './request/merchantmenu/merchantmenu.compo
 import { MaterialModule } from 'src/app/material/material.module';
 import { MerchantDetailsModalComponent } from './merchant-details-modal/merchant-details-modal.component';
 import { MerchantCreationViewComponent } from './approval/merchant-creation-view/merchant-creation-view.component';
+import { ManageqrcodeComponent } from './request/manageqrcode/manageqrcode.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { MerchantCreationViewComponent } from './approval/merchant-creation-view
             ProductmappingComponent,
             MerchantmenuComponent,
             MerchantDetailsModalComponent,
-            MerchantCreationViewComponent
+            MerchantCreationViewComponent,
+            ManageqrcodeComponent
   ],
   imports: [
     MaterialModule,

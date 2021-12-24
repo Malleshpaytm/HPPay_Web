@@ -7,13 +7,13 @@
         <fieldset class="form-group border px-3 pt-0">
           <legend class="w-auto px-2" style="font-size: 12px;">Search</legend>
           <div class="d-flex d-flex-row justify-content-between">
-            <form class="form-inline">
+            <form class="form-inline" [formGroup]="smsAlertDealerFormGroup">
               <div class="form-group mb-2">
                 <label for="officerType" class="pr-2">Merchant Id</label>
-                <input type="text" name="mobile" id="mobile" class="form-control">
+                <input type="text" name="mobile" id="mobile" maxlength="10" minlength="10" class="form-control" formControlName="merchantid">
               </div>
   
-              <button type="submit" class="btn btn-info mb-2 ml-2" (click)="ShowTableList();">Search</button>
+              <button type="submit" class="btn btn-info mb-2 ml-2" (click)="getMerchantDetails();">Search</button>
               <button type="submit" class="btn btn-info mb-2 ml-2" (click)="Reset();">Reset</button>
   
             </form>
@@ -28,12 +28,12 @@
               <form class="form-inline">
                 <div class="form-group mb-2" style="margin-right: 200px;">
                   <label class="form-control" for="officerType" class="pr-2">Merchant Id : </label>
-                  <label   class="form-control" for="officerType" class="pr-2">0102154210</label>
+                  <label   class="form-control" for="officerType" class="pr-2">{{this.merchantProfile?.merchantid}}</label>
 
                 </div>
                 <div class="form-group mb-2">
                     <label class="form-control" for="officerType" class="pr-2">ZO : </label>
-                  <label   class="form-control" for="officerType" class="pr-2">West Region</label>
+                  <label   class="form-control" for="officerType" class="pr-2">{{this.merchantProfile?.zonal_Office}}</label>
                   </div>
                 
               </form>
@@ -42,14 +42,14 @@
 
             <div class="d-flex d-flex-row justify-content-between">
                 <form class="form-inline">
-                  <div class="form-group mb-2" style="margin-right: 164px;">
+                  <div class="form-group mb-2" style="margin-right: 215px;">
                     <label class="form-control" for="officerType" class="pr-2">Retail Outlet Name : </label>
-                    <label   class="form-control" for="officerType" class="pr-2">DT Plus Test</label>
+                    <label   class="form-control" for="officerType" class="pr-2">{{this.merchantProfile?.outletName}}</label>
   
                   </div>
                   <div class="form-group mb-2">
                       <label class="form-control" for="officerType" class="pr-2">RO : </label>
-                    <label   class="form-control" for="officerType" class="pr-2">Mumbai RRO</label>
+                    <label   class="form-control" for="officerType" class="pr-2">{{this.merchantProfile?.regional_Office}}</label>
                     </div>
                   
                 </form>
@@ -101,7 +101,7 @@
                       of <span>{{ totalRow }}</span>
                     </div>
                   </div> -->
-                  <button type="submit" class="btn btn-info mb-2 ml-2">Submit</button>
+                  <button type="submit" class="btn btn-info mb-2 ml-2" (click)="onSubmitButtonClick()">Submit</button>
 
             <!-- <ngb-pagination class="float-left" [collectionSize]="totalRow" [(page)]="page" [boundaryLinks]="true"
               [pageSize]="1"></ngb-pagination>

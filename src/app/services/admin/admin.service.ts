@@ -32,7 +32,24 @@ export class AdminService {
    })
   }
 
+  //admin-->Hotlisting
+  activate_deactivate_entity(activate_deactivate_entityData): Observable<any> {
+    let path = '/hppay/settings/activate_deactivate_entity';
+    const body=JSON.stringify(activate_deactivate_entityData);
+    return this.service.post(path,body);
+  }
+  get_activate_deactivate_entity(get_activate_deactivate_entityData): Observable<any> {
+    let path = '/hppay/settings/get_activate_deactivate_entity';
+    const body=JSON.stringify(get_activate_deactivate_entityData);
+    return this.service.post(path,body);
+  }
   //LOCATIONS
+
+  insert_head_offices(insert_head_officesData): Observable<any> {
+    let path = '/hppay/settings/insert_head_offices';
+    const body=JSON.stringify(insert_head_officesData);
+    return this.service.post(path,body);
+  }
   update_head_offices(update_head_officesData): Observable<any> {
     let path = '/hppay/settings/update_head_offices';
     const body=JSON.stringify(update_head_officesData);
@@ -167,6 +184,17 @@ export class AdminService {
     return this.service.post(path,body);
   }
 
+  updateManageRole(updateManageRoleData): Observable<any> {
+    let path = '/hppay/user/update_manage_role';
+    const body=JSON.stringify(updateManageRoleData);
+    return this.service.post(path,body);
+  }
+  search_admin_user(search_admin_userData): Observable<any> {
+    let path = '/hppay/user/search_admin_user';
+    const body=JSON.stringify(search_admin_userData);
+    return this.service.post(path,body);
+  }
+
   search_user(search_userData): Observable<any> {
     let path = '/hppay/user/search_user';
     const body=JSON.stringify(search_userData);
@@ -207,8 +235,18 @@ export class AdminService {
     const body=JSON.stringify(reset_mpinData);
     return this.service.post(path,body);
   }
+//customer approvals
 
-  
+get_pending_kyc(get_pending_kycData): Observable<any> {
+  let path = '/hppay/login/get_pending_kyc';
+  const body=JSON.stringify(get_pending_kycData);
+  return this.service.post(path,body);
+}
+approve_kyc(approve_kycData): Observable<any> {
+  let path = '/hppay/login/approve_kyc';
+  const body=JSON.stringify(approve_kycData);
+  return this.service.post(path,body);
+}
 
   //corporate customer
   
@@ -313,8 +351,34 @@ get_allowed_products_for_merchant(get_allowed_products_for_merchantData): Observ
   const body=JSON.stringify(get_allowed_products_for_merchantData);
   return this.service.post(path,body);
 }
+get_allowed_service_sms_by_merchant(get_allowed_service_sms_by_merchantData): Observable<any> {
+  let path = '/hppay/merchant/get_allowed_service_sms_by_merchant';
+  const body=JSON.stringify(get_allowed_service_sms_by_merchantData);
+  return this.service.post(path,body);
+}
 
+generate_qr_merchant_fsm(generate_qr_merchant_fsmData): Observable<any> {
+  let path = '/hppay/merchant/generate_qr_merchant_fsm';
+  const body=JSON.stringify(generate_qr_merchant_fsmData);
+  return this.service.post(path,body);
+}
 
+save_merchant_fsm_mapping(save_merchant_fsm_mappingData): Observable<any> {
+  let path = '/hppay/merchant/save_merchant_fsm_mapping';
+  const body=JSON.stringify(save_merchant_fsm_mappingData);
+  return this.service.post(path,body);
+}
+get_merchant_fsm_mapping_list(get_merchant_fsm_mapping_listData): Observable<any> {
+  let path = '/hppay/merchant/get_merchant_fsm_mapping_list';
+  const body=JSON.stringify(get_merchant_fsm_mapping_listData);
+  return this.service.post(path,body);
+}
+
+block_merchant_fsm(block_merchant_fsmData): Observable<any> {
+  let path = '/hppay/merchant/block_merchant_fsm';
+  const body=JSON.stringify(block_merchant_fsmData);
+  return this.service.post(path,body);
+}
 
   // Interface --> EFT Reccharge API(S)
   request_ccms_recharge_through_eft(request_ccms_recharge_through_eftData): Observable<any> {
@@ -359,10 +423,6 @@ get_allowed_products_for_merchant(get_allowed_products_for_merchantData): Observ
     return this.service.post(path,body);
   }
 
-  activate_deactivate_entity(get_user_wallet_balanceData): Observable<any> {
-    let path = '/dtplus/settings/activate_deactivate_entity';
-    const body=JSON.stringify(get_user_wallet_balanceData);
-    return this.service.post(path,body);
-  }
+  
 
 }

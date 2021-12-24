@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
   selector: 'app-smsalertdealer',
@@ -15,32 +20,35 @@ export class SmsalertdealerComponent implements OnInit {
   public page: number = 1;
   public pageSize: number = 2;
   isshow:number=0;
-
-  constructor(private modalService: NgbModal) { }
+  smsAlertDealerFormGroup:FormGroup;
+  merchantProfile:any;
+  constructor(private router: Router, private modalService: NgbModal, private fb: FormBuilder, 
+    private adminService: AdminService, private toastr: ToastrService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.GetManageUserData();
+    this.smsAlertDealerFormGroup=this.fb.group({
+      merchantid:['']
+    })
   }
 
-  GetManageUserData() {
-    this.GetSaveData = [
-      {
-        "customerid": "SMS On Cash Reload",
-        
+  getMerchantDetails(){
+    debugger;
+    let searchMerchantByMerchantIdData={
+      "merchantid": this.smsAlertDealerFormGroup.controls.merchantid.value,
+  "useragent": "web",
+  "userip": "1",
+  "userid": "1"
+    }
+    this.adminService.searchMerchantByMerchantId(searchMerchantByMerchantIdData)
+      .subscribe(data=>{
+        console.log(data.data);
+        this.ShowTableList();
+        this.merchantProfile=data.data[0];
+      })
+  }
 
-      },
-      {
-        "customerid": "SMS On CCMS Recharge",
-        
-
-      },
-      {
-        "customerid": "SMS On Dealer Sattlement",
-        
-
-      }
-
-    ];
+  onSubmitButtonClick(){
+    
   }
 
   ShowTableList(){

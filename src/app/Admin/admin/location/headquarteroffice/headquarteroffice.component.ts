@@ -33,10 +33,11 @@ export class HeadquarterofficeComponent implements OnInit {
         "userid": "1",
       }
       
-      this.adminService.update_head_offices(update_head_officesData)
+      this.adminService.insert_head_offices(update_head_officesData)
         .subscribe(data => {
          if(data.message.toUpperCase()==="RECORD FOUND"){
-            this.toastr.success(data.data[0].reason)
+            this.toastr.success(data.data[0].reason);
+            this.headOfficeDetailsForm.reset();
          }
          else if(data.status_Code===401){
           this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')

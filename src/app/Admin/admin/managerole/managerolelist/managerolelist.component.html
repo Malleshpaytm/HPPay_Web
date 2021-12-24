@@ -26,8 +26,7 @@
           <thead>
             <tr>
               <th>
-                <input type="checkbox" [(ngModel)]="allChecked" (change)="toggleCheckAll()"
-                  [checked]="setAllChecked()" />
+                S.No
               </th>
               <th>Role Name</th>
               <th>Role Description</th>
@@ -36,12 +35,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of GetSaveData; let i = index">
+            <tr *ngFor="let data of adminRolesDropdownValues; let i = index">
               <td>
-                <input type="checkbox" />
+              {{i+1}}
               </td>
-              <td>{{data.username}}</td>
-              <td>Description</td>
+              <td>{{data.role_Name}}</td>
+              <td>{{data.role_Description}}</td>
 
               <td align="right">
                 <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn">edit</mat-icon>
@@ -52,25 +51,7 @@
         </table>
         &nbsp;
         &nbsp;
-        <div class="form-group col-md-12">
-          <!-- <div class="col-auto">
-              <div class="pagination-info">
-                <span>{{ filter.page }}</span> -
-                <span>{{ filter.limit }}</span>
-                of <span>{{ totalRow }}</span>
-              </div>
-            </div> -->
-
-          <ngb-pagination class="float-left" [collectionSize]="totalRow" [(page)]="page" [boundaryLinks]="true"
-            [pageSize]="1"></ngb-pagination>
-          <select class="custom-select float-right" style="width: auto;" (ngModelChange)="limitChange($event)"
-            [(ngModel)]="pageSize">
-            <option [ngValue]="2">2</option>
-            <option [ngValue]="10">10</option>
-            <option [ngValue]="50">50</option>
-            <option [ngValue]="100">100</option>
-          </select>
-        </div>
+        
       </div>
     </div>
   </div>

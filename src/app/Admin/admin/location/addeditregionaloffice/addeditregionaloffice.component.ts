@@ -30,7 +30,7 @@ export class AddeditregionalofficeComponent implements OnInit {
       zO_Code: ['', Validators.required],
       hO_Code: ['', Validators.required],
       district_Code: ['', Validators.required],
-      e_D_Status: ['', Validators.required]
+      e_D_Status: ['']
     });
     this.route.queryParams
       .subscribe(params => {

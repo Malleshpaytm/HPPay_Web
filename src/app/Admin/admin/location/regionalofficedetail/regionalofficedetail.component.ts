@@ -133,6 +133,8 @@ export class RegionalofficedetailComponent implements OnInit {
 
 }
 export interface IRandomUsers {
+  mobile_No: any;
+  customer_Id: any;
   customercode:any;
   erpCode: any;
   terminal_id: number;
