@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mer-settlement-details.component.css']
 })
 export class MerSettlementDetailsComponent implements OnInit {
-
+  public date = new Date();
   constructor() { }
 
   ngOnInit(): void {

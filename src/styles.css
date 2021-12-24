@@ -40,7 +40,7 @@ body {
 }
 
 .blue-bg {
-  background-color: #084594;
+  background-color: #084594 !important;
 }
 
 .p-dropdown {
