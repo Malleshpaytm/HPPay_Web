@@ -1,5 +1,8 @@
 <div class="container pt-5">
   <div class="card shadow">
+    <div class="card-header p-2 blue-bg text-white">
+      <span class="h3">QR Agents Onboarding</span>
+    </div>
     <div class="card-body">
       <div class="row">
         <ng-container *ngIf="isBeingAdded">
@@ -36,7 +39,7 @@
         </ng-container>
         <ng-container *ngIf="!isBeingAdded">
           <button class="btn btn-md btn-primary ml-1" (click)="handleAddFsm()">
-            Add Fsm
+            Add FSM
           </button>
         </ng-container>
       </div>
