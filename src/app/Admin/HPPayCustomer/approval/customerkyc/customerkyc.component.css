@@ -1,4 +1,16 @@
 .blue-bg {
     background-color: #084594;
   }
-  
+  .mat-column-sno {
+    flex: 0 0 10%;
+  }
+  .mat-column-select {
+    flex: 0 0 10%;
+  }
+  .mat-column-actions {
+    flex: 0 0 10%;
+  }
+  html,
+body {
+  height: 130%;
+}

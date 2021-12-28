@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-generateqrcode',
-  templateUrl: './generateqrcode.component.html',
-  styleUrls: ['./generateqrcode.component.css']
+  selector: 'app-manageqrcode',
+  templateUrl: './manageqrcode.component.html',
+  styleUrls: ['./manageqrcode.component.css']
 })
-export class GenerateqrcodeComponent implements OnInit {
+export class ManageqrcodeComponent implements OnInit {
 
-  
+ 
   allChecked = false;
   //DataList: DatatoList[] = [];
   GetSaveData: any = [];
@@ -68,5 +68,6 @@ export class GenerateqrcodeComponent implements OnInit {
   setAllChecked() {
     //return this.fgSystemList.filter((c: FgSystemToList) => c.isChecked === true).length === this.fgSystemList.length;
   }
+
 
 }

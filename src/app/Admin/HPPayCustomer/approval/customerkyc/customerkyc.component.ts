@@ -1,5 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { SelectionModel } from '@angular/cdk/collections';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { IRandomUsers } from 'src/app/Admin/admin/location/regionalofficedetail/regionalofficedetail.component';
+import { AdminService } from 'src/app/services/admin/admin.service';
+import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/shared/confirm-modal/confirm-modal.component';
+import { DialogBoxComponent } from 'src/app/shared/dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-customerkyc',
@@ -7,9 +20,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./customerkyc.component.css']
 })
 export class CustomerkycComponent implements OnInit {
-
+  displayedColumns: string[] = ['sno','select','customer_Id', 'created_On','poa', 'poi'];
+private dataArray: any;
   
-  
+public dataSource: MatTableDataSource<IRandomUsers>;
+@ViewChild(MatPaginator) paginator: MatPaginator;
+@ViewChild(MatSort, { static: false }) sort: MatSort;
+selection = new SelectionModel<IRandomUsers>(true, []);
   allChecked = false;
   //DataList: DatatoList[] = [];
   GetSaveData: any = [];
@@ -17,13 +34,182 @@ export class CustomerkycComponent implements OnInit {
   public page: number = 1;
   public pageSize: number = 2;
   isshow:number=0;
-
-  constructor(private modalService: NgbModal) { }
+  maxNumberOfCharacters = 1000;
+ counter = true;
+ numberOfCharacters1 = 0;
+ numberOfCharacters2 = 0;
+ interaction = {
+   textValue: ''
+ };
+ recordToBeApprovedOrRejected=[];
+ onModelChange(textValue: string): void {
+  this.numberOfCharacters2 = textValue.length;
+}
+customerkycformgroup:FormGroup;
+  constructor(private adminService: AdminService, public dialog: MatDialog,private fb:FormBuilder,
+    public toastr:ToastrService, private router:Router) { }
 
   ngOnInit(): void {
-    this.GetManageUserData();
+    this.customerkycformgroup=this.fb.group({
+      category:[''],
+      email:[''],
+      mobileno: [''],
+      from_Date: [''],
+      to_Date:[''],
+      comments:['']
+    })
+  }
+  onSearchButtonClick(){
+    debugger;
+    let  get_pending_kycData = {
+      "category": this.customerkycformgroup.controls.category.value,
+      "email": this.customerkycformgroup.controls.email.value,
+      "mobileno": this.customerkycformgroup.controls.mobileno.value,
+      "from_Date": this.customerkycformgroup.controls.from_Date.value,
+      "to_Date":this.customerkycformgroup.controls.to_Date.value,
+      "useragent": "web",
+      "userip": "1",
+      "userid": "1",
+    }
+    
+    this.adminService.get_pending_kyc(get_pending_kycData)
+      .subscribe(data => {
+       if(data.message.toUpperCase()==="RECORD FOUND"){
+        this.dataArray = data.data;
+        this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
+        this.dataSource.paginator = this.paginator;
+          //this.hotlistData=data.data
+          //this.headOfficeDetailsForm.reset();
+       }
+       else if(data.status_Code===401){
+        this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+        this.router.navigate(['/'])
+      }
+       else if(data.message.toUpperCase()==="RECORD NOT FOUND"){
+         this.toastr.error(data.message);
+         this.selection.clear();
+       }
+       
+      },
+      
+      (err: HttpErrorResponse) => {
+        this.toastr.error(err.toString());
+      });
+  }
+  onApproveButtonClick(){
+    //console.log(this.selection.selected);
+    debugger;
+    if(this.customerkycformgroup.controls.comments.value.length>0 && this.selection.selected.length>0){
+      const message = `Are you sure you want to approve this customer(s)?`;
+
+      const dialogData = new ConfirmDialogModel("Confirm Action", message);
+  
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        maxWidth: "400px",
+        data: dialogData
+      });
+      dialogRef.afterClosed().subscribe(dialogResult => {
+        if (dialogResult) {
+      this.selection.selected.forEach(element => {
+        let approve_kycData={
+          "customer_Id": element.customer_Id,
+          "mobileno": element.mobile_No,
+          "comments": this.customerkycformgroup.controls.comments.value,
+          "status": "Approved",
+          "useragent": "web",
+          "userip": "1",
+          "userid": "1"
+      }
+      this.adminService.approve_kyc(approve_kycData)
+        .subscribe(data => {
+          if (data.message.toUpperCase() === 'RECORD FOUND') {
+            debugger;
+            this.openDialog("Customer(s) approved successfully!")
+            this.onSearchButtonClick();
+            this.customerkycformgroup.controls.comments.reset();
+           // this.merchantTypes = data.data;
+          }
+          else if (data.status_Code === 401) {
+            this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+            this.router.navigate(['/'])
+          }
+          else{
+            this.toastr.error(data.data[0].reason)
+          }
+        }, (err: HttpErrorResponse) => {
+          console.log(err)
+        })
+      });
+    }})
+    }
+    else{
+      this.toastr.error("Please select the customer and add comments!")
+    }
+    
   }
 
+  openDialog(message): void {
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      width: '400px',
+      data: { message: message }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+    });
+  }
+  onRejectButtonClick(){
+    debugger;
+    if(this.customerkycformgroup.controls.comments.valid && this.selection.selected.length>0){
+    const message = `Are you sure you want to reject this merchant(s)?`;
+
+      const dialogData = new ConfirmDialogModel("Confirm Action", message);
+  
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        maxWidth: "400px",
+        data: dialogData
+      });
+      dialogRef.afterClosed().subscribe(dialogResult => {
+        if (dialogResult) {
+    this.selection.selected.forEach(element => {
+      let approve_kycData={
+        "customer_Id": element.customer_Id,
+        "mobileno": element.mobile_No,
+        "comments": this.customerkycformgroup.controls.comments.value,
+        "status": "Reject",
+        "useragent": "web",
+        "userip": "1",
+        "userid": "1"
+    }
+    this.adminService.approve_kyc(approve_kycData)
+      .subscribe(data => {
+        if (data.message.toUpperCase() === 'RECORD FOUND') {
+          debugger;
+          this.openDialog("Customer(s) rejected successfully!")
+          this.onSearchButtonClick();
+          this.customerkycformgroup.controls.comments.reset();
+         // this.merchantTypes = data.data;
+        }
+        else if (data.status_Code === 401) {
+          //this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+          //this.router.navigate(['/'])
+        }
+      }, (err: HttpErrorResponse) => {
+        console.log(err)
+      })
+    });
+   
+  }})
+}
+else{
+  this.toastr.error("Please select the customer and add comments!")
+}
+  }
+  onImageClick(url) {
+    debugger;
+    window.open(url, '_blank');
+  }
   GetManageUserData() {
     this.GetSaveData = [
       {
@@ -84,12 +270,26 @@ export class CustomerkycComponent implements OnInit {
       }
     ];
   }
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
 
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
   ShowTableList(){
     this.isshow=1;
  }
  Reset(){
    this.isshow=0;
+   this.customerkycformgroup.reset();
+   this.dataSource = new MatTableDataSource<IRandomUsers>();
+          this.dataSource.paginator = this.paginator;
  }
 
   limitChange(limit: number) {

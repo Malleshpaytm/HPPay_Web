@@ -1,5 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
   selector: 'app-managerolelist',
@@ -14,12 +19,40 @@ export class ManagerolelistComponent implements OnInit {
   totalRow: number=5;
   public page: number = 1;
   public pageSize: number = 2;
-  constructor(private modalService: NgbModal) { }
+  adminRolesDropdownValues:Array<any>
+  constructor(private adminService: AdminService, private toastr: ToastrService, 
+    private fb: FormBuilder, private router:Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.GetManageUserData();
+    this.getAllRoles();
   }
-
+  getAllRoles() {
+    debugger;
+    let getAllRolesData = {
+      "useragent": "web",
+      "userip": "1",
+      "userid": "1",
+      "role_Name": 0
+    }
+    this.adminService.getAllRoles(getAllRolesData)
+      .subscribe(data => {
+        debugger;
+        if (data.message.toUpperCase() === 'RECORD FOUND') {
+          this.adminRolesDropdownValues = data.data
+          debugger;
+        }
+        else if(data.status_Code===401){
+          this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+          this.router.navigate(['/'])
+        }
+        else {
+         
+        }
+      },
+        (err: HttpErrorResponse) => {
+          err;
+        });
+  }
   GetManageUserData() {
     this.GetSaveData = [
       {

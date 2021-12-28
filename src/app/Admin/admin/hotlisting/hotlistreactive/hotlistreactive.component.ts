@@ -29,6 +29,7 @@ export class HotlistreactiveComponent implements OnInit {
 
 
   onApplyButtonClick() {
+    debugger;
     const message = `Are you sure you want to do this?`;
 
       const dialogData = new ConfirmDialogModel("Confirm Action", message);
@@ -42,7 +43,17 @@ export class HotlistreactiveComponent implements OnInit {
 
     // TODO: Use EventEmitter with form value
       console.warn(this.hotListFormGroup.value);
-      this.adminService.activate_deactivate_entity(this.hotListFormGroup.value).subscribe(data=>
+      let activate_deactivate_entityData={
+        "useragent": "web",
+  "userip": "1",
+  "userid": "1",
+  "entity_Type": this.hotListFormGroup.controls.entity_Type.value,
+  "entity_Id": this.hotListFormGroup.controls.entity_Id.value,
+  "action": this.hotListFormGroup.controls.action.value,
+  "reason": this.hotListFormGroup.controls.reason.value,
+  "remarks": this.hotListFormGroup.controls.remarks.value,
+      }
+      this.adminService.activate_deactivate_entity(activate_deactivate_entityData).subscribe(data=>
       {
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           this.dialog.open(DialogBoxComponent, {

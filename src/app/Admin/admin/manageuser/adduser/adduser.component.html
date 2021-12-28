@@ -13,144 +13,190 @@
                                     <tbody>
                                         <tr>
                                             <td colspan="4" style="padding-right: 20px; padding-bottom: 5px;" align="right">
-                                                <!-- <table width="200px" border="0" cellspacing="0" cellpadding="0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td width="8%">
-                                                                <div id="dvUserInfo" class="ActiveTabs">
-                                                                    User&nbsp;Info
-                                                                </div>
-                                                            </td>
-                                                            <td width="8%">
-                                                                <div id="dvCreateRole" class="TabsDisabled">
-                                                                    User&nbsp;Role
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table> -->
+                                              
                                             </td>
         
         
                                         </tr>
                                         <tr>
                                             <td style="width: 15%">
-                                                <span><span class="required">Username</span>:</span>
+                                                <span><label class="required">Username</label>:</span>
                                             </td>
         
                                             <td style="width: 39%">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control maxwidth300" maxlength="256" formControlName="userName">
+                                                    <mat-form-field appearance="outline">
+                                                        <input type="text" matInput maxlength="256" formControlName="userName">
+                                                        <mat-error *ngIf="addUserFormGroup.controls['userName'].hasError('required')">
+                                                            User Name is required!
+                                                          </mat-error>
+                                                    </mat-form-field>
+                                                   
                                                 </div>
                                             </td>
                                             <td style="width: 16%">
-                                                <span><span class="required">Email</span>:</span>
+                                                <span><label class="required">Email</label>:</span>
                                             </td>
         
                                             <td style="width: 30%">
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control maxwidth300" maxlength="256" formControlName="email">
+                                                    <mat-form-field appearance="outline">
+                                                        <input type="text" matInput maxlength="256" formControlName="email">
+                                                        <mat-error *ngIf="addUserFormGroup.controls['email'].hasError('required')">
+                                                            Email is required!
+                                                          </mat-error>
+                                                          <mat-error *ngIf="addUserFormGroup.controls['email'].hasError('email')">
+                                                            Email is invalid!
+                                                          </mat-error>
+                                                    </mat-form-field>
+                                                    
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="width: 15%">
-                                                <span><span class="required">Password</span>:</span>
+                                                <span><label class="required">Password</label>:</span>
                                             </td>
         
                                             <td style="width: 39%">
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control maxwidth300" maxlength="128" formControlName="password">
+                                                    <mat-form-field appearance="outline">
+                                                        <input type="password" matInput placeholder="Password" [formControl]="password"/>
+                                                        <mat-error *ngIf="password.dirty && password.errors?.pattern">
+                                                            <strong>Pattern Wrong</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                    
                                                 </div>
                                             </td>
                                             <td style="width: 16%">
-                                                <span><span class="required">Confirm Password</span>:</span>
+                                                <span><label class="required">Confirm Password</label>:</span>
                                             </td>
         
                                             <td style="width: 30%">
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control maxwidth300" maxlength="128" formControlName="confirmPassword">
+                                                    <mat-form-field appearance="outline">
+                                                        <input type="password" matInput  [formControl]="confirmPassword"/>
+                                                        <mat-error *ngIf="confirmPassword.dirty && confirmPassword.errors?.noMatch">
+                                                            <strong>Password</strong> and <strong>Confirm Password</strong> must be same
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                   
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="width: 15%">
-                                                <span><span class="required">Secret Question</span>:</span>
+                                                <span><label class="required">Secret Question</label>:</span>
                                             </td>
                                             <td style="width: 39%">
                                                 <div class="form-group">
-                                                    <select class="form-control maxwidth300" formControlName="secretQuestion">
-                                                        <option value="select">select</option>
-                                                        <option value="Father's maiden name">Father's maiden name</option>
-                                                        <option value="City of Birth">City of Birth</option>
-                                                        <option value="Name of first school">Name of first school</option>
-                                                        <option value="Date of marriage">Date of marriage</option>
-                                                        <option value="Name of the childhood hero">Name of the childhood hero</option>
-                                                        <option value="Favorite pastime">Favorite pastime</option>
-                                                        <option value="Favorite sport">Favorite sport</option>
-                                                        <option value="Favorite actor">Favorite actor</option>
-                                                        <option value="Favorite actress">Favorite actress</option>
-                                                        <option value="Pet's name">Pet's name</option>
-                                                        <option value="Other">Other</option>
-                                                    </select>
+                                                    <mat-form-field appearance="outline" >
+                                                  <mat-select formControlName="secretQuestion">
+                                                    <mat-option value="Father's maiden name">Father's maiden name</mat-option>
+                                                    <mat-option value="City of Birth">City of Birth</mat-option>
+                                                    <mat-option value="Name of first school">Name of first school</mat-option>
+                                                    <mat-option value="Date of marriage">Date of marriage</mat-option>
+                                                    <mat-option value="Name of the childhood hero">Name of the childhood hero</mat-option>
+                                                    <mat-option value="Favorite pastime">Favorite pastime</mat-option>
+                                                    <mat-option value="Favorite sport">Favorite sport</mat-option>
+                                                    <mat-option value="Favorite actor">Favorite actor</mat-option>
+                                                    <mat-option value="Favorite actress">Favorite actress</mat-option>
+                                                    <mat-option value="Pet's name">Pet's name</mat-option>
+                                                    <mat-option value="Other">Other</mat-option>
+                                                  </mat-select>
+                                                  <mat-error *ngIf="addUserFormGroup.controls['secretQuestion'].hasError('required')">
+                                                    Secret Question is required!
+                                                  </mat-error>
+                                                    </mat-form-field>
                                                 </div>
                                             </td>
                                             <td style="width: 16%">
-                                                <span><span class="required">Secret Question Answer</span>:</span>
+                                                <span><label class="required">Secret Question Answer</label>:</span>
                                             </td>
         
                                             <td style="width: 30%">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control maxwidth300" maxlength="128" formControlName="secretAnswer">
+                                                    <mat-form-field appearance="outline" >
+                                                        <input type="text" matInput maxlength="128" formControlName="secretAnswer">
+                                                        <mat-error *ngIf="addUserFormGroup.controls['secretAnswer'].hasError('required')">
+                                                          Secret Answer is required!
+                                                        </mat-error>
+                                                          </mat-form-field>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="width: 15%">
-                                                <span><span class="required">Head Office Name</span>:</span>
+                                                <span><label class="required">Head Office Name</label>:</span>
                                             </td>
         
                                             <td style="width: 15%">
                                                 <div class="form-group">
-                                                    <select class="form-control maxwidth300" formControlName="hq_id">
-                                                        <option [value]="headOffice.hO_Code" *ngFor="let headOffice of headOfficesDropdownValues">{{headOffice.hO_Name}}</option>
-                                                    </select>
+                                                    <mat-form-field appearance="outline" >
+                                                        <mat-select formControlName="hq_id">
+                                                            <mat-option [value]="headOffice.hO_Code" *ngFor="let headOffice of headOfficesDropdownValues">{{headOffice.hO_Name}}</mat-option>
+                                                        </mat-select>
+                                                        <mat-error *ngIf="addUserFormGroup.controls['hq_id'].hasError('required')">
+                                                            Head Office Name is required!
+                                                        </mat-error>
+                                                          </mat-form-field>
+                                                   
                                                 </div>
                                             </td>
                                             <td style="width: 16%">
-                                                <span><span class="required">Country Region Name</span>:</span>
+                                                <span><label class="required">Zone Name</label>:</span>
                                             </td>
         
                                             <td style="width: 30%">
                                                 <div class="form-group">
-                                                    <select class="form-control maxwidth300" formControlName="zone_id">
-                                                        <option [value]="countryRegion.zone_Id" *ngFor="let countryRegion of countryRegionsDropdownValues">{{countryRegion.zone_Name}}</option>
-                                                    </select>
+                                                    <mat-form-field appearance="outline" >
+                                                        <mat-select formControlName="zone_id">
+                                                            <mat-option [value]="zonalOffice.zone_Code" *ngFor="let zonalOffice of zonalOffices">
+                                                                {{zonalOffice.zone_Name}}</mat-option>
+                                                        </mat-select>
+                                                        <mat-error *ngIf="addUserFormGroup.controls['zone_id'].hasError('required')">
+                                                            Zone Name is required!
+                                                        </mat-error>
+                                                          </mat-form-field>
+                                                   
                                                 </div>
                                             </td>
                                         </tr>
 
                                         <tr>
                                             <td style="width: 15%">
-                                                <span><span class="required">Regional Office Name</span>:</span>
+                                                <span><label class="required">Regional Office Name</label>:</span>
                                             </td>
         
                                             <td style="width: 15%">
                                                 <div class="form-group">
-                                                    <select class="form-control maxwidth300" formControlName="region_id">
-                                                        <option [value]="regionalOffice.rO_Code" *ngFor="let regionalOffice of regionalOfficesDropdownValues">{{regionalOffice.rO_Name}}</option>
-                                                    </select>
+                                                    <mat-form-field appearance="outline" >
+                                                        <mat-select formControlName="region_id">
+                                                            <mat-option [value]="regionalOffice.rO_Code" *ngFor="let regionalOffice of regionalOfficesDropdownValues">{{regionalOffice.rO_Name}}</mat-option>
+                                                        </mat-select>
+                                                        <mat-error *ngIf="addUserFormGroup.controls['region_id'].hasError('required')">
+                                                            Regional Office Name is required!
+                                                        </mat-error>
+                                                          </mat-form-field>
+                                                   
                                                 </div>
                                             </td>
                                             <td style="width: 15%">
-                                                <span><span class="required">Role Name</span>:</span>
+                                                <span><label class="required">Role Name</label>:</span>
                                             </td>
         
                                             <td style="width: 15%">
                                                 <div class="form-group">
-                                                    <select class="form-control maxwidth300" formControlName="role_id">
-                                                        <option [value]="role.role_Id" *ngFor="let role of adminRolesDropdownValues">{{role.role_Name}}</option>
-                                                    </select>
+                                                    <mat-form-field appearance="outline" >
+                                                        <mat-select formControlName="role_id">
+                                                            <mat-option [value]="role.role_Id" *ngFor="let role of adminRolesDropdownValues">{{role.role_Name}}</mat-option>
+                                                        </mat-select>
+                                                        <mat-error *ngIf="addUserFormGroup.controls['role_id'].hasError('required')">
+                                                            Role Name is required!
+                                                        </mat-error>
+                                                          </mat-form-field>
+                                                    
                                                 </div>
                                             </td>
                                            
@@ -161,7 +207,8 @@
                                             <td colspan="4" align="right">
                                                 <div class=" d-flex flex-row justify-content-end">
                                                     <div class="mr-3">
-                                                        <button class="btn btn-primary" (click)="createUser()">Create User</button>
+                                                        <button class="btn btn-primary" *ngIf="!this.isEdit" (click)="createUser()">Create User</button>
+                                                        <button class="btn btn-primary" *ngIf="this.isEdit" (click)="editUser()">Edit User</button>
                                                     </div>
                                                 </div>
                                             </td>
