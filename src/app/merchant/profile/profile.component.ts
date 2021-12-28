@@ -162,6 +162,7 @@ export class ProfileComponent implements OnInit {
     this.displayMerchantDetails.comm_District = this.displayMerchantDetails.comm_District || '';
     this.displayMerchantDetails.comm_City = this.displayMerchantDetails.comm_City || '';
     this.displayMerchantDetails.comm_State = this.displayMerchantDetails.comm_State || '';
+    this.displayMerchantDetails.highway_No = this.displayMerchantDetails.highway_No.toString().trim() || 0;
     this.merchantService
       .updateMerchantDetails(
         MerchantHelper.addMerchantMetadataToModels(this.displayMerchantDetails)

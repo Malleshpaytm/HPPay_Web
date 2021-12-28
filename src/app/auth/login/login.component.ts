@@ -14,7 +14,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 export class LoginComponent implements OnInit {
   UserName: string = '';
   Password: string = '';
-  userInfo = { userrole: '', userid: '', username: '' };
+  userInfo = { userrole: '', userid: '', username: '', merchant_id: '' };
   ngOnInit(): void { }
 
   closeResult: string | undefined;
@@ -79,8 +79,7 @@ export class LoginComponent implements OnInit {
             this.userInfo.userid = data.data[0].userid;
             this.userInfo.username = data.data[0].username;
             this.userInfo.userrole = data.data[0].userrole;
-            let userInfo = JSON.stringify(this.userInfo)
-            localStorage.setItem('userInfo', userInfo)
+
             if (data.data[0].userrole.toUpperCase() === 'ADMIN') {
               this.authService.login = true;
               this.authService.userRole = 'admin';
@@ -89,10 +88,12 @@ export class LoginComponent implements OnInit {
            else if (data.data[0].userrole.toUpperCase() === "MERCHANT") {
              debugger;
               this.authService.login = true;
+              this.userInfo.merchant_id = this.UserName;
               this.authService.userRole = 'merchant';
               this.router.navigate(['merchant']);
             }
-
+            let userInfo = JSON.stringify(this.userInfo);
+            localStorage.setItem('userInfo', userInfo);
           }
           else {
             this.toastr.error('Invalid username and password!', '', {

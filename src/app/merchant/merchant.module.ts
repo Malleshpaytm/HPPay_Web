@@ -19,6 +19,8 @@ import { MerQrTransactionsComponent } from './financials/mer-qr-transactions/mer
 import { AcceptTransactionComponent } from './accept-transaction/accept-transaction.component';
 import { RequestsComponent } from './requests/requests.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { QrAgentsOnboardingComponent } from './qr-agents-onboarding/qr-agents-onboarding.component';
+import { AddFsmComponent } from './add-fsm/add-fsm.component';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MerQrTransactionsComponent,
     AcceptTransactionComponent,
     RequestsComponent,
+    QrAgentsOnboardingComponent,
+    AddFsmComponent,
   ],
   imports: [
     MaterialModule,

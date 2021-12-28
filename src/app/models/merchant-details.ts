@@ -18,7 +18,7 @@ export class MerchantDetails {
   gstNo: string;
   dealer_name: string;
   highway_Name: string;
-  highway_No: string;
+  highway_No: string | number;
   cautionAmt_dtp: number;
   cautionAmt_hp: number;
   lpgSale: number;

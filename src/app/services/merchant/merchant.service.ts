@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MerChangePasswordPayload } from 'src/app/models/mer-change-password-payload';
 import { MerchantDetails } from 'src/app/models/merchant-details';
+import { MerchantFsm } from 'src/app/models/merchant-fsm';
+import { MerchantFsmDetails } from 'src/app/models/merchant-fsm-details';
 import { BaseHttpService } from '../base-http.service';
 
 @Injectable({
@@ -24,6 +27,21 @@ export class MerchantService {
   updateMerchantDetails(merchantDetailsPayload: MerchantDetails) {
     const updateMerchantDetailsUrl = `${this.baseHttpService.hpPayApiRoot}api/hppay/merchant/update_merchant`;
     return this.baseHttpService.post<any>(updateMerchantDetailsUrl,merchantDetailsPayload);
+  }
+
+  getMerchantFsmList(payload: any): Observable<MerchantFsm[]> {
+    const updateMerchantDetailsUrl = `${this.baseHttpService.hpPayApiRoot}api/hppay/merchant/get_merchant_fsm_mapping_list`;
+    return this.baseHttpService.post<MerchantFsm[]>(updateMerchantDetailsUrl, payload).pipe(map((resp : any) => resp.data));
+  }
+
+  saveMerchantFsm(merchantFsmPayload: MerchantFsmDetails): Observable<any> {
+    const updateMerchantDetailsUrl = `${this.baseHttpService.hpPayApiRoot}api/hppay/merchant/save_merchant_fsm_mapping`;
+    return this.baseHttpService.post<any>(updateMerchantDetailsUrl, merchantFsmPayload);
+  }
+
+  generateMerchantFsmQr(payload: MerchantFsm): Observable<any> {
+    const updateMerchantDetailsUrl = `${this.baseHttpService.hpPayApiRoot}api/hppay/merchant/generate_qr_merchant_fsm`;
+    return this.baseHttpService.post<any>(updateMerchantDetailsUrl, payload);
   }
 
 }

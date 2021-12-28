@@ -1,0 +1,80 @@
+<div class="container pt-5">
+  <div class="card shadow">
+    <div class="card-body">
+      <div class="row">
+        <ng-container *ngIf="isBeingAdded">
+          <div class="col row align-items-center">
+            <span class="required col-4">First Name</span>
+            <input
+              type="text"
+              placeholder=""
+              [(ngModel)]="newMerchantFsm.fsM_Firstname"
+              class="form-control col-8"
+            />
+          </div>
+          <div class="col row align-items-center">
+            <span class="required col-4">Last Name</span>
+            <input
+              type="text"
+              placeholder=""
+              [(ngModel)]="newMerchantFsm.fsM_Lastname"
+              class="form-control col-8"
+            />
+          </div>
+          <div class="col row align-items-center">
+            <span class="required col-4">Mobile No.</span>
+            <input
+              type="test"
+              placeholder=""
+              [(ngModel)]="newMerchantFsm.fsM_Mobileno"
+              class="form-control col-8"
+            />
+          </div>
+          <button class="btn btn-md btn-primary ml-2" (click)="handleFsmSave()">
+            Save
+          </button>
+        </ng-container>
+        <ng-container *ngIf="!isBeingAdded">
+          <button class="btn btn-md btn-primary ml-1" (click)="handleAddFsm()">
+            Add Fsm
+          </button>
+        </ng-container>
+      </div>
+
+      <div class="row">
+        <p-table [value]="fsmList">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>S.No</th>
+              <th>FSM Name</th>
+              <th>FSM Mobile No</th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-fsm let-rowIndex="rowIndex">
+            <tr>
+              <td>{{ rowIndex + 1 }}</td>
+              <td>{{ fsm.fsmName }}</td>
+              <td>{{ fsm.fsmMobileNo }}</td>
+              <td>
+                <button class="btn btn-sm" (click)="handleGenerateQr(fsm)">
+                  Generate QR Code
+                </button>
+                <button class="btn btn-sm">Block</button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div class="row justify-content-center" *ngIf="showQrCode">
+        <img
+          src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chld=L|1&chl='{{
+            qrCode
+          }}'"
+          class="img-responsive"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</div>

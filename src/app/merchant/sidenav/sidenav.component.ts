@@ -28,6 +28,7 @@ export class SidenavComponent implements OnInit {
       },
       {
         label: 'QR Agents Onboarding',
+        routerLink: 'qr-agents-onboarding'
       },
       {
         label: 'Fuel Pricing',

@@ -10,6 +10,8 @@ import { MerMpmrDetailsComponent } from './financials/mer-mpmr-details/mer-mpmr-
 import { MerEarningBreakupComponent } from './financials/mer-earning-breakup/mer-earning-breakup.component';
 import { MerDayearningDataComponent } from './financials/mer-dayearning-data/mer-dayearning-data.component';
 import { MerQrTransactionsComponent } from './financials/mer-qr-transactions/mer-qr-transactions.component';
+import { QrAgentsOnboardingComponent } from './qr-agents-onboarding/qr-agents-onboarding.component';
+import { AddFsmComponent } from './add-fsm/add-fsm.component';
 
 const routes: Routes = [
   {
@@ -56,6 +58,14 @@ const routes: Routes = [
         path: 'qrtransaction-details',
         component: MerQrTransactionsComponent
       },
+      {
+        path: 'qr-agents-onboarding',
+        component: QrAgentsOnboardingComponent
+      },
+      {
+        path: 'add-fsm',
+        component: AddFsmComponent
+      }
     ],
   },
   //

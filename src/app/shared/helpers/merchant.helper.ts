@@ -4,7 +4,7 @@ export class MerchantHelper {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     return {
       ...model,
-      merchantid: userInfo.userid,
+      merchantid: userInfo.merchant_id,
       userid: userInfo.userid,
       userip: '1',
       useragent: 'web',
