@@ -76,5 +76,6 @@ entityId:['']
   resetValue(): void {
     this.entityTypeValue = '';
     this.showBody = false;
+    this.viewHotlistReactiveFormGroup.reset();
   }
 }

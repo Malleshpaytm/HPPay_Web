@@ -248,6 +248,21 @@ approve_kyc(approve_kycData): Observable<any> {
   return this.service.post(path,body);
 }
 
+//customer feedback
+
+get_all_feedback_list(get_all_feedback_listData): Observable<any> {
+  let path = '/hppay/crm/get_all_feedback_list';
+  const body=JSON.stringify(get_all_feedback_listData);
+  return this.service.post(path,body);
+}
+
+get_feedback_response_detail(get_feedback_response_detailData): Observable<any> {
+  let path = '/hppay/crm/get_feedback_response_detail';
+  const body=JSON.stringify(get_feedback_response_detailData);
+  return this.service.post(path,body);
+}
+
+
   //corporate customer
   
   corporateCustomerRegistration(corporateCustomerRegistrationData): Observable<any> {

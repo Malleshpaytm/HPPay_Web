@@ -1,5 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
   selector: 'app-viewcustomerfeedback',
@@ -17,19 +23,51 @@ export class ViewcustomerfeedbackComponent implements OnInit {
   public page: number = 1;
   public pageSize: number = 2;
   isshow:number=0;
-
-  constructor(private modalService: NgbModal) { }
+  viewAndCloseCustomerFeedbackFormGroup:FormGroup;
+  constructor(private adminService: AdminService, public dialog: MatDialog,private fb:FormBuilder,
+    public toastr:ToastrService, private router:Router) { }
 
   ngOnInit(): void {
-    this.GetManageUserData();
+    this.viewAndCloseCustomerFeedbackFormGroup=this.fb.group({
+      fromDate:[''],
+      toDate:[''],
+      category:['']
+    })
+   
   }
   ShowTableList(){
     this.isshow=1;
  }
  Reset(){
    this.isshow=0;
+   this.viewAndCloseCustomerFeedbackFormGroup.reset();
  }
-
+ onSearchButtonClick(){
+  debugger;
+  this.ShowTableList();
+  //this.GetManageUserData();
+  let get_all_feedback_listData={
+    "fromDate": this.viewAndCloseCustomerFeedbackFormGroup.controls.fromDate.value,
+    "toDate": this.viewAndCloseCustomerFeedbackFormGroup.controls.toDate.value,
+    "category": this.viewAndCloseCustomerFeedbackFormGroup.controls.category.value?this.viewAndCloseCustomerFeedbackFormGroup.controls.category.value:"",
+"useragent": "web",
+"userip": "1",
+"userid": "1"
+  }
+  this.adminService.get_all_feedback_list(get_all_feedback_listData)
+    .subscribe(data=>{
+      if(data.message.toUpperCase()==='RECORD FOUND'){
+        this.GetSaveData=data.data;
+      }
+      else if(data.status_Code===401){
+        this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+        this.router.navigate(['/'])
+      }
+    },
+    (err:HttpErrorResponse)=>{
+      console.log(err)
+    })
+ }
 
   GetManageUserData() {
     this.GetSaveData = [
