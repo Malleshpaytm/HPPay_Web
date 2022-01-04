@@ -58,8 +58,9 @@ export class HotlistreactiveComponent implements OnInit {
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           this.dialog.open(DialogBoxComponent, {
             width: '400px',
-            data: { message: "success" }
+            data: { message: `${this.entityTypeName = this.entityTypeValue=== '2'? "Merchant":"Customer"} Updated Successfully!` }
           });
+          this.resetValue()
         }
         else if(data.status_Code===401){
           //
@@ -99,7 +100,7 @@ export class HotlistreactiveComponent implements OnInit {
   entityChange(e: any): void {
     debugger;
     this.entityTypeValue = e.target.value;
-    this.entityTypeName = this.entityTypeValue=== 'Merchant'? "Merchant ID":"Mobile Number";
+    this.entityTypeName = this.entityTypeValue=== '2'? "Merchant ID":"Mobile Number";
     if (e.target.value === 'select') {
       this.showBody = false;
     } else {

@@ -2,21 +2,32 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatOption } from '@angular/material/core';
+import { DateAdapter, MatOption, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSelect } from '@angular/material/select';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateAdapter, NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/services/admin/admin.service';
+import { CustomAdapter, CustomDateParserFormatter } from 'src/app/services/datepicker/datepicker.service';
 import { IRandomUsers } from '../../location/regionalofficedetail/regionalofficedetail.component';
 
 @Component({
   selector: 'app-manageuser',
   templateUrl: './manageuser.component.html',
-  styleUrls: ['./manageuser.component.scss']
+  styleUrls: ['./manageuser.component.scss'],
+  providers: [
+    { provide: NgbDateAdapter, useClass: CustomAdapter },
+    { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
+    // {
+    //   provide: DateAdapter, useClass: AppDateAdapter
+    // },
+    // {
+    //   provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+    // }
+  ]
 })
 export class ManageuserComponent implements OnInit {
   allChecked = false;
@@ -49,6 +60,7 @@ export class ManageuserComponent implements OnInit {
       email: [''],
       userrole: ['']
     })
+    this.optionClick('UserName')
   //this.searchAdminUsers();
   }
   reset(){
@@ -58,13 +70,13 @@ export class ManageuserComponent implements OnInit {
   }
   optionClick(value) {
     debugger;
-    let newStatus = true;
-    this.select.options.forEach((item: MatOption) => {
-      if (!item.selected) {
-        newStatus = false;
-      }
-    });
-    this.allSelected = newStatus;
+    // let newStatus = true;
+    // this.select.options.forEach((item: MatOption) => {
+    //   if (!item.selected) {
+    //     newStatus = false;
+    //   }
+    // });
+    // this.allSelected = newStatus;
     if (value === 'UserName') {
       this.isUserNameSelected = true;
       this.isEmailSelected = false;

@@ -3,9 +3,16 @@ export const selectOptions = [
   { option: 'Merchant' , value:2},
 ]
 export const selectActionOptions = [
-  { option: 'temporary' },
-  { option: 'permanent' },
-  { option: 'reactive' }
+  // { option: 'Approved' },
+  
+  { option: 'Active' },
+  { option: 'Temporary Hotlisted' },
+  { option: 'Permanent Hotlisted' },
+  // { option: 'Pending' },
+  // { option: 'Unverified' },
+  // { option: 'Verified' },
+  // { option: 'Verification Rejected' },
+  // { option: 'Approval Rejected' }
 ]
 export const selectReasonOptions = [
   { option: 'lost card ' },

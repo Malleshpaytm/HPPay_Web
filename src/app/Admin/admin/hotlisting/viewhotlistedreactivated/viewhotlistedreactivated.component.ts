@@ -13,6 +13,7 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 })
 export class ViewhotlistedreactivatedComponent implements OnInit {
   showBody: boolean = false;
+  showTableData:boolean=false;
   entityTypeValue: string = '';
   viewHotlistReactiveFormGroup:FormGroup;
   hotlistData:Array<any>
@@ -41,7 +42,7 @@ entityId:['']
       let  get_activate_deactivate_entityData = {
         "entity_Type": this.viewHotlistReactiveFormGroup.controls.entityType.value,
         "entity_Id": this.viewHotlistReactiveFormGroup.controls.entityId.value,
-        "report_Check_Status": 1,
+        "report_Check_Status": 0,
         "from_Date": "",
         "to_Date": "",
         "useragent": "web",
@@ -52,7 +53,8 @@ entityId:['']
       this.adminService.get_activate_deactivate_entity(get_activate_deactivate_entityData)
         .subscribe(data => {
          if(data.message.toUpperCase()==="RECORD FOUND"){
-            this.hotlistData=data.data
+            this.hotlistData=data.data;
+            this.showTableData=true;
             //this.headOfficeDetailsForm.reset();
          }
          else if(data.status_Code===401){
@@ -77,5 +79,6 @@ entityId:['']
     this.entityTypeValue = '';
     this.showBody = false;
     this.viewHotlistReactiveFormGroup.reset();
+    this.showTableData=false;
   }
 }

@@ -15,65 +15,76 @@
       <div class="form" [formGroup]="searchUserFormGroup">
         <div class="row" style="box-shadow: 0px 0px 0px 0px">
           <label style="margin-top: 4px;">
-            <small>Search Users<span style="color: red;">*</span>:</small>
+           Search Users<span style="color: red;">*</span>:
           </label>
         </div>
        <div class="row" style="box-shadow: 0px 0px 0px 0px">
-          <div class="col-md-2">
-            <mat-form-field>
-              <mat-label>Start Searching...</mat-label>
-              <mat-select #select>
+          <div class="col-md-3">
+         
+              <!-- <mat-label>Start Searching...</mat-label> -->
+              <select #select class="form-control" (change)="optionClick($event.target.value)">
                 <div class="select-all">
                   <!-- <mat-checkbox  [(ngModel)]="allSelected" [ngModelOptions]="{standalone: true}"
                     >Select All</mat-checkbox> -->
                 </div>
-                <mat-option style="font-size: 12px;" (click)="optionClick(criteria.value)" *ngFor="let criteria of searchCrieteria" [value]="criteria.value">
+                <option   *ngFor="let criteria of searchCrieteria" [value]="criteria.value">
                   {{criteria.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="col-md-2" *ngIf="isUserNameSelected">
-            <mat-form-field>
-              <input matInput formControlName="username" placeholder="User Name">
-            </mat-form-field>
+                </option>
+              </select>
            
           </div>
-          <div class="col-md-2" *ngIf="isUserRoleSelected">
-            <mat-form-field>
-              <input matInput formControlName="userrole" placeholder="User Role">
-            </mat-form-field>
+          <div class="col-md-3" *ngIf="isUserNameSelected">
+          
+              <input class="form-control" formControlName="username" placeholder="User Name">
+           
            
           </div>
-          <div class="col-md-2" *ngIf="isEmailSelected">
-            <mat-form-field>
-              <input matInput formControlName="email" placeholder="Email">
-            </mat-form-field>
+          <div class="col-md-3" *ngIf="isUserRoleSelected">
+            
+              <input class="form-control" formControlName="userrole" placeholder="User Role">
+           
            
           </div>
-          <div class="col-md-2" *ngIf="isLastLoginDateSelected">
-            <mat-form-field>
-              <input matInput formControlName="lastLoginDate" placeholder="Email">
-            </mat-form-field>
+          <div class="col-md-3" *ngIf="isEmailSelected">
+           
+              <input class="form-control" formControlName="email" placeholder="Email">
+           
+           
+          </div>
+          <div class="col-md-3" *ngIf="isLastLoginDateSelected">
+            <input formControlName="lastLoginDate" type="date" class="form-control" placeholder="Last Login Date">
+            <!-- <mat-form-field appearance="fill">
+              
+                <input matInput [matDatepicker]="basicDatepicker">
+                <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #basicDatepicker></mat-datepicker>
+         
+          </mat-form-field> -->
+            <!-- <mat-form-field>
+              <input matInput formControlName="lastLoginDate" type="date" placeholder="Last Login Date">
+            </mat-form-field> -->
            
           </div>
           <div class="col-md-3">
             <button class="button" (click)="onSearchButtonClick();searchButtonClick=true">search</button>
             <button class="button" (click)="reset()">reset</button>
           </div>
-          <div class="col-md-5 col-lg-5 col-xs-5">
+        </div>
+        <div class="row">
+          
+          <div class="col-md-5 col-lg-12 col-xs-5" >
             <button class="button" routerLink="../addedituser">add</button>
             <button class="button">delete</button>
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-4">
             <input type="checkbox" style="margin-top: 20px;">
             <label>
               <small style="padding: 5px; font-size: 12px;margin-top: 20px;">
                 Show Disabled</small></label>
           </div>
-        </div>
+        </div> -->
       </div>
 
 

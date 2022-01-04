@@ -75,7 +75,8 @@ customerkycformgroup:FormGroup;
     this.adminService.get_pending_kyc(get_pending_kycData)
       .subscribe(data => {
        if(data.message.toUpperCase()==="RECORD FOUND"){
-        this.dataArray = data.data;
+        //this.dataArray = data.data;
+        this.dataArray=data.data.sort((a, b) => new Date(b.created_On).getTime() - new Date(a.created_On).getTime());
         this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
         this.dataSource.paginator = this.paginator;
           //this.hotlistData=data.data
@@ -113,9 +114,9 @@ customerkycformgroup:FormGroup;
       this.selection.selected.forEach(element => {
         let approve_kycData={
           "customer_Id": element.customer_Id,
-          "mobileno": element.mobile_No,
+          "mobileno": element.mobile_No.toString().length===12?element.mobile_No.toString().slice(2):element.mobile_No,
           "comments": this.customerkycformgroup.controls.comments.value,
-          "status": "Approved",
+          "status": "1",
           "useragent": "web",
           "userip": "1",
           "userid": "1"
@@ -177,7 +178,7 @@ customerkycformgroup:FormGroup;
         "customer_Id": element.customer_Id,
         "mobileno": element.mobile_No,
         "comments": this.customerkycformgroup.controls.comments.value,
-        "status": "Reject",
+        "status": "2",
         "useragent": "web",
         "userip": "1",
         "userid": "1"

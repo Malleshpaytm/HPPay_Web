@@ -13,10 +13,10 @@
                             </td>
                             <td align="left">
                                 <div class="form-group">
-                                    <select class="form-control" (change)="entityChange($event)" formControlName="entityType">
+                                    <select class="form-control" (change)="entityChange($event)" formControlName="entityId">
                                         <option value="select">select</option>
-                                        <option value="Customer">Customer</option>
-                                        <option value="Merchant">Merchant</option>
+                                        <option value="1">Customer</option>
+                                        <option value="2">Merchant</option>
                                     </select>
                                 </div>
                             </td>
@@ -24,14 +24,14 @@
                         <tbody *ngIf="showBody">
                             <tr>
                                 <td>
-                                    <span *ngIf="entityTypeValue === 'Merchant'"><span class="required">Merchant
+                                    <span *ngIf="entityTypeValue === '2'"><span class="required">Merchant
                                             ID</span>:</span>
-                                    <span *ngIf="entityTypeValue === 'Customer'"><span class="required">Mobile
+                                    <span *ngIf="entityTypeValue === '1'"><span class="required">Mobile
                                             Number</span>:</span>
                                 </td>
                                 <td align="left">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" formControlName="entityId" maxlength="10">
+                                        <input type="text" class="form-control" formControlName="entityType" maxlength="10">
                                     </div>
                                 </td>
                             </tr>
@@ -51,6 +51,39 @@
                             </tr>
                         </tbody>
                     </table>
+                    <table class="table table-striped" *ngIf="showTableData">
+
+
+
+
+                        <thead>
+                          <tr>
+                            <th scope="col">S.No</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Entity Id</th>
+                            <th scope="col">Entity Type</th>
+                            <th scope="col">Hotlist Reactivate Start Date</th>
+                            <th scope="col">Reason</th>
+                            <th scope="col">Remarks</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let data of hotlistData; index as i">
+            <td>{{i+1}}</td>
+                            <td>
+                              {{ data.action }}
+                            </td>
+                            <td>{{ data.entity_Id}}</td>
+                            <td>{{ data.entity_Type}}</td>
+                            <td>
+                              {{ data.hotlist_Reactivate_Start_Date }}
+                            </td>
+                            <td>{{ data.reason}}</td>
+                            <td>{{ data.remarks}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
                 </div>
             </div>
         </div>
