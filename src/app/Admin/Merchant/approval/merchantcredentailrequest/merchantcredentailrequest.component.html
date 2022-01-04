@@ -6,7 +6,7 @@
 
         <div class="card-body">
 
-            <table class="w-50 table table-borderless table-sm" style="font-size: small;">
+            <table class="w-50 table table-borderless table-sm" style="font-size: small;" [formGroup]="MerchantcredentailrequestFormGroup">
                 <tbody>
                     <tr>
                         <td align="left">
@@ -16,7 +16,7 @@
                         </td>
                         <td align="left">
                             <div class="form-group">
-                                <input type="text" class="form-control">
+                                <input type="text" maxlength="10" minlength="10" class="form-control" formControlName="merchantid">
                             </div>
                         </td>
                     </tr>
@@ -25,7 +25,7 @@
                         <td colspan="4">
                             <div class=" d-flex flex-row justify-content-end">
                                 <div class="mr-3">
-                                    <button class="btn btn-primary pl-3 pr-3" (click)="ShowTableList();">Search</button>
+                                    <button class="btn btn-primary pl-3 pr-3" (click)="getMerchantDetails();">Search</button>
                                 </div>
                                 <div class="mr-3">
                                     <button class="btn btn-primary pl-3 pr-3" (click)="Reset();">Reset</button>
@@ -39,71 +39,56 @@
         </div>
 
         <div class="card-body" *ngIf="isshow==1">
-            <fieldset class="form-group border px-3 pt-0">
-                <legend class="w-auto px-2" style="font-size: 12px;">Merchant Details</legend>
-                <table class="w-100 table table-borderless table-sm" style="font-size: small;">
-                    <tbody>
-                        <tr>
-                            <td style="width: 15%">
-                                <b><span><span>ZO</span>:</span></b>
-                            </td>
-
-                            <td style="width: 39%">
-                                <div class="form-group">
-                                    Mumbai RRO
-                                </div>
-                            </td>
-                            <td style="width: 16%">
-                                <b><span><span>RO</span>:</span></b>
-                            </td>
-
-                            <td style="width: 30%">
-                                <div class="form-group">
-                                    WEST ZONE
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 15%">
-                                <b><span><span>Retail Outlet Name</span>:</span></b>
-                            </td>
-
-                            <td style="width: 39%">
-                                <div class="form-group">
-                                    DTPLUS TEST 1
-                                </div>
-                            </td>
-                            <td style="width: 16%">
-                                <b><span><span>Registered Email Id</span>:</span></b>
-                            </td>
-
-                            <td style="width: 30%">
-                                <div class="form-group">
-                                    dtplus_support@verifone.com
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 15%">
-                                <b><span><span>Mobile No</span>:</span></b>
-                            </td>
-
-                            <td style="width: 39%">
-                                <div class="form-group">
-                                    9910269918
-                                </div>
-                            </td>
-                            
-                        </tr>
-                    </tbody>
-                </table>
-            </fieldset>
+            <fieldset class="form-group border px-3 pt-0" *ngIf="isshow==1">
+                <legend class="w-auto px-2" style="font-size: 12px;">Merchant Info</legend>
+                <div class="d-flex d-flex-row justify-content-between">
+                  <form class="form-inline">
+                    <div class="form-group mb-2" style="margin-right: 200px;">
+                      <label class="form-control" for="officerType" class="pr-2">Merchant Id : </label>
+                      <label   class="form-control" for="officerType" class="pr-2">{{this.merchantProfile?.merchantid}}</label>
+    
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="form-control" for="officerType" class="pr-2">ZO : </label>
+                      <label   class="form-control" for="officerType" class="pr-2">{{this.merchantProfile?.zonal_Office}}</label>
+                      </div>
+                    
+                  </form>
+        
+                </div>
+    
+                <div class="d-flex d-flex-row justify-content-between">
+                    <form class="form-inline">
+                      <div class="form-group mb-2" style="margin-right: 215px;">
+                        <label class="form-control" for="officerType" class="pr-2">Retail Outlet Name : </label>
+                        <label   class="form-control" for="officerType" class="pr-2">{{this.merchantProfile?.outletName}}</label>
+      
+                      </div>
+                      <div class="form-group mb-2">
+                          <label class="form-control" for="officerType" class="pr-2">RO : </label>
+                        <label   class="form-control" for="officerType" class="pr-2">{{this.merchantProfile?.regional_Office}}</label>
+                        </div>
+                       
+                    </form>
+          
+                  </div>
+                  <div class="d-flex d-flex-row justify-content-between">
+                    <form class="form-inline">
+                     
+                        <div class="form-group mb-2">
+                            <label class="form-control" for="officerType" class="pr-2">Registered Email ID : </label>
+                          <label   class="form-control" for="officerType" class="pr-2">{{this.merchantProfile?.email}}</label>
+                          </div>
+                    </form>
+          
+                  </div>
+              </fieldset>
             <div class="d-flex justify-content-between p-2">
                 <table class="w-50 table table-borderless table-sm" style="font-size: small;">
                     <tbody>
                         <tr>
                             <td style="width: 15%">
-                                <span><span class="required">Alternate EMail ID
+                                <span><span class="required">Alternate Email ID
                                     </span>:</span>
     
                             </td>
@@ -118,7 +103,7 @@
                             <td colspan="4">
                                 <div class=" d-flex flex-row justify-content-end">
                                     <div class="mr-3">
-                                        <button class="btn btn-primary pl-3 pr-3" >Submit</button>
+                                        <button class="btn btn-primary pl-3 pr-3" (click)="onSubmitButtonClick()">Submit</button>
                                     </div>
                                 </div>
                             </td>

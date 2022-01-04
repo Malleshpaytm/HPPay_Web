@@ -300,6 +300,11 @@ get_feedback_response_detail(get_feedback_response_detailData): Observable<any> 
     const body=JSON.stringify(searchMerchantData);
     return this.service.post(path,body);
   }
+  reset_password_request(reset_password_requestData): Observable<any> {
+    let path = '/hppay/merchant/reset_password_request';
+    const body=JSON.stringify(reset_password_requestData);
+    return this.service.post(path,body);
+  }
   get_approve_merchants_list(get_approve_merchants_listData): Observable<any> {
     let path = '/hppay/merchant/get_approve_merchants_list';
     const body=JSON.stringify(get_approve_merchants_listData);

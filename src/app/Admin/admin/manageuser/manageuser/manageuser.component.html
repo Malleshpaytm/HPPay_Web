@@ -24,8 +24,8 @@
               <mat-label>Start Searching...</mat-label>
               <mat-select #select>
                 <div class="select-all">
-                  <mat-checkbox  [(ngModel)]="allSelected" [ngModelOptions]="{standalone: true}"
-                    >Select All</mat-checkbox>
+                  <!-- <mat-checkbox  [(ngModel)]="allSelected" [ngModelOptions]="{standalone: true}"
+                    >Select All</mat-checkbox> -->
                 </div>
                 <mat-option style="font-size: 12px;" (click)="optionClick(criteria.value)" *ngFor="let criteria of searchCrieteria" [value]="criteria.value">
                   {{criteria.viewValue}}
@@ -59,7 +59,7 @@
           </div>
           <div class="col-md-3">
             <button class="button" (click)="onSearchButtonClick();searchButtonClick=true">search</button>
-            <button class="button" (click)="searchButtonClick=false">reset</button>
+            <button class="button" (click)="reset()">reset</button>
           </div>
           <div class="col-md-5 col-lg-5 col-xs-5">
             <button class="button" routerLink="../addedituser">add</button>

@@ -42,7 +42,7 @@ export class HotlistreactiveComponent implements OnInit {
         if (dialogResult) {
 
     // TODO: Use EventEmitter with form value
-      console.warn(this.hotListFormGroup.value);
+     // console.warn(this.hotListFormGroup.value);
       let activate_deactivate_entityData={
         "useragent": "web",
   "userip": "1",
@@ -92,7 +92,7 @@ export class HotlistreactiveComponent implements OnInit {
     userip: new FormControl('1'),
     userid:new FormControl('1'),
   });
-  this.hotListFormGroup.controls['entity_Type'].setValue("select", {onlySelf: true});
+  //this.hotListFormGroup.controls['entity_Type'].setValue("select", {onlySelf: true});
 
   }
 
@@ -109,5 +109,6 @@ export class HotlistreactiveComponent implements OnInit {
   resetValue(): void {
     this.entityTypeValue = '';
     this.showBody = false;
+    this.hotListFormGroup.reset();
   }
 }

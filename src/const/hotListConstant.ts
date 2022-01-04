@@ -1,6 +1,6 @@
 export const selectOptions = [
-  { option: 'Customer' },
-  { option: 'Merchant' },
+  { option: 'Customer', value:1 },
+  { option: 'Merchant' , value:2},
 ]
 export const selectActionOptions = [
   { option: 'temporary' },

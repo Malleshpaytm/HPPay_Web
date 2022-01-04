@@ -14,9 +14,9 @@
                                 </td>
                                 <td align="left">
                                     <div class="form-group">
-                                        <select class="form-control" (change)="entityChange($event)" formControlName="entity_Type">
+                                        <select class="form-control" (change)="entityChange($event)" formControlName="entity_Id">
                                             <option value="select" selected="selected">select</option>
-                                            <option [value]="optionid.option" *ngFor="let optionid of selectOptions">
+                                            <option [value]="optionid.value" *ngFor="let optionid of selectOptions">
                                               {{optionid.option}}</option>
                                         </select>
                                     </div>
@@ -29,7 +29,7 @@
                                     </td>
                                     <td align="left">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" formControlName="entity_Id" maxlength="10">
+                                            <input type="text" class="form-control" minlength="10" formControlName="entity_Type" maxlength="10">
                                         </div>
                                     </td>
                                 </tr>

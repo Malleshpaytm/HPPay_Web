@@ -47,7 +47,7 @@
               </td>
               <td align="left">
                   <div class="form-group">
-                     <input type="text" class="form-control" formControlName="mobileno">   
+                     <input type="text" class="form-control" formControlName="mobileno" maxlength="12" minlength="12">   
                   </div>
               </td>
           </tr>
@@ -124,16 +124,19 @@
               <ng-container matColumnDef="poa">
                 <mat-header-cell *matHeaderCellDef > POA </mat-header-cell>
                 <mat-cell *matCellDef="let row" class="text-center"> 
-                  <p style="color: blue;cursor: pointer;" (click)="onImageClick('/HPPAY/Upload_Document/Upload_KYC'+row.poa)"> View</p>
-                
+                  <p  *ngIf="row.poa!=null" style="color: blue;cursor: pointer;" (click)="onImageClick('http://180.179.222.161/hpp/Upload_Document/Upload_KYC/'+row.poa)"> View</p>
+                  <p *ngIf="row.poa===null" > No Image Found</p>
                   </mat-cell>
               </ng-container>
   
-              <ng-container matColumnDef="poi">
+              <ng-container matColumnDef="poi" >
                 <mat-header-cell *matHeaderCellDef > POI </mat-header-cell>
                 <mat-cell *matCellDef="let row" class="text-center">
-                 <p (click)="onImageClick('http://180.179.222.161/HPPAY/Upload_Document/Upload_KYC'+row.poi)" style="color: blue;cursor: pointer;"> View</p>
+                 <p *ngIf="row.poi!=null"
+                 (click)="onImageClick('http://180.179.222.161/hpp/Upload_Document/Upload_KYC/'+row.poi)" style="color: blue;cursor: pointer;"> View</p>
+                 <p *ngIf="row.poi===null" > No Image Found</p>
                 </mat-cell>
+                
               </ng-container>
   
               <ng-container matColumnDef="created_On">

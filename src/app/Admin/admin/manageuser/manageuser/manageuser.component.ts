@@ -51,6 +51,11 @@ export class ManageuserComponent implements OnInit {
     })
   //this.searchAdminUsers();
   }
+  reset(){
+    debugger;
+    this.searchButtonClick=false;
+    this.searchUserFormGroup.reset();
+  }
   optionClick(value) {
     debugger;
     let newStatus = true;
@@ -74,7 +79,7 @@ export class ManageuserComponent implements OnInit {
       this.isLastLoginDateSelected = false;
       this.isUserRoleSelected = false;
       this.isUserNameSelected = false;
-      this.searchUserFormGroup.controls.username.setValue(0);
+      this.searchUserFormGroup.controls.username.setValue('');
       this.searchUserFormGroup.controls.lastLoginDate.setValue('');
       this.searchUserFormGroup.controls.userrole.setValue('');
     }
@@ -83,7 +88,7 @@ export class ManageuserComponent implements OnInit {
       this.isEmailSelected = false;
       this.isUserRoleSelected = false;
       this.isUserNameSelected = false;
-      this.searchUserFormGroup.controls.username.setValue(0);
+      this.searchUserFormGroup.controls.username.setValue('');
       this.searchUserFormGroup.controls.userrole.setValue('');
       this.searchUserFormGroup.controls.email.setValue('');
     }
@@ -107,7 +112,7 @@ export class ManageuserComponent implements OnInit {
   onSearchButtonClick() {
     debugger;
     let searchUserData = {
-      "username": this.searchUserFormGroup.controls.username.value.length > 0 ? this.searchUserFormGroup.controls.username.value:"",
+      "username": this.searchUserFormGroup.controls.username.value ? this.searchUserFormGroup.controls.username.value:"",
       "email": this.searchUserFormGroup.controls.email.value,
       "lastlogindate": this.searchUserFormGroup.controls.lastLoginDate.value,
       "userrole":this.searchUserFormGroup.controls.userrole.value,

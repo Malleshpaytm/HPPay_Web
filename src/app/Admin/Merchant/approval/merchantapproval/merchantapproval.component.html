@@ -14,7 +14,7 @@
                             <td align="left">
                                 <div class="form-group">
                                     <select class="form-control" formControlName="merchantcategory">
-                  
+                  <option value="">All</option>
                                         <option [value]="merchantType.merchant_Type_Name"
                                         *ngFor="let merchantType of merchantTypes">{{merchantType.merchant_Type_Name}}
                                     </option>

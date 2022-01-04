@@ -9,7 +9,7 @@
                     <div class="card-body">
 
 
-                        <table class="w-100 table table-borderless table-sm" style="font-size: small;">
+                        <table class="w-100 table table-borderless table-sm" style="font-size: small;" [formGroup]="UserloginlogFormGroup">
                             <!-- <thead>
                                 <tr>
                                     <th colspan="4">
@@ -26,12 +26,9 @@
                                     </td>
                                     <td align="left">
                                         <div class="form-group">
-                                            <select class="form-control">
-                                                <option value="select">select</option>
-                                                <option value="Customer">Administrator</option>
-                                                <option value="Merchant">Call Center Executive</option>
-                                                <option value="Customer">Call Center Admin</option>
-                                                <option value="Merchant">Customer KYC Approval</option>
+                                            <select class="form-control" formControlName="userrole" (change)="onSelectUserRole($event.target.value)">
+                                                <option [value]="data.role_Name" *ngFor="let data of adminRolesDropdownValues">{{data.role_Name}}</option>
+                                              
                                             </select>
                                         </div>
                                     </td>
@@ -44,11 +41,7 @@
 
                                         <div class="form-group">
                                             <select class="form-control">
-                                                <option value="select">select</option>
-                                                <option value="Customer">Administrator</option>
-                                                <option value="Merchant">ajay@verifone</option>
-                                                <option value="Customer">anand@verifone</option>
-                                                <option value="Merchant">Ankit@admin</option>
+                                                <option [value]="data.userid" *ngFor="let data of adminUsersDropdownValues">{{data.userid}}</option>
                                             </select>
                                         </div>
                                     </td>

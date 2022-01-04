@@ -49,7 +49,7 @@ export class MerchantCreationViewComponent implements OnInit {
       "useragent": "web",
           "userip": "1",
           "userid": "1",
-        "merchantid": 0,
+        "merchantid": "",
         "erpCode": "",
         "outlet_name": "",
         "city": "",
