@@ -8,6 +8,7 @@ import { hplubesRoutingModule } from './hplubes-routing.module';
 import { HplubesmenuComponent } from './hplubesmenu/hplubesmenu.component';
 import { LubesorderapprovalComponent } from './lubesorderapproval/lubesorderapproval.component';
 import { LubedetailComponent } from './lubedetail/lubedetail.component';
+import { MaterialModule } from 'src/app/material/material.module';
 
 
 
@@ -22,6 +23,7 @@ import { LubedetailComponent } from './lubedetail/lubedetail.component';
                 
   ],
   imports: [
+    MaterialModule,
     CommonModule,
     hplubesRoutingModule,
     FormsModule,

@@ -5,9 +5,9 @@ export const selectOptions = [
 export const selectActionOptions = [
   // { option: 'Approved' },
   
-  { option: 'Active' },
+  // { option: 'Active' },
   { option: 'Temporary Hotlisted' },
-  { option: 'Permanent Hotlisted' },
+  // { option: 'Permanent Hotlisted' },
   // { option: 'Pending' },
   // { option: 'Unverified' },
   // { option: 'Verified' },

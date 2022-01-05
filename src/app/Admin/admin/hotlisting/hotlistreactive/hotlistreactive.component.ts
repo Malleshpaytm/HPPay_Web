@@ -1,7 +1,7 @@
-import { selectOptions , selectActionOptions, selectReasonOptions} from '@const/hotListConstant';
+import { selectOptions, selectActionOptions, selectReasonOptions } from '@const/hotListConstant';
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin/admin.service';
-import { FormGroup, FormControl  } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/shared/confirm-modal/confirm-modal.component';
 import { DialogBoxComponent } from 'src/app/shared/dialog-box/dialog-box.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,11 +18,11 @@ export class HotlistreactiveComponent implements OnInit {
   selectOptions: any;
   selectActionOptions: any;
   selectReasonOptions: any;
-  entityTypeName: string= '';
+  entityTypeName: string = '';
   constructor(private adminService: AdminService, public dialog: MatDialog) {
-    this.selectOptions= selectOptions;
-    this.selectActionOptions= selectActionOptions;
-    this.selectReasonOptions= selectReasonOptions;
+    this.selectOptions = selectOptions;
+    this.selectActionOptions = selectActionOptions;
+    this.selectReasonOptions = selectReasonOptions;
 
   }
 
@@ -32,75 +32,75 @@ export class HotlistreactiveComponent implements OnInit {
     debugger;
     const message = `Are you sure you want to do this?`;
 
-      const dialogData = new ConfirmDialogModel("Confirm Action", message);
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
 
-      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-        maxWidth: "400px",
-        data: dialogData
-      });
-      dialogRef.afterClosed().subscribe(dialogResult => {
-        if (dialogResult) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
 
-    // TODO: Use EventEmitter with form value
-     // console.warn(this.hotListFormGroup.value);
-      let activate_deactivate_entityData={
-        "useragent": "web",
-  "userip": "1",
-  "userid": "1",
-  "entity_Type": this.hotListFormGroup.controls.entity_Type.value,
-  "entity_Id": this.hotListFormGroup.controls.entity_Id.value,
-  "action": this.hotListFormGroup.controls.action.value,
-  "reason": this.hotListFormGroup.controls.reason.value,
-  "remarks": this.hotListFormGroup.controls.remarks.value,
+        // TODO: Use EventEmitter with form value
+        // console.warn(this.hotListFormGroup.value);
+        let activate_deactivate_entityData = {
+          "useragent": "web",
+          "userip": "1",
+          "userid": "1",
+          "entity_Type": this.hotListFormGroup.controls.entity_Type.value,
+          "entity_Id": this.hotListFormGroup.controls.entity_Id.value,
+          "action": this.hotListFormGroup.controls.action.value,
+          "reason": this.hotListFormGroup.controls.reason.value,
+          "remarks": this.hotListFormGroup.controls.remarks.value,
+        }
+        this.adminService.activate_deactivate_entity(activate_deactivate_entityData).subscribe(data => {
+          if (data.message.toUpperCase() === 'RECORD FOUND') {
+            this.dialog.open(DialogBoxComponent, {
+              width: '400px',
+              data: { message: `${this.entityTypeName = this.entityTypeValue === '2' ? "Merchant" : "Customer"} Updated Successfully!` }
+            });
+            this.resetValue()
+          }
+          else if (data.status_Code === 401) {
+            //
+            this.adminService.refreshToken();
+            // this._document.defaultView.location.reload();
+          }
+          else {
+            this.dialog.open(DialogBoxComponent, {
+              width: '400px',
+              data: { message: data.reasonPhrase }
+            });
+          }
+        });
       }
-      this.adminService.activate_deactivate_entity(activate_deactivate_entityData).subscribe(data=>
-      {
-        if (data.message.toUpperCase() === 'RECORD FOUND') {
-          this.dialog.open(DialogBoxComponent, {
-            width: '400px',
-            data: { message: `${this.entityTypeName = this.entityTypeValue=== '2'? "Merchant":"Customer"} Updated Successfully!` }
-          });
-          this.resetValue()
-        }
-        else if(data.status_Code===401){
-          //
-          this.adminService.refreshToken();
-          // this._document.defaultView.location.reload();
-        }
-        else{
-          this.dialog.open(DialogBoxComponent, {
-            width: '400px',
-            data: { message: data.reasonPhrase }
-          });
-        }
-      });
-    }});
+    });
   }
 
   ngOnInit(): void {
     this.hotListFormGroup = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    entity_Type: new FormControl(''),
-    entity_Id: new FormControl(''),
-    action: new FormControl(''),
-    reason: new FormControl(''),
-    remarks: new FormControl(''),
-    report_Check_Status: new FormControl(''),
-    from_Date: new FormControl(new Date(new Date().setFullYear(new Date().getFullYear() + 1))),
-    to_Date: new FormControl(new Date()),
-    useragent: new FormControl('web'),
-    userip: new FormControl('1'),
-    userid:new FormControl('1'),
-  });
-  //this.hotListFormGroup.controls['entity_Type'].setValue("select", {onlySelf: true});
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      entity_Type: new FormControl(''),
+      entity_Id: new FormControl(''),
+      action: new FormControl(''),
+      reason: new FormControl(''),
+      remarks: new FormControl(''),
+      report_Check_Status: new FormControl(''),
+      from_Date: new FormControl(new Date(new Date().setFullYear(new Date().getFullYear() + 1))),
+      to_Date: new FormControl(new Date()),
+      useragent: new FormControl('web'),
+      userip: new FormControl('1'),
+      userid: new FormControl('1'),
+    });
+    //this.hotListFormGroup.controls['entity_Type'].setValue("select", {onlySelf: true});
 
   }
 
   entityChange(e: any): void {
     debugger;
     this.entityTypeValue = e.target.value;
-    this.entityTypeName = this.entityTypeValue=== '2'? "Merchant ID":"Mobile Number";
+    this.entityTypeName = this.entityTypeValue === '2' ? "Merchant ID" : "Mobile Number";
     if (e.target.value === 'select') {
       this.showBody = false;
     } else {

@@ -43,6 +43,11 @@ export class AdminService {
     const body=JSON.stringify(get_activate_deactivate_entityData);
     return this.service.post(path,body);
   }
+  get_hotlist_requests(get_hotlist_requestsData): Observable<any> {
+    let path = '/hppay/settings/get_hotlist_requests';
+    const body=JSON.stringify(get_hotlist_requestsData);
+    return this.service.post(path,body);
+  }
   //LOCATIONS
 
   insert_head_offices(insert_head_officesData): Observable<any> {
@@ -443,6 +448,23 @@ block_merchant_fsm(block_merchant_fsmData): Observable<any> {
     return this.service.post(path,body);
   }
 
-  
+  //Hppay Lubes
+  get_all_replacement_request(get_all_replacement_requestData): Observable<any> {
+    let path = '/hppay/lubes/get_all_replacement_request';
+    const body=JSON.stringify(get_all_replacement_requestData);
+    return this.service.post(path,body);
+  }
+
+  update_order_status_by_order_id(update_order_status_by_order_idData): Observable<any> {
+    let path = '/hppay/lubes/update_order_status_by_order_id';
+    const body=JSON.stringify(update_order_status_by_order_idData);
+    return this.service.post(path,body);
+  }
+
+  get_order_detail_by_order_id(get_order_detail_by_order_idData): Observable<any> {
+    let path = '/hppay/lubes/get_order_detail_by_order_id';
+    const body=JSON.stringify(get_order_detail_by_order_idData);
+    return this.service.post(path,body);
+  }
 
 }

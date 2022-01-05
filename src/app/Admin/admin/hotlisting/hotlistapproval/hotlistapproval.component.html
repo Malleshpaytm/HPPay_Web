@@ -1,86 +1,157 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="card mt-5 p-0">
-                <div class="card-header text-white" style="background-color:  #084594;">
-                    Hotlisted/Hotlist Approval
-                </div>
-                <div class="card-body">
-                    <table class="w-50">
-                        <tr>
-                            <td>
-                                <span class="required">Entity Type</span>:
-                            </td>
-                            <td align="left">
-                                <div class="form-group">
-                                    <select class="form-control">
-                                        <option value="select">select</option>
-                                        <option value="Customer">Customer</option>
-                                        <option value="Merchant">Merchant</option>
-                                    </select>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="required">Action</span>:
-                            </td>
-                            <td align="left">
-                                <div class="form-group">
-                                    <select class="form-control">
-                                        <option value="select">select</option>
-                                        <option value="Temperory">Temperory</option>
-                                        <option value="Permanent">Permanent</option>
-                                        <option value="Reactivate">Reactivate</option>
-
-                                    </select>
-                                </div>
-                            </td>
-                        </tr>
-                        <tbody>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mt-5 p-0">
+                    <div class="card-header text-white" style="background-color:  #084594;">
+                        Hotlisted/Hotlist Approval
+                    </div>
+                    <div class="card-body">
+                        <table class="w-50" [formGroup]="hotlistApprovalFormGroup">
                             <tr>
                                 <td>
-                                    <span><span class="required">From Date
-                                        </span>:</span>
-
+                                    <span class="required">Entity Type</span>:
                                 </td>
                                 <td align="left">
                                     <div class="form-group">
-                                        <input type="date" class="form-control">
+                                        <select class="form-control" formControlName="entityId">
+                                            <option value="">select</option>
+                                            <option value="1">Customer</option>
+                                            <option value="2">Merchant</option>
+                                        </select>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <span><span class="required">To Date
-                                        </span>:</span>
 
+                            <!-- <tr>
+                                <td>
+                                    <span class="required">Action</span>:
                                 </td>
                                 <td align="left">
                                     <div class="form-group">
-                                        <input type="date" class="form-control">
+                                        <select class="form-control">
+                                            <option value="select">select</option>
+                                            <option value="Temperory">Temperory</option>
+                                            <option value="Permanent">Permanent</option>
+                                            <option value="Reactivate">Reactivate</option>
+    
+                                        </select>
                                     </div>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td align="left">
-                                    <div class=" d-flex flex-row justify-content-end">
-                                        <div class="mr-3">
-                                            <button class="btn btn-primary">Search</button>
+                            </tr> -->
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span><span class="required">From Date
+                                            </span>:</span>
+
+                                    </td>
+                                    <td align="left">
+                                        <div class="form-group">
+                                            <input type="date" class="form-control" formControlName="fromDate">
                                         </div>
-                                        <div>
-                                            <button class="btn btn-primary">Reset</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span><span class="required">To Date
+                                            </span>:</span>
+
+                                    </td>
+                                    <td align="left">
+                                        <div class="form-group">
+                                            <input type="date" class="form-control" formControlName="toDate">
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td align="left">
+                                        <div class=" d-flex flex-row justify-content-end">
+                                            <div class="mr-3">
+                                                <button class="btn btn-primary"
+                                                    (click)="onSearchButtonClick()">Search</button>
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-primary">Reset</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-body" *ngIf="isshow==1">
+
+                        <mat-table [dataSource]="dataSource" style="width: 100%;" class="mat-elevation-z8">
+                            <ng-container matColumnDef="sno">
+                                <mat-header-cell *matHeaderCellDef>S.No.</mat-header-cell>
+                                <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{i+1}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="select">
+                                <mat-header-cell *matHeaderCellDef>
+                                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                        [checked]="selection.hasValue() && isAllSelected()"
+                                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                                    </mat-checkbox>
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let row">
+                                    <mat-checkbox (click)="$event.stopPropagation()"
+                                        (change)="$event ? selection.toggle(row) : null"
+                                        [checked]="selection.isSelected(row)">
+                                    </mat-checkbox>
+                                </mat-cell>
+                            </ng-container>
+    
+                            <ng-container matColumnDef="entityCode">
+                                <mat-header-cell *matHeaderCellDef>Entity Code</mat-header-cell>
+                                <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{row.entity_Type}}
+                                </mat-cell>
+                            </ng-container>
+    
+                            <!-- <ng-container matColumnDef="orderstatus">
+                              <mat-header-cell *matHeaderCellDef > Order Status </mat-header-cell>
+                              <mat-cell *matCellDef="let row" class="text-center"> {{row.order_Status}} </mat-cell>
+                            </ng-container> -->
+    
+                            <ng-container matColumnDef="creationDate">
+                                <mat-header-cell *matHeaderCellDef> Creation Date </mat-header-cell>
+                                <mat-cell *matCellDef="let row" class="text-center"> {{row.hotlist_Date}} </mat-cell>
+                            </ng-container>
+    
+    
+                            <!-- <ng-container matColumnDef="actions">
+                              <mat-header-cell *matHeaderCellDef > Action</mat-header-cell>
+                
+                              <mat-cell *matCellDef="let element; let i=index" class="text-center">
+                               <p style="color: blue;cursor: pointer;" (click)="onViewMerchantDetails(element.erpCode)">View</p>
+                              </mat-cell>
+                            </ng-container>
+                 -->
+    
+    
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row;let i=index; columns: displayedColumns;"
+                                (click)="selection.toggle(row)"></mat-row>
+                        </mat-table>
+                        <mat-paginator [pageSizeOptions]="[5,10,20]"></mat-paginator>
+    
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 col-xs-3">
+                                <!-- <button class="btn btn-danger btn-sm" style="float: right;" (click)="onRejectButtonClick()">Reject</button> -->
+                                <button class="btn btn-primary btn-sm" style="float: right;margin-right: 15px;"
+                                    (click)="onApproveButtonClick()">Approve</button>
+    
+    
+    
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+               
             </div>
         </div>
     </div>
-</div>
+</body>

@@ -1,3 +1,22 @@
 .blue-bg {
   background-color: #084594;
 }
+.mat-column-sno {
+  flex: 0 0 8%;
+}
+.mat-column-select {
+  flex: 0 0 8%;
+}
+.mat-column-merchantcode {
+  flex: 0 0 10%;
+}
+.mat-column-orderstatus {
+  flex: 0 0 13%;
+}
+.mat-column-actions {
+  flex: 0 0 10%;
+}
+html,
+body {
+  height: 130%;
+}
