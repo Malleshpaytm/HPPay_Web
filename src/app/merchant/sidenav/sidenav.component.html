@@ -1,17 +1,29 @@
-<mat-sidenav-container class="example-container" autosize>
-  <mat-sidenav
+<!-- <mat-sidenav-container class="example-container" autosize> -->
+  <mat-sidenav-container
+    class="example-container" (backdropClick)="close('backdrop')">
+  <!-- <mat-sidenav
     #sidenav
     class="example-sidenav"
     mode="side"
     opened="true"
-    disableClose="true"
-  >
-    <p-panelMenu [model]="items" [style]="{'width':'300px'}"></p-panelMenu>
+    disableClose (keydown.escape)="close('escape')"
+  > -->
+  
+  <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose  opened="true"  mode="side" 
+   class="example-sidenav">
+   <h3 class="pl-4 pt-3">{{username}}
+      <!-- <button mat-button (click)="close('toggle button')">Toggle</button> -->
+    </h3>
+    <p-panelMenu [model]="items" [style]="{'width':'300px'}">
+    </p-panelMenu>
+    
+    
     <mat-menu #requests>
       <button mat-menu-item>SMS Alerts</button>
     </mat-menu>
   </mat-sidenav>
   <mat-sidenav-content>
+    <!-- <button mat-button (click)="sidenav.open()">Open</button> -->
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

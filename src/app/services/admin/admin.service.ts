@@ -13,15 +13,19 @@ export class AdminService {
   authToken = this.service.authToken;
   //authoken
   constructor(private http: HttpClient, private service:ApiService) { }
+  forLocalHost='http://180.179.198.148:8086/';
 
+  
+ getToken(getTokenData): Observable<any> {
+    let headers = {
+      'Content-Type': 'application/json',
+      'Secret_Key': 'PVmMSclp834KBIUa9O-XxpBsDJhsi1dsds74CiGaoo5',
+      'API_Key': this.api_key
+    };
+    const body = JSON.stringify(getTokenData);
 
-  getToken(getTokenData): Observable<any> {
-    debugger;
-    let path = '/hppay/generatetoken';
-    const body=JSON.stringify(getTokenData);
-    return this.service.post(path,body);
+    return this.http.post(`${this.forLocalHost}180.179.222.161/hpp/api/hppay/generatetoken`, body, { 'headers': headers })
   }
-
   refreshToken(){
     let getTokenData ={
      "useragent": "web",

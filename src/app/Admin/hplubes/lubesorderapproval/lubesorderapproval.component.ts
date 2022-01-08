@@ -84,6 +84,7 @@ export class LubesorderapprovalComponent implements OnInit {
         this.dataArray = data.data;
         this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
         this.dataSource.paginator = this.paginator;
+        this.selection.clear();
           //this.GetSavedData=data.data;
           //this.showTableData=true;
           //this.headOfficeDetailsForm.reset();
@@ -93,9 +94,10 @@ export class LubesorderapprovalComponent implements OnInit {
         this.router.navigate(['/'])
       }
        else if(data.success===false){
-         this.toastr.error(data.message);
+         //this.toastr.error(data.message);
          this.dataSource = new MatTableDataSource<IRandomUsers>();
          this.dataSource.paginator = this.paginator;
+         this.selection.clear();
        }
        
       },
@@ -179,7 +181,7 @@ export class LubesorderapprovalComponent implements OnInit {
         "userip": "1",
         "userid": "1"
     }
-    this.adminService.approveRejectMerchant(approveRejectMerchantData)
+    this.adminService.update_order_status_by_order_id(approveRejectMerchantData)
       .subscribe(data => {
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           debugger;
@@ -241,4 +243,15 @@ else{
       //this.animal = result;
     });
   }
+
+  onViewLubesDetails(orderId,mobileNumber): void {
+    debugger
+   this.router.navigate(['/admin/hplubes/lubedetail'], {
+     queryParams: {
+      orderId:orderId,
+      mobileNumber: mobileNumber
+        
+     }
+  });
+ }
 }

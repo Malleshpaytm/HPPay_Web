@@ -3,4 +3,5 @@ export class User {
     username: string
     userrole: string
     message: string
+    merchant_id:string
 }

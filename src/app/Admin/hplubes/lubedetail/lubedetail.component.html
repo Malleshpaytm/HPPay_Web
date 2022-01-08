@@ -18,50 +18,49 @@
                                                 <td width="25%" class="SolidLabel">Order Ref Number :
                                                 </td>
                                                 <td width="65%">
-                                                    <span id="ctl00_phM_lblOrderNumber">ORDREF2100000682</span>
+                                                    <span id="ctl00_phM_lblOrderNumber">{{orderDetailsData?.awB_No}}</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td width="15%" class="SolidLabel">Product Name :
                                                 </td>
                                                 <td width="65%">
-                                                    <span id="ctl00_phM_lblProductName" class="HighlitedLabel">Racer 20W
-                                                        40</span>
+                                                    <span id="ctl00_phM_lblProductName" class="HighlitedLabel">{{orderDetailsData?.product_Name}}</span>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="SolidLabel">Size:
                                                 </td>
                                                 <td>
                                                     <span id="ctl00_phM_lblSize" class="HighlitedLabel">900.00 ml</span>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <td class="SolidLabel">Quantity:
                                                 </td>
                                                 <td>
-                                                    <span id="ctl00_phM_lblQuantity">1</span>
+                                                    <span id="ctl00_phM_lblQuantity">{{orderDetailsData?.quantity}}</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="SolidLabel">Amount :
                                                 </td>
                                                 <td>
-                                                    <span id="ctl00_phM_lblAmount">200.00</span>
+                                                    <span id="ctl00_phM_lblAmount">{{orderDetailsData?.total_Amount}}</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="SolidLabel">Discount Amount :
                                                 </td>
                                                 <td>
-                                                    <span id="ctl00_phM_lblDiscountAmount">0.00</span>
+                                                    <span id="ctl00_phM_lblDiscountAmount">{{orderDetailsData?.discount}}</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="SolidLabel">Net Amount :
                                                 </td>
                                                 <td>
-                                                    <span id="ctl00_phM_lblNetAmount">200.00</span>
+                                                    <span id="ctl00_phM_lblNetAmount">{{orderDetailsData?.net_Amount}}</span>
                                                 </td>
                                             </tr>
 
@@ -80,27 +79,27 @@
                                                 </td>
                                                 <td width="65%">
                                                     <span id="ctl00_phM_lblTransactionStatus"
-                                                        class="HighlitedLabel">Success</span>
+                                                        class="HighlitedLabel">{{orderDetailsData?.payment_Status}}</span>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td width="15%" class="SolidLabel">Transaction Date : </td>
                                                 <td width="65%">
                                                     <span id="ctl00_phM_lblTransactionDate">04/06/2021 09:00 AM</span>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <td class="SolidLabel">Payment Mode :
                                                 </td>
                                                 <td>
-                                                    <span id="ctl00_phM_lblPaymentMode">CCAVENUE_HDFC</span>
+                                                    <span id="ctl00_phM_lblPaymentMode">{{orderDetailsData?.payment_Mode}}</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="SolidLabel">Raw Transaction Id :
                                                 </td>
                                                 <td>
-                                                    <span id="ctl00_phM_lblRawTransactionId">166101140</span>
+                                                    <span id="ctl00_phM_lblRawTransactionId">{{orderDetailsData?.transaction_Id}}</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -118,7 +117,7 @@
                                                 <td width="15%" class="SolidLabel">Name :
                                                 </td>
                                                 <td width="65%">
-                                                    <span id="ctl00_phM_lblName">Mr. A B</span>
+                                                    <span id="ctl00_phM_lblName">{{orderDetailsData?.customer_Name}}</span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -126,9 +125,9 @@
                                                 </td>
                                                 <td width="65%">
                                                     <span id="ctl00_phM_lblAddress1"
-                                                        style="display:inline-block;width:431px;">sec-58</span><br>
-                                                    <span id="ctl00_phM_lblAddress2"
-                                                        style="display:inline-block;width:431px;"></span>
+                                                        style="display:inline-block;width:431px;">{{orderDetailsData?.customer_Address}}</span><br>
+                                                    <!-- <span id="ctl00_phM_lblAddress2"
+                                                        style="display:inline-block;width:431px;"></span> -->
                                                 </td>
                                             </tr>
 
@@ -136,22 +135,22 @@
                                                 <td width="15%" class="SolidLabel">Pincode :
                                                 </td>
                                                 <td width="65%">
-                                                    <span id="ctl00_phM_lblPincode">440001</span>
+                                                    <span id="ctl00_phM_lblPincode">{{orderDetailsData?.customer_Pincode}}</span>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
 
                                                 <td width="15%" class="SolidLabel">District :
                                                 </td>
                                                 <td width="65%">
                                                     <span id="ctl00_phM_lblDistrict">GHAZIABAD</span>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <td width="15%" class="SolidLabel">State :
                                                 </td>
                                                 <td width="65%">
-                                                    <span id="ctl00_phM_lblState">UTTAR PRADESH</span>
+                                                    <span id="ctl00_phM_lblState">{{orderDetailsData?.customer_State}}</span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -159,21 +158,21 @@
                                                 </td>
                                                 <td width="65%">
                                                     <span id="ctl00_phM_lblMobile"
-                                                        class="HighlitedLabel">9888888888</span>
+                                                        class="HighlitedLabel">{{this?.mobileNumber}}</span>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td width="15%" class="SolidLabel">Email :
                                                 </td>
                                                 <td width="65%">
                                                     <span id="ctl00_phM_lblEmail">air@gmail.com</span>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <td width="15%" class="SolidLabel">Delivery Status :
                                                 </td>
                                                 <td width="65%">
-                                                    <span id="ctl00_phM_lblDeliveryStatus">Delivered</span>
+                                                    <span id="ctl00_phM_lblDeliveryStatus">{{orderDetailsData?.order_Status}}</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -190,17 +189,17 @@
                                                 </td>
                                                 <td class="auto-style1">
                                                     <span id="ctl00_phM_lblMerchantCode" class="txtnormal170"
-                                                        maxlength="30">3319733700</span>
+                                                        maxlength="30">{{orderDetailsData?.merchant_Id}}</span>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td width="16%" class="SolidLabel">Merchant Name :
                                                 </td>
                                                 <td class="auto-style1">
                                                     <span id="ctl00_phM_lblMerchantName" class="txtnormal170"
                                                         maxlength="30">RISHABH ENTERPRISES</span>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
 
                                         </tbody>
                                     </table>
@@ -227,10 +226,10 @@
                                             <tr *ngFor="let data of GetSavedData; index as i">
 
 
-                                                <td>{{ data.orderrefnumber }}</td>
-                                                <td>{{ data.orderstatus}}</td>
-                                                <td>{{ data.actiondate}}</td>
-                                                <td>{{ data.actioncomment}}</td>
+                                                <td>{{ data.awB_No }}</td>
+                                                <td>{{ data.order_Status}}</td>
+                                                <td>{{ data.date}}</td>
+                                                <td>{{ data.remarks}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -253,12 +252,12 @@
                                                 </td>
                                                 <td class="style4" width="83%">
 
-                                                    <img id="ctl00_phM_imgReplacement1" class="txtnormal170"
+                                                    <!-- <img id="ctl00_phM_imgReplacement1" class="txtnormal170"
                                                         src="http://localhost:51054/images/LubeReplacementImage/1011756507/682_202106041139020.png"
                                                         style="height:150px;width:150px;border-width:0px;">
                                                     <img id="ctl00_phM_imgReplacement2" class="txtnormal170"
                                                         src="http://localhost:51054/images/LubeReplacementImage/1011756507/682_202106041139027.png"
-                                                        style="height:150px;width:150px;border-width:0px;">
+                                                        style="height:150px;width:150px;border-width:0px;"> -->
                                                 </td>
                                             </tr>
                                             <tr>
@@ -266,7 +265,7 @@
                                                 </td>
                                                 <td width="83%" class="style4">
                                                     <span id="ctl00_phM_lblReplacementReqComment" class="txtnormal170"
-                                                        maxlength="500">Replacement request by customer </span>
+                                                        maxlength="500">{{orderDetailsData?.remarks}} </span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -277,16 +276,16 @@
                                                 <td width="83%" class="style4">
                                                     <textarea name="ctl00$phM$txtComment" rows="2" cols="20"
                                                         id="ctl00_phM_txtComment" class="form-control"
-                                                        placeholder="maximum allowed 250 characters" disabled="disabled"
-                                                        style="height:50px;width:300px;">Rejected by SO</textarea>
-                                                    <span id="ctl00_phM_cvComments" title="Please Enter Comment"
+                                                         disabled="disabled"
+                                                        style="height:50px;width:300px;"></textarea>
+                                                    <!-- <span id="ctl00_phM_cvComments" title="Please Enter Comment"
                                                         style="color:Red;display:none;">
                                                         <img src="../includes/images/error.png" alt="">
                                                     </span>
                                                     <span id="ctl00_phM_rgtxtComment"
                                                         title="Comment Can't exceed 250 characters"
                                                         style="color:Red;display:none;"><img align="middle"
-                                                            src="../includes/images/error.png"></span>
+                                                            src="../includes/images/error.png"></span> -->
                                                 </td>
                                             </tr>
                                         </tbody>

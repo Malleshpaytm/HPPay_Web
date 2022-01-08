@@ -21,11 +21,18 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   handleSubmit() {
+    debugger;
     if (this.isValid()) {
       this.merchantService.changeMerchantPassword(this.changePasswordModel).subscribe(resp => {
         if(resp.data && resp.data[0].status === 1) {
           this.toastrService.success(resp.data[0].reason);
-        } else {
+          this.changePasswordModel = new MerChangePasswordPayload();
+          if(!!this.confirmedPassword){
+            this.confirmedPassword='';
+          }
+         
+        } 
+        else {
           this.toastrService.error(resp.data[0].reason);
         }
       });

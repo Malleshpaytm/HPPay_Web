@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { MerchantFsm } from 'src/app/models/merchant-fsm';
@@ -17,6 +18,8 @@ export class QrAgentsOnboardingComponent implements OnInit {
   showQrCode = false;
   qrCode: string;
   selectedMerchantFsm: MerchantFsm;
+  loggedInUserInfo = localStorage.getItem('userInfo');
+  loggedInUserInfoArr = JSON.parse(this.loggedInUserInfo)
 
   constructor(
     readonly merchantService: MerchantService,
@@ -61,5 +64,30 @@ export class QrAgentsOnboardingComponent implements OnInit {
         this.showQrCode = true;
         this.qrCode = resp.data[0].qRcode;
       });
+  }
+
+  blockFsm(fsMmobileno){
+    debugger;
+    let blockFsmData={
+      "merchantid": this.loggedInUserInfoArr.merchant_id,
+  "fsMmobileno": fsMmobileno,
+  "useragent": "web",
+  "userip": "1",
+  "userid": "1"
+    }
+    this.merchantService.block_merchant_fsm(blockFsmData)
+    .subscribe(data => {
+      debugger;
+     if(data.message.toUpperCase()==="RECORD FOUND"){
+      this.toastrService.success(data.data[0].reason);
+      this.populateMerchantFsmList();
+     }
+    
+     
+    },
+    
+    (err: HttpErrorResponse) => {
+     // this.toastr.error(err.toString());
+    });
   }
 }

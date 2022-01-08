@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  hpPayApiRoot: 'http://localhost:8086/http://180.179.222.161/hpp/'
+  hpPayApiRoot: 'http://180.179.198.148:8086/http://180.179.222.161/hpp/'
 };
 
 /*

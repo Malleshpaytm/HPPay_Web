@@ -12,6 +12,7 @@ import { MerDayearningDataComponent } from './financials/mer-dayearning-data/mer
 import { MerQrTransactionsComponent } from './financials/mer-qr-transactions/mer-qr-transactions.component';
 import { QrAgentsOnboardingComponent } from './qr-agents-onboarding/qr-agents-onboarding.component';
 import { AddFsmComponent } from './add-fsm/add-fsm.component';
+import { LubeOrderComponent } from './lubes/lube-order/lube-order.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,10 @@ const routes: Routes = [
       {
         path: 'add-fsm',
         component: AddFsmComponent
+      },
+      {
+        path: 'lube-order',
+        component: LubeOrderComponent
       }
     ],
   },

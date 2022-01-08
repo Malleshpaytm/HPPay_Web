@@ -44,4 +44,26 @@ export class MerchantService {
     return this.baseHttpService.post<any>(updateMerchantDetailsUrl, payload);
   }
 
+  //lubes
+  get_all_products_by_merchant( get_all_products_by_merchant): Observable<any> {
+    const updateMerchantDetailsUrl = `${this.baseHttpService.hpPayApiRoot}api/hppay/lubes/get_all_products_by_merchant`;
+    return this.baseHttpService.post<any>(updateMerchantDetailsUrl, get_all_products_by_merchant);
+  }
+
+  get_any_entity_type_list( get_any_entity_type_list): Observable<any> {
+    const updateMerchantDetailsUrl = `${this.baseHttpService.hpPayApiRoot}api/hppay/settings/get_any_entity_type_list`;
+    return this.baseHttpService.post<any>(updateMerchantDetailsUrl, get_any_entity_type_list);
+  }
+
+  get_order_history_by_merchant_id(get_order_history_by_merchant_id): Observable<any> {
+    const updateMerchantDetailsUrl = `${this.baseHttpService.hpPayApiRoot}api/hppay/lubes/get_order_history_by_merchant_id`;
+    return this.baseHttpService.post<any>(updateMerchantDetailsUrl, get_order_history_by_merchant_id);
+  }
+  block_merchant_fsm(block_merchant_fsm): Observable<any> {
+    const updateMerchantDetailsUrl = `${this.baseHttpService.hpPayApiRoot}api/hppay/merchant/block_merchant_fsm`;
+    return this.baseHttpService.post<any>(updateMerchantDetailsUrl, block_merchant_fsm);
+  }
+  ///api/hppay/merchant/block_merchant_fsm
+
+  
 }

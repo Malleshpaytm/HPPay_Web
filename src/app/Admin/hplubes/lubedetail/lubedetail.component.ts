@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
   selector: 'app-lubedetail',
@@ -10,13 +14,22 @@ export class LubedetailComponent implements OnInit {
   page = 1;
   pageSize = 4;
   collectionSize = 5;
+  orderDetailsData:any;
 
-
-
-  constructor() { }
+  orderId:any;mobileNumber:any;
+  constructor(private adminService: AdminService, private fb: FormBuilder,
+    private toastr: ToastrService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.ManageOfficers();
+    this.route.queryParams
+    .subscribe(params => {
+      debugger;
+      this.orderId = params.orderId;
+      this.mobileNumber = params.mobileNumber
+    }
+    );
+    this.getOrderDetails();
+   // this.ManageOfficers();
   }
   ManageOfficers() {
     this.GetSavedData = [
@@ -52,5 +65,20 @@ export class LubedetailComponent implements OnInit {
       }
     ];
   }
-
+  getOrderDetails(){
+    debugger;
+    let get_order_detail_by_order_idData={
+      "order_Id": this.orderId,
+      "mobile_No": this.mobileNumber,
+  "useragent": "web",
+  "userip": "1",
+  "userid": "1"
+    }
+    this.adminService.get_order_detail_by_order_id(get_order_detail_by_order_idData)
+      .subscribe(data=>{
+        console.log(data.data)
+        this.orderDetailsData=data.data[0];
+        this.GetSavedData=data.data[0].status_Info
+      })
+  }
 }

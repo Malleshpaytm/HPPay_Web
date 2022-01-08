@@ -1,5 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { MatSidenav } from '@angular/material/sidenav';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -9,11 +11,20 @@ import { MenuItem } from 'primeng/api';
 })
 export class SidenavComponent implements OnInit {
   @ViewChild(MatMenuTrigger) triggerBtn: MatMenuTrigger;
+  loggedInUserInfo = localStorage.getItem('userInfo');
+  loggedInUserInfoArr = JSON.parse(this.loggedInUserInfo)
   items: MenuItem[];
-  constructor() {}
-
+  username=this.loggedInUserInfoArr?.username
+  constructor(@Inject(DOCUMENT) private _document: Document) {}
+  @ViewChild('sidenav') sidenav: MatSidenav;
+ 
+  reason = '';
   ngOnInit(): void {
     this.items = [
+      // {
+      //   label: this.username,
+      
+      // },
       {
         label: 'My Profile',
         routerLink: ['./profile']
@@ -72,10 +83,27 @@ export class SidenavComponent implements OnInit {
         label: 'Requests',
       },
       {
+        label: 'Lubes',
+        items: [{
+          label: 'Lube Order',
+          routerLink: ['./lube-order']
+        },
+       
+      ]
+      },
+      {
         label: 'Logout',
+        routerLink:['../']
       }
     ];
   }
 
-
+  refreshPage() {
+    this._document.defaultView.location.reload();
+  }
+  close(reason: string) {
+    this.reason = reason;
+    this.sidenav.close();
+  }
+  
 }

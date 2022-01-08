@@ -61,18 +61,18 @@ customerkycformgroup:FormGroup;
   }
   onSearchButtonClick(){
     debugger;
-    let  get_pending_kycData = {
-      "category": this.customerkycformgroup.controls.category.value,
-      "email": this.customerkycformgroup.controls.email.value,
-      "mobileno": this.customerkycformgroup.controls.mobileno.value,
-      "from_Date": this.customerkycformgroup.controls.from_Date.value,
-      "to_Date":this.customerkycformgroup.controls.to_Date.value,
-      "useragent": "web",
-      "userip": "1",
-      "userid": "1",
-    }
-    
-    this.adminService.get_pending_kyc(get_pending_kycData)
+    if(this.customerkycformgroup.controls.email.value){
+      let  get_pending_kycData = {
+        "category": 1,
+        "email": this.customerkycformgroup.controls.email.value,
+        "mobileno": "",
+        "from_Date": "",
+        "to_Date":"",
+        "useragent": "web",
+        "userip": "1",
+        "userid": "1",
+      }
+      this.adminService.get_pending_kyc(get_pending_kycData)
       .subscribe(data => {
        if(data.message.toUpperCase()==="RECORD FOUND"){
         //this.dataArray = data.data;
@@ -96,6 +96,197 @@ customerkycformgroup:FormGroup;
       (err: HttpErrorResponse) => {
         this.toastr.error(err.toString());
       });
+    }
+
+    else if(this.customerkycformgroup.controls.mobileno.value){
+      let  get_pending_kycData = {
+        "category": 2,
+        "email": "",
+        "mobileno": this.customerkycformgroup.controls.mobileno.value,
+        "from_Date": "",
+        "to_Date":"",
+        "useragent": "web",
+        "userip": "1",
+        "userid": "1",
+      }
+      this.adminService.get_pending_kyc(get_pending_kycData)
+      .subscribe(data => {
+       if(data.message.toUpperCase()==="RECORD FOUND"){
+        //this.dataArray = data.data;
+        this.dataArray=data.data.sort((a, b) => new Date(b.created_On).getTime() - new Date(a.created_On).getTime());
+        this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
+        this.dataSource.paginator = this.paginator;
+          //this.hotlistData=data.data
+          //this.headOfficeDetailsForm.reset();
+       }
+       else if(data.status_Code===401){
+        this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+        this.router.navigate(['/'])
+      }
+       else if(data.message.toUpperCase()==="RECORD NOT FOUND"){
+         this.toastr.error(data.message);
+         this.selection.clear();
+       }
+       
+      },
+      
+      (err: HttpErrorResponse) => {
+        this.toastr.error(err.toString());
+      });
+    }
+
+    else if(this.customerkycformgroup.controls.from_Date.value && this.customerkycformgroup.controls.to_Date.value){
+      let  get_pending_kycData = {
+        "category": 2,
+        "email": "",
+        "mobileno": "",
+        "from_Date": this.customerkycformgroup.controls.from_Date.value,
+        "to_Date":this.customerkycformgroup.controls.to_Date.value,
+        "useragent": "web",
+        "userip": "1",
+        "userid": "1",
+      }
+      this.adminService.get_pending_kyc(get_pending_kycData)
+      .subscribe(data => {
+       if(data.message.toUpperCase()==="RECORD FOUND"){
+        //this.dataArray = data.data;
+        this.dataArray=data.data.sort((a, b) => new Date(b.created_On).getTime() - new Date(a.created_On).getTime());
+        this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
+        this.dataSource.paginator = this.paginator;
+          //this.hotlistData=data.data
+          //this.headOfficeDetailsForm.reset();
+       }
+       else if(data.status_Code===401){
+        this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+        this.router.navigate(['/'])
+      }
+       else if(data.message.toUpperCase()==="RECORD NOT FOUND"){
+         this.toastr.error(data.message);
+         this.selection.clear();
+       }
+       
+      },
+      
+      (err: HttpErrorResponse) => {
+        this.toastr.error(err.toString());
+      });
+    }
+    else if(this.customerkycformgroup.controls.from_Date.value && this.customerkycformgroup.controls.to_Date.value 
+      && this.customerkycformgroup.controls.mobileno.value && this.customerkycformgroup.controls.email.value){
+      let  get_pending_kycData = {
+        "category": 4,
+        "email":this.customerkycformgroup.controls.email.value,
+        "mobileno": this.customerkycformgroup.controls.mobileno.value,
+        "from_Date": this.customerkycformgroup.controls.from_Date.value,
+        "to_Date":this.customerkycformgroup.controls.to_Date.value,
+        "useragent": "web",
+        "userip": "1",
+        "userid": "1",
+      }
+      this.adminService.get_pending_kyc(get_pending_kycData)
+      .subscribe(data => {
+       if(data.message.toUpperCase()==="RECORD FOUND"){
+        //this.dataArray = data.data;
+        this.dataArray=data.data.sort((a, b) => new Date(b.created_On).getTime() - new Date(a.created_On).getTime());
+        this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
+        this.dataSource.paginator = this.paginator;
+          //this.hotlistData=data.data
+          //this.headOfficeDetailsForm.reset();
+       }
+       else if(data.status_Code===401){
+        this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+        this.router.navigate(['/'])
+      }
+       else if(data.message.toUpperCase()==="RECORD NOT FOUND"){
+         this.toastr.error(data.message);
+         this.selection.clear();
+       }
+       
+      },
+      
+      (err: HttpErrorResponse) => {
+        this.toastr.error(err.toString());
+      });
+    }
+    else if(this.customerkycformgroup.controls.from_Date.value && this.customerkycformgroup.controls.to_Date.value 
+      && this.customerkycformgroup.controls.mobileno.value ){
+      let  get_pending_kycData = {
+        "category": 5,
+        "email":"",
+        "mobileno": this.customerkycformgroup.controls.mobileno.value,
+        "from_Date": this.customerkycformgroup.controls.from_Date.value,
+        "to_Date":this.customerkycformgroup.controls.to_Date.value,
+        "useragent": "web",
+        "userip": "1",
+        "userid": "1",
+      }
+      this.adminService.get_pending_kyc(get_pending_kycData)
+      .subscribe(data => {
+       if(data.message.toUpperCase()==="RECORD FOUND"){
+        //this.dataArray = data.data;
+        this.dataArray=data.data.sort((a, b) => new Date(b.created_On).getTime() - new Date(a.created_On).getTime());
+        this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
+        this.dataSource.paginator = this.paginator;
+          //this.hotlistData=data.data
+          //this.headOfficeDetailsForm.reset();
+       }
+       else if(data.status_Code===401){
+        this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+        this.router.navigate(['/'])
+      }
+       else if(data.message.toUpperCase()==="RECORD NOT FOUND"){
+         this.toastr.error(data.message);
+         this.selection.clear();
+       }
+       
+      },
+      
+      (err: HttpErrorResponse) => {
+        this.toastr.error(err.toString());
+      });
+    }
+    else if(this.customerkycformgroup.controls.from_Date.value && this.customerkycformgroup.controls.to_Date.value 
+      &&  this.customerkycformgroup.controls.email.value){
+      let  get_pending_kycData = {
+        "category": 6,
+        "email":this.customerkycformgroup.controls.email.value,
+        "mobileno": "",
+        "from_Date": this.customerkycformgroup.controls.from_Date.value,
+        "to_Date":this.customerkycformgroup.controls.to_Date.value,
+        "useragent": "web",
+        "userip": "1",
+        "userid": "1",
+      }
+      this.adminService.get_pending_kyc(get_pending_kycData)
+      .subscribe(data => {
+       if(data.message.toUpperCase()==="RECORD FOUND"){
+        //this.dataArray = data.data;
+        this.dataArray=data.data.sort((a, b) => new Date(b.created_On).getTime() - new Date(a.created_On).getTime());
+        this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
+        this.dataSource.paginator = this.paginator;
+          //this.hotlistData=data.data
+          //this.headOfficeDetailsForm.reset();
+       }
+       else if(data.status_Code===401){
+        this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+        this.router.navigate(['/'])
+      }
+       else if(data.message.toUpperCase()==="RECORD NOT FOUND"){
+         this.toastr.error(data.message);
+         this.selection.clear();
+       }
+       
+      },
+      
+      (err: HttpErrorResponse) => {
+        this.toastr.error(err.toString());
+      });
+    }
+
+    else{
+      this.toastr.error("Please fill the necessary details!")
+    }
+   
   }
   onApproveButtonClick(){
     //console.log(this.selection.selected);

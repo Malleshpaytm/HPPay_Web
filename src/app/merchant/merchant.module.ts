@@ -21,6 +21,7 @@ import { RequestsComponent } from './requests/requests.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QrAgentsOnboardingComponent } from './qr-agents-onboarding/qr-agents-onboarding.component';
 import { AddFsmComponent } from './add-fsm/add-fsm.component';
+import { LubeOrderComponent } from './lubes/lube-order/lube-order.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { AddFsmComponent } from './add-fsm/add-fsm.component';
     RequestsComponent,
     QrAgentsOnboardingComponent,
     AddFsmComponent,
+    LubeOrderComponent,
   ],
   imports: [
     MaterialModule,
