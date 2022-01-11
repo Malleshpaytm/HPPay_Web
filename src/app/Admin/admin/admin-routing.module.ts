@@ -48,6 +48,8 @@ import { ConfigurationmenuComponent } from './configuration/configurationmenu/co
 import { AddGroupComponent } from './setupreport/add-group/add-group.component';
 import { SubscribeNotificationComponent } from './configuration/subscribe-notification/subscribe-notification.component';
 import { AddEditRoleComponent } from './managerole/add-edit-role/add-edit-role.component';
+import { LoyaltyConfigurationComponent } from './configuration/loyalty-configuration/loyalty-configuration.component';
+import { AddNewLoyaltyConfigurationComponent } from './configuration/add-new-loyalty-configuration/add-new-loyalty-configuration.component';
 
 const routes: Routes = [
   { path: 'security', component: SecurityComponent },
@@ -84,6 +86,8 @@ const routes: Routes = [
   { path: 'notification-subscribe', component: SubscribeNotificationComponent },
   { path: 'addeditnotification', component: AddeditnotificationComponent },
   { path: 'configurationmenu', component: ConfigurationmenuComponent },
+  { path: 'loyaltyConfiguration', component: LoyaltyConfigurationComponent },
+  { path: 'addNewLoyalty', component: AddNewLoyaltyConfigurationComponent },
   { path: 'setupreportlist', component: SetupreportlistComponent },
   { path: 'manageprofile', component: ManageprofileComponent },
   { path: 'addeditprofiledetail', component: AddeditprofiledetailComponent },

@@ -54,6 +54,8 @@ import { AddEditRoleComponent } from './managerole/add-edit-role/add-edit-role.c
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MaterialModule } from 'src/app/material/material.module';
+import { LoyaltyConfigurationComponent } from './configuration/loyalty-configuration/loyalty-configuration.component';
+import { AddNewLoyaltyConfigurationComponent } from './configuration/add-new-loyalty-configuration/add-new-loyalty-configuration.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +105,8 @@ import { MaterialModule } from 'src/app/material/material.module';
     AddGroupComponent,
     SubscribeNotificationComponent,
     AddEditRoleComponent,
+    LoyaltyConfigurationComponent,
+    AddNewLoyaltyConfigurationComponent,
   ],
   imports: [
     MaterialModule,

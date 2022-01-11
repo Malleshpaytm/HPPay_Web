@@ -79,12 +79,21 @@ export class LubeOrderComponent implements OnInit {
           this.dataArray=data.data.filter(x=>x.order_Status==="Success")
           this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
           this.dataSource.paginator = this.paginator;
+          if(this.dataArray.length===0){
+            this.toastrService.error('No record found!')
+          }
+          
         }
+        
        else if(this.lubeOrderListFormGroup.controls.status.value=='627008'){
         this.dataArray=data.data.filter(x=>x.order_Status==="Pending")
         this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
         this.dataSource.paginator = this.paginator;
+        if(this.dataArray.length===0){
+          this.toastrService.error('No record found!')
+        }
        }
+       
           //this.GetSavedData=data.data;
           //this.showTableData=true;
           //this.headOfficeDetailsForm.reset();
