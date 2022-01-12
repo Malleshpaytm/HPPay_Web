@@ -1,0 +1,108 @@
+<div class="form" [formGroup]="rawCustomerDetailsFormGroup">
+    <table>
+        <tr>
+
+            <th *ngIf="customerDetails?.title">Title:</th>
+            <th *ngIf="customerDetails?.title"><input class="input" disabled [value]="customerDetails?.title">
+            </th>
+            <th *ngIf="customerDetails?.first_name && customerDetails?.last_name"> Name:</th>
+            <th *ngIf="customerDetails?.first_name && customerDetails?.last_name">
+                <input class="input" disabled [value]="customerDetails?.first_name+' '+customerDetails?.last_name">
+            </th>
+
+        </tr>
+
+        <tr>
+
+            <th> Email:</th>
+            <th>
+                <input class="input" disabled [value]="customerDetails?.user_email">
+            </th>
+            <th> Mobile:</th>
+            <th><input class="input" disabled [value]="customerDetails?.user_mobile"></th>
+        </tr>
+        <tr>
+            <th> Customer Type:</th>
+            <th>
+                <input class="input" disabled [value]="customerDetails?.customerType">
+            </th>
+            <th> Customer Id:</th>
+            <th><input class="input" disabled [value]="customerDetails?.customer_Id"></th>
+
+
+        </tr>
+        <tr>
+
+            <th *ngIf="customerDetails?.dob">DOB:</th>
+            <th *ngIf="customerDetails?.dob">
+                <input class="input" disabled [value]="customerDetails?.dob | date: 'dd/MM/yyyy' ">
+            </th>
+            <th *ngIf="customerDetails?.gender!=null"> Gender:</th>
+            <th *ngIf="customerDetails?.gender!=null">
+                <input class="input" disabled [value]="customerDetails?.gender">
+            </th>
+
+        </tr>
+        <tr>
+
+            <th *ngIf="customerDetails?.active_Paycode_Balance">Active Paycode Balance:</th>
+            <th *ngIf="customerDetails?.active_Paycode_Balance">
+                <input class="input" disabled [value]="customerDetails?.active_Paycode_Balance">
+            </th>
+            <th *ngIf="customerDetails?.fasttag_no"> Fasttag Number:</th>
+            <th *ngIf="customerDetails?.fasttag_no">
+                <input class="input" disabled [value]="customerDetails?.fasttag_no">
+            </th>
+
+        </tr>
+        <tr>
+
+            <th> Address :</th>
+            <th><input class="input" disabled [value]="customerDetails?.address"></th>
+            <th *ngIf="customerDetails?.state!=null">State:</th>
+            <th *ngIf="customerDetails?.state!=null">
+                <input class="input" disabled [value]="customerDetails?.state">
+            </th>
+
+        </tr>
+        <tr>
+
+            <th *ngIf="customerDetails?.city!=null">City:</th>
+            <th *ngIf="customerDetails?.city!=null">
+                <input class="input" disabled [value]="customerDetails?.city">
+            </th>
+            <th *ngIf="customerDetails?.district!=null"> District:</th>
+            <th *ngIf="customerDetails?.district!=null">
+                <input class="input" disabled [value]="customerDetails?.district">
+            </th>
+
+        </tr>
+        <tr>
+            <th>Pin Code:</th>
+            <th>
+                <input class="input" disabled [value]="customerDetails?.pincode">
+            </th>
+
+            <th>Vehicle Number:</th>
+            <th>
+                <input class="input" disabled [value]="customerDetails?.vehicle_no">
+            </th>
+
+        </tr>
+        <tr>
+            <th>Referral Code:</th>
+            <th>
+                <input class="input" disabled [value]="customerDetails?.referralCode">
+            </th>
+            <th>Payback Card Number:</th>
+            <th>
+                <input class="input" disabled [value]="customerDetails?.payback_cardno">
+            </th>
+
+
+
+        </tr>
+
+    </table>
+
+</div>

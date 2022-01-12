@@ -1,4 +1,10 @@
 .blue-bg {
     background-color: #084594;
   }
+  .mat-column-slabId {
+    flex: 0 0 8%;
+  }
   
+  .mat-column-actions {
+    flex: 0 0 10%;
+  } 

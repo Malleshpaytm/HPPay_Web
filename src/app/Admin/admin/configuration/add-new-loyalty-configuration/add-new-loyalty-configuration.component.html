@@ -4,221 +4,168 @@
             <div class="col-12">
                 <div class="card mt-3 mb-5 p-0">
                     <div class="card-header text-white" style="background-color:  #084594;">
-                        <strong>Service Master</strong>
+                        <strong>Add New Loyalty Configuration</strong>
                     </div>
                     <div class="card-body">
 
 
-                        <table class="w-100 table table-borderless table-sm">
+                        <table class="w-100 table table-borderless table-sm" [formGroup]="AddNewLoyaltyConfigurationFormgroup">
                             
                             <tbody>
                                 <tr>
                                     <td align="left">
-                                        <span><span class="required">Name
+                                        <span><span class="required">Slab Name
                                             </span>:</span>
 
                                     </td>
                                     <td align="left">
                                         <div class="form-group">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" formControlName="slabname">
                                         </div>
                                     </td>
                                    
                                 </tr>
                                 <tr>
                                     <td align="left">
-                                        <span><span class="required">Code
+                                        <span><span class="required">Slab Minimum Value
                                             </span>:</span>
 
                                     </td>
                                     <td align="left">
 
                                         <div class="form-group">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" formControlName="slabminvalue">
                                         </div>
                                     </td>
 
-
-
-                                
-                                </tr>
-                                <tr>
                                     <td align="left">
-                                        <span><span class="required">Allowed Txn Type
+                                        <span><span class="required">Slab Maximum Value
                                             </span></span>
 
                                     </td>
                                     <td align="left">
 
                                         <div class="form-group">
-                                            <select class="form-control">
-                                                <option value="select">select</option>
-                                                <option value="Customer">L-1</option>
-                                                <option value="Merchant">L-2</option>
-                                                <option value="Customer">L-3</option>
-                                                <option value="Merchant">L-4</option>
-                                            </select>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" formControlName="slabmaxvalue">
+                                            </div>
                                         </div>
                                     </td>
 
+                                
+                                </tr>
+                                <tr>
+                                   
+
+                                </tr>
+
+                                <tr>
+                                    <td align="left">
+                                        <span><span class="required">Slab Earn Points
+                                            </span></span>
+
+                                    </td>
+                                    <td align="left">
+
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" formControlName="slabearn_points">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td align="left">
+                                        <span><span class="required">Slab Earn Points (₹)
+                                            </span>:</span>
+    
+                                    </td>
+                                    <td align="left">
+    
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control"  formControlName="slabearn_points_as_per_rs">
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
 
                                
 
+                               
                                 <tr>
                                     <td align="left">
-                                        <span><span class="required">Service Type
+                                        <span><span class="required">Customer Type
                                             </span>:</span>
 
                                     </td>
                                     <td align="left">
 
                                         <div class="form-group">
-                                            <select class="form-control">
-                                                <option value="select">select</option>
-                                                <option value="Customer">L-1</option>
-                                                <option value="Merchant">L-2</option>
-                                                <option value="Customer">L-3</option>
-                                                <option value="Merchant">L-4</option>
-                                            </select>                                        </div>
-                                    </td>
-
-
-
-                                   
-                                </tr>
-                                <tr>
-                                    <td align="left">
-                                        <span><span class="required">User Input 1
-                                            </span>:</span>
-
-                                    </td>
-                                    <td align="left">
-
-                                        <div class="form-group">
-                                            <input type="text" class="form-control">
+                                            <select type="test" placeholder="" class="form-control" formControlName="customertype">
+                                                <ng-container *ngFor="let entity of get_any_entity_type_list">
+                                                    <option [value]="entity.type_name" >{{entity.type_name}}
+                                                    </option>
+                                                </ng-container>
+                                               
+                                            </select>
                                         </div>
                                     </td>
 
 
 
                                     <td align="left">
-                                        <span><span class="required">Data Type
+                                        <span><span class="required">Transaction Type
                                             </span>:</span>
 
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <select class="form-control">
-                                                <option value="select">select</option>
-                                                <option value="Customer">Int</option>
-                                                <option value="Merchant">String</option>
-                                                <option value="Customer">Float</option>
-                                                <option value="Merchant">Decimal</option>
-                                            </select>                                          </div>
+                                            <select type="test" placeholder="" class="form-control" formControlName="transactiontype">
+                                                <ng-container *ngFor="let entity of get_any_transaction_type_list">
+                                                    <option [value]="entity.type_name" >{{entity.type_name}}
+                                                    </option>
+                                                </ng-container>
+                                               
+                                            </select>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align=" left">
-                                        <span><span class="required">User Input 2
+                                        <span><span class="required">Type of Logic
                                             </span>:</span>
 
                                     </td>
                                     <td align="left">
 
                                         <div class="form-group">
-                                            <input type="text" class="form-control">
-
-                                        </div>
-                                    </td>
-
-
-
-                                    <td align="left">
-                                        <span><span class="required">Data Type
-                                            </span>:</span>
-
-                                    </td>
-                                    <td>
-
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option value="select">select</option>
-                                                <option value="Customer">Int</option>
-                                                <option value="Merchant">String</option>
-                                                <option value="Customer">Float</option>
-                                                <option value="Merchant">Decimal</option>
-                                            </select>  
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="left">
-                                        <span><span class="required">User Input 3
-                                            </span>:</span>
-
-                                    </td>
-                                    <td align="left">
-
-                                        <div class="form-group">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </td>
-
-
-
-                                    <td>
-                                        <span><span class="required">Data Type
-                                            </span>:</span>
-
-                                    </td>
-                                    <td>
-
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option value="select">select</option>
-                                                <option value="Customer">Int</option>
-                                                <option value="Merchant">String</option>
-                                                <option value="Customer">Float</option>
-                                                <option value="Merchant">Decimal</option>
-                                            </select>                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td align="left">
-                                        <span><span class="required">Enable
-                                            </span>:</span>
-
-                                    </td>
-                                    <td align="left">
-
-                                        <div class="radio">
-                                            <label class="mr-3"><input type="radio" id='regular' name="optradio">True</label>
-                                            <label><input type="radio" id='regular' name="optradio">False</label>
-
+                                            <select class="form-control" formControlName="typeoflogic">
+                                                <option value="Points">Points</option>
+                                                <option value="Discount">Discount</option>
+                                                <option value="Frequency">Frequency</option>
+                                                                                                </select>
+                                         
                                         </div>
                                     </td>
 
 
 
                                    
-                                </tr>
-                              
 
 
                                 <tr>
                                     <td align="right" colspan="4">
                                         <div class=" d-flex flex-row justify-content-end">
-                                            <div class="mr-3">
-                                                <button class="btn btn-primary pl-3 pr-3">Add Service</button>
+                                           
+                                            <div class="mr-3" >
+                                                <button *ngIf="this.isEdit" class="btn btn-primary pl-3 pr-3" (click)="onEditButtonClick()">Edit</button>
+                                                <button *ngIf="!this.isEdit" class="btn btn-primary pl-3 pr-3" (click)="onSaveButtonClick()">Save</button>
                                             </div>
                                             <div class="mr-3">
-                                                <button class="btn btn-primary pl-3 pr-3">Reset</button>
+                                                <button class="btn btn-primary pl-3 pr-3" (click)="onResetButtonClick()">Reset</button>
                                             </div>
                                             <div>
                                                 <button class="btn btn-primary pl-3 pr-3"
-                                                    routerLink="/admin/servicedetail">CANCEL</button>
+                                                    routerLink="/admin/loyaltyConfiguration">CANCEL</button>
                                             </div>
                                         </div>
                                     </td>

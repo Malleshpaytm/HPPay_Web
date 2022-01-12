@@ -169,6 +169,32 @@ export class AdminService {
     const body=JSON.stringify(get_all_hqzone_mappingData);
     return this.service.post(path,body);
   }
+
+  //admin --> configurations
+  //POST /api/hppay/
+  saveLoyaltyLogic(saveLoyaltyLogicData): Observable<any> {
+    let path = '/hppay/settings/save_loyalty_logic';
+    const body=JSON.stringify(saveLoyaltyLogicData);
+    return this.service.post(path,body);
+  }
+
+  getLoyaltyLogic(getLoyaltyLogicData): Observable<any> {
+    let path = '/hppay/settings/get_all_loyalty_logic';
+    const body=JSON.stringify(getLoyaltyLogicData);
+    return this.service.post(path,body);
+  }
+  delete_loyalty_logic(delete_loyalty_logicData): Observable<any> {
+    let path = '/hppay/settings/delete_loyalty_logic';
+    const body=JSON.stringify(delete_loyalty_logicData);
+    return this.service.post(path,body);
+  }
+
+  edit_loyalty_logic(edit_loyalty_logicData): Observable<any> {
+    let path = '/hppay/settings/edit_loyalty_logic';
+    const body=JSON.stringify(edit_loyalty_logicData);
+    return this.service.post(path,body);
+  }
+  
   //CUSTOMER REGISTRATION
   customerRegistration(customerRegistrationData): Observable<any> {
     let path = '/hppay/user/register_new_user_web';

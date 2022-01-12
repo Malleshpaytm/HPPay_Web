@@ -9,70 +9,73 @@
                     Loyalty Configurations</strong></span>
               </div>
               <div>
-                <button type="button" class="btn btn-info" routerLink="/admin/addNewLoyalty">Add New
+                <button type="button" class="btn btn-info" routerLink="/admin/addNewLoyalty" [queryParams]="{isEdit:false}">Add New
                   </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12 col-sm-12">
-          <div class="mt-3">
-            <table id="data-table" class="table table-borderless table-sm table-striped"
-              style="width: 97%; margin-left: 15px;">
-              <thead>
-                <tr>
-                  <th style="display: none;">
-                    <input type="checkbox" [(ngModel)]="allChecked" (change)="toggleCheckAll()"
-                      [checked]="setAllChecked()" />
-                  </th>
-                  <th>Sl No</th>
-                  <th>Service Name</th>
-                  <th>transaction Type</th>
-                  <th style="text-align: right;">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let data of GetSaveData; let i = index" style="vertical-align: center;">
-                  <td style="display: none;">
-                    <input type="checkbox" />
-                  </td>
-                  <td>{{data.slno}}</td>
-  
-                  <td>{{data.username}}</td>
-                  
-                  <td>{{data.userrole}}</td>
-                  <td align="right">
-                    <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn">edit</mat-icon>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            &nbsp;
-            &nbsp;
-            <div class="form-group col-md-12">
-              <!-- <div class="col-auto">
-                      <div class="pagination-info">
-                        <span>{{ filter.page }}</span> -
-                        <span>{{ filter.limit }}</span>
-                        of <span>{{ totalRow }}</span>
-                      </div>
-                    </div> -->
-  
-              <ngb-pagination class="float-left" [collectionSize]="totalRow" [(page)]="page" [boundaryLinks]="true"
-                [pageSize]="1"></ngb-pagination>
-              <select class="custom-select float-right" style="width: auto;" (ngModelChange)="limitChange($event)"
-                [(ngModel)]="pageSize">
-                <option [ngValue]="2">2</option>
-                <option [ngValue]="10">10</option>
-                <option [ngValue]="50">50</option>
-                <option [ngValue]="100">100</option>
-              </select>
-            </div>
-          </div>
-          <!-- <app-gird [gridDataModel]="gridData" (bindGridData)="bindData($event)"></app-gird> -->
-        </div>
+      <div class="mt-3 card mb-3">
+        <mat-table [dataSource]="dataSource" style="width: 100%;" class="mat-elevation-z8">
+          <!-- <ng-container matColumnDef="sno">
+              <mat-header-cell *matHeaderCellDef >S.No.</mat-header-cell>
+              <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{i+1}} </mat-cell>
+          </ng-container> -->
+        
+          <ng-container matColumnDef="slabname">
+            <mat-header-cell *matHeaderCellDef >Slab Name </mat-header-cell>
+            <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{row.slabname}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="slabminvalue">
+            <mat-header-cell *matHeaderCellDef >Slab Min Value</mat-header-cell>
+            <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{row.slabminvalue}} </mat-cell>
+          </ng-container>
+         
+          <ng-container matColumnDef="slabmaxvalue">
+            <mat-header-cell *matHeaderCellDef > Slab Max Value </mat-header-cell>
+            <mat-cell *matCellDef="let row" class="text-center"> {{row.slabmaxvalue}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="slabearn_points">
+            <mat-header-cell *matHeaderCellDef> Slab Earn Points </mat-header-cell>
+            <mat-cell *matCellDef="let row" class="text-center"> {{row.slabearn_points}} </mat-cell>
+          </ng-container>
+
+        
+          <ng-container matColumnDef="slabearn_points_as_per_rs">
+            <mat-header-cell *matHeaderCellDef> Slab Earn Points(₹) </mat-header-cell>
+            <mat-cell *matCellDef="let row" class="text-center"> {{row.slabearn_points_as_per_rs}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="customertype">
+            <mat-header-cell *matHeaderCellDef> Customer Type </mat-header-cell>
+            <mat-cell *matCellDef="let row" class="text-center"> {{row.customertype}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="transactiontype">
+            <mat-header-cell *matHeaderCellDef> Transaction Type</mat-header-cell>
+            <mat-cell *matCellDef="let row" class="text-center"> {{row.transactiontype}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="typeoflogic">
+            <mat-header-cell *matHeaderCellDef>Type Of Logic </mat-header-cell>
+            <mat-cell *matCellDef="let row" class="text-center"> {{row.typeoflogic}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="slabId">
+            <mat-header-cell *matHeaderCellDef> Slab Id </mat-header-cell>
+            <mat-cell *matCellDef="let row" class="text-center"> {{row.slabId}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> Actions</mat-header-cell>
+
+            <mat-cell *matCellDef="let element;let i=index" class="text-center">
+              <mat-icon style="font-size: 20px;" aria-hidden="false" color="warn" (click)="navigate(element)">edit</mat-icon>
+              <mat-icon mat-icon-button style="font-size: 20px;" aria-hidden="false" color="warn" (click)="onDeleteDistrict(i)">delete</mat-icon>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row
+          *matRowDef="let row;let i=index; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5,10,20]"></mat-paginator>
       </div>
     </div>
   </div>

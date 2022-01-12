@@ -6,7 +6,7 @@
       </div>
       <div class="card-body pt-0">
         <fieldset class="form-group border px-3 pt-0">
-          <legend class="w-auto px-2" style="font-size: 12px;">Customer Approval</legend>
+          <legend class="w-auto px-2" style="font-size: 12px;"></legend>
           <div class="d-flex d-flex-row justify-content-between">
             <table class="w-50" [formGroup]="customerkycformgroup">
               <!-- <tr>
@@ -83,7 +83,7 @@
                       <td align="left">
                           <div class=" d-flex flex-row justify-content-end">
                               <div class="mr-3">
-                                  <button class="btn btn-primary" (click)="onSearchButtonClick()">Search</button>
+                                  <button class="btn btn-primary" (click)="onSearchPendingKycUsers()">Search</button>
                               </div>
                               <div class="mr-3">
                                   <button class="btn btn-primary" (click)="Reset()">Reset</button>
@@ -120,30 +120,33 @@
                 <mat-header-cell *matHeaderCellDef >Customer Id </mat-header-cell>
                 <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{row.customer_Id}} </mat-cell>
               </ng-container>
+              <ng-container matColumnDef="mobile_No">
+                <mat-header-cell *matHeaderCellDef >Mobile Number</mat-header-cell>
+                <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{row.mobile_No}} </mat-cell>
+              </ng-container>
   
               <ng-container matColumnDef="poa">
-                <mat-header-cell *matHeaderCellDef > POA </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef > POA/POI </mat-header-cell>
                 <mat-cell *matCellDef="let row" class="text-center"> 
                   <p  *ngIf="row.poa!=null" style="color: blue;cursor: pointer;" (click)="onImageClick('http://180.179.222.161/hpp/Upload_Document/Upload_KYC/'+row.poa)"> View</p>
-                  <p *ngIf="row.poa===null" > No Image Found</p>
+                  <p *ngIf="row.poi!=null"
+                  (click)="onImageClick('http://180.179.222.161/hpp/Upload_Document/Upload_KYC/'+row.poi)" style="color: blue;cursor: pointer;"> View</p>
+                  <!-- <p *ngIf="row.poa===null" > No Image Found</p> -->
                   </mat-cell>
               </ng-container>
   
-              <ng-container matColumnDef="poi" >
-                <mat-header-cell *matHeaderCellDef > POI </mat-header-cell>
-                <mat-cell *matCellDef="let row" class="text-center">
-                 <p *ngIf="row.poi!=null"
-                 (click)="onImageClick('http://180.179.222.161/hpp/Upload_Document/Upload_KYC/'+row.poi)" style="color: blue;cursor: pointer;"> View</p>
-                 <p *ngIf="row.poi===null" > No Image Found</p>
-                </mat-cell>
-                
-              </ng-container>
+              
   
               <ng-container matColumnDef="created_On">
                 <mat-header-cell *matHeaderCellDef > Created On </mat-header-cell>
-                <mat-cell *matCellDef="let row" class="text-center"> {{row.created_On}} </mat-cell>
+                <mat-cell *matCellDef="let row" class="text-center"> {{row.created_On | date: 'dd/MM/yyyy'}} </mat-cell>
               </ng-container>
-             
+              <ng-container matColumnDef="viewDetails">
+                <mat-header-cell *matHeaderCellDef > View Detail </mat-header-cell>
+                <mat-cell *matCellDef="let row" class="text-center"> 
+                  <p style="color: blue;cursor: pointer;" (click)="onViewCustomerDetails(row.customer_Id)">View Detail</p>
+                 </mat-cell>
+              </ng-container>
   
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
               <mat-row
@@ -159,7 +162,7 @@
             </div>
             <div class="col-lg-4">
               <section>
-                  <textarea class="textarea" cols="80" rows="5" style="width: 100%;"  
+                  <textarea class="textarea" cols="80" rows="3" style="width: 100%;"  
                 [(ngModel)]="interaction.textValue"
                 (ngModelChange)="onModelChange($event)"
                 [attr.maxlength]="counter ? maxNumberOfCharacters : ''" formControlName="comments">

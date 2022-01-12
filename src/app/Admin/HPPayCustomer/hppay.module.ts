@@ -26,6 +26,7 @@ import { CreateoffersComponent } from './offersandpromotion/createoffers/createo
 import { OffermenulistComponent } from './offersandpromotion/offermenulist/offermenulist.component';
 import { ViewOrUpdateCustomerDetailsComponent } from './profile/view-or-update-customer-details/view-or-update-customer-details.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { CustomerDetailsModalComponent } from './customer-details-modal/customer-details-modal.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { MaterialModule } from 'src/app/material/material.module';
              CreateoffersComponent,
              OffermenulistComponent,
              ViewOrUpdateCustomerDetailsComponent,
+             CustomerDetailsModalComponent,
   ],
   imports: [
     CommonModule,
