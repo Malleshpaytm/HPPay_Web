@@ -49,6 +49,7 @@ export class ManageuserComponent implements OnInit {
   @ViewChild('select') select: MatSelect;
   selection = new SelectionModel<IRandomUsers>(true, []);
   allSelected = false;
+  adminRolesDropdownValues:Array<any>
   constructor(private adminService: AdminService, private toastr: ToastrService, 
     private fb: FormBuilder, private router:Router) { }
     searchUserFormGroup: FormGroup;
@@ -60,8 +61,36 @@ export class ManageuserComponent implements OnInit {
       email: [''],
       userrole: ['']
     })
-    this.optionClick('UserName')
+    this.optionClick('UserName');
+    this.getAllRoles();
   //this.searchAdminUsers();
+  }
+  getAllRoles() {
+    debugger;
+    let getAllRolesData = {
+      "useragent": "web",
+      "userip": "1",
+      "userid": "1",
+      "role_Name": 0
+    }
+    this.adminService.getAllRoles(getAllRolesData)
+      .subscribe(data => {
+        debugger;
+        if (data.message.toUpperCase() === 'RECORD FOUND') {
+          this.adminRolesDropdownValues = data.data
+          debugger;
+        }
+        else if(data.status_Code===401){
+          this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+          this.router.navigate(['/'])
+        }
+        else {
+         
+        }
+      },
+        (err: HttpErrorResponse) => {
+          err;
+        });
   }
   reset(){
     debugger;

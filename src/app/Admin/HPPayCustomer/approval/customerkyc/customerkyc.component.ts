@@ -23,7 +23,7 @@ import { CustomerDetailsModalComponent } from '../../customer-details-modal/cust
   providers: [DatePipe]
 })
 export class CustomerkycComponent implements OnInit {
-  displayedColumns: string[] = ['sno', 'select', 'customer_Id', 'mobile_No', 'created_On', 'poa','viewDetails'];
+  displayedColumns: string[] = ['sno', 'select', 'customer_Id', 'mobile_No', 'created_On', 'poa','poi','viewDetails'];
   private dataArray: any;
 
   public dataSource: MatTableDataSource<IRandomUsers>;

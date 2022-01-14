@@ -10,6 +10,7 @@ import { RequestcardComponent } from './request/requestcard/requestcard.componen
 import { FinancialmenuComponent } from './financial/financialmenu/financialmenu.component';
 import { ApprovalmenuComponent } from './approval/approvalmenu/approvalmenu.component';
 import { ManagebankenrollmentComponent } from './profile/managebankenrollment/managebankenrollment.component';
+import { FastagProfileMenuComponent } from './profile/fastag-profile-menu/fastag-profile-menu.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: 'financialcard', component: FinancialmenuComponent },
     { path: 'approvalmenu', component: ApprovalmenuComponent },
     { path: 'managebankenrolment', component: ManagebankenrollmentComponent },
+    { path: 'profileMenu', component: FastagProfileMenuComponent },
   {
     path: '',
     redirectTo: '/admin/fastag/fastagmenu',

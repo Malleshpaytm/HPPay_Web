@@ -52,6 +52,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { FastagProfileMenuComponent } from './profile/fastag-profile-menu/fastag-profile-menu.component';
+import { MaterialModule } from 'src/app/material/material.module';
 
 @NgModule({
   declarations: [
@@ -66,9 +68,11 @@ import {MatTreeModule} from '@angular/material/tree';
                 RequestcardComponent,
                 FinancialmenuComponent,
                 ApprovalmenuComponent,
-                ManagebankenrollmentComponent
+                ManagebankenrollmentComponent,
+                FastagProfileMenuComponent
   ],
   imports: [
+    MaterialModule,
     CommonModule,
     fastagRoutingModule,
     FormsModule,

@@ -58,6 +58,7 @@ export class TransactiondetailComponent implements OnInit {
         this._document.defaultView.location.reload();
       }
       else {
+        this.isshow = 0;
         this.toastr.error(data.message)
       }
     }, (err: HttpErrorResponse) => {

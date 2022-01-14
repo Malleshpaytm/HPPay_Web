@@ -40,8 +40,10 @@
            
           </div>
           <div class="col-md-3" *ngIf="isUserRoleSelected">
-            
-              <input class="form-control" formControlName="userrole" placeholder="User Role">
+            <select class="form-control" formControlName="userrole" placeholder="User Role">
+              <option [value]="data.role_Name" *ngFor="let data of adminRolesDropdownValues">{{data.role_Name}}</option>
+            </select>
+             
            
            
           </div>
