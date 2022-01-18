@@ -28,7 +28,10 @@ export class CreatehppaycustomerComponent implements OnInit {
   correctMobileNumber: boolean = true;
   date = new Date();
   minDate = new Date(1900, 0, 1);
-  maxDate = new Date(this.date.getFullYear() - 18, 0, 1);
+  
+ minAge = 18
+  //maxDate = new Date(this.date.getFullYear() - 18, 0, 1);
+  maxDate=new Date(this.date.getFullYear() - this.minAge, this.date.getMonth(), this.date.getDate());
   constructor(@Inject(DOCUMENT) private _document: Document,
   private router: Router, private adminService: AdminService, 
   private toastr: ToastrService, private fb: FormBuilder,

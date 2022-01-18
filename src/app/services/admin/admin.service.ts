@@ -253,6 +253,12 @@ export class AdminService {
     return this.service.post(path,body);
   }
 
+  getBusinessEntities(businessEntityData): Observable<any> {
+    let path = '/hppay/settings/get_sbu';
+    const body=JSON.stringify(businessEntityData);
+    return this.service.post(path,body);
+  }
+
   viewCcmsRecharge(viewCcmsRechargeData): Observable<any> {
     let path = '/hppay/transaction/view_ccms_recharge';
     const body=JSON.stringify(viewCcmsRechargeData);

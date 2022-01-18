@@ -1,330 +1,503 @@
-<div class="container-fluid" *ngIf="isDisplay==1">
+<body>
+  <div class="container-fluid" *ngIf="isDisplay==0">
     <div class="container">
-        <div class="row form-group">
-            <div class="col-12">
-                <div class="card mt-3 mb-5 p-0">
-                    <div class="card-header text-white" style="background-color:  #084594;">
-                        Manage Bank Enrollment
-                    </div>
+      <div class="row form-group">
+        <div class="col-12">
+          <div class="card mt-3 mb-5 p-0">
+            <div class="card-header text-white" style="background-color:  #084594;">
+              Manage Bank Enrollment
+            </div>
+
+
+
+            <mat-horizontal-stepper #stepper>
+
+
+
+
+              <mat-step [stepControl]="firstFormGroup">
+                <label class="textdes">Application Details</label>
+
+                <form [formGroup]="firstFormGroup">
+                  <ng-template matStepLabel>Basic Information</ng-template>
+                  <table class="w-100 table table-borderless table-sm needs-validation">
+                    <thead>
+                      <tr>
+                        <td align="left">
+                            <span><label class="required">Zonal Office
+                            </label>:</span>
+    
+                        </td>
+                        <td align="left">
+    
+                            <div class="form-group">
+                                <mat-form-field appearance="outline">
+                                <mat-select formControlName="zonalOffice" required>
+                                    <mat-option [value]="zonalOffice.zone_Code" *ngFor="let zonalOffice of zonalOffices">
+                                        {{zonalOffice.zone_Name}}</mat-option>
+                                </mat-select>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.zonalOffice.hasError('required')">
+                                    Zonal Office is <strong>required!</strong>
+                                </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </td>
+    
+    
+    
+                        <td align="left">
+                            <span><label class="required">Regional Office
+                            </label>:</span>
+    
+                        </td>
+                        <td>
+    
+                            <div class="form-group">
+                                <mat-form-field appearance="outline">
+                                <mat-select formControlName="regionalOffice" required>
+                                    <mat-option [value]="regionalOffice.rO_Code"
+                                        *ngFor="let regionalOffice of regionalOffices">{{regionalOffice.rO_Name}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.regionalOffice.hasError('required')">
+                                    Regional Office is <strong>required!</strong>
+                                </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td align="left">
+                          <span><label class="required">Customer Type
+                          </label>:</span>
+  
+                      </td>
+                      <td align="left">
+  
+                          <div class="form-group">
+                              <mat-form-field appearance="outline">
+                              <mat-select formControlName="customerType" required>
+                                  <mat-option [value]="customerType.type_id" *ngFor="let customerType of customerTypes">
+                                      {{customerType.type_name}}</mat-option>
+                              </mat-select>
+                              <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.customerType.hasError('required')">
+                                  Customer Type is <strong>required!</strong>
+                              </mat-error>
+                              </mat-form-field>
+                          </div>
+                      </td>
+  
+  
+  
+                      <td align="left">
+                          <span><label class="required">Customer Sub Type
+                          </label>:</span>
+  
+                      </td>
+                      <td>
+  
+                          <div class="form-group">
+                              <mat-form-field appearance="outline">
+                              <mat-select formControlName="customerSubType" required>
+                                  <mat-option [value]="regionalOffice.rO_Code"
+                                      *ngFor="let regionalOffice of regionalOffices">{{regionalOffice.rO_Name}}
+                                  </mat-option>
+                              </mat-select>
+                              <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.customerSubType.hasError('required')">
+                                Customer Sub Type is <strong>required!</strong>
+                              </mat-error>
+                              </mat-form-field>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td align="left">
+                        <span><label class="required">Sales Area
+                        </label>:</span>
+
+                    </td>
+                    <td align="left">
+
+                        <div class="form-group">
+                            <mat-form-field appearance="outline">
+                            <mat-select formControlName="salesArea" required>
+                                <mat-option [value]="salesArea.district_Code"
+                                    *ngFor="let salesArea of salesAreaDropdownValues">{{salesArea.district_Name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.salesArea.hasError('required')">
+                                Sales Area is <strong>required!</strong>
+                            </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </td>
+
 
 
                     
-                      <mat-horizontal-stepper  #stepper>
+                </tr>
+                    </thead>
+                  </table>
+                 
+                </form>
 
 
+                <label class="textdes">Personal Details</label>
+
+                <form [formGroup]="firstFormGroup">
+                  <ng-template matStepLabel>Basic Information</ng-template>
 
 
-                        <mat-step [stepControl]="firstFormGroup">
-                            <label class="textdes">Application Details</label>
-
-                          <form [formGroup]="firstFormGroup">
-                            <ng-template matStepLabel>Basic Information</ng-template>
-
-
-
-                            <mat-form-field class="matpadding">
-                              <mat-label>Zonal Office</mat-label>
-                              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                            </mat-form-field>
-                            <mat-form-field class="matpadding">
-                                <mat-label>Regional Office</mat-label>
-                                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                              </mat-form-field>
-
-                              <mat-form-field>
-                                <mat-label>Customer Type</mat-label>
-                                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                              </mat-form-field>
-
-                              <mat-form-field class="matpadding">
-                                <mat-label>Customer Sub Type</mat-label>
-                                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                              </mat-form-field>
-
-                              <mat-form-field class="matpadding">
-                                <mat-label>Sales Area</mat-label>
-                                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                              </mat-form-field>
-
-                            <!-- <div>
-                              <button mat-button matStepperNext>Next</button>
-                            </div> -->
-                          </form>
-
-
-                          <label class="textdes">Personal Details</label>
-
-                          <form [formGroup]="firstFormGroup">
-                            <ng-template matStepLabel>Basic Information</ng-template>
-
-
-
-                            <mat-form-field class="matpadding">
-                              <mat-label>Zonal Office</mat-label>
-                              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                            </mat-form-field>
-                            <mat-form-field class="matpadding">
-                                <mat-label>Regional Office</mat-label>
-                                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                              </mat-form-field>
-
-                              <mat-form-field>
-                                <mat-label>Customer Type</mat-label>
-                                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                              </mat-form-field>
-
-                              <mat-form-field class="matpadding">
-                                <mat-label>Customer Sub Type</mat-label>
-                                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                              </mat-form-field>
-
-                              <mat-form-field class="matpadding">
-                                <mat-label>Sales Area</mat-label>
-                                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                              </mat-form-field>
-
-                            <div>
-                              <button mat-button matStepperNext>Next</button>
+                  <table class="w-100 table table-borderless table-sm needs-validation">
+                    <thead>
+                      <tr>
+                        <td align="left">
+                            <span><label class="required">Individual/Org. Name
+                            </label>:</span>
+    
+                        </td>
+                        <td align="left">
+    
+                            <div class="form-group">
+                                <mat-form-field appearance="outline">
+                               <input matInput formControlName="individualName">
+                                <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.individualName.hasError('required')">
+                                  Individual/Org. Name is <strong>required!</strong>
+                                </mat-error>
+                                </mat-form-field>
                             </div>
-                          </form>
-
-
-
-
-                        </mat-step>
-                         <mat-step [stepControl]="secondFormGroup" label="Address">
-                          <form [formGroup]="secondFormGroup">
-                            <mat-form-field>
-                              <mat-label>Address</mat-label>
-                              <input matInput formControlName="secondCtrl3" placeholder="Ex. 1 Main St, New York, NY"
-                                     required>
-                            </mat-form-field>
-                            <div>
-                              <button mat-button matStepperPrevious>Back</button>
-                              <button mat-button matStepperNext>Next</button>
+                        </td>
+    
+    
+    
+                        <td align="left">
+                            <span><label class="required">Name on Card
+                            </label>:</span>
+    
+                        </td>
+                        <td>
+    
+                            <div class="form-group">
+                              <mat-form-field appearance="outline">
+                                <input matInput formControlName="nameOnCard">
+                                 <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.nameOnCard.hasError('required')">
+                                  Name on Card is <strong>required!</strong>
+                                 </mat-error>
+                                 </mat-form-field>
                             </div>
-                          </form>
-                        </mat-step>
-
-
-
-
-
-
-                       <mat-step [stepControl]="thirdFormGroup" label="Key Official Details">
-                            <form [formGroup]="thirdFormGroup">
-                              <mat-form-field>
-                                <mat-label>Key Official Details</mat-label>
-                                <input matInput formControlName="secondCtrl2" placeholder="Ex. 1 Main St, New York, NY"
-                                       required>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td align="left">
+                          <span><label class="required">Type Of Business Entity
+                          </label>:</span>
+  
+                      </td>
+                      <td align="left">
+  
+                          <div class="form-group">
+                              <mat-form-field appearance="outline">
+                                <mat-select matNativeControl required formControlName="typeOfBusinessEntity">
+                                  <mat-option value="select">Select</mat-option>
+                                  <mat-option [value]="businessEntity.sbU_Id"
+                                    *ngFor="let businessEntity of businessEntityDropdownValues">{{businessEntity.sbU_Name}}
+                                  </mat-option>
+              
+                                </mat-select>
+                                                            
+                              <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.typeOfBusinessEntity.hasError('required')">
+                                Type Of Business Entity is <strong>required!</strong>
+                              </mat-error>
                               </mat-form-field>
-                              <div>
-                                <button mat-button matStepperPrevious>Back</button>
-                                <button mat-button matStepperNext>Next</button>
-                              </div>
-                            </form>
-                          </mat-step>
-
-                          <mat-step [stepControl]="fourthFormGroup" label="Upload Documents">
-                            <form [formGroup]="fourthFormGroup">
-                              <mat-form-field>
-                                <mat-label>Upload Documents</mat-label>
-                                <input matInput formControlName="secondCtrl1" placeholder="Ex. 1 Main St, New York, NY"
-                                       required>
-                              </mat-form-field>
-                              <div>
-                                <button mat-button matStepperPrevious>Back</button>
-                                <button mat-button matStepperNext>Next</button>
-                              </div>
-                            </form>
-                          </mat-step>
-
-
-
-
-
-
-
-
-                        <mat-step>
-                          <ng-template matStepLabel>Done</ng-template>
-                          <p>You are now done.</p>
-                          <div>
-                            <button mat-button matStepperPrevious>Back</button>
-                            <button mat-button (click)="stepper.reset()">Reset</button>
                           </div>
-                        </mat-step>
-                      </mat-horizontal-stepper>
-                      
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                      </td>
+  
+  
+  
+                      <td align="left">
+                          <span><label class="required">Residence Status
+                          </label>:</span>
+  
+                      </td>
+                      <td>
+  
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-select matNativeControl required formControlName="residenceStatus">
+                                <mat-option value="Indian">Indian</mat-option>
+                                <mat-option value="NRI">NRI</mat-option>
+            
+                              </mat-select>
+                              <input matInput formControlName="residenceStatus">
+                            <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.residenceStatus.hasError('required')">
+                              Residence Status is <strong>required!</strong>
+                            </mat-error>
+                            </mat-form-field>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td align="left">
+                        <span><label class="required">Income Tax PAN
+                        </label>:</span>
 
+                    </td>
+                    <td align="left">
 
-
-
-<div class="container-fluid" *ngIf="isDisplay==0">
-    <div class="container">
-        <div class="row form-group">
-            <div class="col-12">
-                <div class="card mt-3 mb-5 p-0">
-                    <div class="card-header text-white" style="background-color:  #084594;">
-                        Manage Bank Enrollment
-                    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <div class="card-body">
-                        <table class="w-100 table table-borderless table-sm" style="font-size: small;">
-                            <tbody>
-                                <tr>
-                                    <td align="left">
-                                        <span><span class="required">From Date
-                                            </span>:</span>
-
-                                    </td>
-                                    <td align="left">
-                                        <div class="form-group">
-                                           <input type="date" class="form-control" />
-                                        </div>
-                                    </td>
-                                    <td align="left">
-                                        <span><span class="required">To Date
-                                            </span>:</span>
-
-                                    </td>
-                                    <td>
-
-                                        <div class="form-group">
-                                            <input type="date" class="form-control" />
-
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="left">
-                                        <span><span class="required">Status
-                                            </span>:</span>
-
-                                    </td>
-                                    <td align="left">
-
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option value="select">select</option>
-                                                <option value="Customer">OT-1</option>
-                                                <option value="Merchant">OT-2</option>
-                                                <option value="Customer">OT-3</option>
-                                                <option value="Merchant">OT-4</option>
-                                            </select>
-                                        </div>
-                                    </td>
-
-
-
-                                   
-                                </tr>
-
-
-
-
-                                <tr>
-                                    <td colspan="4">
-                                        <div class=" d-flex flex-row justify-content-end">
-                                            <div class="mr-3">
-                                                <button class="btn btn-primary pl-3 pr-3"
-                                                    (click)="ShowTableList();">Search</button>
-                                            </div>
-                                            <div class="mr-3">
-                                                <button class="btn btn-primary pl-3 pr-3"
-                                                (click)="ShowDetails();">Add Bank</button>
-                                            </div>
-                                            
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="card-body" *ngIf="isshow==1">
-
-                        <table class="table table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Customer Id</th>
-                                    <th scope="col">Customer Name</th>
-
-                                    <th scope="col">ZO</th>
-                                    <th scope="col">RO</th>
-                                    <th scope="col">City</th>
-                                    <th scope="col">Created Date</th>
-                                    <th scope="col">Created By</th>
-                                    <th scope="col">Remarks</th>
-                                    <th scope="col">Approved Date</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let data of GetSavedData; index as i">
-
-
-                                    <th scope="row">{{ i + 1 }}</th>
-                                    <td>
-
-Suman                                    </td>
-                                    <td>
-                                        {{ data.zo }}
-                                    </td>
-                                    <td>{{ data.ro}}</td>
-                                    <td>{{ data.state}}</td>
-                                    <td>
-                                        {{ data.dist }}
-                                    </td>
-                                    <td>{{ data.markettingofficername}}</td>
-                                    <td>{{ data.markettingofficeremail}}</td>
-                                    <td>{{ data.zonalofficername}}</td>
-                                    <td>
-                                        <a (click)="ShowDetails();">Click</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="d-flex justify-content-between p-2">
-                            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
-                            </ngb-pagination>
-
-                            <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
-                                <option [ngValue]="2">2 items per page</option>
-                                <option [ngValue]="4">4 items per page</option>
-                                <option [ngValue]="6">6 items per page</option>
-                            </select>
+                        <div class="form-group">
+                            <mat-form-field appearance="outline">
+                            <input matInput formControlName="panNumber">
+                            <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.panNumber.hasError('required')">
+                              Income Tax PAN is <strong>required!</strong>
+                            </mat-error>
+                            </mat-form-field>
                         </div>
-                    </div>
+                    </td>
 
+
+
+                    
+                </tr>
+                    </thead>
+                  </table>
+                  <div style="float: right;">
+                    <button class="btn btn-primary" mat-button matStepperNext style="float: right;">Next</button>
+                  </div>
+                </form>
+
+
+
+
+              </mat-step>
+              <mat-step [stepControl]="secondFormGroup" label="Address">
+                <form [formGroup]="secondFormGroup">
+                  <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName="secondCtrl3" placeholder="Ex. 1 Main St, New York, NY" required>
+                  </mat-form-field>
+                  <div style="float: right;">
+                    <button mat-button matStepperPrevious style="float: right;">Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+
+
+
+
+
+
+              <mat-step [stepControl]="thirdFormGroup" label="Key Official Details">
+                <form [formGroup]="thirdFormGroup">
+                  <mat-form-field>
+                    <mat-label>Key Official Details</mat-label>
+                    <input matInput formControlName="secondCtrl2" placeholder="Ex. 1 Main St, New York, NY" required>
+                  </mat-form-field>
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+
+              <mat-step [stepControl]="fourthFormGroup" label="Upload Documents">
+                <form [formGroup]="fourthFormGroup">
+                  <mat-form-field>
+                    <mat-label>Upload Documents</mat-label>
+                    <input matInput formControlName="secondCtrl1" placeholder="Ex. 1 Main St, New York, NY" required>
+                  </mat-form-field>
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+
+
+
+
+
+
+
+
+              <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>You are now done.</p>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button (click)="stepper.reset()">Reset</button>
                 </div>
-            </div>
+              </mat-step>
+            </mat-horizontal-stepper>
+
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+
+
+
+
+  <div class="container-fluid" *ngIf="isDisplay==1">
+    <div class="container">
+      <div class="row form-group">
+        <div class="col-12">
+          <div class="card mt-3 mb-5 p-0">
+            <div class="card-header text-white" style="background-color:  #084594;">
+              Manage Bank Enrollment
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="card-body">
+              <table class="w-100 table table-borderless table-sm" style="font-size: small;">
+                <tbody>
+                  <tr>
+                    <td align="left">
+                      <span><span class="required">From Date
+                        </span>:</span>
+
+                    </td>
+                    <td align="left">
+                      <div class="form-group">
+                        <input type="date" class="form-control" />
+                      </div>
+                    </td>
+                    <td align="left">
+                      <span><span class="required">To Date
+                        </span>:</span>
+
+                    </td>
+                    <td>
+
+                      <div class="form-group">
+                        <input type="date" class="form-control" />
+
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left">
+                      <span><span class="required">Status
+                        </span>:</span>
+
+                    </td>
+                    <td align="left">
+
+                      <div class="form-group">
+                        <select class="form-control">
+                          <option value="select">select</option>
+                          <option value="Customer">OT-1</option>
+                          <option value="Merchant">OT-2</option>
+                          <option value="Customer">OT-3</option>
+                          <option value="Merchant">OT-4</option>
+                        </select>
+                      </div>
+                    </td>
+
+
+
+
+                  </tr>
+
+
+
+
+                  <tr>
+                    <td colspan="4">
+                      <div class=" d-flex flex-row justify-content-end">
+                        <div class="mr-3">
+                          <button class="btn btn-primary pl-3 pr-3" (click)="ShowTableList();">Search</button>
+                        </div>
+                        <div class="mr-3">
+                          <button class="btn btn-primary pl-3 pr-3" (click)="ShowDetails();">Add Bank</button>
+                        </div>
+
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card-body" *ngIf="isshow==1">
+
+              <table class="table table-striped table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Customer Id</th>
+                    <th scope="col">Customer Name</th>
+
+                    <th scope="col">ZO</th>
+                    <th scope="col">RO</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Created Date</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">Remarks</th>
+                    <th scope="col">Approved Date</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of GetSavedData; index as i">
+
+
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>
+
+                      Suman </td>
+                    <td>
+                      {{ data.zo }}
+                    </td>
+                    <td>{{ data.ro}}</td>
+                    <td>{{ data.state}}</td>
+                    <td>
+                      {{ data.dist }}
+                    </td>
+                    <td>{{ data.markettingofficername}}</td>
+                    <td>{{ data.markettingofficeremail}}</td>
+                    <td>{{ data.zonalofficername}}</td>
+                    <td>
+                      <a (click)="ShowDetails();">Click</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="d-flex justify-content-between p-2">
+                <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+                </ngb-pagination>
+
+                <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+                  <option [ngValue]="2">2 items per page</option>
+                  <option [ngValue]="4">4 items per page</option>
+                  <option [ngValue]="6">6 items per page</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
