@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
    
     counter = true;
     ngOnInit(): void {
-      debugger;
+      //debugger;
          this.rawMerchantDetailsFormGroup = this.fb.group({
            commFax: [''],
            commPhoneNumber: [''],
@@ -31,12 +31,12 @@ export class ProfileComponent implements OnInit {
            permanentFax: [''],
          })
          this.getMerchantDetails();
-         debugger;
+         //debugger;
        
         
        }
        getMerchantDetails(){
-         debugger;
+        // debugger;
          let searchMerchantByMerchantIdData={
            "merchantid": this.loggedInUserInfoArr.merchant_id,
        "useragent": "web",

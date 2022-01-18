@@ -1,51 +1,45 @@
 <div class="container pt-5">
   <div class="card shadow">
-    <div class="card-header p-2 blue-bg text-white">
-      <span class="h3">QR Agents Onboarding</span>
+    <div class="py-2 px-3 blue-bg text-white">
+      <h4 class="m-0 text-white">QR Agents Onboarding</h4>
     </div>
     <div class="card-body">
-      <div class="row">
+      <div class="d-flex align-items-center flex-wrap">
         <ng-container *ngIf="isBeingAdded">
-          <div class="col row align-items-center">
-            <span class="required col-4">First Name</span>
-            <input
-              type="text"
-              placeholder=""
-              [(ngModel)]="newMerchantFsm.fsM_Firstname"
-              class="form-control col-8"
-            />
+          <div class="d-flex align-items-center flex-wrap mb-3 col-sm-12 col-lg-3 px-0">
+            <label class="required col-12">First Name</label>
+            <div class="col-12">
+              <input type="text" placeholder="" [(ngModel)]="newMerchantFsm.fsM_Firstname" class="form-control" />
+            </div>            
           </div>
-          <div class="col row align-items-center">
-            <span class="required col-4">Last Name</span>
-            <input
-              type="text"
-              placeholder=""
-              [(ngModel)]="newMerchantFsm.fsM_Lastname"
-              class="form-control col-8"
-            />
+          <div class="d-flex align-items-center flex-wrap mb-3 col-lg-3 px-0">
+            <label class="required col-12">Last Name</label>
+            <div class="col-12">
+              <input type="text" placeholder="" [(ngModel)]="newMerchantFsm.fsM_Lastname" class="form-control" />
+            </div>            
           </div>
-          <div class="col row align-items-center">
-            <span class="required col-4">Mobile No.</span>
-            <input
-              type="test"
-              placeholder=""
-              [(ngModel)]="newMerchantFsm.fsM_Mobileno"
-              class="form-control col-8" maxlength="10" minlength="10"
-            />
+          <div class="d-flex align-items-center flex-wrap mb-3 col-lg-3 px-0">
+            <label class="required col-12">Mobile No.</label>
+            <div class="col-12">
+              <input type="test" placeholder="" [(ngModel)]="newMerchantFsm.fsM_Mobileno" class="form-control" maxlength="10" minlength="10" />
+            </div>            
           </div>
-          <button class="btn btn-md btn-primary ml-2" (click)="handleFsmSave()">
-            Save
-          </button>
+          <div class="col-lg-3 px-0">
+            <label class=" col-12 d-none d-lg-block">&nbsp;</label>
+            <div class="col-12">
+              <button class="btn btn-md btn-primary mb-3 w-100" (click)="handleFsmSave()">Save</button>
+            </div>
+            
+          </div>
+          
         </ng-container>
         <ng-container *ngIf="!isBeingAdded">
-          <button class="btn btn-md btn-primary ml-1" (click)="handleAddFsm()">
-            Add FSM
-          </button>
+          <button class="btn btn-md btn-primary ml-1" (click)="handleAddFsm()">Add FSM</button>
         </ng-container>
       </div>
 
-      <div class="row">
-        <p-table [value]="fsmList">
+      <div>
+        <p-table [value]="fsmList" class="table table-responsive" >
           <ng-template pTemplate="header">
             <tr>
               <th>S.No</th>
