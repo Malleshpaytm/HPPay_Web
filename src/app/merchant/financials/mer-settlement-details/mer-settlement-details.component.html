@@ -1,31 +1,35 @@
 <div class="container pt-5">
   <div class="card shadow">
-    <div class="card-header p-2 blue-bg text-white">
-      <span class="h3">Settlement Details</span>
+    <div class="py-2 px-4 blue-bg text-white">
+      <h3 class="text-white m-0">Settlement Details</h3>
     </div>
     <div class="card-body">
-      <div class="row">
-        <div class="col row align-items-center">
-          <span class="required col-3">From Date:</span>
-          <input type="date" placeholder=""  class="form-control col-9" />
+      <div class="d-flex align-items-center justify-content-between flex-wrap">
+        <div class="col-lg-6 col-12 d-flex flex-wrap align-items-center mb-3 p-0">
+          <label class="required col-md-3 col-12 m-0">From Date:</label>
+          <div class="col-md-9 col-12">
+            <input type="date" placeholder=""  class="form-control col-lg-9 col-12" />
+          </div>
         </div>
-        <div class="col row align-items-center">
-          <span class="required col-2">To Date:</span>
-          <input type="date" placeholder="" class="form-control col-10" />
+        <div class="col-lg-6 col-12 d-flex flex-wrap align-items-center mb-3 p-0">
+          <label class="required col-md-3 col-12 m-0">To Date:</label>
+          <div class="col-md-9 col-12">
+            <input type="date" placeholder="" class="form-control col-lg-9 col-12" />            
+          </div>
         </div>
       </div>
-      <div class="row d-flex justify-content-end pt-1 pb-1">
+      <div class="d-flex justify-content-center col-12 mt-2">
         <div class="mr-3">
-          <button class="btn btn-sm btn-light">Search</button>
+          <button class="btn btn-sm btn-primary">Search</button>
         </div>
         <div class="mr-3">
-          <button class="btn btn-sm btn-light">Reset</button>
+          <button class="btn btn-sm btn-primary">Reset</button>
         </div>
         <div class="mr-1">
-          <button class="btn btn-sm btn-light">Export to Excel</button>
+          <button class="btn btn-sm btn-primary">Export to Excel</button>
         </div>
       </div>
-      <p-table [value]="[]">
+      <p-table [value]="[]" styleClass="table" styleClass="table-responsive" styleClass="data_table">
         <ng-template pTemplate="header">
           <tr>
             <th>S.No</th>

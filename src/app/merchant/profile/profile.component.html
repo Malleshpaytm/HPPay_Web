@@ -1,206 +1,389 @@
-<div class="container m-3 p-3">
-  <div class="form" [formGroup]="rawMerchantDetailsFormGroup">
-    <table>
-        <tr>
-            <th *ngIf="merchantProfile?.erP_Code">ERP Code:</th>
-            <th *ngIf="merchantProfile?.erP_Code"><input class="input" disabled [value]="merchantProfile?.erP_Code"></th>
-            <th *ngIf="merchantProfile?.merchant_Type_Id"> Merchant Type:</th>
-            <th *ngIf="merchantProfile?.merchant_Type_Id">
-                <input class="input" disabled [value]="merchantProfile?.merchant_Type_Id">
-            </th>
-        </tr>
-    
-        <tr>
-    
-            <th> Regional Office:</th>
-            <th>
-                <input class="input" disabled [value]="merchantProfile?.regional_Office">
-            </th>
-            <th>  Zonal Office:</th>
-            <th><input class="input" disabled [value]="merchantProfile?.zonal_Office"></th>
-        </tr>
-        <tr>
-            <th> SBU Type:</th>
-            <th>
-                <input class="input" disabled [value]="merchantProfile?.sbU_TYpe"> 
-            </th>
-            <th> GST Number:</th>
-            <th><input class="input" disabled [value]="merchantProfile?.gstNo"></th>
+<div class="container p-3">
+    <div class="bg-white px-3 py-4">
+        <div class="form" [formGroup]="rawMerchantDetailsFormGroup">
+            <div class="d-flex align-items-start justify-content-between flex-wrap">
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Regional Office:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.regional_Office">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.erP_Code">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">ERP Code:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.erP_Code">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.erP_Code">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Merchant Type:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.merchant_Type_Id">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Zonal Office:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.zonal_Office">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">SBU Type:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.sbU_TYpe">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">GST Number:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.gstNo">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12"> Permanent Address 1:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.perm_Address1">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Permanent Address 2:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.perm_Address2"> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Permanent Address 3:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.perm_Address3">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Permanent City:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.perm_City"> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Permanent District:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.perm_District">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Permanent Location:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.perm_Location"> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Permanent PIN CODE:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.perm_PIN_Code">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Permanent State:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.perm_State"> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.perm_std_code===0">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Permanent STD Code:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled formControlName="permanentStdCode" [value]="merchantProfile?.perm_std_code">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.perm_Ph_Off===0">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Permanent Phone Number:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" [value]="merchantProfile?.perm_Ph_Off===0" disabled formControlName="permanentPhoneNumber">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.perm_fax===0">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Permanent Fax:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" [value]="merchantProfile?.perm_fax" disabled formControlName="permanentFax">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Sales Area:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.salesArea"> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">PAN No.:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.panNo"> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Dealer Name:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.dealer_name"> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Outlet Category:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.outlet_Category">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Outlet Name:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.outletName"> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Contact Person Name:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.name">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.highway_Name">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Highway Name:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.highway_Name"> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.highway_No!=0">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Highway Number:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.highway_No">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" >
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Mobile Number:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.mobile"> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" >
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Email:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.email">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.comm_Address1">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Communication Address 1:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.comm_Address1">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.comm_Address2">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Communication Address 2:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.comm_Address2">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.comm_Address3">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Communication Address 3:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.comm_Address3"> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.comm_Location">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Communication Location:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.comm_Location">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.comm_City">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Communication City:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.comm_City"> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.comm_District">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Communication District:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.comm_District">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.comm_Fax===0">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Communication Fax:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.comm_Fax" formControlName="commFax">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.comm_PIN_Code===0">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Communication PIN CODE:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.comm_PIN_Code" formControlName="communicationPinCode" >
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.comm_std_code===0">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Communication STD Code:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.comm_std_code">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.comm_Ph_Off===0">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Communication Phone Number:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.comm_Ph_Off">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" *ngIf="merchantProfile?.comm_State">
+                    <div class="form-group">
+                        <div class="row flex-wrap d-flex align-items-center">
+                            <label class="col-sm-6 col-12">Communication State:</label>
+                            <div class="col-sm-6 col-12">
+                                <input class="form-control" disabled [value]="merchantProfile?.comm_State"> 
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+            </div>
             
-    
-        </tr>
-       
-        <tr>
-           
-            <th> Permanent Address 1:</th>
-            <th><input class="input" disabled [value]="merchantProfile?.perm_Address1"></th>
-            <th>Permanent Address 2:</th>
-            <th>
-                <input class="input" disabled [value]="merchantProfile?.perm_Address2"> 
-            </th>
-    
-        </tr>
-        <tr>
-            <th> Permanent Address 3:</th>
-            <th><input class="input" disabled [value]="merchantProfile?.perm_Address3"></th>
-            <th>Permanent City:</th>
-            <th>
-                <input class="input" disabled [value]="merchantProfile?.perm_City"> 
-            </th>
-            
-    
-        </tr>
-        <tr>
-            <th> Permanent District:</th>
-            <th><input class="input" disabled [value]="merchantProfile?.perm_District"></th>
-            <th>Permanent Location:</th>
-            <th>
-                <input class="input" disabled [value]="merchantProfile?.perm_Location"> 
-            </th>
-            
-    
-        </tr>
-        <tr>
-            <th> Permanent PIN CODE:</th>
-            <th><input class="input" disabled [value]="merchantProfile?.perm_PIN_Code"></th>
-            <th>Permanent State:</th>
-            <th>
-                <input class="input" disabled [value]="merchantProfile?.perm_State"> 
-            </th>
-            <!-- <th> Permanent PIN CODE:</th>
-            <th><input class="input" disabled [value]="merchantProfile?.perm_PIN_Code"></th> -->
-            
-    
-        </tr>
-        <tr>
-            <th *ngIf="merchantProfile?.perm_std_code===0">Permanent STD Code:</th>
-            <th *ngIf="merchantProfile?.perm_std_code===0">
-                <input class="input" disabled formControlName="permanentStdCode" [value]="merchantProfile?.perm_std_code"> 
-            </th>
-            <th *ngIf="merchantProfile?.perm_Ph_Off===0"> Permanent Phone Number:</th>
-            <th *ngIf="merchantProfile?.perm_Ph_Off===0"><input class="input" [value]="merchantProfile?.perm_Ph_Off===0" disabled formControlName="permanentPhoneNumber"></th>
-            
-    
-        </tr>
-        <tr>
-           
-            <th *ngIf="merchantProfile?.perm_fax===0"> Permanent Fax:</th>
-            <th *ngIf="merchantProfile?.perm_fax===0"><input class="input" [value]="merchantProfile?.perm_fax" disabled formControlName="permanentFax"></th>
-            
-    
-        </tr>
-        <tr>
-            <th>Sales Area:</th>
-            <th>
-                <input class="input" disabled [value]="merchantProfile?.salesArea"> 
-            </th>
-            <th> PAN No.:</th>
-            <th><input class="input" disabled [value]="merchantProfile?.panNo"></th>
-            
-    
-        </tr>
-        <tr>
-            <th>Dealer Name:</th>
-            <th>
-                <input class="input" disabled [value]="merchantProfile?.dealer_name"> 
-            </th>
-            <th> Outlet Category:</th>
-            <th><input class="input" disabled [value]="merchantProfile?.outlet_Category"></th>
-            
-    
-        </tr>
-        <tr>
-            <th>Outlet Name:</th>
-            <th>
-                <input class="input" disabled [value]="merchantProfile?.outletName"> 
-            </th>
-            <th> Contact Person Name:</th>
-            <th><input class="input" disabled [value]="merchantProfile?.name"></th>
-            
-    
-        </tr>
-        <tr>
-            <th *ngIf="merchantProfile?.highway_Name">Highway Name:</th>
-            <th *ngIf="merchantProfile?.highway_Name">
-                <input class="input" disabled [value]="merchantProfile?.highway_Name"> 
-            </th>
-            <th *ngIf="merchantProfile?.highway_No!=0">Highway Number:</th>
-            <th *ngIf="merchantProfile?.highway_No !=0"><input class="input" disabled [value]="merchantProfile?.highway_No"></th>
-            
-    
-        </tr>
-        <tr>
-            <th>Mobile Number:</th>
-            <th>
-                <input class="input" disabled [value]="merchantProfile?.mobile"> 
-            </th>
-            <th>Email:</th>
-            <th><input class="input" disabled [value]="merchantProfile?.email"></th>
-            
-    
-        </tr>
-       
-        <tr>
-            <th *ngIf="merchantProfile?.comm_Address1">Communication Address 1:</th>
-            <th  *ngIf="merchantProfile?.comm_Address1">
-                <input class="input" disabled [value]="merchantProfile?.comm_Address1"> 
-            </th>
-            <th *ngIf="merchantProfile?.comm_Address2"> Communication Address 2:</th>
-            <th *ngIf="merchantProfile?.comm_Address2">
-                <input class="input" disabled [value]="merchantProfile?.comm_Address2">
-            </th>
-            
-    
-        </tr>
-        <tr>
-            <th *ngIf="merchantProfile?.comm_Address3">Communication Address 3:</th>
-            <th *ngIf="merchantProfile?.comm_Address3">
-                <input class="input" disabled [value]="merchantProfile?.comm_Address3"> 
-            </th>
-            <th *ngIf="merchantProfile?.comm_Location"> Communication Location:</th>
-            <th *ngIf="merchantProfile?.comm_Location"><input class="input" disabled [value]="merchantProfile?.comm_Location"></th>
-            
-    
-        </tr>
-        <tr>
-            <th *ngIf="merchantProfile?.comm_City">Communication City:</th>
-            <th *ngIf="merchantProfile?.comm_City">
-                <input class="input" disabled [value]="merchantProfile?.comm_City"> 
-            </th>
-            <th *ngIf="merchantProfile?.comm_District"> Communication District:</th>
-            <th *ngIf="merchantProfile?.comm_District"><input class="input" disabled [value]="merchantProfile?.comm_District"></th>
-            
-    
-        </tr>
-       
-        <tr>
-            <th *ngIf="merchantProfile?.comm_Fax===0"> Communication Fax:</th>
-            <th *ngIf="merchantProfile?.comm_Fax===0"><input class="input" disabled [value]="merchantProfile?.comm_Fax" formControlName="commFax"></th>
-            <th *ngIf="merchantProfile?.comm_PIN_Code===0"> Communication PIN CODE:</th>
-            <th *ngIf="merchantProfile?.comm_PIN_Code===0"><input class="input" disabled [value]="merchantProfile?.comm_PIN_Code" formControlName="communicationPinCode" ></th>
-            
-    
-        </tr>
-        <tr>
-            <th *ngIf="merchantProfile?.comm_std_code===0">Communication STD Code:</th>
-            <th *ngIf="merchantProfile?.comm_std_code===0">
-                <input class="input" disabled [value]="merchantProfile?.comm_std_code"> 
-            </th>
-            <th *ngIf="merchantProfile?.comm_Ph_Off===0"> Communication Phone Number:</th>
-            <th *ngIf="merchantProfile?.comm_Ph_Off===0">
-                <input class="input" disabled [value]="merchantProfile?.comm_Ph_Off">
-            </th>
-            
-    
-        </tr>
-    
-      <tr *ngIf="merchantProfile?.comm_State">
-        <th >Communication State:</th>
-        <th>
-            <input class="input" disabled [value]="merchantProfile?.comm_State"> 
-        </th>
-      </tr>
-    </table>
-    
-  </div>
+        </div>
+    </div>
 </div>
