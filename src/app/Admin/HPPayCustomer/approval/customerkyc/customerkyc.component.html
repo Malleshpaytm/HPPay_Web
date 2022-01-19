@@ -128,16 +128,17 @@
               <ng-container matColumnDef="poa">
                 <mat-header-cell *matHeaderCellDef > POA </mat-header-cell>
                 <mat-cell *matCellDef="let row" class="text-center"> 
-                  <p  *ngIf="row.poi!=null" style="color: blue;cursor: pointer;" (click)="onImageClick('http://180.179.222.161/hpp/Upload_Document/Upload_KYC/'+row.poi.split(':')[0])"> POA</p>
-                  <p *ngIf="row.poi===null" > No Image Found</p>
+                  <p  *ngIf="row.poa!=null" style="color: blue;cursor: pointer;" (click)="onImageClick('http://180.179.222.161/hpp/Upload_Document/Upload_KYC/'+row.poa)"> POA</p>
+                  <p *ngIf="row.poa===null || undefined || ''" > No Image Found</p>
                  
                   </mat-cell>
               </ng-container>
               <ng-container matColumnDef="poi">
                 <mat-header-cell *matHeaderCellDef > POI </mat-header-cell>
                 <mat-cell *matCellDef="let row" class="text-center"> 
-                  <p  *ngIf="row.poi!=null" style="color: blue;cursor: pointer;" (click)="onImageClick('http://180.179.222.161/hpp/Upload_Document/Upload_KYC/'+row.poi.split(':')[1])"> POI</p>
-                  <p *ngIf="row.poi===null" > No Image Found</p>
+                  <p  *ngIf="row.poi!=null" style="color: blue;cursor: pointer;" (click)="onImageClick('http://180.179.222.161/hpp/Upload_Document/Upload_KYC/'+row.poi)"> POI</p>
+                  <p *ngIf="row.poi===null || undefined" > No Image Found</p>
+                
                 
                   </mat-cell>
               </ng-container>

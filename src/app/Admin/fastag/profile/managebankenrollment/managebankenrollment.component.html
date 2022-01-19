@@ -1,5 +1,5 @@
 <body>
-  <div class="container-fluid" *ngIf="isDisplay==0">
+  <div class="container-fluid" *ngIf="isDisplay==1">
     <div class="container">
       <div class="row form-group">
         <div class="col-12">
@@ -16,129 +16,141 @@
 
 
               <mat-step [stepControl]="firstFormGroup">
-                <label class="textdes">Application Details</label>
+                <!-- <label class="textdes">Application Details</label> -->
 
                 <form [formGroup]="firstFormGroup">
                   <ng-template matStepLabel>Basic Information</ng-template>
                   <table class="w-100 table table-borderless table-sm needs-validation">
                     <thead>
                       <tr>
+                        <td colspan="4">
+                          <span style="font-size: 15px; font-weight: bold;">Application Details</span>
+                        </td>
+                      </tr>
+                      <tr>
                         <td align="left">
-                            <span><label class="required">Zonal Office
+                          <span><label class="required">Zonal Office
                             </label>:</span>
-    
+
                         </td>
                         <td align="left">
-    
-                            <div class="form-group">
-                                <mat-form-field appearance="outline">
-                                <mat-select formControlName="zonalOffice" required>
-                                    <mat-option [value]="zonalOffice.zone_Code" *ngFor="let zonalOffice of zonalOffices">
-                                        {{zonalOffice.zone_Name}}</mat-option>
-                                </mat-select>
-                                <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.zonalOffice.hasError('required')">
-                                    Zonal Office is <strong>required!</strong>
-                                </mat-error>
-                                </mat-form-field>
-                            </div>
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-select formControlName="zonalOffice" required>
+                                <mat-option [value]="zonalOffice.zone_Code" *ngFor="let zonalOffice of zonalOffices">
+                                  {{zonalOffice.zone_Name}}</mat-option>
+                              </mat-select>
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="firstFormGroup.controls.zonalOffice.hasError('required')">
+                                Zonal Office is <strong>required!</strong>
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
                         </td>
-    
-    
-    
+
+
+
                         <td align="left">
-                            <span><label class="required">Regional Office
+                          <span><label class="required">Regional Office
                             </label>:</span>
-    
+
                         </td>
                         <td>
-    
-                            <div class="form-group">
-                                <mat-form-field appearance="outline">
-                                <mat-select formControlName="regionalOffice" required>
-                                    <mat-option [value]="regionalOffice.rO_Code"
-                                        *ngFor="let regionalOffice of regionalOffices">{{regionalOffice.rO_Name}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.regionalOffice.hasError('required')">
-                                    Regional Office is <strong>required!</strong>
-                                </mat-error>
-                                </mat-form-field>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                      <td align="left">
-                          <span><label class="required">Customer Type
-                          </label>:</span>
-  
-                      </td>
-                      <td align="left">
-  
+
                           <div class="form-group">
-                              <mat-form-field appearance="outline">
-                              <mat-select formControlName="customerType" required>
-                                  <mat-option [value]="customerType.type_id" *ngFor="let customerType of customerTypes">
-                                      {{customerType.type_name}}</mat-option>
+                            <mat-form-field appearance="outline">
+                              <mat-select formControlName="regionalOffice" required>
+                                <mat-option [value]="regionalOffice.rO_Code"
+                                  *ngFor="let regionalOffice of regionalOffices">{{regionalOffice.rO_Name}}
+                                </mat-option>
                               </mat-select>
-                              <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.customerType.hasError('required')">
-                                  Customer Type is <strong>required!</strong>
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="firstFormGroup.controls.regionalOffice.hasError('required')">
+                                Regional Office is <strong>required!</strong>
                               </mat-error>
-                              </mat-form-field>
+                            </mat-form-field>
                           </div>
-                      </td>
-  
-  
-  
-                      <td align="left">
-                          <span><label class="required">Customer Sub Type
-                          </label>:</span>
-  
-                      </td>
-                      <td>
-  
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label class="required">Customer Type
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
                           <div class="form-group">
-                              <mat-form-field appearance="outline">
-                              <mat-select formControlName="customerSubType" required>
-                                  <mat-option [value]="regionalOffice.rO_Code"
-                                      *ngFor="let regionalOffice of regionalOffices">{{regionalOffice.rO_Name}}
-                                  </mat-option>
+                            <mat-form-field appearance="outline">
+                              <mat-select (selectionChange)="onCustomerTypeSelect($event.value)" formControlName="customerType" required>
+                                <mat-option [value]="customerType.type_id" *ngFor="let customerType of customerTypes">
+                                  {{customerType.type_name}}</mat-option>
                               </mat-select>
-                              <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.customerSubType.hasError('required')">
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="firstFormGroup.controls.customerType.hasError('required')">
+                                Customer Type is <strong>required!</strong>
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </td>
+
+
+
+                        <td align="left">
+                          <span><label class="required">Customer Sub Type
+                            </label>:</span>
+
+                        </td>
+                        <td>
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-select matNativeControl required formControlName="customerSubType">
+                                <!-- <mat-option value="select">Select</mat-option> -->
+                                <mat-option [value]="customerSubType.customer_Subtype_Id"
+                                  *ngFor="let customerSubType of customerSubTypes">
+                                  {{customerSubType.customer_Subtype_Name}}
+                                </mat-option>
+                              </mat-select>
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="firstFormGroup.controls.customerSubType.hasError('required')">
                                 Customer Sub Type is <strong>required!</strong>
                               </mat-error>
-                              </mat-form-field>
-                          </div>
-                      </td>
-                  </tr>
-                  <tr>
-                    <td align="left">
-                        <span><label class="required">Sales Area
-                        </label>:</span>
-
-                    </td>
-                    <td align="left">
-
-                        <div class="form-group">
-                            <mat-form-field appearance="outline">
-                            <mat-select formControlName="salesArea" required>
-                                <mat-option [value]="salesArea.district_Code"
-                                    *ngFor="let salesArea of salesAreaDropdownValues">{{salesArea.district_Name}}
-                                </mat-option>
-                            </mat-select>
-                            <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.salesArea.hasError('required')">
-                                Sales Area is <strong>required!</strong>
-                            </mat-error>
                             </mat-form-field>
-                        </div>
-                    </td>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label class="required">Sales Area
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-select formControlName="salesArea" required>
+                                <mat-option [value]="salesArea.district_Code"
+                                  *ngFor="let salesArea of salesAreaDropdownValues">{{salesArea.district_Name}}
+                                </mat-option>
+                              </mat-select>
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="firstFormGroup.controls.salesArea.hasError('required')">
+                                Sales Area is <strong>required!</strong>
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </td>
 
 
 
-                    
-                </tr>
+
+                      </tr>
                     </thead>
                   </table>
-                 
+
                 </form>
 
 
@@ -152,112 +164,118 @@
                     <thead>
                       <tr>
                         <td align="left">
-                            <span><label class="required">Individual/Org. Name
+                          <span><label class="required">Individual/Org. Name
                             </label>:</span>
-    
+
                         </td>
                         <td align="left">
-    
-                            <div class="form-group">
-                                <mat-form-field appearance="outline">
-                               <input matInput formControlName="individualName">
-                                <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.individualName.hasError('required')">
-                                  Individual/Org. Name is <strong>required!</strong>
-                                </mat-error>
-                                </mat-form-field>
-                            </div>
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input matInput formControlName="individualName">
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="firstFormGroup.controls.individualName.hasError('required')">
+                                Individual/Org. Name is <strong>required!</strong>
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
                         </td>
-    
-    
-    
+
+
+
                         <td align="left">
-                            <span><label class="required">Name on Card
+                          <span><label class="required">Name on Card
                             </label>:</span>
-    
+
                         </td>
                         <td>
-    
-                            <div class="form-group">
-                              <mat-form-field appearance="outline">
-                                <input matInput formControlName="nameOnCard">
-                                 <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.nameOnCard.hasError('required')">
-                                  Name on Card is <strong>required!</strong>
-                                 </mat-error>
-                                 </mat-form-field>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                      <td align="left">
-                          <span><label class="required">Type Of Business Entity
-                          </label>:</span>
-  
-                      </td>
-                      <td align="left">
-  
+
                           <div class="form-group">
-                              <mat-form-field appearance="outline">
-                                <mat-select matNativeControl required formControlName="typeOfBusinessEntity">
-                                  <mat-option value="select">Select</mat-option>
-                                  <mat-option [value]="businessEntity.sbU_Id"
-                                    *ngFor="let businessEntity of businessEntityDropdownValues">{{businessEntity.sbU_Name}}
-                                  </mat-option>
-              
-                                </mat-select>
-                                                            
-                              <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.typeOfBusinessEntity.hasError('required')">
+                            <mat-form-field appearance="outline">
+                              <input matInput formControlName="nameOnCard">
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="firstFormGroup.controls.nameOnCard.hasError('required')">
+                                Name on Card is <strong>required!</strong>
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label class="required">Type Of Business Entity
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-select matNativeControl required formControlName="typeOfBusinessEntity">
+                                <mat-option value="select">Select</mat-option>
+                                <mat-option [value]="businessEntity.sbU_Id"
+                                  *ngFor="let businessEntity of businessEntityDropdownValues">
+                                  {{businessEntity.sbU_Name}}
+                                </mat-option>
+
+                              </mat-select>
+
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="firstFormGroup.controls.typeOfBusinessEntity.hasError('required')">
                                 Type Of Business Entity is <strong>required!</strong>
                               </mat-error>
-                              </mat-form-field>
+                            </mat-form-field>
                           </div>
-                      </td>
-  
-  
-  
-                      <td align="left">
+                        </td>
+
+
+
+                        <td align="left">
                           <span><label class="required">Residence Status
-                          </label>:</span>
-  
-                      </td>
-                      <td>
-  
+                            </label>:</span>
+
+                        </td>
+                        <td>
+
                           <div class="form-group">
                             <mat-form-field appearance="outline">
                               <mat-select matNativeControl required formControlName="residenceStatus">
                                 <mat-option value="Indian">Indian</mat-option>
                                 <mat-option value="NRI">NRI</mat-option>
-            
+
                               </mat-select>
-                              <input matInput formControlName="residenceStatus">
-                            <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.residenceStatus.hasError('required')">
-                              Residence Status is <strong>required!</strong>
-                            </mat-error>
+                             
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="firstFormGroup.controls.residenceStatus.hasError('required')">
+                                Residence Status is <strong>required!</strong>
+                              </mat-error>
                             </mat-form-field>
                           </div>
-                      </td>
-                  </tr>
-                  <tr>
-                    <td align="left">
-                        <span><label class="required">Income Tax PAN
-                        </label>:</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label class="required">Income Tax PAN
+                            </label>:</span>
 
-                    </td>
-                    <td align="left">
+                        </td>
+                        <td align="left">
 
-                        <div class="form-group">
+                          <div class="form-group">
                             <mat-form-field appearance="outline">
-                            <input matInput formControlName="panNumber">
-                            <mat-error style="font-size:12px" class="text-danger" *ngIf="firstFormGroup.controls.panNumber.hasError('required')">
-                              Income Tax PAN is <strong>required!</strong>
-                            </mat-error>
+                              <input matInput formControlName="panNumber">
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="firstFormGroup.controls.panNumber.hasError('required')">
+                                Income Tax PAN is <strong>required!</strong>
+                              </mat-error>
                             </mat-form-field>
-                        </div>
-                    </td>
+                          </div>
+                        </td>
 
 
 
-                    
-                </tr>
+
+                      </tr>
                     </thead>
                   </table>
                   <div style="float: right;">
@@ -269,15 +287,488 @@
 
 
               </mat-step>
-              <mat-step [stepControl]="secondFormGroup" label="Address">
-                <form [formGroup]="secondFormGroup">
-                  <mat-form-field>
-                    <mat-label>Address</mat-label>
-                    <input matInput formControlName="secondCtrl3" placeholder="Ex. 1 Main St, New York, NY" required>
-                  </mat-form-field>
+              <mat-step [stepControl]="contactDetailsFormGroup" label="Address">
+                <form [formGroup]="contactDetailsFormGroup">
+
+                  <table class="w-100 table table-borderless table-sm">
+                    <tbody>
+                      <tr>
+                        <td colspan="4">
+                          <span style="font-size: 15px; font-weight: bold;">Communication Address</span>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td align="left">
+                          <span><label class="required">Address 1
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input type="text" matInput formControlName="permAddress1">
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="contactDetailsFormGroup.controls.permAddress1.hasError('required')">
+                                Address 1 is <strong>required!</strong>
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+
+                        </td>
+
+
+
+                        <td align="left">
+                          <span><label class="required">Address 2
+                            </label>:</span>
+
+                        </td>
+                        <td>
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input type="text" matInput formControlName="permAddress2">
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="contactDetailsFormGroup.controls.permAddress2.hasError('required')">
+                                Address 2 is <strong>required!</strong>
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label>Address 3
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input type="text" matInput formControlName="permAddress3">
+                              <!-- <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permAddress3.hasError('required')">
+                                      Address 3 is <strong>required!</strong>
+                                  </span> -->
+                            </mat-form-field>
+                          </div>
+                        </td>
+
+
+
+                        <td align="left">
+                          <span><label>Location
+                            </label>:</span>
+
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input type="text" matInput formControlName="permLocation">
+                              <!-- <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permLocation.hasError('required')">
+                                      Location is <strong>required!</strong>
+                                  </span> -->
+                            </mat-form-field>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label class="required">State
+                            </label>:</span>
+
+                        </td>
+                        <td>
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-select (selectionChange)="onSelectState($event.value)" formControlName="permState">
+                                <mat-option [value]="state.stateCode" *ngFor="let state of statesDropdownValues">
+                                  {{state.state_Name}}</mat-option>
+                              </mat-select>
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="contactDetailsFormGroup.controls.permState.hasError('required')">
+                                State is <strong>required!</strong>
+                              </mat-error>
+                            </mat-form-field>
+
+                          </div>
+                        </td>
+                        <td align="left">
+                          <span><label class="required">District
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-select formControlName="permDistrict">
+                                <mat-option [value]="district.district_Code"
+                                  *ngFor="let district of districtDropdownValues">{{district.district_Name}}
+                                </mat-option>
+                              </mat-select>
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="contactDetailsFormGroup.controls.permDistrict.hasError('required')">
+                                District is <strong>required!</strong>
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </td>
+
+
+
+
+
+
+                      </tr>
+                      <tr>
+
+                        <td align=" left">
+                          <span><label class="required">City
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-select formControlName="permCity">
+                                <mat-option [value]="city.cityCode" *ngFor="let city of cityDropdownValues">
+                                  {{city.city_Name}}</mat-option>
+
+                              </mat-select>
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="contactDetailsFormGroup.controls.permCity.hasError('required')">
+                                City is <strong>required!</strong>
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </td>
+
+                        <td>
+                          <span><label class="required">PIN Code
+                            </label>:</span>
+
+                        </td>
+                        <td>
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input type="text" minlength="6" maxlength="6" matInput formControlName="permPincode">
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="contactDetailsFormGroup.controls.permPincode.hasError('required')">
+                                PIN Code is <strong>required!</strong>
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td align="left">
+                          <span><label>Phone Office
+
+                            </label>:
+
+                          </span>
+
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-inline">
+                            <mat-form-field appearance="outline" style="width: 90px;">
+                              <!-- <input class="form-control" type="text" maxlength="8" style="width:60px;margin-left: 15px"> -->
+                              <input matInput type="text" maxlength="6" formControlName="Perm_std_code">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="margin-left:5px;width: 150px;">
+                              <input matInput type="text" maxlength="10" formControlName="permPhoneOffice">
+                            </mat-form-field>
+                            <!-- <input type="text" class="form-control" formControlName="permPhoneOffice" style="width: 40px;">
+                                  <input type="text" class="form-control" formControlName="permPhoneOffice"> -->
+                          </div>
+                          <!-- <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.Perm_std_code.hasError('required')">
+                                  Ph(off) STD is <strong>required!</strong>
+                              </span>
+                              <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permPhoneOffice.hasError('required')">
+                                  Ph(off) is <strong>required!</strong>
+                              </span> -->
+                        </td>
+                        <td>
+                          <span><label class="required">Mobile
+                            </label>:</span>
+
+                        </td>
+                        <td>
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input type="text" minlength="10" maxlength="10" matInput formControlName="mobile">
+                              <mat-error style="font-size:12px" class="text-danger"
+                                *ngIf="contactDetailsFormGroup.controls.mobile.hasError('required')">
+                                Mobile is <strong>required!</strong>
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+
+
+                        <td>
+                          <span><label>Fax
+                            </label>:</span>
+
+                        </td>
+                        <td>
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline" style="width: 90px;">
+                              <!-- <input class="form-control" type="text" maxlength="8" style="width:60px;margin-left: 15px"> -->
+                              <input matInput type="text" maxlength="6" formControlName="permFax1">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="margin-left:5px;width: 150px;">
+                              <input matInput type="text" maxlength="10" formControlName="permFax2">
+                            </mat-form-field>
+                          
+                          </div>
+                        </td>
+                        <td align="left">
+                          <span><label>Email
+
+                            </label>:
+
+                          </span>
+
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input matInput class="input" formControlName="email">
+                              <mat-error *ngIf="contactDetailsFormGroup.controls['email'].hasError('email')">
+                                Email is invalid!
+                              </mat-error>
+                            </mat-form-field>
+
+                          </div>
+
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="4">
+                          <span style="font-size: 15px; font-weight: bold;">Permanent/Registered Office Address</span>
+                          <div class="col-md-6">
+                            <input type="checkbox" formControlName="checkboxRetails"
+                              (change)="onPermanentCommunicationAddressCheckboxChecked($event)"
+                              [checked]="checked==true">
+
+                            <label>
+
+                              <small style="font-size: 10px;color: red;padding: 6px;">(Click here if same as
+                                communication address)</small>
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td align="left">
+                          <span><label>Address 1
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input type="text" matInput formControlName="Comm_Address1">
+                            </mat-form-field>
+                          </div>
+                        </td>
+
+
+
+                        <td align="left">
+                          <span><label>Address 2
+                            </label>:</span>
+
+                        </td>
+                        <td>
+
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input type="text" matInput formControlName="Comm_Address2">
+                            </mat-form-field>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label>Address 3
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input type="text" matInput formControlName="Comm_Address3">
+                            </mat-form-field>
+                          </div>
+                        </td>
+                        <td align="left">
+                          <span><label class="required">Location
+                            </label>:</span>
+
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input type="text" matInput formControlName="Comm_Location">
+                            </mat-form-field>
+                          </div>
+                        </td>
+
+
+
+                      </tr>
+                      <tr>
+                        <td align=" left">
+                          <span><label>State
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-select formControlName="comm_State">
+                                <mat-option [value]="state.stateCode" *ngFor="let state of statesDropdownValues">
+                                  {{state.state_Name}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                        </td>
+
+
+
+                        <td align="left">
+                          <span><label>District
+                            </label>:</span>
+
+                        </td>
+                        <td>
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-select formControlName="comm_District">
+                                <mat-option [value]="district.district_Code"
+                                  *ngFor="let district of districtDropdownValues">{{district.district_Name}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label>City
+                            </label>:</span>
+
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-select formControlName="comm_City">
+                                <mat-option [value]="city.cityCode" *ngFor="let city of cityDropdownValues">
+                                  {{city.city_Name}}</mat-option>
+
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                        </td>
+                        <td align="left">
+                          <span><label>Pin
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input type="text" minlength="6" maxlength="6" matInput formControlName="Comm_PIN_Code">
+                            </mat-form-field>
+                          </div>
+                        </td>
+
+
+
+
+                      </tr>
+
+                      <tr>
+
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label>Phone
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+                          <div class="form-inline">
+                            <mat-form-field appearance="outline" style="width: 90px;">
+                              <!-- <input class="form-control" type="text" maxlength="8" style="width:60px;margin-left: 15px"> -->
+                              <input matInput type="text" maxlength="6" formControlName="Comm_std_code">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="margin-left:5px;width: 150px;">
+                              <input matInput type="text" maxlength="10" formControlName="Comm_Ph_Off">
+                            </mat-form-field>
+                            <!-- <input type="text" class="form-control" formControlName="permPhoneOffice" style="width: 40px;">
+                                  <input type="text" class="form-control" formControlName="permPhoneOffice"> -->
+                          </div>
+
+                        </td>
+                        <td align="left">
+                          <span><label>Fax
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline" style="width: 90px;">
+                              <!-- <input class="form-control" type="text" maxlength="8" style="width:60px;margin-left: 15px"> -->
+                              <input matInput type="text" maxlength="6" formControlName="Comm_Fax1">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="margin-left:5px;width: 150px;">
+                              <input matInput type="text" maxlength="10" formControlName="Comm_Fax2">
+                            </mat-form-field>
+                         
+                          </div>
+                        </td>
+
+
+
+
+                      </tr>
+
+
+
+
+                    </tbody>
+                  </table>
                   <div style="float: right;">
-                    <button mat-button matStepperPrevious style="float: right;">Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                    <button class="btn btn-primary mx-3" mat-button matStepperNext style="float: right;">Next</button>
+                    <button class="btn btn-primary" mat-button matStepperPrevious
+                      style="float: right;">Previous</button>
                   </div>
                 </form>
               </mat-step>
@@ -287,20 +778,491 @@
 
 
 
-              <mat-step [stepControl]="thirdFormGroup" label="Key Official Details">
-                <form [formGroup]="thirdFormGroup">
-                  <mat-form-field>
-                    <mat-label>Key Official Details</mat-label>
-                    <input matInput formControlName="secondCtrl2" placeholder="Ex. 1 Main St, New York, NY" required>
-                  </mat-form-field>
-                  <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+              <mat-step [stepControl]="keyOfficialFormGroup" label="Key Official Details">
+
+                <form [formGroup]="keyOfficialFormGroup">
+               
+                  <table class="w-100 table table-borderless table-sm needs-validation">
+                    <thead>
+                      <tr>
+                        <td colspan="4">
+                          <span style="font-size: 15px; font-weight: bold;">Key Official</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label class="required">Title
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-select matNativeControl required formControlName="title">
+                                <mat-option value="Mr.">Mr.</mat-option>
+                                <mat-option value="Ms.">Ms.</mat-option>
+                                <mat-option value="Mrs.">Mrs.</mat-option>
+
+                              </mat-select>
+                              <mat-error *ngIf="keyOfficialFormGroup.controls['title'].hasError('required')">
+                                Title is required!
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </td>
+
+
+
+                        <td align="left">
+                          <span><label class="required">Individual Initials
+                            </label>:</span>
+
+                        </td>
+                        <td>
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input matInput class="input" formControlName="individualInitials">
+                            </mat-form-field>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label class="required">Name
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+                          <div class="form-inline">
+                            <mat-form-field appearance="outline" style="width: 130px;">
+                              <input matInput class="input" required formControlName="firstName">
+                              <mat-error *ngIf="keyOfficialFormGroup.controls['firstName'].hasError('required')">
+                                First Name is required!
+                              </mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="margin-left:5px;width: 130px;">
+                              <input matInput class="input" formControlName="middleName">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="margin-left:5px;width: 130px;">
+                              <input class="input" matInput formControlName="lastName">
+                              <mat-error *ngIf="keyOfficialFormGroup.controls['lastName'].hasError('required')">
+                                Last Name is required!
+                              </mat-error>
+                            </mat-form-field>
+
+                          </div>
+
+
+
+                        </td>
+
+
+
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label class="required">Designation
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input class="input" required matInput formControlName="designation">
+                              <mat-error *ngIf="keyOfficialFormGroup.controls['designation'].hasError('required')">
+                                Designation is required!
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </td>
+                        <td align="left">
+                          <span><label>Date Of Birth
+                            </label>:</span>
+
+                        </td>
+                        <td>
+
+
+                          <mat-form-field appearance="outline">
+                            <input class="input" formControlName="dateOfBirth" matInput [matDatepicker]="dateOfBirth"
+                              [min]="minDate" [max]="maxDate">
+                            <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+                            <mat-datepicker #dateOfBirth></mat-datepicker>
+                            <!-- <mat-error *ngIf="keyOfficialFormGroup.controls['dateOfBirth'].errors?.required">
+                               Date of Birth is required!
+                              </mat-error> -->
+                          </mat-form-field>
+
+
+                        </td>
+
+
+
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label>Phone Office
+
+                            </label>:
+
+                          </span>
+
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-inline">
+                            <mat-form-field appearance="outline" style="width: 90px;">
+                              <!-- <input class="form-control" type="text" maxlength="8" style="width:60px;margin-left: 15px"> -->
+                              <input matInput type="text" maxlength="6" formControlName="keyOfficialStdCode">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="margin-left:5px;width: 150px;">
+                              <input matInput type="text" maxlength="10" formControlName="keyOfficialphoneNumber">
+                            </mat-form-field>
+                            <!-- <input type="text" class="form-control" formControlName="permPhoneOffice" style="width: 40px;">
+                          <input type="text" class="form-control" formControlName="permPhoneOffice"> -->
+                          </div>
+                          <!-- <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.Perm_std_code.hasError('required')">
+                          Ph(off) STD is <strong>required!</strong>
+                      </span>
+                      <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permPhoneOffice.hasError('required')">
+                          Ph(off) is <strong>required!</strong>
+                      </span> -->
+                        </td>
+                        <td align="left">
+                          <span class="required"><label>Mobile
+
+                            </label>:
+
+                          </span>
+
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input class="input" type="string" maxlength="10" minlength="10" required matInput
+                                formControlName="keyOfficialmobile">
+                              <mat-error
+                                *ngIf="keyOfficialFormGroup.controls['keyOfficialmobile'].hasError('required')">
+                                Mobile is required!
+                              </mat-error>
+                            </mat-form-field>
+
+                          </div>
+
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label>Fax
+
+                            </label>:
+
+                          </span>
+
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-inline">
+                            <mat-form-field appearance="outline" style="width: 90px;">
+                              <!-- <input class="form-control" type="text" maxlength="8" style="width:60px;margin-left: 15px"> -->
+                              <input matInput type="text" maxlength="6" formControlName="keyOfficialsFaxFirst">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="margin-left:5px;width: 150px;">
+                              <input matInput type="text" maxlength="10" formControlName="keyOfficialsFaxSecond">
+                            </mat-form-field>
+                            <!-- <input type="text" class="form-control" formControlName="permPhoneOffice" style="width: 40px;">
+                      <input type="text" class="form-control" formControlName="permPhoneOffice"> -->
+                          </div>
+                          <!-- <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.Perm_std_code.hasError('required')">
+                      Ph(off) STD is <strong>required!</strong>
+                  </span>
+                  <span style="font-size:12px" class="text-danger" *ngIf="contactDetailsFormGroup.controls.permPhoneOffice.hasError('required')">
+                      Ph(off) is <strong>required!</strong>
+                  </span> -->
+                        </td>
+                        <td align="left">
+                          <span><label>Email
+
+                            </label>:
+
+                          </span>
+
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input matInput class="input" formControlName="keyOfficialEmail">
+                              <mat-error *ngIf="keyOfficialFormGroup.controls['keyOfficialEmail'].hasError('email')">
+                                Email is invalid!
+                              </mat-error>
+                            </mat-form-field>
+
+                          </div>
+
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label>Date Of Anniversary
+                            </label>:</span>
+
+                        </td>
+                        <td>
+
+
+                          <mat-form-field appearance="outline">
+                            <input class="input" formControlName="dateOfAnniversary" matInput
+                              [matDatepicker]="dateOfAnniversary">
+                            <mat-datepicker-toggle matSuffix [for]="dateOfAnniversary"></mat-datepicker-toggle>
+                            <mat-datepicker #dateOfAnniversary></mat-datepicker>
+                            <!-- <mat-error *ngIf="keyOfficialFormGroup.controls['dateOfBirth'].errors?.required">
+                           Date of Birth is required!
+                          </mat-error> -->
+                          </mat-form-field>
+
+
+                        </td>
+                      </tr>
+                    </thead></table>
+                    <table class="w-100 table table-borderless table-sm needs-validation">
+                      <thead>
+                      <tr>
+                        <td colspan="4">
+                          <span style="font-size: 15px; font-weight: bold;">Other Details</span>
+                        </td>
+
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label>Secret Questions
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-select matNativeControl formControlName="secretQuestions">
+                                <mat-option value="select">select</mat-option>
+                                <mat-option value="Father's maiden name">Father's maiden name</mat-option>
+                                <mat-option value="Mother's maiden name">Mother's maiden name</mat-option>
+                                <mat-option value="City of Birth">City of Birth</mat-option>
+                                <mat-option value="Name of first school">Name of first school</mat-option>
+                                <mat-option value="Date of marriage">Date of marriage</mat-option>
+                                <mat-option value="Name of the childhood hero">Name of the childhood hero</mat-option>
+                                <mat-option value="Favorite pastime">Favorite pastime</mat-option>
+                                <mat-option value="Favorite sport">Favorite sport</mat-option>
+                                <mat-option value="Favorite actor">Favorite actor</mat-option>
+                                <mat-option value="Favorite actress">Favorite actress</mat-option>
+                                <mat-option value="Pet's name">Pet's name</mat-option>
+                                <mat-option value="Other">Other</mat-option>
+            
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                        </td>
+
+
+
+                        <td align="left">
+                          <span><label>Secret Answer
+                            </label>:</span>
+
+                        </td>
+                        <td>
+
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <input class="input" matInput formControlName="secretAnswers">
+                            </mat-form-field>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label>Area of Operation
+                            </label>:</span>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-inline" style="margin-top: 13px">
+                            <div class="mx-3">
+                              <mat-checkbox color="primary" value="Inter State" (change)="toggle($event)" style="margin-top: 20px;"
+                                formControlName="Area_Of_Operation">Inter State</mat-checkbox>
+                            </div>
+                            <div  class="mx-3">
+                              <mat-checkbox color="primary" value="Inter City" (change)="toggle($event)" style="margin-top: 20px;">
+                                Inter City</mat-checkbox>
+                            </div>
+                            <div  class="mx-3">
+                              <mat-checkbox color="primary" value="Intra State" (change)="toggle($event)" style="margin-top: 20px;">
+                                Intra State</mat-checkbox>
+                            </div>
+                          </div>
+                        </td>
+
+
+
+                       
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label>Fleet Size
+                            </label>:</span>
+                            <p style="font-size: small; font-weight: bold;">(No. of Vehicles Owned)</p>
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-inline">
+                            <div class="mx-3">
+                              <mat-form-field style="width: 90px;" appearance="outline">
+                                <input class="input" matInput placeholder="HCV" maxlength="5" formControlName="hcv" >
+                              </mat-form-field>
+                            </div>
+                            <div  class="mx-3">
+                              <mat-form-field style="width: 90px;" appearance="outline">
+                                <input class="input" matInput placeholder="LCV" maxlength="5" formControlName="lcv" >
+                              </mat-form-field>
+                            </div>
+                            <div  class="mx-3">
+                              <mat-form-field style="width: 90px;" appearance="outline">
+                                <input class="input" matInput placeholder="MUV/SUV" maxlength="5" formControlName="muv" >
+                              </mat-form-field>
+                            </div>
+                            <div  class="mx-3">
+                              <mat-form-field style="width: 90px;" appearance="outline">
+                                <input class="input" matInput placeholder="Car/Jeep" maxlength="5" formControlName="car" >
+                              </mat-form-field>
+                            </div>
+                          </div>
+                        </td>
+
+
+
+                       
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label>Type of Fleet
+                            </label>:</span>
+                           
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                           
+                              <mat-form-field appearance="outline">
+                                <mat-select matNativeControl formControlName="typeOfFleet">
+                                  <mat-option value="Owned">Owned</mat-option>
+                                  <mat-option value="Attached">Attached</mat-option>
+              
+              
+                                </mat-select>
+                              </mat-form-field>
+                            </div>
+                           
+                        </td>
+
+
+
+                       
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <span><label>Card Applied For
+                            </label>:</span>
+                           
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-group">
+                           
+                              <mat-form-field appearance="outline">
+                                <input class="input" matInput formControlName="cardAppliedFor" maxlength="5">
+                              </mat-form-field>
+                            </div>
+                           
+                        </td>
+
+
+
+                       
+                      </tr>
+                      </thead></table>
+                      <table class="w-100 table table-borderless table-sm needs-validation">
+                        <thead>
+                      <tr>
+                        <td align="left">
+                          <span><label>Approx monthly spends on Vehicles (₹)
+
+                            </label>:
+
+                          </span>
+
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-inline">
+                            <mat-form-field appearance="outline" class="mx-3">
+                              <input class="input" matInput formControlName="monthlySpendsOnVehicles">
+                              <mat-icon matSuffix><i matTooltip="Approx monthly spend Fuel in (₹)" class="fas fa-question-circle"></i></mat-icon>
+    <mat-hint>Approx monthly spend Fuel in (₹)</mat-hint>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="mx-3">
+                              <input class="input" matInput formControlName="monthlySpendsOnVehiclesSecondInput">
+                              <mat-icon matSuffix><i matTooltip="Approx monthly spend Lubes in (₹)" class="fas fa-question-circle"></i></mat-icon>
+    <mat-hint>Approx monthly spend Lubes in (₹)</mat-hint>
+                            </mat-form-field>
+                          
+                          </div>
+                      
+                        </td>
+                        <!-- <td align="left">
+                          <span><label>Approx monthly spend Lubes in (₹):
+
+                            </label>:
+
+                          </span>
+
+
+                        </td>
+                        <td align="left">
+
+                          <div class="form-inline">
+                            <mat-form-field appearance="outline" style="width: 90px;">
+                              <input class="input" matInput formControlName="monthlySpendsOnVehiclesSecondInput">
+                            </mat-form-field>
+                          
+                          </div>
+                      
+                        </td> -->
+                      </tr>
+                    </thead>
+
+                  </table>
+                  <div style="float: right;">
+                    <button class="btn btn-primary mx-3" mat-button matStepperNext style="float: right;" (click)="onCustomerRegistrationPostDataButtonClicked()">Save</button>
+                    <button class="btn btn-primary" mat-button matStepperPrevious
+                      style="float: right;">Previous</button>
                   </div>
                 </form>
               </mat-step>
 
-              <mat-step [stepControl]="fourthFormGroup" label="Upload Documents">
+              <!-- <mat-step [stepControl]="fourthFormGroup" label="Upload Documents">
                 <form [formGroup]="fourthFormGroup">
                   <mat-form-field>
                     <mat-label>Upload Documents</mat-label>
@@ -327,7 +1289,7 @@
                   <button mat-button matStepperPrevious>Back</button>
                   <button mat-button (click)="stepper.reset()">Reset</button>
                 </div>
-              </mat-step>
+              </mat-step> -->
             </mat-horizontal-stepper>
 
           </div>
@@ -339,7 +1301,7 @@
 
 
 
-  <div class="container-fluid" *ngIf="isDisplay==1">
+  <div class="container-fluid" *ngIf="isDisplay==0">
     <div class="container">
       <div class="row form-group">
         <div class="col-12">

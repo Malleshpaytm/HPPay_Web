@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DatepickerService } from './datepicker.service';
+import { CustomAdapter } from './datepicker.service';
 
 describe('DatepickerService', () => {
-  let service: DatepickerService;
+  let service: CustomAdapter;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DatepickerService);
+    service = TestBed.inject(CustomAdapter);
   });
 
   it('should be created', () => {

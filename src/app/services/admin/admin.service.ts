@@ -502,5 +502,14 @@ block_merchant_fsm(block_merchant_fsmData): Observable<any> {
     const body=JSON.stringify(get_order_detail_by_order_idData);
     return this.service.post(path,body);
   }
-
+  getSubCustomerType(customerSubTypeData): Observable<any> {
+    let path = '/hppay/settings/get_customer_sub_type';
+    const body=JSON.stringify(customerSubTypeData);
+    return this.service.post(path,body);
+  }
+  bankCustomerRegistration(customerRegistrationData): Observable<any> {
+    let path = '/hppay/user/customer_user_registration';
+    const body=JSON.stringify(customerRegistrationData);
+    return this.service.post(path,body);
+  }
 }
