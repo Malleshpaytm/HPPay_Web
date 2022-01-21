@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,6 +7,13 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./merchant-header.component.css']
 })
 export class MerchantHeaderComponent implements OnInit {
+  
+
+  
+  loggedInUserInfo = localStorage.getItem('userInfo');
+  loggedInUserInfoArr = JSON.parse(this.loggedInUserInfo)
+  //username= this.loggedInUserInfoArr?.username
+  username= 'HP Merchant'
 
   ngOnInit(): void {
   }

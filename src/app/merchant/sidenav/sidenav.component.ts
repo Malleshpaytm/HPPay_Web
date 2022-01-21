@@ -25,27 +25,31 @@ export class SidenavComponent implements OnInit {
       //   label: this.username,
       
       // },
-      {
-        label: 'My Profile',
-        routerLink: ['./profile']
-      },
+      // {
+      //   label: 'My Profile',
+      //   routerLink: ['./profile']
+      // },
       {
         label: 'Dashboard',
-        routerLink: ['./dashboard']
+        routerLink: ['./dashboard'],
+        styleClass: "navItem"
       },
-      {
-        label: 'Change Password',
-        routerLink: ['./change-password']
-      },
+      // {
+      //   label: 'Change Password',
+      //   routerLink: ['./change-password']
+      // },
       {
         label: 'QR Agents Onboarding',
-        routerLink: 'qr-agents-onboarding'
+        routerLink: 'qr-agents-onboarding',
+        styleClass: "navItem"
       },
       {
         label: 'Fuel Pricing',
+        styleClass: "navItem"
       },
       {
         label: 'Financials',
+        styleClass: "navItem hasSub",
         items: [{
           label: 'Settlement Details',
           routerLink: ['./settlement-details']
@@ -78,12 +82,15 @@ export class SidenavComponent implements OnInit {
       },
       {
         label: 'Accept Transactions',
+        styleClass: "navItem"
       },
       {
         label: 'Requests',
+        styleClass: "navItem"
       },
       {
         label: 'Lubes',
+        styleClass: "navItem",
         items: [{
           label: 'Lube Order',
           routerLink: ['./lube-order']
@@ -91,10 +98,10 @@ export class SidenavComponent implements OnInit {
        
       ]
       },
-      {
-        label: 'Logout',
-        routerLink:['../']
-      }
+      // {
+      //   label: 'Logout',
+      //   routerLink:['../']
+      // }
     ];
   }
 

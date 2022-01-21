@@ -1,11 +1,12 @@
 /*.main_header {
     border-bottom: 1px solid #00baf2;
 }*/
+.main_header {
+  background: #1e407d;
+}
 .header_wrapper {
-  background: white;
   display: flex;
   align-items: flex-start;
-  padding: 5px 25px 10px;
   justify-content: space-between;
 }
 .logo {
@@ -17,7 +18,7 @@
   padding-top: 5px;
 }
 .logo img {
-  max-width: 40px;
+  max-width: 30px;
   margin-right: 12px;
 }
 .header_top {
@@ -47,15 +48,13 @@
   }
   .header_wrapper {
       align-items: center;
-      padding-left: 10px;
-      padding-right: 10px;
   }
 }
 
 
 @media screen and (max-width:500px) {
   .logo img {
-      max-width: 35px;
+      max-width: 25px;
   }
   .header_nav ul li {
       margin: 0;
