@@ -90,7 +90,7 @@ export class SidenavComponent implements OnInit {
       },
       {
         label: 'Lubes',
-        styleClass: "navItem",
+        styleClass: "navItem hasSub",
         items: [{
           label: 'Lube Order',
           routerLink: ['./lube-order']
