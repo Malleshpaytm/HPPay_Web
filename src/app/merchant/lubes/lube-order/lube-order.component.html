@@ -1,94 +1,55 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="card mt-5 p-0">
-                <div class="card-header text-white" style="background-color:  #084594;">
-                    Lube Order List
+            <div class="card shadow mt-5 p-0">
+                <div class="py-2 px-3 blue-bg text-white">
+                    <h4 class="m-0 text-white"> Lube Order List</h4>
                 </div>
                 <div class="card-body">
-                    <table class="w-50" [formGroup]="lubeOrderListFormGroup">
-                        
 
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <span><span class="required">From Date
-                                        </span>:</span>
-
-                                </td>
-                                <td align="left">
-                                    <div class="form-group">
-                                        <input type="date" class="form-control" formControlName="fromDate">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span><span class="required">To Date
-                                        </span>:</span>
-
-                                </td>
-                                <td align="left">
-                                    <div class="form-group">
-                                        <input type="date" class="form-control" formControlName="toDate">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                               
-                        
-                                <td>
-                                    <span><span class="required">Product
-                                    </span>:</span>
-
-                                </td>
-                                <td align="left">
-                                    <div class="form-group">
-                                        <select type="test" placeholder="" class="form-control" formControlName="product">
-                                            <option>Select</option>
-                                            <option [value]="product.productName" *ngFor="let product of get_all_products_by_merchant">{{product.productName}}
+                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                        <div class="col-md-6 col-12 d-flex align-items-center justify-content-between flex-wrap px-0">
+                            <label class="required col-sm-6 col-12 mb-3">From Date</label>
+                            <div class="col-sm-6 col-12 mb-3">
+                                <input type="date" class="form-control" formControlName="fromDate">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 d-flex align-items-center justify-content-between flex-wrap">
+                                <label class="required col-sm-6 col-12 mb-3">To Date</label>
+                                <div class="col-sm-6 col-12 mb-3">
+                                    <input type="date" class="form-control" formControlName="toDate">
+                                </div>
+                        </div>
+                        <div class="col-md-6 col-12 d-flex align-items-center justify-content-between flex-wrap px-0">
+                                <label class="required col-sm-6 col-12 mb-3">Product</label>
+                                <div class="col-sm-6 col-12 mb-3">
+                                    <select type="test" placeholder="" class="form-control" formControlName="product">
+                                        <option>Select</option>
+                                        <option [value]="product.productName" *ngFor="let product of get_all_products_by_merchant">{{product.productName}}
+                                        </option>
+                                    </select>
+                                </div>
+                        </div>
+                        <div class="col-md-6 col-12 d-flex align-items-center justify-content-between flex-wrap px-0">
+                                <label class="required col-sm-6 col-12 mb-3">Order Status</label>
+                                <div class="col-sm-6 col-12 mb-3">
+                                    <select type="test" placeholder="" class="form-control" formControlName="status">
+                                        <ng-container *ngFor="let entity of get_any_entity_type_list">
+                                            <option *ngIf="entity.type_id=='627002' || entity.type_id=='627008'" [value]="entity.type_id" >{{entity.type_name}}
                                             </option>
-                                        </select>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                               
-                        
-                                <td>
-                                    <span><span class="required">Order Status
-                                    </span>:</span>
-
-                                </td>
-                                <td align="left">
-                                    <div class="form-group">
-                                        <select type="test" placeholder="" class="form-control" formControlName="status">
-                                            <ng-container *ngFor="let entity of get_any_entity_type_list">
-                                                <option *ngIf="entity.type_id=='627002' || entity.type_id=='627008'" [value]="entity.type_id" >{{entity.type_name}}
-                                                </option>
-                                            </ng-container>
-                                           
-                                        </select>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td align="left">
-                                    <div class=" d-flex flex-row justify-content-end">
-                                        <div class="mr-3">
-                                            <button class="btn btn-primary"
-                                               (click)="onSearchButtonClick()" >Search</button>
-                                        </div>
-                                        <div>
-                                            <button class="btn btn-primary" (click)="onResetButtonClick()">Reset</button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                        </ng-container>                                       
+                                    </select>
+                                </div>
+                        </div>
+                        <div class=" d-flex flex-row justify-content-center mb-4 w-100">
+                            <div class="mr-3">
+                                <button class="btn btn-primary" (click)="onSearchButtonClick()" >Search</button>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" (click)="onResetButtonClick()">Reset</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body" *ngIf="isshow==1">
                   

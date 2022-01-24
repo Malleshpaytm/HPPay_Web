@@ -1,14 +1,37 @@
-<header class="main_header position-sticky">
+<header class="main_header">
 	<nav class="navbar navbar-expand-lg p-0">
-	<div class="header_wrapper w-100 row">
-		<div class="logo">
-			<a routerLink='' >
-				<img src="assets/images/logo.png" class="header_logo img-responsive" alt="">
-				<img src="assets/images/HP-logo.png" class="header_logo img-responsive" alt="">
-			</a>
+		<div class="header_wrapper w-100 py-2">
+			<div class="d-flex align-items-center justify-content-between w-100">
+				
+				<div class="logo col-lg-3 col-3">					
+					<a routerLink='' >
+						<img src="assets/images/logo.png" class="header_logo img-responsive" alt="">
+						<img src="assets/images/HP-logo.png" class="header_logo img-responsive" alt="">
+					</a>
+				</div>
+				<div class="header_title  col-lg-6 col-6 text-center">
+					<h3 class="align-self-center text-white m-0">HPPay- Merchant</h3>
+				</div>
+				<div class="header_right col-lg-3 col-3 justify-content-end d-flex">
+					<ul class="navbar-nav flex-row">						
+						<li class="nav-item dropdown mr-3">
+						  <a class="nav-link dropdown-toggle text-white-50  d-flex align-items-center py-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+							<i class="fa fa-user-cog mr-2"></i> <span class="d-md-block d-none">{{username}}</span>
+						  </a>
+						  <div class="dropdown-menu dropdown-menu-right py-3" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item  text-dark-50 py-2 " href="#" [routerLink]="['./profile']" routerLinkActive="router-link-active" ><i class="fa fa-user mr-2"></i> My Profile</a>
+							<a class="dropdown-item  text-dark-50 py-2" href="#" [routerLink]="['./change-password']" routerLinkActive="router-link-active" ><i class="fa fa-key mr-2"></i> Change Password</a>
+						  </div>
+						</li>
+						<li class="nav-item d-flex align-items-center">
+							<a 	class="nav-link  text-white-50 d-flex align-items-center py-0" href="#" [routerLink]="['../']" routerLinkActive="router-link-active" > <i class="fa fa-sign-out-alt mr-1"></i> <span class="d-md-block d-none">Sign out</span></a>
+						  </li>
+					  </ul>
+				</div>
+			</div>
+			
+			
+		<div></div>
 		</div>
-    <div class="h2 align-self-center">HPPay- Merchant</div>
-    <div></div>
-	</div>
-</nav>
+	</nav>
 </header>
