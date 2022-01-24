@@ -8,12 +8,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { IRandomUsers } from 'src/app/Admin/admin/location/regionalofficedetail/regionalofficedetail.component';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/shared/confirm-modal/confirm-modal.component';
 import { DialogBoxComponent } from 'src/app/shared/dialog-box/dialog-box.component';
+import { ImageDialogComponent } from 'src/app/shared/image-dialog/image-dialog.component';
 import { CustomerDetailsModalComponent } from '../../customer-details-modal/customer-details-modal.component';
 
 @Component({
@@ -46,12 +47,13 @@ export class CustomerkycComponent implements OnInit {
   };
   recordToBeApprovedOrRejected = [];
   //
+  closeResult: string | undefined;
   onModelChange(textValue: string): void {
     this.numberOfCharacters2 = textValue.length;
   }
   customerkycformgroup: FormGroup;
   constructor(private adminService: AdminService, public dialog: MatDialog, private fb: FormBuilder,
-    public toastr: ToastrService, private router: Router, private datePipe: DatePipe) { }
+    public toastr: ToastrService, private router: Router, private datePipe: DatePipe, private modalService: NgbModal,) { }
   ngOnInit(): void {
     this.customerkycformgroup = this.fb.group({
       category: [''],
@@ -59,53 +61,56 @@ export class CustomerkycComponent implements OnInit {
       mobileno: [''],
       from_Date: [(new Date()).toISOString().substring(0, 10)],
       to_Date: [(new Date()).toISOString().substring(0, 10)],
+      // from_Date:[''],to_Date:[''],
       comments: ['']
     });
     debugger;
-
-    this.onSearchButtonClick(0);
+this.customerkycformgroup.controls.category.setValue(0)
+    //this.onSearchButtonClick();
   }
 
-  onSearchPendingKycUsers() {
-    if (this.customerkycformgroup.controls.email.value) {
-      this.onSearchButtonClick(1)
-    }
-    else if (this.customerkycformgroup.controls.mobileno.value) {
-      this.onSearchButtonClick(2)
-    }
-    else if (this.customerkycformgroup.controls.from_Date.value && this.customerkycformgroup.controls.to_Date.value) {
-      this.onSearchButtonClick(3)
-    }
-    else if (this.customerkycformgroup.controls.from_Date.value && this.customerkycformgroup.controls.to_Date.value
-      && this.customerkycformgroup.controls.mobileno.value && this.customerkycformgroup.controls.email.value) {
-      this.onSearchButtonClick(4)
-    }
-    else if (this.customerkycformgroup.controls.from_Date.value && this.customerkycformgroup.controls.to_Date.value
-      && this.customerkycformgroup.controls.mobileno.value) {
-      this.onSearchButtonClick(5)
-    }
-    else if (this.customerkycformgroup.controls.from_Date.value && this.customerkycformgroup.controls.to_Date.value
-      && this.customerkycformgroup.controls.email.value) {
-      this.onSearchButtonClick(6)
-    }
-    else {
-      this.onSearchButtonClick(0)
-    }
-  }
-  onSearchButtonClick(category) {
+  // onSearchPendingKycUsers() {
+  //   if (this.customerkycformgroup.controls.email.value) {
+  //     this.onSearchButtonClick(1)
+  //   }
+  //   else if (this.customerkycformgroup.controls.mobileno.value) {
+  //     this.onSearchButtonClick(2)
+  //   }
+  //   else if (this.customerkycformgroup.controls.from_Date.value && this.customerkycformgroup.controls.to_Date.value) {
+  //     this.onSearchButtonClick(3)
+  //   }
+  //   else if (this.customerkycformgroup.controls.from_Date.value && this.customerkycformgroup.controls.to_Date.value
+  //     && this.customerkycformgroup.controls.mobileno.value && this.customerkycformgroup.controls.email.value) {
+  //     this.onSearchButtonClick(4)
+  //   }
+  //   else if (this.customerkycformgroup.controls.from_Date.value && this.customerkycformgroup.controls.to_Date.value
+  //     && this.customerkycformgroup.controls.mobileno.value) {
+  //     this.onSearchButtonClick(5)
+  //   }
+  //   else if (this.customerkycformgroup.controls.from_Date.value && this.customerkycformgroup.controls.to_Date.value
+  //     && this.customerkycformgroup.controls.email.value) {
+  //     this.onSearchButtonClick(6)
+  //   }
+  //   else {
+  //     this.onSearchButtonClick(0)
+  //   }
+  // }
+  onSearchButtonClick() {
     debugger;
 
     let get_pending_kycData = {
-      "category": category,
+      // "category": category,
+      
+      "useragent": "web",
+      "userip": "1",
+      "userid": "1",
+      "status": this.customerkycformgroup.controls.category.value,
       "email": this.customerkycformgroup.controls.email.value,
       "mobileno": this.customerkycformgroup.controls.mobileno.value,
       "from_Date": this.customerkycformgroup.controls.from_Date.value,
       "to_Date": this.customerkycformgroup.controls.to_Date.value,
-      "useragent": "web",
-      "userip": "1",
-      "userid": "1",
     }
-    this.adminService.get_pending_kyc(get_pending_kycData)
+    this.adminService.get_All_kyc_List(get_pending_kycData)
       .subscribe(data => {
         if (data.message.toUpperCase() === "RECORD FOUND") {
           //this.dataArray = data.data;
@@ -131,8 +136,7 @@ export class CustomerkycComponent implements OnInit {
           this.toastr.error(err.toString());
         });
   }
-
-
+  
   onViewCustomerDetails(customerid): void {
     debugger;
     let dialogRef = this.dialog.open(CustomerDetailsModalComponent, {
@@ -175,8 +179,9 @@ export class CustomerkycComponent implements OnInit {
                 if (data.message.toUpperCase() === 'RECORD FOUND') {
                   debugger;
                   this.openDialog("Customer(s) approved successfully!")
-                  this.onSearchButtonClick(0);
+                  this.onSearchButtonClick();
                   this.customerkycformgroup.controls.comments.reset();
+                  this.selection.clear();
                   // this.merchantTypes = data.data;
                 }
                 else if (data.status_Code === 401) {
@@ -212,7 +217,7 @@ export class CustomerkycComponent implements OnInit {
   }
   onRejectButtonClick() {
     debugger;
-    if (this.customerkycformgroup.controls.comments.valid && this.selection.selected.length > 0) {
+    if (this.customerkycformgroup.controls.comments.value.length > 0 && this.selection.selected.length > 0) {
       const message = `Are you sure you want to reject this customer(s)?`;
 
       const dialogData = new ConfirmDialogModel("Confirm Action", message);
@@ -238,8 +243,9 @@ export class CustomerkycComponent implements OnInit {
                 if (data.message.toUpperCase() === 'RECORD FOUND') {
                   debugger;
                   this.openDialog("Customer(s) rejected successfully!")
-                  this.onSearchButtonClick(0);
+                  this.onSearchButtonClick();
                   this.customerkycformgroup.controls.comments.reset();
+                  this.selection.clear();
                   // this.merchantTypes = data.data;
                 }
                 else if (data.status_Code === 401) {
@@ -258,9 +264,18 @@ export class CustomerkycComponent implements OnInit {
       this.toastr.error("Please select the customer and add comments!")
     }
   }
-  onImageClick(url) {
+  onImageClick(image) {
     debugger;
-    window.open(url, '_blank');
+   // window.open(url, '_blank');
+   let dialogRef = this.dialog.open(ImageDialogComponent, {
+    width: '120 px',
+    data: { image:image }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    //this.animal = result;
+  });
   }
   GetManageUserData() {
     this.GetSaveData = [

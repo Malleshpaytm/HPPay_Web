@@ -85,7 +85,8 @@ export class ViewOrUpdateCustomerDetailsComponent implements OnInit {
       "address": this.customerCreationFormGroup.controls.address.value?this.customerCreationFormGroup.controls.address.value:this.customerDetails?.address,
       "gender": this.customerCreationFormGroup.controls.gender.value?this.customerCreationFormGroup.controls.gender.value:this.customerDetails?.gender,
       "email": this.customerCreationFormGroup.controls.email.value?this.customerCreationFormGroup.controls.email.value:this.customerDetails?.user_email,
-     
+      "vehicle_no": "",
+      "fasttag_no": "",
       "useragent": "web",
       "userip": "1",
       "userid": "1",

@@ -25,7 +25,7 @@
                 <span class="custom-fz custom-btn">
                     <img src="assets/images/home.png" alt="">
                 </span>
-                <div class="dropdown">
+                <div class="dropdown" *ngIf="UserInfoLocalStorageDataConverted.userrole.toUpperCase()==='ADMIN'">
                     <span class="custom-font-white custom-fz custom-btn" routerLink="./security"
                         style="cursor: pointer;">Admin</span>
 
@@ -114,7 +114,7 @@
 
 
                 <div class="dropdown">
-                    <span class="custom-font-white custom-fz custom-btn" routerLink="./security"
+                    <span class="custom-font-white custom-fz custom-btn" routerLink="/admin/HPPayCustomer/profilemenu"
                         style="cursor: pointer;">HP PAY Customer</span>
 
                     <!-- <span class="custom-font-white custom-fz custom-btn" routerLink="/admin/security">Admin</span> -->
@@ -130,7 +130,7 @@
 
                             </div>
                         </a>
-                        <a class="dropdown has-sub" style="cursor: pointer;"
+                        <a class="dropdown has-sub" style="cursor: pointer;" *ngIf="UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='CALLCENTER'"
                             (click)="changeRoute($event, '/admin/HPPayCustomer/financialemenu')">Financials
                             <div class="sub-menu">
                                 <!-- [routerLink]="['/admin/manageuser']" -->
@@ -153,7 +153,7 @@
 
                         </a>
 
-                        <a class="dropdown has-sub" style="cursor: pointer;"
+                        <a class="dropdown has-sub" style="cursor: pointer;" *ngIf="UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='CALLCENTER'"
                             (click)="changeRoute($event, '/admin/HPPayCustomer/ManageCardlessDashboad')">Cardless
                             Transactions
                             <div class="sub-menu">
@@ -174,7 +174,7 @@
                         </a>
 
 
-                        <a class="dropdown has-sub" style="cursor: pointer;"
+                        <a class="dropdown has-sub" style="cursor: pointer;" *ngIf="UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='CALLCENTER'"
                             (click)="changeRoute($event, '/admin/HPPayCustomer/offermenu')">Offers And Promotions
                             <div class="sub-menu">
                                 <a (click)="changeRoute($event, '/admin/HPPayCustomer/offers')">Manage Offers</a>
@@ -183,7 +183,7 @@
                             </div>
 
                         </a>
-                        <a class="dropdown has-sub" style="cursor: pointer;"
+                        <a class="dropdown has-sub" style="cursor: pointer;" *ngIf="UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='CALLCENTER'"
                             (click)="changeRoute($event, '/admin/HPPayCustomer/ccmsmenu')">CCMS Recharge Payment Gateway
                             <div class="sub-menu">
                                 <a (click)="changeRoute($event, '/admin/HPPayCustomer/vewccmsrecharge')">View Online
@@ -216,7 +216,7 @@
                             </div>
                         </a>
 
-                        <a class="dropdown has-sub" style="cursor: pointer;"
+                        <a class="dropdown has-sub" style="cursor: pointer;" *ngIf="UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='CALLCENTER'"
                             (click)="changeRoute($event, '/admin/merchant/merchantfinancialmenu')">Financials
                             <div class="sub-menu" style="max-height: 300px; overflow: scroll;">
                                 <!-- [routerLink]="['/admin/manageuser']" -->
@@ -241,7 +241,7 @@
                             </div>
                         </a>
 
-                        <a class="dropdown has-sub" style="cursor: pointer;"
+                        <a class="dropdown has-sub" style="cursor: pointer;" *ngIf="UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='MO'"
                             (click)="changeRoute($event, '/admin/merchant/approvalmenu')">Approval
                             <div class="sub-menu">
                                 <!-- [routerLink]="['/admin/manageuser']" -->
@@ -358,7 +358,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="dropdown">
+                <div class="dropdown" *ngIf="UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='CALLCENTER'">
                     <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;"
                         routerLink="./search/searchmenu">Search</span>
                     <div class="dropdown-content">
@@ -373,7 +373,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="dropdown">
+                <div class="dropdown" *ngIf="UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='CALLCENTER' && UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='MO' && UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='HO'  && UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='ZO'">
                     <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;"
                         routerLink="./corporatecustomer/profilemenu">Corporate Customer</span>
                     <div class="dropdown-content">
@@ -404,7 +404,7 @@
                     </div>
 
                 </div>
-                <div class="dropdown">
+                <div class="dropdown" *ngIf="UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='CALLCENTER' && UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='MO' && UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='HO'  && UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='ZO'">
                     <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;"
                         routerLink="./hplubes/hplubesmenu">HP Lubes</span>
                     <div class="dropdown-content">
@@ -417,7 +417,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="dropdown">
+                <div class="dropdown" *ngIf="UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='CALLCENTER'">
                     <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;">Fastag</span>
                     <div class="dropdown-content">
                         <a class="dropdown has-sub" style="cursor: pointer;"
@@ -452,7 +452,7 @@
                             </div>
                         </a>
 
-                        <a class="dropdown has-sub" style="cursor: pointer;"
+                        <a class="dropdown has-sub" style="cursor: pointer;" *ngIf="UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='MO'"
                             (click)="changeRoute($event, '/admin/fastag/approvalmenu')">Approval
                             <div class="sub-menu">
                                 <a (click)="changeRoute($event, '/admin/fastag/fastagbankapproval')">Fastag Bank

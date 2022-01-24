@@ -9,7 +9,7 @@
           <legend class="w-auto px-2" style="font-size: 12px;"></legend>
           <div class="d-flex d-flex-row justify-content-between">
             <table class="w-50" [formGroup]="customerkycformgroup">
-              <!-- <tr>
+              <tr>
                   <td>
                       <span class="required">Select Cateogory</span>:
                   </td>
@@ -18,20 +18,16 @@
                           <select class="form-control" formControlName="category">
         
                           
-                  <option value="0">All</option>
-                  <option value="1">Email</option>
-                  <option value="2">Mobile</option>
-                  <option value="3">Date Range</option>
-                  <option value="4">Email, Mobile and Date Range</option>
-                  <option value="5">Mobile and Date Range</option>
-                  <option value="6">Email and Date Range</option>
+                  <option value="0">KYC Pending Customers</option>
+                  <option value="1">Approved Customers</option>
+                  <option value="2">Rejected Customers</option>
                   
                               
                             </select>
                       </div>
                   </td>
-              </tr> -->
-              <tr>
+              </tr>
+              <!-- <tr>
                 <td>
                     <span >Email</span>:
                 </td>
@@ -40,7 +36,7 @@
                        <input type="text" class="form-control" formControlName="email">   
                     </div>
                 </td>
-            </tr>
+            </tr> -->
             <tr>
               <td>
                   <span >Mobile Number</span>:
@@ -83,7 +79,7 @@
                       <td align="left">
                           <div class=" d-flex flex-row justify-content-end">
                               <div class="mr-3">
-                                  <button class="btn btn-primary" (click)="onSearchPendingKycUsers()">Search</button>
+                                  <button class="btn btn-primary" (click)="onSearchButtonClick()">Search</button>
                               </div>
                               <div class="mr-3">
                                   <button class="btn btn-primary" (click)="Reset()">Reset</button>
@@ -128,7 +124,7 @@
               <ng-container matColumnDef="poa">
                 <mat-header-cell *matHeaderCellDef > POA </mat-header-cell>
                 <mat-cell *matCellDef="let row" class="text-center"> 
-                  <p  *ngIf="row.poa!=null" style="color: blue;cursor: pointer;" (click)="onImageClick('http://180.179.222.161/hpp/Upload_Document/Upload_KYC/'+row.poa)"> POA</p>
+                  <p  *ngIf="row.poa!=null" style="color: blue;cursor: pointer;" (click)="onImageClick(row.poa)"> POA</p>
                   <p *ngIf="row.poa===null || undefined || ''" > No Image Found</p>
                  
                   </mat-cell>
@@ -136,7 +132,8 @@
               <ng-container matColumnDef="poi">
                 <mat-header-cell *matHeaderCellDef > POI </mat-header-cell>
                 <mat-cell *matCellDef="let row" class="text-center"> 
-                  <p  *ngIf="row.poi!=null" style="color: blue;cursor: pointer;" (click)="onImageClick('http://180.179.222.161/hpp/Upload_Document/Upload_KYC/'+row.poi)"> POI</p>
+                  <p  *ngIf="row.poi!=null" style="color: blue;cursor: pointer;" (click)="onImageClick(row.poi)"> POI</p>
+                  <!--  -->
                   <p *ngIf="row.poi===null || undefined" > No Image Found</p>
                 
                 

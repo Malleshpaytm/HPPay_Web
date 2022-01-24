@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError  } from 'rxjs';
 import { LoginService } from '../login/login.service';
 import { catchError } from 'rxjs/operators';
+import { BaseHttpService } from '../base-http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ApiService  {
   api_key=this.service.api_key;
   authToken=this.service.authToken;
   forLocalHost=this.service.forLocalHost;
-  constructor(private http: HttpClient, private service:LoginService) {
+  constructor(private http: HttpClient, private service:LoginService, private baseHttpService: BaseHttpService) {
   }
 
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
@@ -81,7 +82,7 @@ export class ApiService  {
     return new HttpHeaders(headersConfig);
   }
 
-  private createUrl(path, targetApiEndpoint = `${this.forLocalHost}180.179.222.161/hpp/api`) {
+  private createUrl(path, targetApiEndpoint = `${this.baseHttpService.hpPayApiRoot}`) {
     return targetApiEndpoint+path;
   }
 }

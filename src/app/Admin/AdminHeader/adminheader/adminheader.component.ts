@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-adminheader',
@@ -12,7 +13,7 @@ export class AdminheaderComponent implements OnInit {
   entityTypeValue: string = '';
   UserInfoLocalStorageDataString = localStorage.getItem('userInfo');
   UserInfoLocalStorageDataConverted={ userrole: '', userid: '', username: '' }
-  constructor(public router: Router,@Inject(DOCUMENT) private _document: Document) {}
+  constructor(public router: Router,@Inject(DOCUMENT) private _document: Document, public authService:AuthService) {}
 
   ngOnInit(): void {
     this.UserInfoLocalStorageDataConverted=JSON.parse(this.UserInfoLocalStorageDataString || '{}');

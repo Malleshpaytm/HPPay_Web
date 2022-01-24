@@ -7,8 +7,8 @@
         <fieldset class="form-group border px-3 pt-0">
             <legend class="w-auto px-2" style="font-size: 12px;"></legend>
 
-          <div class="d-flex d-flex-row justify-content-between" [formGroup]="viewAndCloseCustomerFeedbackFormGroup">
-            <form class="form-inline" >
+          <div class="d-flex d-flex-row justify-content-between" >
+            <form class="form-inline" [formGroup]="viewAndCloseCustomerFeedbackFormGroup">
               <div class="form-group mb-2">
                 <label for="officerType" class="pr-2 required pl-5">Start Date:</label>
                 <input type="date" class="form-control" formControlName="fromDate">

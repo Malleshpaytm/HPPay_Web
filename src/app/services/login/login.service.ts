@@ -23,7 +23,7 @@ authToken='Bearer '+localStorage.getItem('token')
       'API_Key':this.api_key};
     const body=JSON.stringify(loginData);
 
-    return this.http.post(`${this.forLocalHost}http://180.179.222.161/hpp/api/hppay/login/get_user_login`, body,{'headers':headers})
+    return this.http.post(`${this.baseHttpService.hpPayApiRoot}api/hppay/login/get_user_login`, body,{'headers':headers})
   }
 
 
@@ -36,7 +36,7 @@ authToken='Bearer '+localStorage.getItem('token')
     };
     const body = JSON.stringify(getTokenData);
 
-    return this.http.post(`${this.forLocalHost}180.179.222.161/hpp/api/hppay/generatetoken`, body, { 'headers': headers })
+    return this.http.post(`${this.baseHttpService.hpPayApiRoot}api/hppay/generatetoken`, body, { 'headers': headers })
   }
 
 

@@ -85,6 +85,26 @@ export class LoginComponent implements OnInit {
               this.authService.userRole = 'admin';
               this.router.navigate(['admin']);
             }
+            else if(data.data[0].userrole.toUpperCase() === 'MO'){
+              this.authService.login = true;
+              this.authService.userRole = 'MO';
+              this.router.navigate(['/admin/HPPayCustomer/profilemenu']);
+            }
+            else if(data.data[0].userrole.toUpperCase() === 'ZO'){
+              this.authService.login = true;
+              this.authService.userRole = 'ZO';
+              this.router.navigate(['/admin/HPPayCustomer/profilemenu']);
+            }
+            else if(data.data[0].userrole.toUpperCase() === 'HO'){
+              this.authService.login = true;
+              this.authService.userRole = 'HO';
+              this.router.navigate(['/admin/HPPayCustomer/profilemenu']);
+            }
+            else if(data.data[0].userrole.toUpperCase() === 'CALLCENTER'){
+              this.authService.login = true;
+              this.authService.userRole = 'Callcenter';
+              this.router.navigate(['/admin/HPPayCustomer/profilemenu']);
+            }
            else if (data.data[0].userrole.toUpperCase() === "MERCHANT") {
              debugger;
               this.authService.login = true;
