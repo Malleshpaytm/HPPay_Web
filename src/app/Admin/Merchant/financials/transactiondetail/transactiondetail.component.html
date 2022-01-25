@@ -175,47 +175,47 @@
                         </table>
 
                         <div style="overflow-x: auto;" *ngIf="showSettlementDetails">
-                            <table class="GridBorder" cellspacing="0" rules="all" border="1" style="width:1200px;border-collapse:collapse;overflow-x: scroll;">
+                            <table class="GridBorder table" cellspacing="0" rules="all" border="1" style="width:1200px;border-collapse:collapse;overflow-x: scroll;">
                               <tbody>
                                 <tr>
-                                  <th> S.No</th>
-                                  <td> Merchant Id</td>
-                                  <td> Merchant Name</td>
-                                  <td> Batch Id</td>
-                                  <td> roc</td>
-                                  <td> Account No</td>
-                                  <td> Vechile No</td>
-                                  <td> Txn Date</td>
-                                  <td> Txn Type</td>
-                                  <td> Product</td>
-                                  <td> Price</td>
-                                  <td> Volume</td>
-                                  <td> Currency</td>
-                                  <td> Service Charge</td>
-                                  <td> Amount</td>
-                                  <td> Discount</td>
-                                  <td> Odometer Reading</td>
-                                  <td> Status</td>
+                                  <th class="th"> S.No</th>
+                                  <td class="th"> Merchant Id</td>
+                                  <td class="th"> Merchant Name</td>
+                                  <td class="th"> Batch Id</td>
+                                  <td class="th"> roc</td>
+                                  <td class="th"> Account No</td>
+                                  <td class="th"> Vechile No</td>
+                                  <td class="th"> Txn Date</td>
+                                  <td class="th"> Txn Type</td>
+                                  <td class="th"> Product</td>
+                                  <td class="th"> Price</td>
+                                  <td class="th"> Volume</td>
+                                  <td class="th"> Currency</td>
+                                  <td class="th"> Service Charge</td>
+                                  <td class="th"> Amount</td>
+                                  <td class="th"> Discount</td>
+                                  <td class="th"> Odometer Reading</td>
+                                  <td class="th"> Status</td>
                                 </tr>
                                 <tr *ngFor="let mappingDetails of searchTrasactionsTableData;let i=index">
-                                  <td>{{i+1}}</td>
-                                  <td>{{mappingDetails.merchant_Id}}</td>
-                                  <td>{{mappingDetails.merchant_Name}}</td>
-                                  <td>{{mappingDetails.batchId}}</td>
-                                  <td>{{mappingDetails.roc}}</td>
-                                  <td>{{mappingDetails.accountNo}}</td>
-                                  <td>{{mappingDetails.vechileNo}}</td>
-                                  <td>{{mappingDetails.txnDate}}</td>
-                                  <td>{{mappingDetails.txnType}}</td>
-                                  <td>{{mappingDetails.product}}</td>
-                                  <td>{{mappingDetails.price}}</td>
-                                  <td>{{mappingDetails.volume}}</td>
-                                  <td>{{mappingDetails.currency}}</td>
-                                  <td>{{mappingDetails.serviceCharge}}</td>
-                                  <td>{{mappingDetails.amount}}</td>
-                                  <td>{{mappingDetails.discount}}</td>
-                                  <td>{{mappingDetails.odometerReading}}</td>
-                                  <td>{{mappingDetails.status}}</td>
+                                  <td class="td" class="td">{{i+1}}</td>
+                                  <td class="td">{{mappingDetails.merchant_Id}}</td>
+                                  <td class="td">{{mappingDetails.merchant_Name}}</td>
+                                  <td class="td">{{mappingDetails.batchId}}</td>
+                                  <td class="td">{{mappingDetails.roc}}</td>
+                                  <td class="td">{{mappingDetails.accountNo}}</td>
+                                  <td class="td">{{mappingDetails.vechileNo}}</td>
+                                  <td class="td">{{mappingDetails.txnDate}}</td>
+                                  <td class="td">{{mappingDetails.txnType}}</td>
+                                  <td class="td">{{mappingDetails.product}}</td>
+                                  <td class="td">{{mappingDetails.price}}</td>
+                                  <td class="td">{{mappingDetails.volume}}</td>
+                                  <td class="td">{{mappingDetails.currency}}</td>
+                                  <td class="td">{{mappingDetails.serviceCharge}}</td>
+                                  <td class="td">{{mappingDetails.amount}}</td>
+                                  <td class="td">{{mappingDetails.discount}}</td>
+                                  <td class="td">{{mappingDetails.odometerReading}}</td>
+                                  <td class="td">{{mappingDetails.status}}</td>
                                 </tr>
                               </tbody>
                             </table>

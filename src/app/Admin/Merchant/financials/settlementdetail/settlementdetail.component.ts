@@ -44,6 +44,13 @@ export class SettlementdetailComponent implements OnInit {
             this.searchTrasactionsTableData = data.data;
             this.showSettlementDetails = true;
           }
+          else if (data.message.toUpperCase() === 'RECORD NOT FOUND'){
+            this.toastr.error("No record found!")
+          }
+          else if (data.status_Code === 401) {
+            this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+        this.router.navigate(['/'])
+          }
         });
   }
   Reset(){

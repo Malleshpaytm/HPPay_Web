@@ -44,6 +44,7 @@ import { LubeOrderComponent } from './lubes/lube-order/lube-order.component';
     QrAgentsOnboardingComponent,
     AddFsmComponent,
     LubeOrderComponent,
+    
   ],
   imports: [
     MaterialModule,

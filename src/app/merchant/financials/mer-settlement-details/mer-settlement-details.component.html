@@ -4,56 +4,55 @@
       <h3 class="text-white m-0">Settlement Details</h3>
     </div>
     <div class="card-body">
-      <div class="d-flex align-items-center justify-content-between flex-wrap">
+      <div class="d-flex align-items-center justify-content-between flex-wrap"  [formGroup]="settlementDetailsFormGroup">
         <div class="col-lg-6 col-12 d-flex flex-wrap align-items-center mb-3 p-0">
           <label class="required col-md-3 col-12 m-0">From Date:</label>
           <div class="col-md-9 col-12">
-            <input type="date" placeholder=""  class="form-control col-lg-9 col-12" />
+            <input type="date" placeholder=""  class="form-control col-lg-9 col-12" formControlName="fromDate"/>
           </div>
         </div>
         <div class="col-lg-6 col-12 d-flex flex-wrap align-items-center mb-3 p-0">
           <label class="required col-md-3 col-12 m-0">To Date:</label>
           <div class="col-md-9 col-12">
-            <input type="date" placeholder="" class="form-control col-lg-9 col-12" />            
+            <input type="date" placeholder="" class="form-control col-lg-9 col-12" formControlName="toDate"/>            
           </div>
         </div>
       </div>
       <div class="d-flex justify-content-center col-12 mt-2">
         <div class="mr-3">
-          <button class="btn btn-sm btn-primary">Search</button>
+          <button class="btn btn-sm btn-primary" (click)="onSearchButtonClick()">Search</button>
         </div>
         <div class="mr-3">
-          <button class="btn btn-sm btn-primary">Reset</button>
+          <button class="btn btn-sm btn-primary" (click)="Reset()">Reset</button>
         </div>
         <div class="mr-1">
           <button class="btn btn-sm btn-primary">Export to Excel</button>
         </div>
       </div>
-      <p-table [value]="[]" styleClass="table" styleClass="table-responsive" styleClass="data_table">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>S.No</th>
-            <th>Terminal Id</th>
-            <th>Terminal Type</th>
-            <th>Batch Id</th>
-            <th>Status</th>
-            <th>Settlement Date</th>
-            <th>No Of Transactions</th>
-            <th>Payable (Rs.)</th>
-            <th>UKID</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-mappingDetails let-rowIndex="rowIndex">
-          <tr>
-            <td>{{ rowIndex + 1 }}</td>
-            <td>{{ mappingDetails.terminal_Id }}</td>
-            <td>{{ mappingDetails.batch_Id }}</td>
-            <td>{{ mappingDetails.batch_Status }}</td>
-            <td>{{ mappingDetails.settlement_Date }}</td>
-            <td>{{ mappingDetails.no_Of_Transactions }}</td>
-          </tr>
-        </ng-template>
-      </p-table>
+      
+      <div style="overflow-x: auto;" *ngIf="showSettlementDetails">
+        <br>
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th> S.No</th>
+              <th> Terminal Id</th>
+              <th> Batch Id</th>
+              <th> Batch Status</th>
+              <th> Settlement Date</th>
+              <th> No Of Transactions</th>
+            </tr>
+            <tr *ngFor="let mappingDetails of searchTrasactionsTableData;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{mappingDetails.terminal_Id}}</td>
+              <td>{{mappingDetails.batch_Id}}</td>
+              <td>{{mappingDetails.batch_Status}}</td>
+              <td>{{mappingDetails.settlement_Date}}</td>
+              <td>{{mappingDetails.no_Of_Transactions}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> 
     </div>
   </div>
 </div>

@@ -27,29 +27,36 @@ export class TransactiondetailComponent implements OnInit {
       transactionTypes: ['']
     });
   }
-onSearchButtonClick(){
-  let transactionDetailsByMerchantData =
-  {
-    "merchant_Id": this.transactionDetailsFormGroup.controls['merchantid'].value,
-    "from_date": this.transactionDetailsFormGroup.controls['fromdate'].value,
-    "to_date": this.transactionDetailsFormGroup.controls['todate'].value,
-    "transaction_Type": this.transactionDetailsFormGroup.controls['transactionTypes'].value,
-    "Useragent": "web",
-    "Userip": "1",
-    "Userid": "1"
-  }
+  onSearchButtonClick() {
+    let transactionDetailsByMerchantData =
+    {
+      "merchant_Id": this.transactionDetailsFormGroup.controls['merchantid'].value,
+      "from_date": this.transactionDetailsFormGroup.controls['fromdate'].value,
+      "to_date": this.transactionDetailsFormGroup.controls['todate'].value,
+      "transaction_Type": this.transactionDetailsFormGroup.controls['transactionTypes'].value,
+      "Useragent": "web",
+      "Userip": "1",
+      "Userid": "1"
+    }
 
-  this.adminService.transactionDetailsByMerchant(transactionDetailsByMerchantData)
-    .subscribe(data => {
-      debugger;
-      if (data.message.toUpperCase() === 'RECORD FOUND') {
-        this.searchTrasactionsTableData = data.data;
-        this.showSettlementDetails = true;
-      }
-    });
-}
-Reset(){
-  this.transactionDetailsFormGroup.reset();
-  this.showSettlementDetails=false;
-}
+    this.adminService.transactionDetailsByMerchant(transactionDetailsByMerchantData)
+      .subscribe(data => {
+        debugger;
+        if (data.message.toUpperCase() === 'RECORD FOUND') {
+          this.searchTrasactionsTableData = data.data;
+          this.showSettlementDetails = true;
+        }
+        else if (data.message.toUpperCase() === 'RECORD NOT FOUND') {
+          this.toastr.error("No record found!")
+        }
+        else if (data.status_Code === 401) {
+          this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+          this.router.navigate(['/'])
+        }
+      });
+  }
+  Reset() {
+    this.transactionDetailsFormGroup.reset();
+    this.showSettlementDetails = false;
+  }
 }

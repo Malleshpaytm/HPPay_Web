@@ -15,13 +15,12 @@ import { AdminService } from 'src/app/services/admin/admin.service';
   styleUrls: ['./merchantdaywiseearningview.component.css']
 })
 export class MerchantdaywiseearningviewComponent implements OnInit {
-
+  
   dayWiseMerchantEarningDataFormGroup:FormGroup;
   private dataArray: any;
     public dataSource: MatTableDataSource<IRandomUsers>;
     @ViewChild(MatPaginator) paginator: MatPaginator;
-    displayedColumns: string[] = ['sno','terminalId', 'batchId', 'settlementDate', 'receivables', 'payables',
-    ];
+    displayedColumns: string[] = ['sno','earningAmt', 'postingDate', 'transactionDate'];
     constructor(private modalService: NgbModal, private adminService: AdminService,
       private fb: FormBuilder,
       @Inject(DOCUMENT) private _document: Document, private toastr: ToastrService, private router: Router) { }
@@ -50,7 +49,8 @@ export class MerchantdaywiseearningviewComponent implements OnInit {
         if (res.message.toUpperCase() === 'RECORD FOUND') {
 
           this.dataArray = res.data;
-          this.dataArray=this.dataArray.sort((a, b) => new Date(b.created_on).getTime() - new Date(a.created_on).getTime());
+          this.dataArray=this.dataArray.sort((a, b) => new Date(b.postingDate).getTime() - new Date(a.postingDate).getTime());
+          this.dataArray=this.dataArray.sort((a, b) => new Date(b.transactionDate).getTime() - new Date(a.transactionDate).getTime());
           this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
           this.dataSource.paginator = this.paginator;
         }

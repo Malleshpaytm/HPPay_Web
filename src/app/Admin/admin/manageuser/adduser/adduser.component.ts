@@ -240,10 +240,14 @@ export class AdduserComponent implements OnInit {
         this.password.reset();
         this.confirmPassword.reset();
       }
+      else if (data.message.toUpperCase() === 'RECORD NOT FOUND') {
+        this.toastr.error(data.data[0].reason);
+      }
       else if (data.status_Code === 401) {
         this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
         this.router.navigate(['/'])
       }
+
     },
       (err: HttpErrorResponse) => {
         console.log(err);
