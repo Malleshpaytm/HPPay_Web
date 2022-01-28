@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/services/admin/admin.service';
+import { ExcelService } from 'src/app/services/exportToExcel.service';
 
 @Component({
   selector: 'app-mer-transaction-details',
@@ -20,7 +21,8 @@ export class MerTransactionDetailsComponent implements OnInit {
 loggedInUserInfoArr = JSON.parse(this.loggedInUserInfo)
   constructor(private modalService: NgbModal, private adminService: AdminService,
     private fb: FormBuilder,
-    @Inject(DOCUMENT) private _document: Document, private toastr: ToastrService, private router: Router) { }
+    @Inject(DOCUMENT) private _document: Document, private toastr: ToastrService, private router: Router,
+    private excelService:ExcelService) { }
 
   ngOnInit(): void {
     this.transactionDetailsFormGroup = this.fb.group({
@@ -29,6 +31,10 @@ loggedInUserInfoArr = JSON.parse(this.loggedInUserInfo)
       todate: ['', Validators.required],
       transactionTypes: ['']
     });
+  }
+  exportAsXLSX():void {
+    debugger;
+    this.excelService.exportAsExcelFile(this.searchTrasactionsTableData, 'transactionDetails');
   }
   onSearchButtonClick(){
     let transactionDetailsByMerchantData =

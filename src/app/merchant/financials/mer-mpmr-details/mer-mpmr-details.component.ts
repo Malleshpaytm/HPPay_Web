@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { IRandomUsers } from 'src/app/Admin/admin/location/regionalofficedetail/regionalofficedetail.component';
 import { AdminService } from 'src/app/services/admin/admin.service';
+import { ExcelService } from 'src/app/services/exportToExcel.service';
 
 @Component({
   selector: 'app-mer-mpmr-details',
@@ -18,14 +19,15 @@ export class MerMpmrDetailsComponent implements OnInit {
   loggedInUserInfo = localStorage.getItem('userInfo');
   loggedInUserInfoArr = JSON.parse(this.loggedInUserInfo)
   receivablePayableFormGroup:FormGroup;
-  private dataArray: any;
+   dataArray: any;showSettlementDetails: boolean=false;
     public dataSource: MatTableDataSource<IRandomUsers>;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     displayedColumns: string[] = ['sno','terminalId', 'batchId', 'settlementDate', 'receivables', 'payables',
     ];
     constructor(private modalService: NgbModal, private adminService: AdminService,
       private fb: FormBuilder,
-      @Inject(DOCUMENT) private _document: Document, private toastr: ToastrService, private router: Router) { }
+      @Inject(DOCUMENT) private _document: Document, private toastr: ToastrService, private router: Router,
+      private excelService:ExcelService) { }
 
       ngOnInit(): void {
         this.receivablePayableFormGroup=this.fb.group({
@@ -37,6 +39,7 @@ export class MerMpmrDetailsComponent implements OnInit {
     
       onSearchButtonClick(){
         debugger;
+        this.showSettlementDetails=true;
         let get_receivable_payable_detailsData={
           "merchantid": this.loggedInUserInfoArr.merchant_id,
           "from_Date": this.receivablePayableFormGroup.controls.fromDate.value,
@@ -66,9 +69,13 @@ export class MerMpmrDetailsComponent implements OnInit {
         
       }
       onResetButtonClick(){
+        this.showSettlementDetails=false;
         this.receivablePayableFormGroup.reset();
         this.dataSource = new MatTableDataSource<IRandomUsers>();
         this.dataSource.paginator = this.paginator;
       }
-
+      exportAsXLSX():void {
+        debugger;
+        this.excelService.exportAsExcelFile(this.dataArray, 'mpmr');
+      }
 }

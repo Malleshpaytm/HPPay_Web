@@ -39,7 +39,9 @@
     "primeng-lts": "^11.4.8",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.11.3"
+    "zone.js": "~0.11.3",
+    "file-saver": "2.0.5",
+    "xlsx": "0.17.5"
   },
   "devDependencies": {
     "@angular-devkit/architect": ">= 0.900 < 0.1200",

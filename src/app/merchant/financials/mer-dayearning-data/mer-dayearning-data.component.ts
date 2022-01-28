@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { IRandomUsers } from 'src/app/Admin/admin/location/regionalofficedetail/regionalofficedetail.component';
 import { AdminService } from 'src/app/services/admin/admin.service';
+import { ExcelService } from 'src/app/services/exportToExcel.service';
 
 
 @Component({
@@ -19,13 +20,14 @@ export class MerDayearningDataComponent implements OnInit {
   loggedInUserInfo = localStorage.getItem('userInfo');
   loggedInUserInfoArr = JSON.parse(this.loggedInUserInfo)
   dayWiseMerchantEarningDataFormGroup:FormGroup;
-  private dataArray: any;
+  private dataArray: any; showSettlementDetails: boolean=false;
     public dataSource: MatTableDataSource<IRandomUsers>;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     displayedColumns: string[] = ['sno','earningAmt', 'postingDate', 'transactionDate'];
     constructor(private modalService: NgbModal, private adminService: AdminService,
       private fb: FormBuilder,
-      @Inject(DOCUMENT) private _document: Document, private toastr: ToastrService, private router: Router) { }
+      @Inject(DOCUMENT) private _document: Document, private toastr: ToastrService, private router: Router,
+      private excelService:ExcelService) { }
 
 
   ngOnInit(): void {
@@ -35,7 +37,12 @@ export class MerDayearningDataComponent implements OnInit {
       toDate:[(new Date()).toISOString().substring(0, 10)]
     })
   }
+  exportAsXLSX():void {
+    debugger;
+    this.excelService.exportAsExcelFile(this.dataArray, 'dayearning');
+  }
   onSearchButtonClick(){
+    this.showSettlementDetails=true;
     debugger;
     let daywise_merchant_earning_dataData={
       "merchantid": this.loggedInUserInfoArr.merchant_id,
@@ -49,7 +56,7 @@ export class MerDayearningDataComponent implements OnInit {
       .subscribe(res=>{
         debugger;
         if (res.message.toUpperCase() === 'RECORD FOUND') {
-
+          
           this.dataArray = res.data;
           this.dataArray=this.dataArray.sort((a, b) => new Date(b.postingDate).getTime() - new Date(a.postingDate).getTime());
           this.dataArray=this.dataArray.sort((a, b) => new Date(b.transactionDate).getTime() - new Date(a.transactionDate).getTime());
@@ -66,6 +73,7 @@ export class MerDayearningDataComponent implements OnInit {
     
   }
   onResetButtonClick(){
+    this.showSettlementDetails=false;
     this.dayWiseMerchantEarningDataFormGroup.reset();
     this.dataSource = new MatTableDataSource<IRandomUsers>();
     this.dataSource.paginator = this.paginator;

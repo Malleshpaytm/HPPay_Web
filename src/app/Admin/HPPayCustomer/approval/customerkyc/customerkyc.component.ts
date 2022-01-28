@@ -126,7 +126,7 @@ this.customerkycformgroup.controls.category.setValue(0)
           this.router.navigate(['/'])
         }
         else if (data.message.toUpperCase() === "RECORD NOT FOUND") {
-          this.toastr.error(data.message);
+          //this.toastr.error(data.message);
           this.selection.clear();
         }
 

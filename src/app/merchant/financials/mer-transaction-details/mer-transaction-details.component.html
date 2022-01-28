@@ -25,8 +25,8 @@
         <div class="mr-3">
           <button class="btn btn-sm btn-primary" (click)="Reset()">Reset</button>
         </div>
-        <div class="mr-1">
-          <button class="btn btn-sm btn-primary">Export to Excel</button>
+        <div class="mr-1" *ngIf="showSettlementDetails">
+          <button class="btn btn-sm btn-primary" (click)="exportAsXLSX()">Export to Excel</button>
         </div>
       </div>
       <div style="overflow-x: auto;" *ngIf="showSettlementDetails">

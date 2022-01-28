@@ -49,10 +49,10 @@
                                             <div class="mr-3">
                                                 <button class="btn btn-primary" (click)="onSearchButtonClick()">Search</button>
                                             </div>
-                                            <div class="mr-3">
-                                                <button class="btn btn-primary">Export to Excel</button>
+                                            <div class="mr-3" *ngIf="showSettlementDetails"> 
+                                                <button class="btn btn-primary" (click)="exportAsXLSX()">Export to Excel</button>
                                             </div>
-                                            <div class="mr-3">
+                                            <div class="mr-3" >
                                                 <button class="btn btn-primary" (click)="onResetButtonClick()">Reset</button>
                                             </div>
                                         </div>
@@ -60,37 +60,38 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div >
-<br>
-                            <mat-table [dataSource]="dataSource"  style="width: 100%;" class="mat-elevation-z8">
-                              <ng-container matColumnDef="sno">
-                                <mat-header-cell *matHeaderCellDef >S.No.</mat-header-cell>
-                                <mat-cell *matCellDef="let row;let i = index" class="text-center"> {{i+1}}. </mat-cell>
-                              </ng-container>
-                              <ng-container matColumnDef="earningAmt">
-                                <mat-header-cell *matHeaderCellDef >Earning Amount </mat-header-cell>
-                                <mat-cell *matCellDef="let row" class="text-center"> {{row.earningAmt}} </mat-cell>
-                              </ng-container>
-                  
-                              <ng-container matColumnDef="postingDate">
-                                <mat-header-cell *matHeaderCellDef >Posting Date </mat-header-cell>
-                                <mat-cell *matCellDef="let row" class="text-center"> {{row.postingDate}} </mat-cell>
-                              </ng-container>
-                  
-                              <ng-container matColumnDef="transactionDate">
-                                <mat-header-cell *matHeaderCellDef > Transaction Date </mat-header-cell>
-                                <mat-cell *matCellDef="let row" class="text-center"> {{row.transactionDate}} </mat-cell>
-                              </ng-container>
-                  
-                             
-                             
-                  
-                              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                            </mat-table>
-                            <mat-paginator [pageSizeOptions]="[5,10]"></mat-paginator>
-                          </div>
+                     
                     </div>
+                    <div class="card-body" *ngIf="showSettlementDetails">
+                        <br>
+                                                    <mat-table [dataSource]="dataSource"  style="width: 100%;" class="mat-elevation-z8">
+                                                      <ng-container matColumnDef="sno">
+                                                        <mat-header-cell *matHeaderCellDef >S.No.</mat-header-cell>
+                                                        <mat-cell *matCellDef="let row;let i = index" class="text-center"> {{i+1}}. </mat-cell>
+                                                      </ng-container>
+                                                      <ng-container matColumnDef="earningAmt">
+                                                        <mat-header-cell *matHeaderCellDef >Earning Amount </mat-header-cell>
+                                                        <mat-cell *matCellDef="let row" class="text-center"> {{row.earningAmt}} </mat-cell>
+                                                      </ng-container>
+                                          
+                                                      <ng-container matColumnDef="postingDate">
+                                                        <mat-header-cell *matHeaderCellDef >Posting Date </mat-header-cell>
+                                                        <mat-cell *matCellDef="let row" class="text-center"> {{row.postingDate}} </mat-cell>
+                                                      </ng-container>
+                                          
+                                                      <ng-container matColumnDef="transactionDate">
+                                                        <mat-header-cell *matHeaderCellDef > Transaction Date </mat-header-cell>
+                                                        <mat-cell *matCellDef="let row" class="text-center"> {{row.transactionDate}} </mat-cell>
+                                                      </ng-container>
+                                          
+                                                     
+                                                     
+                                          
+                                                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                                      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                                                    </mat-table>
+                                                    <mat-paginator [pageSizeOptions]="[5,10]"></mat-paginator>
+                                                  </div>
                 </div>
             </div>
         </div>

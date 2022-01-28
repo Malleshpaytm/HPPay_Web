@@ -29,24 +29,24 @@ export class SidenavComponent implements OnInit {
       //   label: 'My Profile',
       //   routerLink: ['./profile']
       // },
-      {
-        label: 'Dashboard',
-        routerLink: ['./dashboard'],
-        styleClass: "navItem"
-      },
+      // {
+      //   label: 'Dashboard',
+      //   routerLink: ['./dashboard'],
+      //   styleClass: "navItem"
+      // },
       // {
       //   label: 'Change Password',
       //   routerLink: ['./change-password']
       // },
-      {
-        label: 'QR Agents Onboarding',
-        routerLink: 'qr-agents-onboarding',
-        styleClass: "navItem"
-      },
-      {
-        label: 'Fuel Pricing',
-        styleClass: "navItem"
-      },
+      // {
+      //   label: 'QR Agents Onboarding',
+      //   routerLink: 'qr-agents-onboarding',
+      //   styleClass: "navItem"
+      // },
+      // {
+      //   label: 'Fuel Pricing',
+      //   styleClass: "navItem"
+      // },
       {
         label: 'Financials',
         styleClass: "navItem hasSub",
@@ -80,13 +80,24 @@ export class SidenavComponent implements OnInit {
         }
       ]
       },
-      {
-        label: 'Accept Transactions',
-        styleClass: "navItem"
-      },
+      // {
+      //   label: 'Accept Transactions',
+      //   styleClass: "navItem"
+      // },
       {
         label: 'Requests',
-        styleClass: "navItem"
+        styleClass: "navItem",
+        items: [{
+          label: 'SMS Alerts for Dealers',
+          routerLink: ['./settlement-details'],
+          
+        },
+        {
+          label: 'QR Agents Onboarding',
+          routerLink: 'qr-agents-onboarding',
+          // styleClass: "navItem"
+        },
+      ]
       },
       {
         label: 'Lubes',
@@ -98,10 +109,11 @@ export class SidenavComponent implements OnInit {
        
       ]
       },
-      // {
-      //   label: 'Logout',
-      //   routerLink:['../']
-      // }
+      {
+        label: 'Dealership guidelines',
+        styleClass: "navItem",
+        //routerLink:['../']
+      }
     ];
   }
 
