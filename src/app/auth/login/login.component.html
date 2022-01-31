@@ -1,48 +1,60 @@
-<div class="container">
-	<div class="card shadow login_wrapper">
-		<div class="login_block">
-			<div class="login_logo">
-				<img src="assets/images/hp-refuel-logo.png" class="img-fluid" alt="">
-			</div>
-			<div class="enrollment_block d-flex align-items-center justify-content-between mb-3">
-				<div class="col-sm-12">
-					<label class="form_label">Username</label>
-					<input type="text" class="form-control" [(ngModel)]="UserName"
-						[ngModelOptions]="{standalone: true}">
-				</div>
-			</div>
-			<div class="enrollment_block d-flex align-items-center justify-content-between mb-2">
-				<div class="col-sm-12">
-					<label class="form_label">Password </label>
-					<input type="password" class="form-control" [(ngModel)]="Password"
-						[ngModelOptions]="{standalone: true}">
-				</div>
-			</div>
-
-			<div class="enrollment_block d-flex align-items-center justify-content-between mb-2">
-				<div class="col-sm-6">
-					<mat-checkbox class="example-margin mb-0">Remember Me</mat-checkbox>
-				</div>
-				<div class="col-sm-6 text-right">
-					<a class="mb-2 d-block">Forgot Password?</a>
-				</div>
-			</div>
-			<div class="col-sm-12">
-				<div class="py-0">
-					<p>Not a member? New user <a routerLink="applyNow">click here</a></p>
-				</div>
-				<div class="py-0">
-					<button class="btn_login" (click)="applogin();">Login</button>
-				</div>
-				<div class="mt-1">
-					<h4 class="font-600 bb-1 mb-2">Register with</h4>
-					<button class="btn g-login"><img src="assets/images/google-plus.png" class="img-fluid pr-1" alt="">
-						Google</button>
+<div class="mb-footer h-100">
+<div class="login_wrapper h-100">
+<app-login-header></app-login-header>
+	<div class="container px-md-4 px-2 py-4 ">
+		<div class="d-flex align-items-start">
+			<div class="col-lg-5 col-md-6 col-12">
+				<div class="bg-white login_inner py-5 px-3">
+					<div class="login_block">				
+						<div class="enrollment_block d-flex align-items-center justify-content-between mb-3">
+							<div class="col-sm-12">
+								<label class="form_label">Username</label>
+								<input type="text" class="form-control" [(ngModel)]="UserName"
+									[ngModelOptions]="{standalone: true}">
+							</div>
+						</div>
+						<div class="enrollment_block d-flex align-items-center justify-content-between mb-2">
+							<div class="col-sm-12">
+								<label class="form_label">Password </label>
+								<input type="password" class="form-control" [(ngModel)]="Password"
+									[ngModelOptions]="{standalone: true}">
+							</div>
+						</div>
+	
+						<div class="enrollment_block d-flex align-items-center justify-content-end mt-3">							
+							<div class="col-sm-12 text-right">
+								<a href="#" class="mb-2 d-block text-red font-weight-bold">Forgot Password?</a>
+							</div>
+						</div>
+						<div class="enrollment_block d-flex align-items-center justify-content-start mt-4 mb-3">
+							<div class="col-sm-12">
+								<mat-checkbox class="example-margin mb-0">Remember Me</mat-checkbox>
+							</div>
+						</div>
+						<div class="col-sm-12">							
+							<div class="py-0">
+								<button class="btn_login" (click)="applogin();">Login</button>
+							</div>
+							<div class="py-0 text-center">
+								<p>Not a member? New user <a routerLink="applyNow" class="text-red font-weight-bold">click here</a></p>
+							</div>
+							<div class="mt-1 text-center mt-4">
+								<h4 class="font-600 mb-2">or login with</h4>
+								<button class="btn g-login">
+									<img src="assets/images/google-plus.png" class="img-fluid pr-1" alt="">
+									Google
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+		
 
+	</div>
+	<app-login-footer></app-login-footer>
+</div>
 </div>
 <!-- forgot password modal code -->
 

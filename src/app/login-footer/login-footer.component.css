@@ -1,12 +1,10 @@
-/*.main_header {
-    border-bottom: 1px solid #00baf2;
-}*/
-.header_wrapper {
-  background: #212121;
-  display: flex;
-  align-items: flex-start;
-  padding: 20px 25px;
-  justify-content: space-between;
+.main_footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.footer_wrapper {
+  background: #222061;
 }
 .logo {
   display: block;
@@ -32,7 +30,7 @@
   color: #bdbdbd;
 }
 .downloadApp_img img {
-  max-width: 125px;
+  max-width: 105px;
 }
 .downloadApp_img {
   padding: 0 7px;

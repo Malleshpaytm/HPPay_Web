@@ -26,9 +26,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MaterialModule } from './material/material.module';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
+import { LoginHeaderComponent } from './login-header/login-header.component';
+import { LoginFooterComponent } from './login-footer/login-footer.component';
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent, LoginComponent],
+  declarations: [AppComponent, PageNotFoundComponent, LoginComponent, LoginHeaderComponent, LoginFooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
