@@ -86,7 +86,7 @@ export class SidenavComponent implements OnInit {
       // },
       {
         label: 'Requests',
-        styleClass: "navItem",
+        styleClass: "navItem hasSub",
         items: [{
           label: 'SMS Alerts for Dealers',
           routerLink: ['./settlement-details'],

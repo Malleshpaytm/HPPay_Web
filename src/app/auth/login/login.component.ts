@@ -153,6 +153,7 @@ export class LoginComponent implements OnInit {
     // }
   }
   applogin(){
+    localStorage.removeItem('token');
     let headersToken = {
       'Content-Type': 'application/json',
       'Secret_Key': 'PVmMSclp834KBIUa9O-XxpBsDJhsi1dsds74CiGaoo5',
@@ -176,8 +177,11 @@ export class LoginComponent implements OnInit {
      this.http.post(`${this.baseHttpService.hpPayApiRoot}api/hppay/generatetoken`, body1, { 'headers': headersToken })
       .subscribe((data:any) => {
           if (data.success === true) {
-            localStorage.removeItem('token')
+            if(typeof(localStorage.getItem("token"))=='undefined'){
+              alert('bbbbb');
+            }
             localStorage.setItem('token', data.token);
+            this.baseHttpService.authToken='Bearer '+data.token;
             this.loginService.authToken='Bearer '+data.token;
             let headers = {
               'Content-Type': 'application/json',
