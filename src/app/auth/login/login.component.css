@@ -6,10 +6,14 @@
     #1e3f7b71;
   background-size: cover;
   position: relative;
-  padding-bottom: 100px;
+  min-height: 100%;
+  margin-bottom: -88px;
 }
 .mb-footer {
   margin-bottom: 100px;
+}
+.push {
+  height: 88px;
 }
 /* .login_wrapper:after {
   position: absolute;
