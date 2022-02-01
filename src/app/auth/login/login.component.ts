@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { LoginService } from 'src/app/services/login/login.service';
 import { BaseHttpService } from 'src/app/services/base-http.service';
+import { AdminService } from 'src/app/services/admin/admin.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private modalService: NgbModal,
     public router: Router,
     private authService: AuthService,
-    private toastr: ToastrService, public loginService: LoginService,private http:HttpClient, private baseHttpService: BaseHttpService
+    private toastr: ToastrService, public loginService: LoginService,private http:HttpClient, 
+    private baseHttpService: BaseHttpService, private adminService:AdminService
   ) { }
 
   open(content: any) {
@@ -178,11 +180,12 @@ export class LoginComponent implements OnInit {
       .subscribe((data:any) => {
           if (data.success === true) {
             if(typeof(localStorage.getItem("token"))=='undefined'){
-              alert('bbbbb');
+              //alert('bbbbb');
             }
             localStorage.setItem('token', data.token);
             this.baseHttpService.authToken='Bearer '+data.token;
             this.loginService.authToken='Bearer '+data.token;
+            this.adminService.authToken='Bearer '+data.token;
             let headers = {
               'Content-Type': 'application/json',
               'Authorization': 'Bearer '+data.token,
