@@ -123,7 +123,7 @@ export class LoginComponent implements OnInit {
               this.authService.login = true;
               this.userInfo.merchant_id = this.UserName;
               this.authService.userRole = 'merchant';
-              this.router.navigate(['merchant']);
+              this.router.navigate(['merchant/profile']);
             }
             let userInfo = JSON.stringify(this.userInfo);
             localStorage.setItem('userInfo', userInfo);
