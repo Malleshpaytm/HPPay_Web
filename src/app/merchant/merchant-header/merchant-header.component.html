@@ -11,10 +11,10 @@
 						</a>
 					</div>
 					<div class="header_title text-center pl-2">
-						<h3 class="text-left text_primary m-0 font-size-16 font-weight-bold">HPPay- Merchant</h3>
+						<h3 class="text-left text_primary m-0 font-size-16 font-weight-bold header_title">HPPay- Merchant</h3>
 					</div>
 				</div>
-				<div class="header_right col-lg-3 col-3 justify-content-end d-flex">
+				<div class="header_right col-lg-6 col-6 justify-content-end d-flex px-0">
 					<ul class="navbar-nav flex-row">						
 						<li class="nav-item dropdown pr-2 border-right border_primary">
 						  <a class="nav-link dropdown-toggle d-flex align-items-center py-0 font-weight-bold text_primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -23,13 +23,13 @@
 							  </div>
 							  <span class="d-md-block d-none">{{username}}</span>
 						  </a>
-						  <div class="dropdown-menu dropdown-menu-right py-3" aria-labelledby="navbarDropdown">
+						  <div class="dropdown-menu dropdown-menu-right py-3 position-absolute" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item  text-dark-50 py-2 " href="#" [routerLink]="['./profile']" routerLinkActive="router-link-active" ><i class="fa fa-user mr-2"></i> My Profile</a>
 							<a class="dropdown-item  text-dark-50 py-2" href="#" [routerLink]="['./change-password']" routerLinkActive="router-link-active" ><i class="fa fa-key mr-2"></i> Change Password</a>
 						  </div>
 						</li>
 						<li class="nav-item d-flex align-items-center pl-3">
-							<a 	class="nav-link d-flex align-items-center px-3 py-2 border border_primary border-radius-round  font-weight-bold text_primary" href="#" [routerLink]="['../']" routerLinkActive="router-link-active" ><span class="d-md-block d-none">Sign out</span></a>
+							<a 	class="nav-link d-flex align-items-center px-3 py-md-2 py-1 border border_primary border-radius-round font-weight-bold text_primary text-nowrap" href="#" [routerLink]="['../']" routerLinkActive="router-link-active" ><span class="d-md-block">Sign out</span></a>
 						  </li>
 					  </ul>
 				</div>

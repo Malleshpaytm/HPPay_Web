@@ -1,8 +1,9 @@
 import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild, HostListener } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MenuItem } from 'primeng/api';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sidenav',
@@ -16,10 +17,32 @@ export class SidenavComponent implements OnInit {
   items: MenuItem[];
   username=this.loggedInUserInfoArr?.username
   constructor(@Inject(DOCUMENT) private _document: Document) {}
+
+  showToggle: string;
+  mode: string;
+  openSidenav:boolean;
+  private screenWidth$ = new BehaviorSubject<number>
+    (window.innerWidth);
+
+
   @ViewChild('sidenav') sidenav: MatSidenav;
  
   reason = '';
   ngOnInit(): void {
+
+    this.getScreenWidth().subscribe(width => {
+      if (width < 640) {
+       this.showToggle = 'show';
+       this.mode = 'over';
+       this.openSidenav = false;
+     }
+     else if (width > 640) {
+       this.showToggle = 'hide';
+       this.mode = 'side';
+       this.openSidenav = true;
+     }
+   });
+
     this.items = [
       // {
       //   label: this.username,
@@ -119,6 +142,14 @@ export class SidenavComponent implements OnInit {
         //routerLink:['../']
       }
     ];
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.screenWidth$.next(event.target.innerWidth);
+  }
+  getScreenWidth(): Observable<number> {
+    return this.screenWidth$.asObservable();
   }
 
   refreshPage() {

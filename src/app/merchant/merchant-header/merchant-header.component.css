@@ -25,17 +25,19 @@
   overflow: hidden;
   border-radius: 50%;
 }
+.header_title {
+  line-height: 1;
+}
 .logo {
   display: block;
 }
 .logo a {
   display: flex;
   align-items: center;
-  padding-top: 5px;
 }
 .logo img {
   max-width: 30px;
-  margin-right: 12px;
+  /* margin-right: 5px; */
 }
 .header_top {
   display: flex;
@@ -77,5 +79,11 @@
   .login_wrapper {
     padding: 10px;
     background: none;
+  }
+  .logo img {
+    margin-right: 5px;
+  }
+  .header_title {
+    font-size: 12px !important;
   }
 }

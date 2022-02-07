@@ -25,6 +25,7 @@ loggedInUserInfoArr = JSON.parse(this.loggedInUserInfo)
     private excelService:ExcelService) { }
 
   ngOnInit(): void {
+    //debugger;
     this.transactionDetailsFormGroup = this.fb.group({
       merchantid: ['', Validators.required],
       fromdate: ['', Validators.required],
