@@ -1,101 +1,90 @@
-<div class="container-fluid">
-    <div class="container">
-        <div class="row mb-5 pb-5">
-            <div class="col-12">
-                <div class="card mt-5 p-0">
-                    <div class="card-header text-white" style="background-color:  #084594;">
-                         <strong class="down-stat">Day-Wise Merchant Earning Data</strong>
+
+    <div class="container pt-3">
+        <div class="py-2">
+            <h3 class="text_primary m-0 font-weight-bold">Financial - Day-Wise Merchant Earning Data</h3>
+          </div>
+          <div class="bg-white mt-3 py-4 px-3">
+            <div class="card-body p-0">
+                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                   
+                    <div class="card-body" [formGroup]="dayWiseMerchantEarningDataFormGroup">
+
+                        <!-- <div class="d-flex align-items-center justify-content-start w-100 flex-wrap">
+                            <label class="required col-lg-3 col-12 mb-3">Merchant ID</label>
+                            <div class="col-lg-5 col-12 mb-3">
+                                <input type="text" class="form-control bg-grey" formControlName="merchantid" minlength="10" maxlength="10">
+                            </div>
+                        </div> -->
+                        <div class="d-flex align-items-center justify-content-start w-100 flex-wrap">
+                            <label class="required col-lg-3 col-12 mb-3">From Date</label>
+                            <div class="col-lg-5 col-12 mb-3">
+                                <input type="date" class="form-control bg-grey" formControlName="fromDate">
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start w-100 flex-wrap">
+                            <label class="required col-lg-3 col-12 mb-3">To Date</label>
+                            <div class="col-lg-5 col-12 mb-3">
+                                <input type="date" class="form-control bg-grey" formControlName="toDate">
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start w-100 flex-wrap w-100 mt-3">
+                            <label class="col-lg-3 col-12 mb-3"> &nbsp;</label>
+                            <div class="col-lg-5 col-12 mb-3 d-flex align-items-center justify-content-center">
+                                <div class="px-3 mb-3 col-md-6 col-12">
+                                    <button class="btn bg_primary form_btn text-white rounded-30 px-3 d-flex align-items-center justify-content-center w-100" (click)="onSearchButtonClick()">
+                                        <span class="mr-2">Search</span>
+                                        <img src="assets/images/search_icon.svg" class="btn_icon" alt="">
+                                    </button>
+                                </div>
+                                <div class="px-3 mb-3 col-md-6 col-12">
+                                        <button class="btn bg_primary form_btn text-white rounded-30 px-3 d-flex align-items-center justify-content-center w-100" (click)="onResetButtonClick()">
+                                            <span class="mr-2">Reset</span>
+                                            <img src="assets/images/refresh_icon.svg" class="btn_icon" alt="">
+                                        </button>
+                                </div>
+                           </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <table class="w-50" [formGroup]="dayWiseMerchantEarningDataFormGroup">
-                            <!-- <tr>
-                                <td width="40%">
-                                    <span class="required">Merchant ID</span>:
-                                </td>
-                                   <td align="left">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" formControlName="merchantid" minlength="10" maxlength="10">
-                                        </div>
-                                    </td>
-                            </tr> -->
+                    <div class="d-flex justify-content-end col-12 mt-4">
+                        <div class="mr-1" *ngIf="showSettlementDetails">
+                          <button class="btn bg_primary form_btn text-white rounded-30 px-3 d-flex align-items-center justify-content-center w-100" (click)="exportAsXLSX()">
+                            <span class="mr-2">Export to Excel</span>
+                            <img src="assets/images/xlsx_export_icon.png" class="btn_icon" alt="">
+                            </button>
+                        </div>
+                      </div>
+                    <div class="table-responsive" *ngIf="showSettlementDetails">
+                        <mat-table [dataSource]="dataSource"  style="width: 100%;" class="mat-elevation-z8 table_layout">
+                            <ng-container matColumnDef="sno">
+                            <mat-header-cell *matHeaderCellDef >S.No.</mat-header-cell>
+                            <mat-cell *matCellDef="let row;let i = index" class="text-center"> {{i+1}}. </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="earningAmt">
+                            <mat-header-cell *matHeaderCellDef >Earning Amount </mat-header-cell>
+                            <mat-cell *matCellDef="let row" class="text-center"> {{row.earningAmt}} </mat-cell>
+                            </ng-container>
+                
+                            <ng-container matColumnDef="postingDate">
+                            <mat-header-cell *matHeaderCellDef >Posting Date </mat-header-cell>
+                            <mat-cell *matCellDef="let row" class="text-center"> {{row.postingDate}} </mat-cell>
+                            </ng-container>
+                
+                            <ng-container matColumnDef="transactionDate">
+                            <mat-header-cell *matHeaderCellDef > Transaction Date </mat-header-cell>
+                            <mat-cell *matCellDef="let row" class="text-center"> {{row.transactionDate}} </mat-cell>
+                            </ng-container>
+                
                             
-                            <tr>
-                                <td width="40%">
-                                    <span class="required">From  Date</span>:
-                                </td>
-                                <td align="left">
-                                        <div class="form-group">
-                                            <input type="date" class="form-control" formControlName="fromDate">
-                                        </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="40%">
-                                    <span class="required">To  Date</span>:
-                                </td>
-                                <td align="left">
-                                        <div class="form-group">
-                                            <input type="date" class="form-control" formControlName="toDate">
-                                        </div>
-                                </td>
-                            </tr>
-                            <tbody>
-                                                                
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td align="left">
-                                        <div class=" d-flex flex-row justify-content-end">
-                                            <div class="mr-3">
-                                                <button class="btn btn-primary" (click)="onSearchButtonClick()">Search</button>
-                                            </div>
-                                            <div class="mr-3" *ngIf="showSettlementDetails"> 
-                                                <button class="btn btn-primary" (click)="exportAsXLSX()">Export to Excel</button>
-                                            </div>
-                                            <div class="mr-3" >
-                                                <button class="btn btn-primary" (click)="onResetButtonClick()">Reset</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                     
+                            
+                
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+                        <mat-paginator [pageSizeOptions]="[5,10]"></mat-paginator>
                     </div>
-                    <div class="card-body" *ngIf="showSettlementDetails">
-                        <br>
-                                                    <mat-table [dataSource]="dataSource"  style="width: 100%;" class="mat-elevation-z8">
-                                                      <ng-container matColumnDef="sno">
-                                                        <mat-header-cell *matHeaderCellDef >S.No.</mat-header-cell>
-                                                        <mat-cell *matCellDef="let row;let i = index" class="text-center"> {{i+1}}. </mat-cell>
-                                                      </ng-container>
-                                                      <ng-container matColumnDef="earningAmt">
-                                                        <mat-header-cell *matHeaderCellDef >Earning Amount </mat-header-cell>
-                                                        <mat-cell *matCellDef="let row" class="text-center"> {{row.earningAmt}} </mat-cell>
-                                                      </ng-container>
-                                          
-                                                      <ng-container matColumnDef="postingDate">
-                                                        <mat-header-cell *matHeaderCellDef >Posting Date </mat-header-cell>
-                                                        <mat-cell *matCellDef="let row" class="text-center"> {{row.postingDate}} </mat-cell>
-                                                      </ng-container>
-                                          
-                                                      <ng-container matColumnDef="transactionDate">
-                                                        <mat-header-cell *matHeaderCellDef > Transaction Date </mat-header-cell>
-                                                        <mat-cell *matCellDef="let row" class="text-center"> {{row.transactionDate}} </mat-cell>
-                                                      </ng-container>
-                                          
-                                                     
-                                                     
-                                          
-                                                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                                                      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                                                    </mat-table>
-                                                    <mat-paginator [pageSizeOptions]="[5,10]"></mat-paginator>
-                                                  </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
  
