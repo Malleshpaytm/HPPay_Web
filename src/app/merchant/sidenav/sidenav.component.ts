@@ -50,6 +50,7 @@ export class SidenavComponent implements OnInit {
       {
         label: 'Financials',
         styleClass: "navItem hasSub",
+        icon: 'side_icon financial',
         items: [{
           label: 'Settlement Details',
           routerLink: ['./settlement-details']
@@ -87,6 +88,7 @@ export class SidenavComponent implements OnInit {
       {
         label: 'Requests',
         styleClass: "navItem hasSub",
+        icon: 'side_icon request',
         items: [{
           label: 'SMS Alerts for Dealers',
           routerLink: ['./settlement-details'],
@@ -102,6 +104,7 @@ export class SidenavComponent implements OnInit {
       {
         label: 'Lubes',
         styleClass: "navItem hasSub",
+        icon: 'side_icon lubes',
         items: [{
           label: 'Lube Order',
           routerLink: ['./lube-order']
@@ -112,6 +115,7 @@ export class SidenavComponent implements OnInit {
       {
         label: 'Dealership guidelines',
         styleClass: "navItem",
+        icon: 'side_icon dealerGuidelines'
         //routerLink:['../']
       }
     ];
