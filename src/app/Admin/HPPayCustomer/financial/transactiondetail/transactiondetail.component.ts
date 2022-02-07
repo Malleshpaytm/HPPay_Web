@@ -1,10 +1,13 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { IRandomUsers } from 'src/app/Admin/admin/location/regionalofficedetail/regionalofficedetail.component';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
@@ -24,7 +27,12 @@ export class TransactiondetailComponent implements OnInit {
   isshow: number = 0;
   istlshow: number = 0;
   transactionDetailsTableData:Array<any>;
-  transactionDetailFormGroup: FormGroup
+  transactionDetailFormGroup: FormGroup;
+  displayedColumns: string[] = ['sno','merchantid','batchid_roc', 'transaction_Date','transaction_type',
+  'product','price', 'vol_in_ltr','serviceCharge','amount'];
+private dataArray: any;
+public dataSource: MatTableDataSource<IRandomUsers>;
+@ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private modalService: NgbModal, private customerService: CustomerService,
     private fb: FormBuilder,
     @Inject(DOCUMENT) private _document: Document, private toastr: ToastrService, private router: Router,) { }
@@ -37,6 +45,7 @@ export class TransactiondetailComponent implements OnInit {
     })
   }
   onSearchButtonClick() {
+    this.isshow = 1;
     debugger;
     let view_transaction_detail_customerData = {
       "mobile_No": this.transactionDetailFormGroup.controls.mobile_No.value,
@@ -49,8 +58,11 @@ export class TransactiondetailComponent implements OnInit {
     }
     this.customerService.view_transaction_detail_customer(view_transaction_detail_customerData).subscribe(data => {
       if (data.message.toUpperCase() === 'RECORD FOUND') {
-        this.isshow = 1;
+      
          this.transactionDetailsTableData = data.data;
+         this.dataArray = data.data;
+         this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
+         this.dataSource.paginator = this.paginator;
       }
       else if (data.status_Code === 401) {
         //this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')

@@ -5,4 +5,6 @@
 .title .tran-det { float:left }
 .title .help { float:right }
 
-  
+.mat-column-sno {
+  flex: 0 0 7%;
+}

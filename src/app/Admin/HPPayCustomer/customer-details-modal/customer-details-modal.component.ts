@@ -64,6 +64,10 @@ export class CustomerDetailsModalComponent implements OnInit {
       })
   }
 
+  onCloseButtonClick(){
+    this.dialogRef.close()
+  }
+
 
 
 }

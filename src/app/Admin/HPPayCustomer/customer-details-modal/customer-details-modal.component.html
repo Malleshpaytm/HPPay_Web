@@ -1,108 +1,134 @@
-<div class="form" [formGroup]="rawCustomerDetailsFormGroup">
-    <table>
-        <tr>
 
-            <th *ngIf="customerDetails?.title">Title:</th>
-            <th *ngIf="customerDetails?.title"><input class="input" disabled [value]="customerDetails?.title">
-            </th>
-            <th *ngIf="customerDetails?.first_name && customerDetails?.last_name"> Name:</th>
-            <th *ngIf="customerDetails?.first_name && customerDetails?.last_name">
-                <input class="input" disabled [value]="customerDetails?.first_name+' '+customerDetails?.last_name">
-            </th>
-
-        </tr>
-
-        <tr>
-
-            <th> Email:</th>
-            <th>
-                <input class="input" disabled [value]="customerDetails?.user_email">
-            </th>
-            <th> Mobile:</th>
-            <th><input class="input" disabled [value]="customerDetails?.user_mobile"></th>
-        </tr>
-        <tr>
-            <th> Customer Type:</th>
-            <th>
-                <input class="input" disabled [value]="customerDetails?.customerType">
-            </th>
-            <th> Customer Id:</th>
-            <th><input class="input" disabled [value]="customerDetails?.customer_Id"></th>
-
-
-        </tr>
-        <tr>
-
-            <th *ngIf="customerDetails?.dob">DOB:</th>
-            <th *ngIf="customerDetails?.dob">
-                <input class="input" disabled [value]="customerDetails?.dob | date: 'dd/MM/yyyy' ">
-            </th>
-            <th *ngIf="customerDetails?.gender!=null"> Gender:</th>
-            <th *ngIf="customerDetails?.gender!=null">
-                <input class="input" disabled [value]="customerDetails?.gender">
-            </th>
-
-        </tr>
-        <tr>
-
-            <th *ngIf="customerDetails?.active_Paycode_Balance">Active Paycode Balance:</th>
-            <th *ngIf="customerDetails?.active_Paycode_Balance">
-                <input class="input" disabled [value]="customerDetails?.active_Paycode_Balance">
-            </th>
-            <th *ngIf="customerDetails?.fasttag_no"> Fasttag Number:</th>
-            <th *ngIf="customerDetails?.fasttag_no">
-                <input class="input" disabled [value]="customerDetails?.fasttag_no">
-            </th>
-
-        </tr>
-        <tr>
-
-            <th> Address :</th>
-            <th><input class="input" disabled [value]="customerDetails?.address"></th>
-            <th *ngIf="customerDetails?.state!=null">State:</th>
-            <th *ngIf="customerDetails?.state!=null">
-                <input class="input" disabled [value]="customerDetails?.state">
-            </th>
-
-        </tr>
-        <tr>
-
-            <th *ngIf="customerDetails?.city!=null">City:</th>
-            <th *ngIf="customerDetails?.city!=null">
-                <input class="input" disabled [value]="customerDetails?.city">
-            </th>
-            <th *ngIf="customerDetails?.district!=null"> District:</th>
-            <th *ngIf="customerDetails?.district!=null">
-                <input class="input" disabled [value]="customerDetails?.district">
-            </th>
-
-        </tr>
-        <tr>
-            <th>Pin Code:</th>
-            <th>
-                <input class="input" disabled [value]="customerDetails?.pincode">
-            </th>
-
-            <th>Vehicle Number:</th>
-            <th>
-                <input class="input" disabled [value]="customerDetails?.vehicle_no">
-            </th>
-
-        </tr>
-        <tr>
-            <th>Referral Code:</th>
-            <th>
-                <input class="input" disabled [value]="customerDetails?.referralCode">
-            </th>
-            <th>Payback Card Number:</th>
-            <th>
-                <input class="input" disabled [value]="customerDetails?.payback_cardno">
-            </th>
-
-
-
-        </tr>
-
-    </table>
+<button class="btn btn-light btn-sm" style="float: right;">
+    <mat-icon style="font-size: 19px" (click)="onCloseButtonClick()">close</mat-icon>
+</button>
+<br>
+<div class="form-group" [formGroup]="rawCustomerDetailsFormGroup">
+   
+    <div class="d-flex align-items-start justify-content-between flex-wrap">
+        <div class="col-lg-6 col-12" *ngIf="customerDetails?.title">
+            <div class="form-group" >
+                <div class="row flex-wrap d-flex align-items-center" >
+                    <label  class="col-sm-6 col-12">Title:</label>
+                    <div class="col-sm-6 col-12">
+                        <input class="form-control" disabled [value]="customerDetails?.title">
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div class="col-lg-6 col-12" *ngIf="customerDetails?.first_name && customerDetails?.last_name">
+            <div class="form-group">
+                <div class="row flex-wrap d-flex align-items-center">
+                    <label class="col-sm-6 col-12">Name:</label>
+                    <div class="col-sm-6 col-12">
+                        <input class="form-control" disabled [value]="customerDetails?.first_name+' '+customerDetails?.last_name">
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div class="col-lg-6 col-12" *ngIf="customerDetails?.user_email">
+            <div class="form-group">
+                <div class="row flex-wrap d-flex align-items-center">
+                    <label class="col-sm-6 col-12">Email:</label>
+                    <div class="col-sm-6 col-12">
+                        <input class="form-control" disabled [value]="customerDetails?.user_email">
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div class="col-lg-6 col-12" *ngIf="customerDetails?.user_mobile">
+            <div class="form-group">
+                <div class="row flex-wrap d-flex align-items-center" >
+                    <label class="col-sm-6 col-12">Mobile:</label>
+                    <div class="col-sm-6 col-12">
+                        <input class="form-control" disabled [value]="customerDetails?.user_mobile">
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div class="col-lg-6 col-12" *ngIf="customerDetails?.customer_Id">
+            <div class="form-group">
+                <div class="row flex-wrap d-flex align-items-center" >
+                    <label class="col-sm-6 col-12">Customer Id:</label>
+                    <div class="col-sm-6 col-12">
+                        <input class="form-control" disabled [value]="customerDetails?.customer_Id">
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div class="col-lg-6 col-12" *ngIf="customerDetails?.dob">
+            <div class="form-group">
+                <div class="row flex-wrap d-flex align-items-center" >
+                    <label class="col-sm-6 col-12">DOB:</label>
+                    <div class="col-sm-6 col-12">
+                        <input class="form-control" disabled [value]="customerDetails?.dob | date: 'dd/MM/yyyy'">
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div class="col-lg-6 col-12" *ngIf="customerDetails?.gender!=null">
+            <div class="form-group">
+                <div class="row flex-wrap d-flex align-items-center" >
+                    <label class="col-sm-6 col-12"> Gender:</label>
+                    <div class="col-sm-6 col-12">
+                        <input class="form-control" disabled [value]="customerDetails?.gender">
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                <div class="row flex-wrap d-flex align-items-center">
+                    <label class="col-sm-6 col-12">Address:</label>
+                    <div class="col-sm-6 col-12">
+                        <input class="form-control" disabled [value]="customerDetails?.address"> 
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div class="col-lg-6 col-12" *ngIf="customerDetails?.state!=null">
+            <div class="form-group">
+                <div class="row flex-wrap d-flex align-items-center">
+                    <label class="col-sm-6 col-12">State:</label>
+                    <div class="col-sm-6 col-12">
+                        <input class="form-control" disabled [value]="customerDetails?.state">
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div class="col-lg-6 col-12" *ngIf="customerDetails?.city!=null">
+            <div class="form-group">
+                <div class="row flex-wrap d-flex align-items-center">
+                    <label class="col-sm-6 col-12">City:</label>
+                    <div class="col-sm-6 col-12">
+                        <input class="form-control" disabled [value]="customerDetails?.city"> 
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div class="col-lg-6 col-12" *ngIf="customerDetails?.district!=null">
+            <div class="form-group">
+                <div class="row flex-wrap d-flex align-items-center">
+                    <label class="col-sm-6 col-12">District:</label>
+                    <div class="col-sm-6 col-12">
+                        <input class="form-control" disabled [value]="customerDetails?.district">
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                <div class="row flex-wrap d-flex align-items-center">
+                    <label class="col-sm-6 col-12">Pincode:</label>
+                    <div class="col-sm-6 col-12">
+                        <input class="form-control" disabled [value]="customerDetails?.pincode"> 
+                    </div>
+                </div>            
+            </div>
+        </div>
+       
+ 
+    </div>
+    
 
 </div>

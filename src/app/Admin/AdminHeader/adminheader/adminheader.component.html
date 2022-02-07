@@ -144,7 +144,7 @@
                             </div>
                         </a>
 
-                        <a class="dropdown has-sub" style="cursor: pointer;">Approval
+                        <a class="dropdown has-sub" style="cursor: pointer;"  (click)="changeRoute($event, '/admin/HPPayCustomer/approvalmenu')">Approval
                             <div class="sub-menu">
                                 <!-- [routerLink]="['/admin/manageuser']" -->
                                 <a (click)="changeRoute($event, '/admin/HPPayCustomer/customerkyc')">Customer KYC</a>
@@ -299,9 +299,9 @@
                     <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;">Report</span>
 
                     <div class="dropdown-content">
-                        <a class="dropdown has-sub" style="cursor: pointer;"
+                        <a class="dropdown has-sub" style="cursor: pointer;" 
                             (click)="changeRoute($event, '/admin/report/reportmenu')">Advanced Report
-                            <div class="sub-menu">
+                            <div class="sub-menu"  style="max-height: 350px; overflow: auto;">
                                 <a (click)="changeRoute($event, '/admin/report/transactionreport')">Transaction Wise
                                     Spend Report</a>
                                 <a (click)="changeRoute($event, '/admin/report/dealerreport')">Dealer Wise Spend
@@ -418,7 +418,7 @@
                     </div>
                 </div>
                 <div class="dropdown" *ngIf="UserInfoLocalStorageDataConverted.userrole.toUpperCase()!='CALLCENTER'">
-                    <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;">Fastag</span>
+                    <span class="custom-font-white custom-fz custom-btn" style="cursor: pointer;" routerLink="./fastag/profileMenu">Fastag</span>
                     <div class="dropdown-content">
                         <a class="dropdown has-sub" style="cursor: pointer;"
                             (click)="changeRoute($event, '/admin/fastag/profileMenu')">Profile
