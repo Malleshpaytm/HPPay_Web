@@ -24,7 +24,7 @@ import { CustomerDetailsModalComponent } from '../../customer-details-modal/cust
   providers: [DatePipe]
 })
 export class CustomerkycComponent implements OnInit {
-  displayedColumns: string[] = ['sno', 'select', 'customer_Id', 'mobile_No', 'created_On', 'poa','poi','viewDetails'];
+  displayedColumns: string[] = ['sno', 'select', 'customer_Id', 'mobile_No', 'created_On', 'poi','poa','viewDetails'];
   private dataArray: any;
 
   public dataSource: MatTableDataSource<IRandomUsers>;
@@ -51,6 +51,8 @@ export class CustomerkycComponent implements OnInit {
   onModelChange(textValue: string): void {
     this.numberOfCharacters2 = textValue.length;
   }
+  showCommentBox:boolean=true;
+  showButton:boolean=true;
   customerkycformgroup: FormGroup;
   constructor(private adminService: AdminService, public dialog: MatDialog, private fb: FormBuilder,
     public toastr: ToastrService, private router: Router, private datePipe: DatePipe, private modalService: NgbModal,) { }
@@ -95,6 +97,17 @@ this.customerkycformgroup.controls.category.setValue(0)
   //     this.onSearchButtonClick(0)
   //   }
   // }
+  onChange(value){
+    debugger;
+    if(value==1 || value==2){
+      this.showCommentBox=false;
+      this.showButton=false;
+    }
+    else{
+      this.showCommentBox=true;
+      this.showButton=true;
+    }
+  }
   onSearchButtonClick() {
     debugger;
 
@@ -206,7 +219,7 @@ this.customerkycformgroup.controls.category.setValue(0)
 
   openDialog(message): void {
     const dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '400px',
+      width: '300px',
       data: { message: message }
     });
 

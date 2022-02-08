@@ -27,6 +27,7 @@ import { OffermenulistComponent } from './offersandpromotion/offermenulist/offer
 import { ViewOrUpdateCustomerDetailsComponent } from './profile/view-or-update-customer-details/view-or-update-customer-details.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { CustomerDetailsModalComponent } from './customer-details-modal/customer-details-modal.component';
+import { ApprovalMenuComponent } from './approval/approval-menu/approval-menu.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { CustomerDetailsModalComponent } from './customer-details-modal/customer
              OffermenulistComponent,
              ViewOrUpdateCustomerDetailsComponent,
              CustomerDetailsModalComponent,
+             ApprovalMenuComponent,
   ],
   imports: [
     CommonModule,

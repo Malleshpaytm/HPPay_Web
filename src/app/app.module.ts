@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
@@ -21,13 +21,17 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { LoginComponent } from './auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MaterialModule } from './material/material.module';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
 import { LoginHeaderComponent } from './login-header/login-header.component';
 import { LoginFooterComponent } from './login-footer/login-footer.component';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { LoginService } from './services/login/login.service';
+import { ApiInterceptorInterceptor } from './shared/interceptor/api-interceptor.interceptor';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent, LoginComponent, LoginHeaderComponent, LoginFooterComponent],
@@ -52,7 +56,13 @@ import { LoginFooterComponent } from './login-footer/login-footer.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-  }],
+  },
+//   {
+//     provide: HTTP_INTERCEPTORS,
+//     useClass: ApiInterceptorInterceptor,
+//     multi: true
+// },
+  ],
 
   bootstrap: [AppComponent],
 })

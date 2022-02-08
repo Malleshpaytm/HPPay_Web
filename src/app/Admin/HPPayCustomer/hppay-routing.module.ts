@@ -21,12 +21,15 @@ import { ManageoffersComponent } from './offersandpromotion/manageoffers/manageo
 import { CreateoffersComponent } from './offersandpromotion/createoffers/createoffers.component';
 import { OffermenulistComponent } from './offersandpromotion/offermenulist/offermenulist.component';
 import { ViewOrUpdateCustomerDetailsComponent } from './profile/view-or-update-customer-details/view-or-update-customer-details.component';
+import { ApprovalmenuComponent } from '../Merchant/approval/approvalmenu/approvalmenu.component';
+import { ApprovalMenuComponent } from './approval/approval-menu/approval-menu.component';
 
 const routes: Routes = [
   { path: 'createcustomer', component: CreatehppaycustomerComponent },
   { path: 'managecustomer', component: ManagehppaycustomerComponent },
   { path: 'RetailCustomerUpdation', component:ViewOrUpdateCustomerDetailsComponent},
   { path: 'profilemenu', component: ProfilemenuComponent },
+  { path: 'approvalmenu', component: ApprovalMenuComponent },
   { path: 'customerkyc', component: CustomerkycComponent },
   { path: 'viewcustomerfeedback', component: ViewcustomerfeedbackComponent },
   { path: 'feedbackdetail', component: FeedbackdetailComponent },

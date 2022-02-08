@@ -25,6 +25,7 @@ export class LubesorderapprovalComponent implements OnInit {
   pageSize = 4;
   collectionSize = 5;
   LubesorderapprovalFormGroup: FormGroup;
+
   public dataSource: MatTableDataSource<IRandomUsers>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -67,6 +68,7 @@ export class LubesorderapprovalComponent implements OnInit {
     this.isshow = 1;
   }
   searchButtonClick(){
+    if(this.LubesorderapprovalFormGroup.valid){
     this.ShowTableList();
     debugger;
     let  get_activate_deactivate_entityData = {
@@ -105,6 +107,10 @@ export class LubesorderapprovalComponent implements OnInit {
       (err: HttpErrorResponse) => {
         this.toastr.error(err.toString());
       });
+    }
+    else{
+      this.toastr.error("Please fill all the required fields!")
+    }
   }
   onApproveButtonClick(){
     //console.log(this.selection.selected);

@@ -9,16 +9,34 @@
 
             <div id="DashboadQuickMenuBox">
                 
+                <app-card [title]="'Request CCMS Recharge through EFT'"
+                    [bodyText]="'Request CCMS Recharge through EFT'"
+                    [imageIcon]="'assets/images/Retail Customer.png'" [routingLinkUrl]="'/admin/interface/requestccmdrechargethrougheft'">
+                </app-card>
+
                 <app-card [title]="'CCMS Recharge Approval'"
-                    [bodyText]="'CCMS Recharge Approval Request'"
-                    [imageIcon]="'assets/images/Retail Customer.png'" [routingLinkUrl]="'/admin/interface/approveeftrechargerequest'">
+                    [bodyText]="'CCMS Recharge Approval'"
+                    [imageIcon]="'assets/images/Retail Customer.png'"
+                    [routingLinkUrl]="'/admin/interface/approveeftrechargerequest'">
                 </app-card>
 
                 <app-card [title]="'CCMS Reversal Recharge Approval'"
-                    [bodyText]="'CCMS Reversal Recharge Approval Request'"
-                    [imageIcon]="'assets/images/Retail Customer.png'"
-                    [routingLinkUrl]="'/admin/interface/approveeftreversalrequest'">
+                [bodyText]="'CCMS Reversal Recharge Approval'"
+                [imageIcon]="'assets/images/Retail Customer.png'" [routingLinkUrl]="'/admin/interface/approveeftreversalrequest'">
+            </app-card>
+
+            <app-card [title]="'View EFT Request'"
+                [bodyText]="'View EFT Request'"
+                [imageIcon]="'assets/images/Retail Customer.png'"
+                [routingLinkUrl]="'/admin/interface/vieweftrechargerequest'">
+            </app-card>
+
+             <app-card [title]="'Request CCMS Recharge through EFT'"
+                    [bodyText]="'Request CCMS Recharge through EFT'"
+                    [imageIcon]="'assets/images/Retail Customer.png'" [routingLinkUrl]="'/admin/interface/requestccmsrechargereversal'">
                 </app-card>
+
+
 
             </div>
             <br clear="all">

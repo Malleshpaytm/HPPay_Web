@@ -20,6 +20,9 @@ export class ImageDialogComponent implements OnInit {
     // Close the dialog, return false
     this.dialogRef.close(false);
   }
+  onCloseButtonClick(){
+    this.dialogRef.close()
+  }
 }
 export class ImageDialogModel {
 

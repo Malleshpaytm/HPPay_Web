@@ -32,6 +32,97 @@
             </div>
             </div>
         </div>
+        <div class="col-lg-6 col-12 d-flex flex-wrap align-items-center mb-3 p-0">
+          <label class="required col-md-5 col-12 m-0">Transaction Type:</label>
+          <div class="col-md-5 col-12">
+            <select class="form-control maxwidth300" formControlName="transactionTypes">
+              <option selected="selected" value="1801">Online Sale</option>
+              <option selected="selected" value="1802">Reload</option>
+              <option selected="selected" value="1803">Loyalty Sale</option>
+              <option selected="selected" value="1804">Loyalty Redeem</option>
+              <option selected="selected" value="1805">Tracking</option>
+              <option selected="selected" value="1806">Fund Transfer From Card
+              </option>
+              <option selected="selected" value="1808">Loyalty Balance Enquiry
+              </option>
+              <option selected="selected" value="1809">CCMS Reload</option>
+              <option selected="selected" value="1813">Issue Control Card PIN</option>
+              <option selected="selected" value="1814">Issue Fleet Control Card No.
+              </option>
+              <option selected="selected" value="1815">Issue Web Login Password
+              </option>
+              <option selected="selected" value="1816">CCMS Recharge Reverse</option>
+              <option selected="selected" value="1818">CCMS Recharge</option>
+              <option selected="selected" value="1819">CCMS Reload Reverse</option>
+              <option selected="selected" value="1820">CCMS Sale</option>
+              <option selected="selected" value="1821">Loyalty Reward</option>
+              <option selected="selected" value="1822">Issue All Pin Mailer</option>
+              <option selected="selected" value="1823">CCMS Debit Adjustment</option>
+              <option selected="selected" value="1824">CCMS Transfer Credit</option>
+              <option selected="selected" value="1825">CCMS Transfer Debit</option>
+              <option selected="selected" value="1826">Drivestars Transfer Credit
+              </option>
+              <option selected="selected" value="1827">Drivestars Transfer Debit
+              </option>
+              <option selected="selected" value="1828">Gift Redemptions</option>
+              <option selected="selected" value="1829">Gift Redemption Reversal
+              </option>
+              <option selected="selected" value="1830">DriveStar Expire</option>
+              <option selected="selected" value="1831">Card Balance Transfer Credit
+              </option>
+              <option selected="selected" value="1832">Card Balance Transfer Debit
+              </option>
+              <option selected="selected" value="1833">Card Fee</option>
+              <option selected="selected" value="1834">Card Fee Reverse</option>
+              <option selected="selected" value="1835">Loyalty Redeem Reverse</option>
+              <option selected="selected" value="1840">Credit Sale</option>
+              <option selected="selected" value="1841">Credit Recharge</option>
+              <option selected="selected" value="1842">Credit Sale Reversal</option>
+              <option selected="selected" value="1843">Credit Recharge Reversal
+              </option>
+              <option selected="selected" value="1844">Excess Lube Reward Points
+                  Reversal</option>
+              <option selected="selected" value="1845">Retail Card Fee</option>
+              <option selected="selected" value="1846">Retail Card Fee Through EFT
+              </option>
+              <option selected="selected" value="1847">Card Fee Payment Confirm
+              </option>
+              <option selected="selected" value="1848">Loyalty Sale Transaction
+              </option>
+              <option selected="selected" value="1849">Cheque Reload Transaction
+              </option>
+              <option selected="selected" value="1851">Gift Redeemption Request
+                  Through Terminal</option>
+              <option selected="selected" value="1852">Auction Security</option>
+              <option selected="selected" value="1853">Reverse Auction Security
+              </option>
+              <option selected="selected" value="1855">Feet Card Fee Payment</option>
+              <option selected="selected" value="1856">Dealer Credit Sale</option>
+              <option selected="selected" value="1857">Dealer Credit Sale Close
+              </option>
+              <option selected="selected" value="1858">PAY MERCHANT</option>
+              <option selected="selected" value="1859">AuctionPanaltyCollection
+              </option>
+              <option selected="selected" value="1860">Credit Txn</option>
+              <option selected="selected" value="1861">Credit Completion</option>
+              <option selected="selected" value="1862">PB Loyality Burn</option>
+              <option selected="selected" value="1863">PB Loyality Earn</option>
+              <option selected="selected" value="1864">PB Burn Reversal</option>
+              <option selected="selected" value="1865">PB Earn Reversal </option>
+              <option selected="selected" value="1866">Reversal</option>
+              <option selected="selected" value="1867">Automation Reversal Transaction
+              </option>
+              <option selected="selected" value="1868">FASTagWallet</option>
+              <option selected="selected" value="1869">LPG Paycode Sale</option>
+              <option selected="selected" value="1870">HP Tap &amp; Pay Sale</option>
+              <option selected="selected" value="1871">HP Tap &amp; Pay Sale Reversal
+              </option>
+              <option selected="selected" value="1872">Pre Auth Sale</option>
+              <option selected="selected" value="1873">Pre Auth Sale Reversal</option>
+          </select>      
+          </div>
+        </div>
+      
       </div>
       </div>
       <div class="d-flex justify-content-end col-12 mt-4">
@@ -73,8 +164,8 @@
               <td class="td">{{mappingDetails.merchant_Name}}</td>
               <td class="td">{{mappingDetails.batchId}}</td>
               <td class="td">{{mappingDetails.roc}}</td>
-              <td class="td">{{mappingDetails.accountNo}}</td>
-              <td class="td">{{mappingDetails.vechileNo}}</td>
+              <!-- <td class="td">{{mappingDetails.accountNo}}</td>
+              <td class="td">{{mappingDetails.vechileNo}}</td> -->
               <td class="td">{{mappingDetails.txnDate}}</td>
               <td class="td">{{mappingDetails.txnType}}</td>
               <td class="td">{{mappingDetails.product}}</td>

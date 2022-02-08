@@ -6,7 +6,11 @@
         <button class="mat-raised-button" (click)="onDismiss()">Close</button>
     </div> -->
     <mat-dialog-content>
+        <button class="btn btn-light btn-sm" style="float: right;">
+            <mat-icon style="font-size: 19px" (click)="onCloseButtonClick()">close</mat-icon>
+        </button>
         <div class="img-wrapper">
+            
             <img 
                 src="{{ data.image}}" 
                 alt="backdrop-img" 
