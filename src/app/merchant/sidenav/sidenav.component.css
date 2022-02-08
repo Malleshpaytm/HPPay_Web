@@ -1,11 +1,9 @@
 .example-container {
   height: 100%;
+  background: #f1f1f1;
   /* border: 1px solid rgba(0, 0, 0, 0.5); */
 }
 .toggleBtn {
-  position: absolute;
-  left: 100%;
-  top: 0;
   z-index: 100;
 }
 .example-sidenav-content {
@@ -45,6 +43,12 @@
 }
 .submenu.expanded {
   transform: scaleY(1);
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
 }
 ::ng-deep .navItem a,
 ::ng-deep .navItem + div a,

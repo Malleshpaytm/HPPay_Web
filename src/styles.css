@@ -47,9 +47,41 @@ body {
 
 .p-dropdown {
   width: 100%;
-  line-height:.3em;
+  line-height: 0.3em;
 }
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.rounded-30 {
+  border-radius: 30px !important;
+}
+.btn_icon {
+  max-width: 15px;
+}
+.bg-grey {
+  background: #f1f1f1 !important;
+}
+.text_primary {
+  color: #1e407d !important;
+}
+.bg_primary {
+  background: #1e407d !important;
+}
+.table_layout {
+  border-collapse: collapse;
+}
+.table_layout th {
+  white-space: nowrap;
+  background: #eeedff;
+}
+.table_layout th,
+.table_layout td {
+  font-size: 13px !important;
+  padding: 8px 10px !important;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

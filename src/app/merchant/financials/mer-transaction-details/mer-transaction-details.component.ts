@@ -28,6 +28,7 @@ get_any_entity_type_list=[];
     private excelService:ExcelService, private merchantService:MerchantService) { }
 
   ngOnInit(): void {
+    //debugger;
     this.transactionDetailsFormGroup = this.fb.group({
       merchantid: ['', Validators.required],
       fromdate: ['', Validators.required],
