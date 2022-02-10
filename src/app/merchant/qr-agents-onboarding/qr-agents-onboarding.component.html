@@ -1,45 +1,49 @@
-<div class="container pt-5">
-  <div class="card shadow">
-    <div class="py-2 px-3 blue-bg text-white">
-      <h4 class="m-0 text-white">QR Agents Onboarding</h4>
-    </div>
-    <div class="card-body">
-      <div class="d-flex align-items-center flex-wrap">
+<div class="container pt-3">
+  <div class="py-2">
+    <h3 class="text_primary m-0 font-weight-bold">QR Agents Onboarding</h3>
+  </div>
+  <div class="bg-white mt-3 py-4 px-3">
+    <div class="card-body p-0">
+      <div class="d-flex align-items-center justify-content-between flex-wrap">
         <ng-container *ngIf="isBeingAdded">
-          <div class="d-flex align-items-center flex-wrap mb-3 col-sm-12 col-lg-3 px-0">
-            <label class="required col-12">First Name</label>
-            <div class="col-12">
-              <input type="text" placeholder="" [(ngModel)]="newMerchantFsm.fsM_Firstname" class="form-control" />
-            </div>            
-          </div>
-          <div class="d-flex align-items-center flex-wrap mb-3 col-lg-3 px-0">
-            <label class="required col-12">Last Name</label>
-            <div class="col-12">
-              <input type="text" placeholder="" [(ngModel)]="newMerchantFsm.fsM_Lastname" class="form-control" />
-            </div>            
-          </div>
-          <div class="d-flex align-items-center flex-wrap mb-3 col-lg-3 px-0">
-            <label class="required col-12">Mobile No.</label>
-            <div class="col-12">
-              <input type="test" placeholder="" [(ngModel)]="newMerchantFsm.fsM_Mobileno" class="form-control" maxlength="10" minlength="10" />
-            </div>            
-          </div>
-          <div class="col-lg-3 px-0">
-            <label class=" col-12 d-none d-lg-block">&nbsp;</label>
-            <div class="col-12">
-              <button class="btn btn-md btn-primary mb-3 w-100" (click)="handleFsmSave()">Save</button>
+          <div class="d-flex align-items-center justify-content-between flex-wrap w-100">
+            <div class="d-flex align-items-center flex-wrap mb-3 col-sm-12 col-lg-3">
+              <label class="font-weight-bold mb-1">First Name</label>
+                <input type="text" placeholder="" [(ngModel)]="newMerchantFsm.fsM_Firstname" class="form-control bg-grey" />
             </div>
-            
+            <div class="d-flex align-items-center flex-wrap mb-3 col-lg-3">
+              <label class="font-weight-bold mb-1">Last Name</label>
+                <input type="text" placeholder="" [(ngModel)]="newMerchantFsm.fsM_Lastname" class="form-control bg-grey" />
+            </div>
+            <div class="d-flex align-items-center flex-wrap mb-3 col-lg-3">
+              <label class="font-weight-bold mb-1">Mobile No.</label>
+                <input type="test" placeholder="" [(ngModel)]="newMerchantFsm.fsM_Mobileno" class="form-control bg-grey" maxlength="10" minlength="10" />
+            </div>
+            <div class="col-lg-3 mb-3">
+              <label class="font-weight-bold mb-0 d-block">&nbsp;</label>
+                <button class="btn bg_primary form_btn text-white rounded-30 px-3 d-flex align-items-center justify-content-center w-100" (click)="handleFsmSave()">
+                  <span class="mr-2">Save</span>           
+                  <mat-icon style="font-size:20px;height: 20px;width: 20px;">save</mat-icon>
+                </button>    
+            </div>
           </div>
           
         </ng-container>
         <ng-container *ngIf="!isBeingAdded">
-          <button class="btn btn-md btn-primary ml-1" (click)="handleAddFsm()">Add FSM</button>
+          <div class="d-flex align-items-center justify-content-end w-100">
+            <div class="col-lg-2 col-12">
+              <button class="btn bg_primary form_btn text-white rounded-30 px-3 d-flex align-items-center justify-content-center w-100" (click)="handleAddFsm()">
+                <span class="mr-2">Add FSM</span>           
+                <mat-icon style="font-size:20px;height: 20px;width: 20px;">add</mat-icon>
+              </button>
+            </div>
+          </div>
+         
         </ng-container>
       </div>
 
       <div>
-        <p-table [value]="fsmList" class="table table-responsive" >
+        <p-table [value]="fsmList" class="table table-responsive table_layout" tableStyleClass="table table_layout">
           <ng-template pTemplate="header">
             <tr>
               <th>S.No</th>

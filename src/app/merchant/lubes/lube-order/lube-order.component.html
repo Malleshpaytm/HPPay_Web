@@ -1,135 +1,133 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="card shadow mt-5 p-0">
-                <div class="py-2 px-3 blue-bg text-white">
-                    <h4 class="m-0 text-white"> Lube Order List</h4>
-                </div>
-                <div class="card-body">
+<div class="container pt-3">
+    <div class="py-2">
+      <h3 class="text_primary m-0 font-weight-bold">Lube Order List</h3>
+    </div>
+    <div class="bg-white mt-3 py-4 px-3">
+        <div class="card-body p-0">
 
-                    <div class="d-flex align-items-center justify-content-between flex-wrap" [formGroup]="lubeOrderListFormGroup">
-                        <div class="col-md-6 col-12 d-flex align-items-center justify-content-between flex-wrap px-0">
-                            <label class="required col-sm-6 col-12 mb-3">From Date</label>
-                            <div class="col-sm-6 col-12 mb-3">
-                                <input type="date" class="form-control" formControlName="fromDate">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12 d-flex align-items-center justify-content-between flex-wrap">
-                                <label class="required col-sm-6 col-12 mb-3">To Date</label>
-                                <div class="col-sm-6 col-12 mb-3">
-                                    <input type="date" class="form-control" formControlName="toDate">
-                                </div>
-                        </div>
-                        <div class="col-md-6 col-12 d-flex align-items-center justify-content-between flex-wrap px-0">
-                                <label class="required col-sm-6 col-12 mb-3">Product</label>
-                                <div class="col-sm-6 col-12 mb-3">
-                                    <select type="test" placeholder="" class="form-control" formControlName="product">
-                                        <option>Select</option>
-                                        <option [value]="product.productName" *ngFor="let product of get_all_products_by_merchant">{{product.productName}}
-                                        </option>
-                                    </select>
-                                </div>
-                        </div>
-                        <div class="col-md-6 col-12 d-flex align-items-center justify-content-between flex-wrap px-0">
-                                <label class="required col-sm-6 col-12 mb-3">Order Status</label>
-                                <div class="col-sm-6 col-12 mb-3">
-                                    <select type="test" placeholder="" class="form-control" formControlName="status">
-                                        <ng-container *ngFor="let entity of get_any_entity_type_list">
-                                            <option *ngIf="entity.type_id=='627002' || entity.type_id=='627008'" [value]="entity.type_id" >{{entity.type_name}}
-                                            </option>
-                                        </ng-container>                                       
-                                    </select>
-                                </div>
-                        </div>
-                        <div class=" d-flex flex-row justify-content-center mb-4 w-100">
-                            <div class="mr-3">
-                                <button class="btn btn-primary" (click)="onSearchButtonClick()" >Search</button>
-                            </div>
-                            <div>
-                                <button class="btn btn-primary" (click)="onResetButtonClick()">Reset</button>
-                            </div>
-                        </div>
+            <div class="d-flex align-items-center justify-content-between flex-wrap" [formGroup]="lubeOrderListFormGroup">
+                
+                <div class="d-flex align-items-center justify-content-start flex-wrap px-0 w-100">
+                    <label class="required font-weight-bold col-lg-3 col-12 mb-3">From Date</label>
+                    <div class="col-lg-5 col-12 mb-3">
+                        <input type="date" class="form-control bg-grey" formControlName="fromDate">
                     </div>
                 </div>
-                <div class="card-body" *ngIf="isshow==1">
-                  
-                    <mat-table [dataSource]="dataSource" style="width: 100%;" class="mat-elevation-z8">
-                       
-                        <ng-container matColumnDef="orderRefNo">
-                            <mat-header-cell *matHeaderCellDef>Order Ref No.</mat-header-cell>
-                            <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{row.bill_Number}}
-                            </mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="amount">
-                            <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
-                            <mat-cell *matCellDef="let row" class="text-center"> {{row.amount}} </mat-cell>
-                        </ng-container>
-                        
-                        <ng-container matColumnDef="productName">
-                            <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
-                            <mat-cell *matCellDef="let row" class="text-center"> {{row.product_Name}} </mat-cell>
-                        </ng-container>
-                        
-                        <ng-container matColumnDef="qty">
-                            <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
-                            <mat-cell *matCellDef="let row" class="text-center"> {{row.quantity}} </mat-cell>
-                        </ng-container>
-                        
-                        <ng-container matColumnDef="transactionid">
-                            <mat-header-cell *matHeaderCellDef> Transaction Id </mat-header-cell>
-                            <mat-cell *matCellDef="let row" class="text-center"> {{row.transaction_Id}} </mat-cell>
-                        </ng-container>
-                        
-                        <ng-container matColumnDef="orderstatus">
-                            <mat-header-cell *matHeaderCellDef> Order Status </mat-header-cell>
-                            <mat-cell *matCellDef="let row" class="text-center"> {{row.order_Status}} </mat-cell>
-                        </ng-container>
-                        
-                        <ng-container matColumnDef="paymentstatus">
-                            <mat-header-cell *matHeaderCellDef> Payment Status </mat-header-cell>
-                            <mat-cell *matCellDef="let row" class="text-center"> {{row.payment_Status}} </mat-cell>
-                        </ng-container>
-                        
-                        <ng-container matColumnDef="orderdate">
-                            <mat-header-cell *matHeaderCellDef> OrderDate </mat-header-cell>
-                            <mat-cell *matCellDef="let row" class="text-center">  </mat-cell>
-                        </ng-container>
-                        
-
-
-
-                        <!-- <ng-container matColumnDef="actions">
-                          <mat-header-cell *matHeaderCellDef > Action</mat-header-cell>
-            
-                          <mat-cell *matCellDef="let element; let i=index" class="text-center">
-                           <p style="color: blue;cursor: pointer;" (click)="onViewMerchantDetails(element.erpCode)">View</p>
-                          </mat-cell>
-                        </ng-container>
-             -->
-
-
-                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                        <mat-row *matRowDef="let row;let i=index; columns: displayedColumns;"
-                            (click)="selection.toggle(row)"></mat-row>
-                    </mat-table>
-                    <mat-paginator [pageSizeOptions]="[5,10,20]"></mat-paginator>
-
-                    <!-- <div class="row">
-                        <div class="col-md-12 col-lg-12 col-xs-3">
-                            <button class="btn btn-primary btn-sm" style="float: right;margin-right: 15px;"
-                                (click)="onApproveButtonClick()">Approve</button>
-
-
-
+                <div class="d-flex align-items-center justify-content-start flex-wrap w-100">
+                        <label class="required font-weight-bold col-lg-3 col-12 mb-3">To Date</label>
+                        <div class="col-lg-5 col-12 mb-3">
+                            <input type="date" class="form-control bg-grey" formControlName="toDate">
                         </div>
-                    </div> -->
                 </div>
-              
-            </div>
+                <div class="d-flex align-items-center justify-content-start flex-wrap px-0 w-100">
+                    <label class="required font-weight-bold col-lg-3 col-12 mb-3">Product</label>
+                    <div class="col-lg-5 col-12 mb-3">
+                        <select type="test" placeholder="" class="form-control bg-grey" formControlName="product">
+                            <option>Select</option>
+                            <option [value]="product.productName" *ngFor="let product of get_all_products_by_merchant">{{product.productName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-start flex-wrap px-0 w-100">
+                        <label class="required font-weight-bold col-lg-3 col-12 mb-3">Order Status</label>
+                        <div class="col-lg-5 col-12 mb-3">
+                            <select type="test" placeholder="" class="form-control bg-grey" formControlName="status">
+                                <ng-container *ngFor="let entity of get_any_entity_type_list">
+                                    <option *ngIf="entity.type_id=='627002' || entity.type_id=='627008'" [value]="entity.type_id" >{{entity.type_name}}
+                                    </option>
+                                </ng-container>                                       
+                            </select>
+                        </div>
+                </div>
 
-           
+                <div class="d-flex align-items-center justify-content-start w-100 flex-wrap w-100 mt-3">
+                    <label class="col-lg-3  col-12 mb-3"> &nbsp;</label>
+                    <div class="col-lg-5 col-12 mb-3 d-flex align-items-center justify-content-center flex-wrap">
+                        <div class="px-3 mb-3 col-md-6 col-12">
+                            <button class="btn bg_primary form_btn text-white rounded-30 px-3 d-flex align-items-center justify-content-center w-100" (click)="onSearchButtonClick()">
+                                <span class="mr-2">Search</span>
+                                <img src="assets/images/search_icon.svg" class="btn_icon" alt="">
+                            </button>
+                        </div>
+                        <div class="px-3 mb-3 col-md-6 col-12">
+                                <button class="btn bg_primary form_btn text-white rounded-30 px-3 d-flex align-items-center justify-content-center w-100" (click)="onResetButtonClick()">
+                                    <span class="mr-2">Reset</span>
+                                    <img src="assets/images/refresh_icon.svg" class="btn_icon" alt="">
+                                </button>
+                        </div>
+                   </div>
+                </div>
+            </div>
         </div>
-    </div>
-      
+        <div class="card-body" *ngIf="isshow==1">
+            
+            <mat-table [dataSource]="dataSource" style="width: 100%;" class="mat-elevation-z8">
+                
+                <ng-container matColumnDef="orderRefNo">
+                    <mat-header-cell *matHeaderCellDef>Order Ref No.</mat-header-cell>
+                    <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{row.bill_Number}}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="amount">
+                    <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="text-center"> {{row.amount}} </mat-cell>
+                </ng-container>
+                
+                <ng-container matColumnDef="productName">
+                    <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="text-center"> {{row.product_Name}} </mat-cell>
+                </ng-container>
+                
+                <ng-container matColumnDef="qty">
+                    <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="text-center"> {{row.quantity}} </mat-cell>
+                </ng-container>
+                
+                <ng-container matColumnDef="transactionid">
+                    <mat-header-cell *matHeaderCellDef> Transaction Id </mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="text-center"> {{row.transaction_Id}} </mat-cell>
+                </ng-container>
+                
+                <ng-container matColumnDef="orderstatus">
+                    <mat-header-cell *matHeaderCellDef> Order Status </mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="text-center"> {{row.order_Status}} </mat-cell>
+                </ng-container>
+                
+                <ng-container matColumnDef="paymentstatus">
+                    <mat-header-cell *matHeaderCellDef> Payment Status </mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="text-center"> {{row.payment_Status}} </mat-cell>
+                </ng-container>
+                
+                <ng-container matColumnDef="orderdate">
+                    <mat-header-cell *matHeaderCellDef> OrderDate </mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="text-center">  </mat-cell>
+                </ng-container>
+                <!-- <ng-container matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef > Action</mat-header-cell>
+    
+                    <mat-cell *matCellDef="let element; let i=index" class="text-center">
+                    <p style="color: blue;cursor: pointer;" (click)="onViewMerchantDetails(element.erpCode)">View</p>
+                    </mat-cell>
+                </ng-container>
+        -->
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row;let i=index; columns: displayedColumns;"
+                    (click)="selection.toggle(row)"></mat-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5,10,20]"></mat-paginator>
+
+            <!-- <div class="row">
+                <div class="col-md-12 col-lg-12 col-xs-3">
+                    <button class="btn btn-primary btn-sm" style="float: right;margin-right: 15px;"
+                        (click)="onApproveButtonClick()">Approve</button>
+
+
+
+                </div>
+            </div> -->
+        </div>        
+    </div>      
 </div>

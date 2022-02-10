@@ -6,7 +6,7 @@
         <div class="card-body p-0">
             <div class="d-flex align-items-center justify-content-between flex-wrap" [formGroup]="viewEarningBreakupFormGroup">
                     <div class="d-flex align-items-center justify-content-start w-100 flex-wrap">
-                        <label class="required col-lg-3 col-12 mb-3">Transaction Type</label>
+                        <label class="required font-weight-bold col-lg-3 col-12 mb-3">Transaction Type</label>
                         <div class="col-lg-5 col-12 mb-3">
                             <select class="form-control bg-grey" formControlName="transactiontype">
                                 <ng-container *ngFor="let entity of get_any_entity_type_list">
@@ -17,20 +17,20 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-start w-100 flex-wrap">
-                        <label class="required col-lg-3 col-12 mb-3">From Date</label>
+                        <label class="required font-weight-bold col-lg-3 col-12 mb-3">From Date</label>
                         <div class="col-lg-5 col-12 mb-3">
                             <input type="date" class="form-control bg-grey" formControlName="fromDate">
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-start w-100 flex-wrap">
-                        <label class="required col-lg-3 col-12 mb-3">To Date</label>
+                        <label class="required font-weight-bold col-lg-3 col-12 mb-3">To Date</label>
                         <div class="col-lg-5 col-12 mb-3">
                             <input type="date" class="form-control bg-grey" formControlName="toDate">
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-start w-100 flex-wrap w-100 mt-3">
-                        <label class="col-lg-3 col-12 mb-3"> &nbsp;</label>
-                        <div class="col-lg-5 col-12 mb-3 d-flex align-items-center justify-content-center">
+                        <label class="col-lg-3  col-12 mb-3"> &nbsp;</label>
+                        <div class="col-lg-5 col-12 mb-3 d-flex align-items-center justify-content-center flex-wrap">
                             <div class="px-3 mb-3 col-md-6 col-12">
                                 <button class="btn bg_primary form_btn text-white rounded-30 px-3 d-flex align-items-center justify-content-center w-100" (click)="onSearchButtonClick()">
                                     <span class="mr-2">Search</span>
