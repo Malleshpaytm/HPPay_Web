@@ -1,10 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { IRandomUsers } from 'src/app/Admin/admin/location/regionalofficedetail/regionalofficedetail.component';
 import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
@@ -23,6 +26,10 @@ export class ViewcustomerfeedbackComponent implements OnInit {
   public page: number = 1;
   public pageSize: number = 2;
   isshow:number=0;
+  private dataArray: any;
+  public dataSource: MatTableDataSource<IRandomUsers>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  displayedColumns: string[] = ['sno','mobileNo', 'customerId', 'customerName', 'categoryType','feedbackDate','action'];
   viewAndCloseCustomerFeedbackFormGroup:FormGroup;
   constructor(private adminService: AdminService, public dialog: MatDialog,private fb:FormBuilder,
     public toastr:ToastrService, private router:Router) { }
@@ -58,6 +65,9 @@ export class ViewcustomerfeedbackComponent implements OnInit {
     .subscribe(data=>{
       if(data.message.toUpperCase()==='RECORD FOUND'){
         this.GetSaveData=data.data;
+        this.dataArray = data.data;
+        this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
+        this.dataSource.paginator = this.paginator;
       }
       else if(data.status_Code===401){
         this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')

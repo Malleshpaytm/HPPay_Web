@@ -1,8 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { IRandomUsers } from 'src/app/Admin/admin/location/regionalofficedetail/regionalofficedetail.component';
 import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
@@ -13,6 +16,10 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 export class FeedbackdetailComponent implements OnInit {
   mobileNo=''; date='';
   GetSaveData: any = [];
+  private dataArray: any;
+  public dataSource: MatTableDataSource<IRandomUsers>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  displayedColumns: string[] = ['sno','Qsname', 'Ans'];
   constructor(private adminService: AdminService, private fb: FormBuilder, private toastr: ToastrService, 
     private router:Router, private route: ActivatedRoute) { }
 
@@ -39,6 +46,9 @@ export class FeedbackdetailComponent implements OnInit {
       .subscribe(data=>{
         if(data.message.toUpperCase()==='RECORD FOUND'){
           this.GetSaveData=data.data[0].feedback_Answers.Feedback_Answers;
+          this.dataArray = data.data[0].feedback_Answers.Feedback_Answers;
+          this.dataSource = new MatTableDataSource<IRandomUsers>(this.dataArray);
+          this.dataSource.paginator = this.paginator;
         }
         else if(data.status_Code===401){
           this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')

@@ -1,14 +1,20 @@
+<div class=" card-header blue-bg text-white">
+    <strong>Customer Details</strong>
+   
+        <mat-icon style="font-size: 19px;float: right;cursor: pointer;" (click)="onCloseButtonClick()">close</mat-icon>
+   
+  </div>
 
-<button class="btn btn-light btn-sm" style="float: right;">
-    <mat-icon style="font-size: 19px" (click)="onCloseButtonClick()">close</mat-icon>
-</button>
 <br>
 <div class="form-group" [formGroup]="rawCustomerDetailsFormGroup">
    
     <div class="d-flex align-items-start justify-content-between flex-wrap">
+     
         <div class="col-lg-6 col-12" *ngIf="customerDetails?.title">
             <div class="form-group" >
+               
                 <div class="row flex-wrap d-flex align-items-center" >
+                  
                     <label  class="col-sm-6 col-12">Title:</label>
                     <div class="col-sm-6 col-12">
                         <input class="form-control" disabled [value]="customerDetails?.title">

@@ -6,7 +6,7 @@
       </div>
       
       <div class="card-body">
-                    <table class="w-50" [formGroup]="resetMpinFormGroup">
+                    <table class="w-25" [formGroup]="resetMpinFormGroup">
                         <tr>
                             <td>
                                 <span class="required">Mobile No</span>:
@@ -39,20 +39,22 @@
                     <table id="data-table" class="table table-striped table-sm" *ngIf="showSearchResult">
                       <thead>
                         <tr>
+                          <th>Mobile Number</th>
                           <th>Customer Id</th>
                           <th>Date of Birth</th>
                           <th>Gender</th>
-                          <th>Status</th>
+                          <!-- <th>Status</th> -->
                           <th>Action</th>
                         </tr>
 
                       </thead>
                       <tbody>
                         <tr>
+                          <td>{{customerResetMpinDetails?.mobileNo}}</td>
                           <td>{{customerResetMpinDetails?.customer_Id}}</td>
-                          <td>{{customerResetMpinDetails?.dob}}</td>
+                          <td>{{customerResetMpinDetails?.dob | date: 'dd/MM/yyyy'}}</td>
                           <td>{{customerResetMpinDetails?.gender}}</td>
-                          <td>{{customerResetMpinDetails?.status}}</td>
+                          <!-- <td>{{customerResetMpinDetails?.status}}</td> -->
                           <td><p style="color:blue;cursor: pointer;" (click)="resetMpinClick()">Reset M-PIN</p></td>
                         </tr>
                       </tbody>

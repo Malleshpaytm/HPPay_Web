@@ -11,7 +11,10 @@ import { ToastrService } from 'ngx-toastr';
 import { IRandomUsers } from 'src/app/Admin/admin/location/regionalofficedetail/regionalofficedetail.component';
 import { MerchantFsm } from 'src/app/models/merchant-fsm';
 import { MerchantFsmDetails } from 'src/app/models/merchant-fsm-details';
+import { AdminService } from 'src/app/services/admin/admin.service';
 import { MerchantService } from 'src/app/services/merchant/merchant.service';
+import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/shared/confirm-modal/confirm-modal.component';
+import { DialogBoxComponent } from 'src/app/shared/dialog-box/dialog-box.component';
 import { MerchantHelper } from 'src/app/shared/helpers/merchant.helper';
 import { User } from 'src/app/shared/Models/user';
 @Component({
@@ -30,8 +33,8 @@ export class LubeOrderComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   selection = new SelectionModel<IRandomUsers>(true, []);
-  displayedColumns: string[] = ['orderRefNo','amount','productName', 'qty','transactionid','orderstatus',
-  'paymentstatus','orderdate'];
+  displayedColumns: string[] = ['select','orderRefNo','amount','productName', 'qty','transactionid','orderstatus',
+  'paymentstatus','orderdate','actions'];
     private dataArray: any;
     private filteredArray: any;
   loggedInUserInfo = localStorage.getItem('userInfo');
@@ -39,7 +42,7 @@ export class LubeOrderComponent implements OnInit {
   constructor(
     readonly merchantService: MerchantService,
     readonly toastrService: ToastrService,
-    public dialog: MatDialog, private fb: FormBuilder, private router: Router
+    public dialog: MatDialog, private fb: FormBuilder, private router: Router, private adminService: AdminService,
   ) {}
 
   ngOnInit(): void {
@@ -47,12 +50,24 @@ export class LubeOrderComponent implements OnInit {
      
       fromDate:['', Validators.required],
       toDate:['', Validators.required],
-      product:['', Validators.required],
-      status:['', Validators.required]
+      product:[''],
+      status:[''],
+      comments:['']
     })
     this.getProductListByMerchantId();
     
     this.getLubePurchaseStatus();
+  }
+  openDialog(message): void {
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      width: '400px',
+      data: { message: message }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+    });
   }
   onSearchButtonClick(){
     if(this.lubeOrderListFormGroup.valid){
@@ -120,6 +135,115 @@ export class LubeOrderComponent implements OnInit {
       this.toastrService.error("Please fill all the required fields!")
     }
   }
+  onApproveButtonClick(){
+    //console.log(this.selection.selected);
+    debugger;
+    if(this.lubeOrderListFormGroup.controls.comments.value.length>0 && this.selection.selected.length>0){
+      const message = `Are you sure you want to approve this request(s)?`;
+
+      const dialogData = new ConfirmDialogModel("Confirm Action", message);
+  
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        maxWidth: "400px",
+        data: dialogData
+      });
+      dialogRef.afterClosed().subscribe(dialogResult => {
+        if (dialogResult) {
+      this.selection.selected.forEach(element => {
+        let update_order_status_by_order_idData={
+          "mobile_No": element.mobile_No.toString().length===12?element.mobile_No.toString().slice(2):element.mobile_No,
+          "order_Id": element.order_Id,
+          "order_Status": "627008",
+          "amount": element.net_Amount,
+          "awbNo": "",
+          "remarks": this.lubeOrderListFormGroup.controls.comments.value,
+          "useragent": "web",
+          "userip": "1",
+          "userid": "1"
+      }
+      this.adminService.update_order_status_by_order_id(update_order_status_by_order_idData)
+        .subscribe(data => {
+          if (data.message.toUpperCase() === 'RECORD FOUND') {
+            debugger;
+            this.openDialog("Request(s) approved successfully!")
+            this.onSearchButtonClick();
+            this.lubeOrderListFormGroup.controls.comments.reset();
+           // this.merchantTypes = data.data;
+          }
+          else if (data.status_Code === 401) {
+            //this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+            //this.router.navigate(['/'])
+          }
+        }, (err: HttpErrorResponse) => {
+          console.log(err)
+        })
+      });
+    }})
+    }
+    else{
+      this.toastrService.error("Please select the lube order and add comments!")
+    }
+    
+  }
+  onRejectButtonClick(){
+    debugger;
+    if(this.lubeOrderListFormGroup.controls.comments.valid && this.selection.selected.length>0){
+    const message = `Are you sure you want to reject this request(s)?`;
+
+      const dialogData = new ConfirmDialogModel("Confirm Action", message);
+  
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        maxWidth: "400px",
+        data: dialogData
+      });
+      dialogRef.afterClosed().subscribe(dialogResult => {
+        if (dialogResult) {
+    this.selection.selected.forEach(element => {
+      let approveRejectMerchantData={
+        "mobile_No": element.mobile_No.toString().length===12?element.mobile_No.toString().slice(2):element.mobile_No,
+        "order_Id": element.order_Id,
+        "order_Status": "627009",
+        "amount": element.net_Amount,
+        "awbNo": "",
+        "remarks": this.lubeOrderListFormGroup.controls.comments.value,
+        "useragent": "web",
+        "userip": "1",
+        "userid": "1"
+    }
+    this.adminService.update_order_status_by_order_id(approveRejectMerchantData)
+      .subscribe(data => {
+        if (data.message.toUpperCase() === 'RECORD FOUND') {
+          debugger;
+          this.openDialog("Request(s) rejected successfully!")
+          this.onSearchButtonClick();
+          this.lubeOrderListFormGroup.controls.comments.reset();
+         // this.merchantTypes = data.data;
+        }
+        else if (data.status_Code === 401) {
+          //this.toastr.error('Looks like your session is expired. Login again to enjoy the features of your app.')
+          //this.router.navigate(['/'])
+        }
+      }, (err: HttpErrorResponse) => {
+        console.log(err)
+      })
+    });
+   
+  }})
+}
+else{
+  this.toastrService.error("Please select the request and add comments!")
+}
+  }
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
   onResetButtonClick(){
     this.isshow=0;
     this.lubeOrderListFormGroup.reset();
@@ -171,3 +295,4 @@ export class LubeOrderComponent implements OnInit {
     this.isshow = 1;
   }
 }
+

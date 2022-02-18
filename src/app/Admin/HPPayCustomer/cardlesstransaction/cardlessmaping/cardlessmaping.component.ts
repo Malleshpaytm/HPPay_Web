@@ -31,28 +31,33 @@ export class CardlessmapingComponent implements OnInit {
   }
   onSearchButtonClick(){
     debugger;
-    let search_reset_mpinData={
-      "mobileNo": this.resetMpinFormGroup.controls.mobileNo.value,
-      "username": "",
-      "userid": "1", 
-      "useragent": "web",
-      "userip": "1"
+    if(this.resetMpinFormGroup.controls.mobileNo.value.length>0){
+      let search_reset_mpinData={
+        "mobileNo": this.resetMpinFormGroup.controls.mobileNo.value,
+        "username": "",
+        "userid": "1", 
+        "useragent": "web",
+        "userip": "1"
+      }
+      this.adminService.search_reset_mpin(search_reset_mpinData)
+        .subscribe(res=>{
+          debugger;
+          if (res.message.toUpperCase() === 'RECORD FOUND') {
+            this.showSearchResult=true;
+  this.customerResetMpinDetails=res.data[0];
+          
+          }
+          else if (res.message.toUpperCase() === 'RECORD NOT FOUND'){
+            this.toastr.error("No record found!")
+          }
+          else if (res.status_Code === 401) {
+            //this.loginService.generateToken();
+          }
+        });
     }
-    this.adminService.search_reset_mpin(search_reset_mpinData)
-      .subscribe(res=>{
-        debugger;
-        if (res.message.toUpperCase() === 'RECORD FOUND') {
-          this.showSearchResult=true;
-this.customerResetMpinDetails=res.data[0];
-        
-        }
-        else if (res.message.toUpperCase() === 'RECORD NOT FOUND'){
-          this.toastr.error("No record found!")
-        }
-        else if (res.status_Code === 401) {
-          //this.loginService.generateToken();
-        }
-      });
+    else{
+      this.toastr.error('Please enter mobile number!')
+    }
     
   }
 

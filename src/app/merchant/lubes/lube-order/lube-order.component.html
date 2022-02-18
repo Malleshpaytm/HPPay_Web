@@ -35,7 +35,8 @@
                                 <div class="col-sm-6 col-12 mb-3">
                                     <select type="test" placeholder="" class="form-control" formControlName="status">
                                         <ng-container *ngFor="let entity of get_any_entity_type_list">
-                                            <option *ngIf="entity.type_id=='627002' || entity.type_id=='627008'" [value]="entity.type_id" >{{entity.type_name}}
+                                            <option  [value]="entity.type_id" >{{entity.type_name}}
+                                                <!-- *ngIf="entity.type_id=='627002' || entity.type_id=='627008'" -->
                                             </option>
                                         </ng-container>                                       
                                     </select>
@@ -54,7 +55,20 @@
                 <div class="card-body" *ngIf="isshow==1">
                   
                     <mat-table [dataSource]="dataSource" style="width: 100%;" class="mat-elevation-z8">
-                       
+                        <ng-container matColumnDef="select">
+                            <mat-header-cell *matHeaderCellDef>
+                              <mat-checkbox (change)="$event ? masterToggle() : null"
+                                            [checked]="selection.hasValue() && isAllSelected()"
+                                            [indeterminate]="selection.hasValue() && !isAllSelected()">
+                              </mat-checkbox>
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let row">
+                              <mat-checkbox (click)="$event.stopPropagation()"
+                                            (change)="$event ? selection.toggle(row) : null"
+                                            [checked]="selection.isSelected(row)">
+                              </mat-checkbox>
+                            </mat-cell>
+                          </ng-container>
                         <ng-container matColumnDef="orderRefNo">
                             <mat-header-cell *matHeaderCellDef>Order Ref No.</mat-header-cell>
                             <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{row.bill_Number}}
@@ -77,7 +91,7 @@
                         </ng-container>
                         
                         <ng-container matColumnDef="transactionid">
-                            <mat-header-cell *matHeaderCellDef> Transaction Id </mat-header-cell>
+                            <mat-header-cell *matHeaderCellDef> Transaction ID </mat-header-cell>
                             <mat-cell *matCellDef="let row" class="text-center"> {{row.transaction_Id}} </mat-cell>
                         </ng-container>
                         
@@ -92,21 +106,22 @@
                         </ng-container>
                         
                         <ng-container matColumnDef="orderdate">
-                            <mat-header-cell *matHeaderCellDef> OrderDate </mat-header-cell>
+                            <mat-header-cell *matHeaderCellDef> Order Date </mat-header-cell>
                             <mat-cell *matCellDef="let row" class="text-center">  </mat-cell>
                         </ng-container>
                         
 
 
 
-                        <!-- <ng-container matColumnDef="actions">
+                       <ng-container matColumnDef="actions">
                           <mat-header-cell *matHeaderCellDef > Action</mat-header-cell>
             
                           <mat-cell *matCellDef="let element; let i=index" class="text-center">
-                           <p style="color: blue;cursor: pointer;" (click)="onViewMerchantDetails(element.erpCode)">View</p>
+                          <mat-icon color="primary">check</mat-icon>
+                          <mat-icon color="warn">close</mat-icon>
                           </mat-cell>
                         </ng-container>
-             -->
+        
 
 
                         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

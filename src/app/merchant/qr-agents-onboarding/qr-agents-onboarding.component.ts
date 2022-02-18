@@ -55,6 +55,7 @@ export class QrAgentsOnboardingComponent implements OnInit {
   }
 
   handleGenerateQr(merchantFsm: MerchantFsm) {
+    debugger;
     this.selectedMerchantFsm = merchantFsm;
     this.merchantService
       .generateMerchantFsmQr(
@@ -62,6 +63,7 @@ export class QrAgentsOnboardingComponent implements OnInit {
       )
       .subscribe((resp) => {
         this.showQrCode = true;
+        debugger;
         this.qrCode = resp.data[0].qRcode;
       });
   }

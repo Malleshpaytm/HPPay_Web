@@ -64,14 +64,15 @@
         </p-table>
       </div>
       <div class="row justify-content-center" *ngIf="showQrCode">
-        <img
-          src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chld=L|1&chl='{{
-            qrCode
-          }}'"
+        <img *ngIf="qrCode?.length>0"
+          src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chld=L|1&chl={{qrCode}}"
           class="img-responsive"
           alt=""
         />
+        <p *ngIf="qrCode?.length===0">No record found!</p>
+        <p *ngIf="qrCode===undefined">Invalid!</p>
       </div>
+
     </div>
   </div>
 </div>
