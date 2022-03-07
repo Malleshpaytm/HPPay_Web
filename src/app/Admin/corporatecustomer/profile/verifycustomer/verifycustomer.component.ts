@@ -14,6 +14,7 @@ import { IRandomUsers } from 'src/app/Admin/admin/location/regionalofficedetail/
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/shared/confirm-modal/confirm-modal.component';
 import { DialogBoxComponent } from 'src/app/shared/dialog-box/dialog-box.component';
+import { AddcustomerComponent } from '../addcustomer/addcustomer.component';
 
 @Component({
   selector: 'app-verifycustomer',
@@ -38,6 +39,9 @@ export class VerifycustomerComponent implements OnInit {
   interaction = {
     textValue: ''
   };
+  showCorporateCustomerTable = false;
+  showVerifiedSuccessInfo: boolean;
+  showRejectedInfo: boolean;
   onModelChange(textValue: string): void {
     this.numberOfCharacters2 = textValue.length;
   }
@@ -56,19 +60,19 @@ export class VerifycustomerComponent implements OnInit {
     })
   }
   searchPendingCorporateCustomer() {
+    this.showCorporateCustomerTable = true;
     if (this.pendingCorporateCustomerFormGroup.valid) {
+      const userInfo = JSON.parse(localStorage.getItem('userInfo'));
       let pendingCorporateCustomerCreationData = {
-
         "category": this.pendingCorporateCustomerFormGroup.controls.category.value,
         "fromDate": this.pendingCorporateCustomerFormGroup.controls.fromDate.value,
         "toDate": this.pendingCorporateCustomerFormGroup.controls.toDate.value,
         "useragent": "web",
         "userip": "1",
-        "userid": "1",
+        "userid": userInfo.userid,
       }
       this.adminService.pending_verification_corporate_customer(pendingCorporateCustomerCreationData)
         .subscribe(data => {
-          debugger;
           if (data.message.toUpperCase() === 'RECORD FOUND') {
             // this.corporateCustomerProfileTableData = data.data;
             //   this.isshow = 1;
@@ -105,6 +109,7 @@ export class VerifycustomerComponent implements OnInit {
     this.dataSource = new MatTableDataSource<IRandomUsers>();
     this.dataSource.paginator = this.paginator;
     this.pendingCorporateCustomerFormGroup.reset();
+    this.showCorporateCustomerTable = false;
   }
 
   isAllSelected() {
@@ -120,8 +125,12 @@ export class VerifycustomerComponent implements OnInit {
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
   onVerifyButtonClick() {
-    //console.log(this.selection.selected);
-    debugger;
+    this.showVerifiedSuccessInfo = true;
+    setTimeout(() => {
+      this.showVerifiedSuccessInfo = false;
+      this.showCorporateCustomerTable = false;
+      this.pendingCorporateCustomerFormGroup.reset();
+    }, 5000);
     if (this.pendingCorporateCustomerFormGroup.controls.comments.value.length > 0 && this.selection.selected.length > 0) {
       const message = `Are you sure you want to verify this corporate customer(s)?`;
 
@@ -140,12 +149,14 @@ export class VerifycustomerComponent implements OnInit {
               "status": "Verified",
               "useragent": "web",
               "userip": "1",
-              "userid": "1"
+              "userid": "1",
+              "category": "string",
+              "fromDate": "string",
+              "toDate": "string"
             }
             this.adminService.verify_corporate_customer(approveRejectMerchantData)
               .subscribe(data => {
                 if (data.message.toUpperCase() === 'RECORD FOUND') {
-                  debugger;
                   this.openDialog("Corporate customer(s) verified successfully!")
                   this.searchPendingCorporateCustomer();
                   this.selection.clear();
@@ -169,7 +180,12 @@ export class VerifycustomerComponent implements OnInit {
 
   }
   onRejectButtonClick() {
-    debugger;
+    this.showRejectedInfo = true
+    setTimeout(() => {
+      this.showRejectedInfo = false;
+      this.showCorporateCustomerTable = false;
+      this.pendingCorporateCustomerFormGroup.reset();
+    }, 5000)
     if (this.pendingCorporateCustomerFormGroup.controls.comments.valid && this.selection.selected.length > 0) {
       const message = `Are you sure you want to reject this corporate customer(s)?`;
 
@@ -193,7 +209,6 @@ export class VerifycustomerComponent implements OnInit {
             this.adminService.verify_corporate_customer(approveRejectMerchantData)
               .subscribe(data => {
                 if (data.message.toUpperCase() === 'RECORD FOUND') {
-                  debugger;
                   this.openDialog("Corporate customer(s) verification rejected successfully!")
                   this.searchPendingCorporateCustomer();
                   this.pendingCorporateCustomerFormGroup.controls.comments.reset();
@@ -229,4 +244,11 @@ export class VerifycustomerComponent implements OnInit {
       //this.animal = result;
     });
   }
+
+  viewToKyc(event: any, route): any {
+    event.stopPropagation();
+    this.router.navigate([route]);
+  }
+
+
 }

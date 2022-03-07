@@ -13,16 +13,16 @@
                     <td align="left">
                         <div class="form-group">
                             <select class="form-control" formControlName="category">
-                                <option value="Approved">Approved</option>
-                                <option value="Temporary Hotlisted">Temporary Hotlisted</option>
-                                <option value="Active">Active</option>
-                                <option value="Permanent Hotlisted">Permanent Hotlisted</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Unverified">Unverified</option>
-                                <option value="Verified">Verified</option>
-                                <option value="Verification Rejected">Verification Rejected</option>
-                                <option value="Approval Rejected">Approval Rejected</option>
-                            </select>  
+                              <option value="Approved">Approved</option>
+                              <option value="Temporary Hotlisted">Temporary Hotlisted</option>
+                              <option value="Active">Active</option>
+                              <option value="Permanent Hotlisted">Permanent Hotlisted</option>
+                              <option value="Pending">Pending</option>
+                              <option value="Unverified">Unverified</option>
+                              <option value="Verified">Verified</option>
+                              <option value="Verification Rejected">Verification Rejected</option>
+                              <option value="Approval Rejected">Approval Rejected</option>
+                          </select>
                         </div>
                     </td>
                 </tr>
@@ -59,7 +59,7 @@
                         <td align="left">
                             <div class=" d-flex flex-row justify-content-end">
                                 <div class="mr-3">
-                                    <button class="btn btn-primary" (click)="searchPendingCorporateCustomer()">Search</button>
+                                    <button class="btn btn-primary" [disabled]="pendingCorporateCustomerFormGroup.invalid" (click)="searchPendingCorporateCustomer()">Search</button>
                                 </div>
                                 <div class="mr-3">
                                     <button class="btn btn-primary" (click)="Reset()">Reset</button>
@@ -69,105 +69,71 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="mt-3 card">
-                       
-                      
-                       
-                <mat-table [dataSource]="dataSource" style="width: 100%;" class="mat-elevation-z8">
-                    <ng-container matColumnDef="sno">
-                        <mat-header-cell *matHeaderCellDef >S.No.</mat-header-cell>
-                        <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{i+1}} </mat-cell>
-                    </ng-container>
-                  <!-- <ng-container matColumnDef="select">
-                    <mat-header-cell *matHeaderCellDef>
-                      <mat-checkbox (change)="$event ? masterToggle() : null"
-                                    [checked]="selection.hasValue() && isAllSelected()"
-                                    [indeterminate]="selection.hasValue() && !isAllSelected()">
-                      </mat-checkbox>
-                    </mat-header-cell>
-                    <mat-cell *matCellDef="let row">
-                      <mat-checkbox (click)="$event.stopPropagation()"
-                                    (change)="$event ? selection.toggle(row) : null"
-                                    [checked]="selection.isSelected(row)">
-                      </mat-checkbox>
-                    </mat-cell>
-                  </ng-container> -->
-                    <ng-container matColumnDef="customerCode">
-                      <mat-header-cell *matHeaderCellDef >Customer Code</mat-header-cell>
-                      <mat-cell *matCellDef="let row;let i=index" class="text-center"> {{row.customercode}} </mat-cell>
-                    </ng-container>
-        
-                    <ng-container matColumnDef="companyName">
-                      <mat-header-cell *matHeaderCellDef > Company Name </mat-header-cell>
-                      <mat-cell *matCellDef="let row" class="text-center"> {{row.companyname}} </mat-cell>
-                    </ng-container>
-        
-                    <ng-container matColumnDef="contactPersonName">
-                      <mat-header-cell *matHeaderCellDef > Contact Person Name </mat-header-cell>
-                      <mat-cell *matCellDef="let row" class="text-center"> {{row.contactPersonFName}} </mat-cell>
-                    </ng-container>
+            <div class="mt-3 card" *ngIf="showManageCustomerProfileTable">
+                <table class="listTable">
+                    <thead class="lightColurBackeground">
+                        <tr>
+                            <th class="firstTd"><input type="checkbox"></th>
+                            <th style="width: 35px;" scope="col">Customer Code</th>
+                            <th scope="col">Company Name </th>
+                            <th style="width: 35px;" scope="col">Contact Person</th>
+                            <th style="width: 35px;" scope="col">Last Name</th>
+                            <th scope="col">Customer Type</th>
+                            <th style="width: 35px;" scope="col">Phone Number</th>
+                            <th scope="col">Created By</th>
+                            <th scope="col">Created Date</th>
+                            <th style="width: 35px;" scope="col"> View Detail </th>
+                            <th style="width: 35px;" scope="col">Edit Detail</th>
+                            <th scope="col" style="margin-left: -12px;">Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="firstTd borderForTable">
+                                <input type="checkbox">
+                            </td>
+                            <td class="borderForTable">1012024</td>
+                            <td class="borderForTable">Testing World</td>
+                            <td class="borderForTable">Anil</td>
+                            <td class="borderForTable">Kumar</td>
+                            <td class="borderForTable">Corporate Group</td>
+                            <td class="borderForTable">7984863838</td>
+                            <td class="borderForTable">Sanjay HO</td>
+                            <td class="borderForTable">08-02-2022</td>
+                            <td style="color: rgb(72, 72, 235);" class="borderForTable"> View</td>
+                            <td style="color: rgb(72, 72, 235);" class="borderForTable" (click)="editKyc($event, '/admin/corporatecustomer/addcustomer')">Edit</td>
+                            <td class="borderForTable">
+                                <input type="text">
+                            </td>
+                        </tr>
 
-                    <ng-container matColumnDef="lastName">
-                      <mat-header-cell *matHeaderCellDef > Last Name </mat-header-cell>
-                      <mat-cell *matCellDef="let row" class="text-center"> {{row.lastname}} </mat-cell>
-                    </ng-container>
-                   
-                    <ng-container matColumnDef="customerType">
-                      <mat-header-cell *matHeaderCellDef >Customer Type </mat-header-cell>
-                      <mat-cell *matCellDef="let row" class="text-center"> {{row.customerType}} </mat-cell>
-                    </ng-container>
-        
-                    <ng-container matColumnDef="phoneNumber">
-                      <mat-header-cell *matHeaderCellDef > Phone Number </mat-header-cell>
-                      <mat-cell *matCellDef="let row" class="text-center"> {{row.phoneNo}} </mat-cell>
-                    </ng-container>
-                    
-                    <ng-container matColumnDef="createdBy">
-                        <mat-header-cell *matHeaderCellDef > Creation By </mat-header-cell>
-                        <mat-cell *matCellDef="let row" class="text-center"> {{row.createdBy}} </mat-cell>
-                      </ng-container>
-                    
-                      <ng-container matColumnDef="createdDate">
-                        <mat-header-cell *matHeaderCellDef > Creation Date </mat-header-cell>
-                        <mat-cell *matCellDef="let row" class="text-center"> {{row.createdOn}} </mat-cell>
-                      </ng-container>
-                      
-                    
-                    
-                    
-        
-                    <!-- <ng-container matColumnDef="comments">
-                      <mat-header-cell *matHeaderCellDef > Comments </mat-header-cell>
-                      <mat-cell *matCellDef="let row" class="text-center"> <input class="form-control"> </mat-cell>
-                    </ng-container> -->
-        
-                    <ng-container matColumnDef="viewDetail">
-                      <mat-header-cell *matHeaderCellDef > View</mat-header-cell>
-        
-                      <mat-cell *matCellDef="let element; let i=index" class="text-center">
-                       <p style="color: blue;cursor: pointer;" (click)="onViewMerchantDetails(element.erpCode)">View</p>
-                      </mat-cell>
-                    </ng-container>
-                    <ng-container matColumnDef="editDetail">
-                        <mat-header-cell *matHeaderCellDef > Edit</mat-header-cell>
-          
-                        <mat-cell *matCellDef="let element; let i=index" class="text-center">
-                         <p style="color: blue;cursor: pointer;" (click)="onViewMerchantDetails(element.erpCode)">Edit</p>
-                        </mat-cell>
-                      </ng-container>
-        
-        
-                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                    <mat-row 
-                    *matRowDef="let row;let i=index; columns: displayedColumns;" (click)="selection.toggle(row)"></mat-row>
-                  </mat-table>
-                  <mat-paginator [pageSizeOptions]="[5,10,20]"></mat-paginator>
-                 
-                  
-                  </div>
+
+                        <td class="borderForTable">
+                            <input type="checkbox">
+                        </td>
+                        <td class="borderForTable">1012024</td>
+                        <td class="borderForTable">Testing World</td>
+                        <td class="borderForTable">Anil</td>
+                        <td class="borderForTable">Kumar</td>
+                        <td class="borderForTable">Corporate Group</td>
+                        <td class="borderForTable">7984863838</td>
+                        <td class="borderForTable">Sanjay HO</td>
+                        <td class="borderForTable">08-02-2022</td>
+                        <td style="color: rgb(72, 72, 235);" class="borderForTable"> View</td>
+                        <td style="color: rgb(72, 72, 235);" class="borderForTable colors" (click)="editKyc($event, '/admin/corporatecustomer/addcustomer')">Edit</td>
+                        <td class="borderForTable colors">
+                            <input type="text">
+                        </td>
+                    </tbody>
+                </table>
+
+
+
+
+
+            </div>
         </div>
 
-       
+
     </div>
 </div>
-

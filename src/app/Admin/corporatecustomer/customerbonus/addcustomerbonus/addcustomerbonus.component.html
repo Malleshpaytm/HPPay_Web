@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container" *ngIf="!alertCustomerinfo">
     <div class="row">
         <div class="col-12">
             <div class="card mt-5 p-0">
                 <div class="card-header text-white" style="background-color:  #084594;">
                     Manage Customer Bonus
                 </div>
-                <div class="card-body">
+                <div class="card-body" [formGroup]="manageCustomerBonusForm">
                     <table class="w-50">
                         <tr>
                             <td>
@@ -13,7 +13,7 @@
                             </td>
                             <td align="left">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" >
+                                    <input type="text" class="form-control" formControlName="mobileNumber" maxlength="10">
                                 </div>
                             </td>
                         </tr>
@@ -24,7 +24,7 @@
                             </td>
                             <td align="left">
                                 <div class="form-group">
-                                  <input type="text"  class ="form-control">
+                                    <input type="text" class="form-control" formControlName="customerName">
                                 </div>
                             </td>
                         </tr>
@@ -37,7 +37,7 @@
                                 </td>
                                 <td align="left">
                                     <div class="form-group">
-                                        <textarea type="text" class="form-control"></textarea>
+                                        <textarea type="text" class="form-control" formControlName="address"></textarea>
                                     </div>
                                 </td>
                             </tr>
@@ -65,17 +65,17 @@
                                     </div>
                                 </td>
                             </tr>
-                           
+
                             <tr>
                                 <td>
                                 </td>
                                 <td align="left">
                                     <div class=" d-flex flex-row justify-content-end">
                                         <div class="mr-3">
-                                            <button class="btn btn-primary">Search</button>
+                                            <button class="btn btn-primary" [disabled]="manageCustomerBonusForm.invalid" (click)="onSubmitAddCustomer()">Submit</button>
                                         </div>
                                         <div>
-                                            <button class="btn btn-primary">Reset</button>
+                                            <button class="btn btn-primary" (click)="resetForm()">Reset</button>
                                         </div>
                                     </div>
                                 </td>
@@ -86,4 +86,7 @@
             </div>
         </div>
     </div>
+</div>
+<div class="alert alert-primary alertAlignment" role="alert" *ngIf="alertCustomerinfo">
+    Corporate customer bonus request placed successfully and is pending for approval
 </div>

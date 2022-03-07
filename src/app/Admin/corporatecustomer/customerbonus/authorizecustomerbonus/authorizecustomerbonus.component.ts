@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -14,13 +15,22 @@ export class AuthorizecustomerbonusComponent implements OnInit {
   public page: number = 1;
   public pageSize: number = 2;
   isshow:number=0;
+  showTableListData=false;
+  approveManageBonusForm:FormGroup
+  showInfoMessage: boolean;
 
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal,
+    private fb:FormBuilder) { }
 
   ngOnInit(): void {
     this.ViewAuthorizeCustomerBonusData();
+    this.approveManageBonusForm=this.fb.group({
+      mobileNumber:['', Validators.required]
+    })
   }
+
+ 
 
   ViewAuthorizeCustomerBonusData() {
     this.GetAuthorizeCustomerBonusData = [
@@ -95,10 +105,16 @@ export class AuthorizecustomerbonusComponent implements OnInit {
   }
 
   ShowTableList(){
-    this.isshow=1;
+    this.showTableListData=true;
  }
  Reset(){
    this.isshow=0;
+   this.showTableListData=false;
+   this.approveManageBonusForm.reset()
+ }
+
+ showInfoPopUp(){
+   this.showInfoMessage=true;
  }
 
   limitChange(limit: number) {

@@ -20,6 +20,8 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 })
 export class ManagecustomerComponent implements OnInit {
   pendingCorporateCustomerFormGroup: FormGroup;
+  showManageCustomerProfileTable= false;
+
   constructor(@Inject(DOCUMENT) private _document: Document,
     private router: Router, private adminService: AdminService,
     private toastr: ToastrService, private fb: FormBuilder,
@@ -41,6 +43,7 @@ export class ManagecustomerComponent implements OnInit {
     })
   }
   searchPendingCorporateCustomer() {
+    this.showManageCustomerProfileTable=true;
     if (this.pendingCorporateCustomerFormGroup.valid) {
       let pendingCorporateCustomerCreationData = {
 
@@ -53,7 +56,6 @@ export class ManagecustomerComponent implements OnInit {
       }
       this.adminService.pending_verification_corporate_customer(pendingCorporateCustomerCreationData)
         .subscribe(data => {
-          debugger;
           if (data.message.toUpperCase() === 'RECORD FOUND') {
             // this.corporateCustomerProfileTableData = data.data;
             //   this.isshow = 1;
@@ -90,5 +92,13 @@ export class ManagecustomerComponent implements OnInit {
     this.dataSource = new MatTableDataSource<IRandomUsers>();
     this.dataSource.paginator = this.paginator;
     this.pendingCorporateCustomerFormGroup.reset();
+    this.showManageCustomerProfileTable=false;
   }
+
+  editKyc(event:any,route):any{
+    event.stopPropagation();
+    this.router.navigate([route]);
+  }
+  
+
 }

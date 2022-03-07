@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -15,12 +16,18 @@ export class ManagecustomerbonusComponent implements OnInit {
   public page: number = 1;
   public pageSize: number = 2;
   isshow:number=0;
+  manageCustomerBonusForm:FormGroup
 
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.ViewCustomerBonusData();
+    this.manageCustomerBonusForm=this.fb.group({
+      companyMobileNo:['', Validators.required],
+      selectedList:['', Validators.required]
+    })
   }
 
   ViewCustomerBonusData() {
@@ -93,11 +100,14 @@ export class ManagecustomerbonusComponent implements OnInit {
     ];
   }
 
+
+
   ShowTableList(){
     this.isshow=1;
  }
  Reset(){
    this.isshow=0;
+   this.manageCustomerBonusForm.reset();
  }
 
   limitChange(limit: number) {

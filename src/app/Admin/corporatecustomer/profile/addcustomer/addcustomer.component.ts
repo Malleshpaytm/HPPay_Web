@@ -50,7 +50,7 @@ export class AddcustomerComponent implements OnInit {
     this.getDropdownValues();
   }
   getDropdownValues() {
-    debugger;
+    
     //City Values
     let cityData = {
       "Useragent": "web",
@@ -59,7 +59,7 @@ export class AddcustomerComponent implements OnInit {
     }
     this.adminService.getCity(cityData)
       .subscribe(data => {
-        debugger;
+        
         this.cityDropdownValues = data.data;
       },
         (err: HttpErrorResponse) => {
@@ -75,7 +75,7 @@ export class AddcustomerComponent implements OnInit {
     }
     this.adminService.getZonalOffice(zonalOfficeData)
       .subscribe(data => {
-        debugger;
+        
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           this.zonalOffices = data.data;
         }
@@ -111,7 +111,7 @@ export class AddcustomerComponent implements OnInit {
     }
     this.adminService.getRegionalOffice(regionalOfficeData)
       .subscribe(data => {
-        debugger;
+        
         if (data.message.toUpperCase() === 'RECORD FOUND') {
           this.regionalOffices = data.data;
         }
@@ -126,7 +126,7 @@ export class AddcustomerComponent implements OnInit {
   }
   onSubmitButtonClick() {
    
-    debugger;
+    
     //console.log(this.corporateCustomerCreationFormGroup.controls);
     if(this.corporateCustomerCreationFormGroup.valid){
       const message = `Are you sure you want to create this corporate customer?`;
@@ -196,7 +196,7 @@ export class AddcustomerComponent implements OnInit {
       }
       this.adminService.corporateCustomerRegistration(customerCreationData)
         .subscribe(data => {
-          debugger;
+         
           if(data.message.toUpperCase()==='RECORD FOUND'){
             this.openDialog(`Corporate customer created successfully with mobile number ${data.data[0].user_mobile}!`);
             this.corporateCustomerCreationFormGroup.reset();
@@ -238,7 +238,7 @@ export class AddcustomerComponent implements OnInit {
     }
     this.adminService.getDistrictByState(getDistrictByStateData)
       .subscribe(data => {
-        debugger;
+     
         this.districtDropdownValues = data.data;
       });
   }

@@ -1,12 +1,76 @@
 .blue-bg {
-  background-color: #084594;
+    background-color: #084594;
 }
+
 .mat-column-sno {
-  flex: 0 0 7%;
+    flex: 0 0 7%;
 }
+
 .mat-column-select {
-  flex: 0 0 7%;
+    flex: 0 0 7%;
 }
+
 .mat-column-viewDetail {
-  flex: 0 0 7%;
+    flex: 0 0 7%;
+}
+
+th {
+    height: 40px;
+    border-bottom: 1px solid #cccccc;
+    cursor: pointer;
+    font-size: 15px;
+    font-style: bold;
+    line-height: 1.15;
+    letter-spacing: normal;
+    color: #4f4f4f;
+}
+
+.row {
+    min-height: 20vh;
+    max-height: 48vh;
+    overflow-y: auto;
+    margin-left: 4%;
+}
+
+td {
+    height: 40px;
+    padding: 0px 0 0 5px;
+}
+
+.borderForTable {
+    border: 1px solid #b2b5b8;
+}
+
+th {
+    padding: 0px 0 0 8px;
+    font-style: bold;
+}
+
+.move {
+    margin-right: -10%;
+}
+
+.inputs {
+    margin-top: 77px;
+}
+
+.listTable {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.firstTd {
+    width: 35px;
+}
+
+.lightColurBackeground {
+    background-color: #e9ecef;
+}
+
+.verifyRejectBtnsAlign {
+    display: flex;
+    flex-direction: row-reverse;
+    column-gap: 10px;
+    justify-content: flex-end;
+    padding-left: 5px;
 }
