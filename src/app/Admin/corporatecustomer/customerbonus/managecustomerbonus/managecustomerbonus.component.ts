@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
   selector: 'app-managecustomerbonus',
@@ -20,7 +21,9 @@ export class ManagecustomerbonusComponent implements OnInit {
 
 
   constructor(private modalService: NgbModal,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private adminService:AdminService
+    ) { }
 
   ngOnInit(): void {
     this.ViewCustomerBonusData();
@@ -29,6 +32,24 @@ export class ManagecustomerbonusComponent implements OnInit {
       selectedList:['', Validators.required]
     })
   }
+ 
+
+  ShowTableList(){
+    this.isshow=1;
+    if(this.manageCustomerBonusForm.valid){
+      let manageCustomerBonusDetails={
+        
+          "useragent": "1",
+          "userip": "1",
+          "userid": "1",
+          "mobileno": this.manageCustomerBonusForm.controls.companyMobileNo.value,
+          "status": this.manageCustomerBonusForm.controls.selectedList.value,
+        
+      }
+      console.log(this.manageCustomerBonusForm.value);
+        this.adminService.manageCustomerBonus(manageCustomerBonusDetails).subscribe();
+    }
+ }
 
   ViewCustomerBonusData() {
     this.GetCustomerBonusData = [
@@ -102,35 +123,35 @@ export class ManagecustomerbonusComponent implements OnInit {
 
 
 
-  ShowTableList(){
-    this.isshow=1;
- }
+ 
  Reset(){
    this.isshow=0;
    this.manageCustomerBonusForm.reset();
  }
 
-  limitChange(limit: number) {
+  // limitChange(limit: number) {
    
-  }
+  // }
 
-  open(content: any) {
-    this.modalService.dismissAll();
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
+  // open(content: any) {
+  //   this.modalService.dismissAll();
+  //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+  //     this.closeResult = `Closed with: ${result}`;
+  //   }, (reason) => {
+  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  //   });
+  // }
  
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
-  }
+  // private getDismissReason(reason: any): string {
+  //   if (reason === ModalDismissReasons.ESC) {
+  //     return 'by pressing ESC';
+  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+  //     return 'by clicking on a backdrop';
+  //   } else {
+  //     return  `with: ${reason}`;
+  //   }
+  // }
 
 }
+
+

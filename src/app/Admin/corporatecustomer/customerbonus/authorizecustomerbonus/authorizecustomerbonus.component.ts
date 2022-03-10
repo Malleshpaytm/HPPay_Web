@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
   selector: 'app-authorizecustomerbonus',
@@ -16,21 +17,35 @@ export class AuthorizecustomerbonusComponent implements OnInit {
   public pageSize: number = 2;
   isshow:number=0;
   showTableListData=false;
-  approveManageBonusForm:FormGroup
+  authorizeCustomerBonusForm:FormGroup
   showInfoMessage: boolean;
 
 
   constructor(private modalService: NgbModal,
-    private fb:FormBuilder) { }
+    private fb:FormBuilder,
+    private adminService:AdminService) { }
 
   ngOnInit(): void {
     this.ViewAuthorizeCustomerBonusData();
-    this.approveManageBonusForm=this.fb.group({
+    this.authorizeCustomerBonusForm=this.fb.group({
       mobileNumber:['', Validators.required]
     })
   }
 
- 
+  ShowTableList(){
+    this.showTableListData=true;
+    if(this.authorizeCustomerBonusForm.valid){
+      let authorizeCustomerBonusDetails={
+        "useragent": "1",
+        "userip": "1",
+        "userid": "1",
+        "mobileno": this.authorizeCustomerBonusForm.controls.mobileNumber.value,
+        "authorize_Ramarks": "2"
+      }
+      console.log(this.authorizeCustomerBonusForm.value);
+      this.adminService.authorizationCustomerBonus(authorizeCustomerBonusDetails).subscribe();
+    }
+ }
 
   ViewAuthorizeCustomerBonusData() {
     this.GetAuthorizeCustomerBonusData = [
@@ -104,13 +119,11 @@ export class AuthorizecustomerbonusComponent implements OnInit {
     ];
   }
 
-  ShowTableList(){
-    this.showTableListData=true;
- }
+ 
  Reset(){
    this.isshow=0;
    this.showTableListData=false;
-   this.approveManageBonusForm.reset()
+   this.authorizeCustomerBonusForm.reset()
  }
 
  showInfoPopUp(){

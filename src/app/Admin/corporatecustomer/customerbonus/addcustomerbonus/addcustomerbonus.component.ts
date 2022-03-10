@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
   selector: 'app-addcustomerbonus',
@@ -11,15 +12,17 @@ export class AddcustomerbonusComponent implements OnInit {
   manageCustomerBonusForm:FormGroup
 
   constructor(
-    private formBuilder:FormBuilder
+    private formBuilder:FormBuilder,
+    private adminService:AdminService
+    
   ) { 
    
   }
 
   ngOnInit(): void {
     this.inManageCustomerBonus();
-    this.resetForm();
   }
+ 
 
   // onSubmitAddCustomer():any{
   //   this.alertCustomerinfo=true
@@ -32,6 +35,8 @@ export class AddcustomerbonusComponent implements OnInit {
       mobileNumber:['', Validators.required],
       customerName:['', Validators.required],
       address:['', Validators.required],
+      bonusPoints:['', Validators.required],
+      comments:['', Validators.required],
     })
     
   }
@@ -39,13 +44,23 @@ export class AddcustomerbonusComponent implements OnInit {
   onSubmitAddCustomer():any{
    const data=this.manageCustomerBonusForm.value
    console.log(data);
-  }
-
-  resetForm():any{
-   const arase=this.manageCustomerBonusForm.reset();
-  }
+   if(this.manageCustomerBonusForm.valid){
+     let addCustomerbonusData={
+      
+        "useragent": "1",
+        "userip": "1",
+        "userid": "1",
+        "mobileno": this.manageCustomerBonusForm.controls.mobileNumber.value,
+        "customer_Name": this.manageCustomerBonusForm.controls.customerName.value,
+        "customer_Address": this.manageCustomerBonusForm.controls.address.value,
+        "bonus_points": this.manageCustomerBonusForm.controls.bonusPoints.value,
+        "comments": this.manageCustomerBonusForm.controls.comments.value
+      }
+      console.log(this.manageCustomerBonusForm.value);
+      
+      this.adminService.addCustomerBonus(addCustomerbonusData).subscribe();
+      
+     }
   
- 
-  
-
+  }
 }

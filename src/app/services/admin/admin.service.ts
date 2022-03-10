@@ -330,6 +330,32 @@ get_feedback_response_detail(get_feedback_response_detailData): Observable<any> 
     return this.service.post(path,body);
   }
 
+  //Customer Bonus Apis
+
+  addCustomerBonus(addCustomerBonusData): Observable<any>{
+    let path = 'api/hppay/registration/add_customer_bonus';
+    const body=JSON.stringify(addCustomerBonusData);
+    return this.service.post(path,body);
+  }
+
+  manageCustomerBonus(manageCustomerBonusData):Observable<any>{
+    let path='api/hppay/registration/search_customer_bonus';
+    const body=JSON.stringify(manageCustomerBonusData);
+    return this.service.post(path,body);
+  }
+
+  approveCustomerBonus(approveCustoerBonusData):Observable<any>{
+    let path='api/hppay/registration/approve_customer_bonus';
+    const body=JSON.stringify(approveCustoerBonusData);
+    return this.service.post(path,body);
+  }
+
+  authorizationCustomerBonus(authorizationCustomerBonusData):Observable<any>{
+    let path='api/hppay/registration/authorize_customer_bonus';
+    const body=JSON.stringify(authorizationCustomerBonusData);
+    return this.service.post(path,body);
+  }
+
   //MERCHANT APIS
 
   getMerchantType(getMerchantTypeData): Observable<any> {

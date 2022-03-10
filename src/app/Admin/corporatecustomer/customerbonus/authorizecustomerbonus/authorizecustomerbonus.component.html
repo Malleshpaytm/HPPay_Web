@@ -1,7 +1,7 @@
 <div class="container pt-5" *ngIf="!showInfoMessage">
     <div class="card shadow">
         <div class="card-header p-2 blue-bg text-white">
-            <strong class="balanceinfo">Approve Corporate Customer Bonus</strong>
+            <strong class="balanceinfo">Authorize Customer Bonus</strong>
         </div>
 
 
@@ -13,7 +13,7 @@
                         <span><span class="required">Mobile No</span>:</span>
                     </td>
                     <td align="left">
-                        <div class="form-group" [formGroup]="approveManageBonusForm">
+                        <div class="form-group" [formGroup]="authorizeCustomerBonusForm">
                             <input matInput required type="text" maxlength="10" class="form-control" formControlName="mobileNumber">
                         </div>
                     </td>

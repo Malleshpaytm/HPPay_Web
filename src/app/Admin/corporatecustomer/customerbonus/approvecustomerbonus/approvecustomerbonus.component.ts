@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
   selector: 'app-approvecustomerbonus',
@@ -11,14 +13,43 @@ export class ApprovecustomerbonusComponent implements OnInit {
   totalRow: number=5;
   public page: number = 1;
   public pageSize: number = 2;
-  isshow:number=0;
+  approvalBonusTable: boolean=false;
+  showapprovalInfo: boolean;
+  approveCustomerForm:FormGroup;
 
 
-  constructor() { }
+
+
+  constructor(
+    private fb:FormBuilder,
+    private adminService:AdminService
+  ) { }
 
   ngOnInit(): void {
     this.ViewApproveCustomerBonusData();
+    this.approveCustomerForm=this.fb.group({
+      mobileNumber:['',Validators.required]
+    })
+
   }
+
+  ShowTableList(){
+    this.approvalBonusTable=true;
+    if(this.approveCustomerForm.valid){
+      let approveCustomerBonusDetails={
+          "useragent": "1",
+          "userip": "1",
+          "userid": "1",
+          "mobileno": this.approveCustomerForm.controls.mobileNumber.value,
+          "status": "string",
+          "approval_Ramarks": "string"
+      }
+      console.log(this.approveCustomerForm.value);
+      this.adminService.approveCustomerBonus(approveCustomerBonusDetails).subscribe();
+    }
+ }
+
+
   ViewApproveCustomerBonusData() {
     this.GetApproveCustomerBonusData = [
       {
@@ -74,16 +105,17 @@ export class ApprovecustomerbonusComponent implements OnInit {
     ];
   }
 
-  ShowTableList(){
-    this.isshow=1;
- }
+
  Reset(){
-   this.isshow=0;
+   this.approvalBonusTable=false;
  }
 
-  limitChange(limit: number) {
+ approveCustomerBonus():any{
+   this.showapprovalInfo=true;
+ }
+
    
   }
 
 
-}
+
