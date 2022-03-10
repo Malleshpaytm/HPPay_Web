@@ -42,6 +42,7 @@ export class AddcustomerbonusComponent implements OnInit {
   }
 
   onSubmitAddCustomer():any{
+    this.alertCustomerinfo=true;
    const data=this.manageCustomerBonusForm.value
    console.log(data);
    if(this.manageCustomerBonusForm.valid){

@@ -83,7 +83,8 @@ th {
     padding-left: 5px;
 }
 
-.alertAlignment {
+
+/* .alertAlignment {
     width: 80%;
     margin: 20px 0px 0 10px;
 }
@@ -91,4 +92,12 @@ th {
 .alertAlignment2 {
     width: 80%;
     margin: 20px 0px 0 10px;
+} */
+
+.alertAlignment {
+    width: 80%;
+    margin: 20px 0px 0 10px;
+    color: rgb(21, 196, 45);
+    border: 1px solid rgb(166, 238, 166);
+    background-color: rgb(252, 232, 180);
 }
