@@ -39,11 +39,17 @@ export class ManagecustomerbonusComponent implements OnInit {
     if(this.manageCustomerBonusForm.valid){
       let manageCustomerBonusDetails={
         
-          "useragent": "1",
-          "userip": "1",
-          "userid": "1",
-          "mobileno": this.manageCustomerBonusForm.controls.companyMobileNo.value,
-          "status": this.manageCustomerBonusForm.controls.selectedList.value,
+          // "useragent": "1",
+          // "userip": "1",
+          // "userid": "1",
+          // "mobileno": this.manageCustomerBonusForm.controls.companyMobileNo.value,
+          // "status": this.manageCustomerBonusForm.controls.selectedList.value,
+
+          "Useragent":"sujit",
+          "Userip":"192.168.1.0",
+          "userid":"sujit2",
+          "Mobileno": "9999999999",
+          "Status": "Approved"
         
       }
       console.log(this.manageCustomerBonusForm.value);
