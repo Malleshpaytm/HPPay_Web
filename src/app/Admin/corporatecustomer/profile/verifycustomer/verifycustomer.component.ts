@@ -248,6 +248,7 @@ export class VerifycustomerComponent implements OnInit {
   viewToKyc(event: any, route): any {
     event.stopPropagation();
     this.router.navigate([route]);
+   
   }
 
 

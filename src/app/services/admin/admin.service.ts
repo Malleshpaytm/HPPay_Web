@@ -325,8 +325,14 @@ get_feedback_response_detail(get_feedback_response_detailData): Observable<any> 
   }
 
   verify_corporate_customer(verify_corporate_customerData): Observable<any> {
-    let path = 'api/hppay/registration/verify_corporate_customer';
+    let path = 'api/hppay/registration/get_all_verified_corporate_customer';
     const body=JSON.stringify(verify_corporate_customerData);
+    return this.service.post(path,body);
+  }
+
+  viewCustomerDetails(viewCustomerDetailsData): Observable<any>{
+    let path='api/hppay/registration/verify_corporate_customer';
+    const body=JSON.stringify(viewCustomerDetailsData);
     return this.service.post(path,body);
   }
 
